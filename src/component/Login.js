@@ -11,9 +11,21 @@ import {
 
 const LoginDialog = ({ open, onClose }) => {
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Login</DialogTitle>
-      <DialogContent>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="sm"
+      PaperProps={{
+        style: {
+          backgroundColor: "rgba(255, 255, 255, 0.3)", // More transparent background
+          backdropFilter: "blur(5px)", // Optional: Blur effect to make it stylish
+          boxShadow: "none",
+        },
+      }}
+    >
+      <DialogTitle style={{ color: "#000" }}>Login</DialogTitle>
+      <DialogContent style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
         <TextField
           margin="dense"
           id="email"
@@ -32,11 +44,11 @@ const LoginDialog = ({ open, onClose }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} color="black">
           Cancel
         </Button>
-        <Button onClick={onClose} color="primary">
-          Sign Up
+        <Button onClick={onClose} color="black">
+          Login
         </Button>
       </DialogActions>
     </Dialog>

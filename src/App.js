@@ -1,32 +1,38 @@
 import "./App.css";
-import { useState } from "react";
 import Home from "./component/Home";
 import Navbar from "./component/Navbar";
 import SignUpDialog from "./component/SignUp";
 import LoginDialog from "./component/Login";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  openSignUpModal,
+  closeSignUpModal,
+  openLoginModal,
+  closeLoginModal,
+} from "./redux/modalSlice";
 function App() {
-  const [isSignUpDialogOpen, setSignUpDialogOpen] = useState(false);
-  const [isLoginDialogOpen, setLoginDialogOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
+  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
 
   const handleSignUpClick = () => {
     console.log("clicked");
     if (!isLoginDialogOpen) {
-      setSignUpDialogOpen(true);
+      dispatch(openSignUpModal());
     }
   };
   const handleLoginClick = () => {
     console.log("clicked");
     if (!isSignUpDialogOpen) {
-      setLoginDialogOpen(true);
+      dispatch(openLoginModal());
     }
   };
 
   const handleSignUpDialogClose = () => {
-    setSignUpDialogOpen(false);
+    dispatch(closeSignUpModal());
   };
   const handleLoginDialogClose = () => {
-    setLoginDialogOpen(false);
+    dispatch(closeLoginModal());
   };
 
   return (
