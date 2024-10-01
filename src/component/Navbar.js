@@ -13,7 +13,7 @@ export default function Navbar({ handleSignUpClick, handleLoginClick }) {
   const dispatch = useDispatch();
   return (
     <>
-      {/* <h1>Counter: {count}</h1>
+    {/* <h1>Counter: {count}</h1>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
       <button onClick={() => dispatch(increment())}>Increment</button> */}
 

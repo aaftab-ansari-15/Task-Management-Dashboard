@@ -14,16 +14,55 @@ const initialData = {
   email: "",
   password: "",
 };
+const validateEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const validatePassword = (password) => {
+  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
+    password
+  );
+};
 
 const SignUpDialog = ({ open, onClose }) => {
   const [SignUpData, setSignUpData] = useState(initialData);
+  const [errors, setErrors] = useState(initialData);
 
   const handleChange = (e) => {
-    setSignUpData({ ...SignUpData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setSignUpData({ ...SignUpData, [name]: value });
+    switch (name) {
+      case "name":
+        setErrors({
+          ...errors,
+          name: value.length > 4 ? "" : "Name must be at least 5 characters.",
+        });
+        break;
+      case "email":
+        setErrors({
+          ...errors,
+          email: validateEmail(value) ? "" : "Invalid email formate", 
+        });
+        break;
+      case "password":
+        setErrors({
+          ...errors,
+          password: validatePassword(value) ? "" : "Invalid Password (include charachter, symbol and number)."
+        });
+        break;
+      default:
+        break;
+    }
   };
   const handleClick = () => {
-    console.log(SignUpData);
+    if (!errors.name && !errors.email && !errors.password) {
+      console.log("Form submitted", SignUpData);
+    } else {
+      console.log("Form has errors");
+    }
   };
+  const isFormValid = !errors.name && !errors.email && !errors.password && 
+                      SignUpData.name && SignUpData.email && SignUpData.password;
   return (
     <Dialog
       open={open}
@@ -51,6 +90,8 @@ const SignUpDialog = ({ open, onClose }) => {
           variant="outlined"
           value={SignUpData.name}
           onChange={handleChange}
+          error={!!errors.name}
+          helperText={errors.name}
         />
         <TextField
           margin="dense"
@@ -62,6 +103,8 @@ const SignUpDialog = ({ open, onClose }) => {
           variant="outlined"
           value={SignUpData.email}
           onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
         />
         <TextField
           margin="dense"
@@ -73,13 +116,15 @@ const SignUpDialog = ({ open, onClose }) => {
           variant="outlined"
           value={SignUpData.password}
           onChange={handleChange}
+          error={!!errors.password}
+          helperText={errors.password}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="black">
           Cancel
         </Button>
-        <Button onClick={handleClick} color="black">
+        <Button onClick={handleClick} color="black" disabled={!isFormValid}>
           Sign Up
         </Button>
       </DialogActions>
