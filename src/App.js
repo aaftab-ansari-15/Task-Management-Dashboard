@@ -1,4 +1,5 @@
 import "./App.css";
+import Box from "@mui/material/Box";
 import Home from "./component/Home";
 import Navbar from "./component/Navbar";
 import SignUpDialog from "./component/SignUp";
@@ -37,11 +38,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar
-        handleSignUpClick={handleSignUpClick}
-        handleLoginClick={handleLoginClick}
-      />
-      <Home />
+      <Box>
+        <Navbar
+          handleSignUpClick={handleSignUpClick}
+          handleLoginClick={handleLoginClick}
+        />
+        <Home />
+      </Box>
+      {/* pop up forms/ dialog */}
       <SignUpDialog
         open={isSignUpDialogOpen}
         onClose={handleSignUpDialogClose}

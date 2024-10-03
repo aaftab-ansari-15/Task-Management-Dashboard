@@ -1,6 +1,8 @@
-1. complete code sign up and login
+-> signUp click -
+data should be store in state and also in database.
+change the userLogin to true.
 
-2. make new componenet inside home for login user
+2. make new component inside home for login user
 
 3. - Allow users to add new tasks.
    - Display a list of all tasks.

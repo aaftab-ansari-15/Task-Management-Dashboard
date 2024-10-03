@@ -6,14 +6,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../redux/counterSlice.js";
+// import { useSelector, useDispatch } from "react-redux";
+// import { increment, decrement } from "../redux/counterSlice.js";
 export default function Navbar({ handleSignUpClick, handleLoginClick }) {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
+  // const count = useSelector((state) => state.counter.value);
+  // const dispatch = useDispatch();
   return (
     <>
-    {/* <h1>Counter: {count}</h1>
+      {/* <h1>Counter: {count}</h1>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
       <button onClick={() => dispatch(increment())}>Increment</button> */}
 

@@ -19,22 +19,22 @@ const ImageCarousel = () => {
         <Slider {...settings}>
           <div>
             <img
-              src={image3}
-              alt="Image 1"
+              src={image1}
+              alt=""
               style={{ width: "100%", borderRadius: "8px" }}
             />
           </div>
           <div>
             <img
               src={image2}
-              alt="Image 2"
+              alt=""
               style={{ width: "100%", borderRadius: "8px" }}
             />
           </div>
           <div>
             <img
-              src={image1}
-              alt="Image 3"
+              src={image3}
+              alt=""
               style={{ width: "100%", borderRadius: "8px" }}
             />
           </div>
