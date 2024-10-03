@@ -19,7 +19,7 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
+  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$!%$*?&]{6,}$/.test(
     password
   );
 };
@@ -41,28 +41,38 @@ const SignUpDialog = ({ open, onClose }) => {
       case "email":
         setErrors({
           ...errors,
-          email: validateEmail(value) ? "" : "Invalid email formate", 
+          email: validateEmail(value) ? "" : "Invalid email formate",
         });
         break;
       case "password":
         setErrors({
           ...errors,
-          password: validatePassword(value) ? "" : "Invalid Password (include charachter, symbol and number)."
+          password: validatePassword(value)
+            ? ""
+            : "Invalid Password (include charachter, symbol and number).",
         });
         break;
       default:
         break;
     }
   };
-  const handleClick = () => {
+  const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
       console.log("Form submitted", SignUpData);
     } else {
       console.log("Form has errors");
     }
   };
-  const isFormValid = !errors.name && !errors.email && !errors.password && 
-                      SignUpData.name && SignUpData.email && SignUpData.password;
+  const handleCancelClick = () => {
+    setSignUpData(initialData);
+  };
+  const isFormValid =
+    !errors.name &&
+    !errors.email &&
+    !errors.password &&
+    SignUpData.name &&
+    SignUpData.email &&
+    SignUpData.password;
   return (
     <Dialog
       open={open}
@@ -121,10 +131,20 @@ const SignUpDialog = ({ open, onClose }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="black">
+        <Button
+          onClick={() => {
+            onClose();
+            handleCancelClick();
+          }}
+          color="black"
+        >
           Cancel
         </Button>
-        <Button onClick={handleClick} color="black" disabled={!isFormValid}>
+        <Button
+          onClick={handleSignUpClick}
+          color="black"
+          disabled={!isFormValid}
+        >
           Sign Up
         </Button>
       </DialogActions>

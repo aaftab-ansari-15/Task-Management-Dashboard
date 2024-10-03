@@ -1,6 +1,7 @@
 import React from "react";
-import { Slide } from "@mui/material";
 import ImageCarousel from "./ImageCarousel";
+// Let us open our database
+
 const Home = () => {
   return (
     <div>
