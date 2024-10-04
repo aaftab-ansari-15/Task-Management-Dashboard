@@ -1,11 +1,14 @@
 // src/redux/modalSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+const userData = JSON.parse(localStorage.getItem("user"));
+console.log(userData);
 const initialSignUpData = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: userData ? userData : null,
 };
+console.log(initialSignUpData);
 const userSlice = createSlice({
   name: "user",
-  initialSignUpData,
+  initialState: initialSignUpData,
   reducers: {
     addUser: (state, action) => {
       state.user = action.payload;

@@ -15,6 +15,7 @@ const initialData = {
   name: "",
   email: "",
   password: "",
+  isLogin: false,
 };
 
 // Function to validate email format
@@ -68,6 +69,7 @@ const SignUpDialog = ({ open, onClose }) => {
   // Handle sign-up button click
   const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
+      setSignUpData({ ...SignUpData, isLogin: true });
       dispatch(addUser(SignUpData));
       console.log("Form submitted", SignUpData); // Log submitted data
     } else {

@@ -11,6 +11,7 @@ import {
   openLoginModal,
   closeLoginModal,
 } from "./redux/modalSlice";
+import { useEffect } from "react";
 function App() {
   const dispatch = useDispatch();
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageCarousel from "./ImageCarousel";
 import User from "./User";
-import { useSelector, useDispatch } from "react-redux";
-import { addUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 // Let us open our database
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user.user);
+  const userData = useSelector((state) => state.user);
+  console.log(userData, "hello");
   return (
     <div>{userData && userData.isLogin ? <User /> : <ImageCarousel />}</div>
   );

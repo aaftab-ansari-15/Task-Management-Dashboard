@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 export default function Navbar({ handleSignUpClick, handleLoginClick }) {
   // const count = useSelector((state) => state.counter.value);
   // const dispatch = useDispatch();
+
   return (
     <>
       {/* <h1>Counter: {count}</h1>
