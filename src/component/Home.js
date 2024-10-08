@@ -5,7 +5,12 @@ import { useSelector } from "react-redux";
 // Let us open our database
 
 const Home = () => {
-  const userData = useSelector((state) => state.user);
+  const userData = useSelector(
+    (state) => state.user,
+    (prevUser, nextUser) => {
+      return prevUser === nextUser;
+    }
+  );
   console.log(userData, "hello");
   return (
     <div>{userData && userData.isLogin ? <User /> : <ImageCarousel />}</div>

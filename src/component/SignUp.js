@@ -8,8 +8,10 @@ import {
   Button, // Button component
   TextField, // Input field component
 } from "@mui/material"; // Import Material-UI components
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { closeSignUpModal } from "../redux/modalSlice";
+
 // Initial state for sign-up data
 const initialData = {
   name: "",
@@ -31,9 +33,11 @@ const validatePassword = (password) => {
 };
 
 // Main SignUpDialog component
-const SignUpDialog = ({ open, onClose }) => {
+const SignUpDialog = () => {
   const [SignUpData, setSignUpData] = useState(initialData); // State for sign-up data
-  const [errors, setErrors] = useState(initialData); // State for validation errors
+  const [errors, setErrors] = useState(initialData); // State for validation
+  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
+
   const dispatch = useDispatch();
   // Handle input changes in text fields
   const handleChange = (e) => {
@@ -76,11 +80,13 @@ const SignUpDialog = ({ open, onClose }) => {
       console.log("Form has errors"); // Log if there are errors
     }
     setSignUpData(initialData); // Reset form data
+    dispatch(closeSignUpModal());
   };
 
   // Handle cancel button click
   const handleCancelClick = () => {
     setSignUpData(initialData); // Reset form data on cancel
+    dispatch(closeSignUpModal());
   };
 
   // Check if the form is valid
@@ -94,8 +100,7 @@ const SignUpDialog = ({ open, onClose }) => {
 
   return (
     <Dialog
-      open={open} // Control dialog visibility
-      onClose={onClose} // Handle dialog close
+      open={isSignUpDialogOpen} // Control dialog visibility
       fullWidth
       maxWidth="sm"
       PaperProps={{
@@ -153,7 +158,6 @@ const SignUpDialog = ({ open, onClose }) => {
       <DialogActions>
         <Button
           onClick={() => {
-            onClose(); // Close the dialog
             handleCancelClick(); // Reset form on cancel
           }}
           color="black"
@@ -163,7 +167,6 @@ const SignUpDialog = ({ open, onClose }) => {
         <Button
           onClick={() => {
             handleSignUpClick(); // Handle sign-up on button click
-            onClose(); // Close the dialog
           }}
           color="black"
           disabled={!isFormValid} // Disable button if form is invalid

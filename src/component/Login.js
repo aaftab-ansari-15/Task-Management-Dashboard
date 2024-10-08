@@ -8,7 +8,8 @@ import {
   Button, // Material-UI button component
   TextField, // Material-UI text field component
 } from "@mui/material"; // Import Material-UI components
-
+import { closeLoginModal } from "../redux/modalSlice";
+import { useSelector, useDispatch } from "react-redux";
 // Initial state for login data
 const initialData = {
   email: "",
@@ -29,10 +30,12 @@ const validatePassword = (password) => {
 };
 
 // Main LoginDialog component
-const LoginDialog = ({ open, onClose }) => {
+const LoginDialog = () => {
   const [loginData, setLoginData] = useState(initialData); // State for holding login data
   const [errors, setErrors] = useState(initialData); // State for holding validation errors
+  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
 
+  const dispatch = useDispatch();
   // Check if the form is valid
   const isFormValid =
     !errors.email && !errors.password && loginData.email && loginData.password;
@@ -63,7 +66,6 @@ const LoginDialog = ({ open, onClose }) => {
         break; // No action for other cases
     }
   };
-
   // Handle login button click
   const handleLoginClick = () => {
     // Check if there are no errors before submitting
@@ -73,17 +75,18 @@ const LoginDialog = ({ open, onClose }) => {
       console.log("Form has errors"); // Log if form has errors
     }
     setLoginData(initialData); // Reset form data
+    dispatch(closeLoginModal());
   };
 
   // Handle cancel button click
   const handleCancelClick = () => {
     setLoginData(initialData); // Reset form data on cancel
+    dispatch(closeLoginModal());
   };
 
   return (
     <Dialog
-      open={open} // Control dialog open state
-      onClose={onClose} // Handle dialog close
+      open={isLoginDialogOpen} // Control dialog open state
       fullWidth // Make dialog full width
       maxWidth="sm" // Set max width to small
       PaperProps={{
@@ -129,7 +132,6 @@ const LoginDialog = ({ open, onClose }) => {
         {/* Cancel button */}
         <Button
           onClick={() => {
-            onClose(); // Close the dialog
             handleCancelClick(); // Reset form data on cancel
           }}
           color="black"
@@ -139,7 +141,6 @@ const LoginDialog = ({ open, onClose }) => {
         {/* Login button */}
         <Button
           onClick={() => {
-            onClose(); // Close the dialog
             handleLoginClick(); // Handle login on button click
           }}
           color="black"

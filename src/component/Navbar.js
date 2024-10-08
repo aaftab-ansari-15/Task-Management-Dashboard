@@ -6,18 +6,27 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-// import { useSelector, useDispatch } from "react-redux";
-// import { increment, decrement } from "../redux/counterSlice.js";
-export default function Navbar({ handleSignUpClick, handleLoginClick }) {
-  // const count = useSelector((state) => state.counter.value);
-  // const dispatch = useDispatch();
-
+import { useSelector, useDispatch } from "react-redux";
+import { openSignUpModal, openLoginModal } from "../redux/modalSlice";
+export default function Navbar() {
+  const dispatch = useDispatch();
+  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
+  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
+  console.log(isLoginDialogOpen);
+  const handleSignUpClick = () => {
+    console.log("clicked");
+    if (!isLoginDialogOpen) {
+      dispatch(openSignUpModal());
+    }
+  };
+  const handleLoginClick = () => {
+    console.log("clicked");
+    if (!isSignUpDialogOpen) {
+      dispatch(openLoginModal());
+    }
+  };
   return (
     <>
-      {/* <h1>Counter: {count}</h1>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-      <button onClick={() => dispatch(increment())}>Increment</button> */}
-
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"

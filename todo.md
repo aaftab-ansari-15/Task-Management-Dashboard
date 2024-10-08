@@ -13,6 +13,9 @@ today I worked on:
 - signup and login component
 - redux toolkit for state management
 
+problems:
+clicking on sign/login makes rerender home component
+
 future changes:
 
 1. make changes in handleChange -> for switchCase so that it will only run when click on submit.
