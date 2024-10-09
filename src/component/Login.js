@@ -1,60 +1,54 @@
-// src/components/SignUpDialog.js
-import React, { useState } from "react"; // Import React and useState hook from React
+import React, { useState } from "react";
 import {
-  Dialog, // Component for modal dialog
-  DialogActions, // Container for action buttons in the dialog
-  DialogContent, // Container for the main content of the dialog
-  DialogTitle, // Title of the dialog
-  Button, // Material-UI button component
-  TextField, // Material-UI text field component
-} from "@mui/material"; // Import Material-UI components
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  TextField,
+} from "@mui/material";
 import { closeLoginModal } from "../redux/modalSlice";
 import { useSelector, useDispatch } from "react-redux";
-// Initial state for login data
+import { loginUser } from "../redux/userSlice";
+
 const initialData = {
   email: "",
   password: "",
+  isLogin: false,
 };
 
-// Email validation function using regex
 const validateEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Check for valid email format
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
-// Password validation function using regex
 const validatePassword = (password) => {
-  // Check for at least one letter, one number, one special character, and minimum length of 6
-  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$$!%*?&]{6,}$/.test(
+  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
     password
   );
 };
 
-// Main LoginDialog component
 const LoginDialog = () => {
-  const [loginData, setLoginData] = useState(initialData); // State for holding login data
-  const [errors, setErrors] = useState(initialData); // State for holding validation errors
-  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
+  const [loginData, setLoginData] = useState(initialData);
+  const [errors, setErrors] = useState(initialData);
 
   const dispatch = useDispatch();
-  // Check if the form is valid
+  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
+  const allUser = useSelector((state) => state.allUser);
+
   const isFormValid =
     !errors.email && !errors.password && loginData.email && loginData.password;
 
-  // Handle input changes in text fields
   const handleChange = (e) => {
-    console.log("coming"); // Log when input changes
-    const { name, value } = e.target; // Destructure input name and value
-    setLoginData({ ...loginData, [name]: value }); // Update loginData state with new input value
+    const { name, value } = e.target;
+    setLoginData({ ...loginData, [name]: value });
     switch (name) {
       case "email":
-        // Validate email and set error if invalid
         setErrors({
           ...errors,
           email: validateEmail(value) ? "" : "Invalid email format",
         });
         break;
       case "password":
-        // Validate password and set error if invalid
         setErrors({
           ...errors,
           password: validatePassword(value)
@@ -63,88 +57,101 @@ const LoginDialog = () => {
         });
         break;
       default:
-        break; // No action for other cases
+        break;
     }
   };
-  // Handle login button click
+
   const handleLoginClick = () => {
-    // Check if there are no errors before submitting
     if (!errors.name && !errors.email && !errors.password) {
-      console.log("Form submitted", loginData); // Log submitted data
+      if (allUser && allUser.allUser.length > 0) {
+        console.log(allUser.allUser);
+        const findUser = allUser.allUser.find(
+          (user) => loginData.email === user.email
+        );
+
+        if (
+          findUser &&
+          findUser.email &&
+          findUser.password === loginData.password
+        ) {
+          const updatedLoginData = { ...loginData, isLogin: true };
+          dispatch(loginUser(updatedLoginData));
+          console.log("userLoggedIn", updatedLoginData);
+        } else {
+          console.log("email or password is incorrect");
+        }
+      } else {
+        console.log("no data of user, signup instead");
+      }
     } else {
-      console.log("Form has errors"); // Log if form has errors
+      console.log("Form has errors");
     }
-    setLoginData(initialData); // Reset form data
+    setLoginData(initialData);
     dispatch(closeLoginModal());
   };
 
-  // Handle cancel button click
   const handleCancelClick = () => {
-    setLoginData(initialData); // Reset form data on cancel
+    setLoginData(initialData);
     dispatch(closeLoginModal());
   };
 
   return (
     <Dialog
-      open={isLoginDialogOpen} // Control dialog open state
-      fullWidth // Make dialog full width
-      maxWidth="sm" // Set max width to small
+      open={isLoginDialogOpen}
+      fullWidth
+      maxWidth="sm"
       PaperProps={{
         style: {
-          backgroundColor: "rgba(255, 255, 255, 0.3)", // More transparent background
-          backdropFilter: "blur(5px)", // Optional: Blur effect to make it stylish
-          boxShadow: "none", // Remove shadow
+          backgroundColor: "rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(5px)",
+          boxShadow: "none",
         },
       }}
     >
-      <DialogTitle style={{ color: "#000" }}>Login</DialogTitle>{" "}
-      {/* Title of the dialog */}
+      <DialogTitle style={{ color: "#000" }}>Login</DialogTitle>
       <DialogContent style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
-        {/* Main content of the dialog with input fields */}
         <TextField
-          margin="dense" // Set margin style
-          id="email" // Unique ID for the input
-          name="email" // Input name for handling changes
-          label="Email Address" // Input label
-          type="email" // Input type
-          fullWidth // Make input full width
-          variant="outlined" // Set input variant
-          value={loginData.email} // Controlled component value
-          onChange={handleChange} // Handle input changes
-          error={!!errors.email} // Show error if email has an error
-          helperText={errors.email} // Display error message
+          margin="dense"
+          id="email"
+          name="email"
+          label="Email Address"
+          type="email"
+          fullWidth
+          variant="outlined"
+          value={loginData.email}
+          onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
         />
         <TextField
-          margin="dense" // Set margin style
-          id="password" // Unique ID for the input
-          name="password" // Input name for handling changes
-          label="Password" // Input label
-          type="password" // Input type
-          fullWidth // Make input full width
-          variant="outlined" // Set input variant
-          value={loginData.password} // Controlled component value
-          onChange={handleChange} // Handle input changes
-          error={!!errors.password} // Show error if password has an error
-          helperText={errors.password} // Display error message
+          margin="dense"
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          fullWidth
+          variant="outlined"
+          value={loginData.password}
+          onChange={handleChange}
+          error={!!errors.password}
+          helperText={errors.password}
         />
       </DialogContent>
       <DialogActions>
-        {/* Cancel button */}
         <Button
           onClick={() => {
-            handleCancelClick(); // Reset form data on cancel
+            handleCancelClick();
           }}
           color="black"
         >
           Cancel
         </Button>
-        {/* Login button */}
         <Button
           onClick={() => {
-            handleLoginClick(); // Handle login on button click
+            handleLoginClick();
           }}
           color="black"
-          disabled={!isFormValid} // Disable button if form is invalid
+          disabled={!isFormValid}
         >
           Login
         </Button>
@@ -153,4 +160,4 @@ const LoginDialog = () => {
   );
 };
 
-export default LoginDialog; // Export the LoginDialog component for use in other files
+export default LoginDialog;

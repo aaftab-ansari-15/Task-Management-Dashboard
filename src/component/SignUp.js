@@ -1,18 +1,17 @@
-// src/components/SignUpDialog.js
-import React, { useState } from "react"; // Import React and useState
+import React, { useState } from "react";
 import {
-  Dialog, // Modal dialog component
-  DialogActions, // Container for action buttons
-  DialogContent, // Container for main content
-  DialogTitle, // Title of the dialog
-  Button, // Button component
-  TextField, // Input field component
-} from "@mui/material"; // Import Material-UI components
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  TextField,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../redux/userSlice";
+import { addUser } from "../redux/allUserSlice";
+import { loginUser } from "../redux/userSlice";
 import { closeSignUpModal } from "../redux/modalSlice";
 
-// Initial state for sign-up data
 const initialData = {
   name: "",
   email: "",
@@ -20,30 +19,35 @@ const initialData = {
   isLogin: false,
 };
 
-// Function to validate email format
 const validateEmail = (email) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
-// Function to validate password strength
 const validatePassword = (password) => {
-  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$!%$*?&]{6,}$/.test(
+  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
     password
   );
 };
 
-// Main SignUpDialog component
 const SignUpDialog = () => {
-  const [SignUpData, setSignUpData] = useState(initialData); // State for sign-up data
-  const [errors, setErrors] = useState(initialData); // State for validation
-  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
+  const [SignUpData, setSignUpData] = useState(initialData);
+  const [errors, setErrors] = useState(initialData);
 
+  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
+  const allUser = useSelector((state) => state.allUser);
   const dispatch = useDispatch();
-  // Handle input changes in text fields
+
+  const isFormValid =
+    !errors.name &&
+    !errors.email &&
+    !errors.password &&
+    SignUpData.name &&
+    SignUpData.email &&
+    SignUpData.password;
+
   const handleChange = (e) => {
-    const { name, value } = e.target; // Get input name and value
-    setSignUpData({ ...SignUpData, [name]: value }); // Update SignUpData state
-    // Validate input based on the field name
+    const { name, value } = e.target;
+    setSignUpData({ ...SignUpData, [name]: value });
     switch (name) {
       case "name":
         setErrors({
@@ -70,49 +74,47 @@ const SignUpDialog = () => {
     }
   };
 
-  // Handle sign-up button click
   const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      setSignUpData({ ...SignUpData, isLogin: true });
-      dispatch(addUser(SignUpData));
-      console.log("Form submitted", SignUpData); // Log submitted data
+      if (allUser && allUser.allUser) {
+        const findUser = allUser.allUser.find(
+          (user) => SignUpData.email === user.email
+        );
+
+        if (findUser && findUser.email) {
+          console.log("Email already exist, Login instead");
+        } else {
+          const updatedSignUpData = { ...SignUpData, isLogin: true };
+          dispatch(addUser(updatedSignUpData));
+          dispatch(loginUser(updatedSignUpData));
+        }
+      }
     } else {
-      console.log("Form has errors"); // Log if there are errors
+      console.log("Form has errors");
     }
-    setSignUpData(initialData); // Reset form data
+    setSignUpData(initialData);
     dispatch(closeSignUpModal());
   };
 
-  // Handle cancel button click
   const handleCancelClick = () => {
-    setSignUpData(initialData); // Reset form data on cancel
+    setSignUpData(initialData);
     dispatch(closeSignUpModal());
   };
-
-  // Check if the form is valid
-  const isFormValid =
-    !errors.name &&
-    !errors.email &&
-    !errors.password &&
-    SignUpData.name &&
-    SignUpData.email &&
-    SignUpData.password;
 
   return (
     <Dialog
-      open={isSignUpDialogOpen} // Control dialog visibility
+      open={isSignUpDialogOpen}
       fullWidth
       maxWidth="sm"
       PaperProps={{
         style: {
-          backgroundColor: "rgba(255, 255, 255, 0.3)", // Dialog background style
-          backdropFilter: "blur(5px)", // Optional blur effect
-          boxShadow: "none", // Remove shadow
+          backgroundColor: "rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(5px)",
+          boxShadow: "none",
         },
       }}
     >
-      <DialogTitle style={{ color: "#000" }}>Sign Up</DialogTitle>{" "}
-      {/* Title of the dialog */}
+      <DialogTitle style={{ color: "#000" }}>Sign Up</DialogTitle>
       <DialogContent style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
         <TextField
           autoFocus
@@ -124,9 +126,9 @@ const SignUpDialog = () => {
           fullWidth
           variant="outlined"
           value={SignUpData.name}
-          onChange={handleChange} // Handle input changes
-          error={!!errors.name} // Show error if present
-          helperText={errors.name} // Display error message
+          onChange={handleChange}
+          error={!!errors.name}
+          helperText={errors.name}
         />
         <TextField
           margin="dense"
@@ -137,9 +139,9 @@ const SignUpDialog = () => {
           fullWidth
           variant="outlined"
           value={SignUpData.email}
-          onChange={handleChange} // Handle input changes
-          error={!!errors.email} // Show error if present
-          helperText={errors.email} // Display error message
+          onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
         />
         <TextField
           margin="dense"
@@ -150,15 +152,15 @@ const SignUpDialog = () => {
           fullWidth
           variant="outlined"
           value={SignUpData.password}
-          onChange={handleChange} // Handle input changes
-          error={!!errors.password} // Show error if present
-          helperText={errors.password} // Display error message
+          onChange={handleChange}
+          error={!!errors.password}
+          helperText={errors.password}
         />
       </DialogContent>
       <DialogActions>
         <Button
           onClick={() => {
-            handleCancelClick(); // Reset form on cancel
+            handleCancelClick();
           }}
           color="black"
         >
@@ -166,10 +168,10 @@ const SignUpDialog = () => {
         </Button>
         <Button
           onClick={() => {
-            handleSignUpClick(); // Handle sign-up on button click
+            handleSignUpClick();
           }}
           color="black"
-          disabled={!isFormValid} // Disable button if form is invalid
+          disabled={!isFormValid}
         >
           Sign Up
         </Button>
@@ -178,4 +180,4 @@ const SignUpDialog = () => {
   );
 };
 
-export default SignUpDialog; // Export the component
+export default SignUpDialog;

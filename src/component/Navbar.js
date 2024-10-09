@@ -8,22 +8,24 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector, useDispatch } from "react-redux";
 import { openSignUpModal, openLoginModal } from "../redux/modalSlice";
+import { logOutUser } from "../redux/userSlice";
 export default function Navbar() {
   const dispatch = useDispatch();
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
   const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
-  console.log(isLoginDialogOpen);
+  const user = useSelector((state) => state.user);
   const handleSignUpClick = () => {
-    console.log("clicked");
     if (!isLoginDialogOpen) {
       dispatch(openSignUpModal());
     }
   };
   const handleLoginClick = () => {
-    console.log("clicked");
     if (!isSignUpDialogOpen) {
       dispatch(openLoginModal());
     }
+  };
+  const handleLogOutClick = () => {
+    dispatch(logOutUser(user.user));
   };
   return (
     <>
@@ -46,20 +48,34 @@ export default function Navbar() {
               Task Management Dashboard
             </Typography>
             <div>
-              <Button
-                variant="solid"
-                color="inherit"
-                onClick={handleSignUpClick}
-              >
-                SignUp
-              </Button>
-              <Button
-                variant="solid"
-                color="inherit"
-                onClick={handleLoginClick}
-              >
-                Login
-              </Button>
+              {user.user && user.user.isLogin ? (
+                <>
+                  <Button
+                    variant="solid"
+                    color="inherit"
+                    onClick={handleLogOutClick}
+                  >
+                    Log Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="solid"
+                    color="inherit"
+                    onClick={handleSignUpClick}
+                  >
+                    SignUp
+                  </Button>
+                  <Button
+                    variant="solid"
+                    color="inherit"
+                    onClick={handleLoginClick}
+                  >
+                    Login
+                  </Button>
+                </>
+              )}
             </div>
           </Toolbar>
         </AppBar>

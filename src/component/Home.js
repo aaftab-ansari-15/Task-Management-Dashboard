@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
 import ImageCarousel from "./ImageCarousel";
 import User from "./User";
 import { useSelector } from "react-redux";
 // Let us open our database
 
 const Home = () => {
-  const userData = useSelector(
-    (state) => state.user,
-    (prevUser, nextUser) => {
-      return prevUser === nextUser;
-    }
-  );
-  console.log(userData, "hello");
+  const user = useSelector((state) => state.user);
   return (
-    <div>{userData && userData.isLogin ? <User /> : <ImageCarousel />}</div>
+    <div>{user.user && user.user.isLogin ? <User /> : <ImageCarousel />}</div>
   );
 };
 
