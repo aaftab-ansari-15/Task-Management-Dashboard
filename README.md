@@ -6,9 +6,9 @@ Task Management Dashboard where users can create, update, delete, and filter tas
 
 ### 1. Task CRUD (Create, Read, Update, Delete) Operations:
 
-- Allow users to add new tasks.
-- Display a list of all tasks.
-- Provide the option to update and delete tasks.
+-> Allow users to add new tasks.
+-> Display a list of all tasks.
+-> Provide the option to update and delete tasks.
 
 ### 2. Filtering and Sorting:
 
@@ -20,8 +20,8 @@ Task Management Dashboard where users can create, update, delete, and filter tas
 
 ### 3. User Management:
 
-- Multi-user system where each user sees only their tasks.
-- Users can log in and log out.
+-> Multi-user system where each user sees only their tasks.
+-> Users can log in and log out.
 
 ### 4. Search Functionality:
 
@@ -29,18 +29,18 @@ Task Management Dashboard where users can create, update, delete, and filter tas
 
 ### 5. UI/UX:
 
-- Used React components to ensure the UI is modular and reusable.
-- Form validation for task input fields (e.g., required title and due date).
-- Used libraries like Material-UI.
+-> Used React components to ensure the UI is modular and reusable.
+-> Form validation for task input fields (e.g., required title and due date).
+-> Used libraries like Material-UI.
 
 ### 6. State Management:
 
-- Used React Hooks (e.g., `useState`, `useEffect`).
-- Implement state management library like Redux to manage the app's state.
+-> Used React Hooks (e.g., `useState`, `useEffect`).
+-> Implement state management library like Redux to manage the app's state.
 
 ### 7. Other Features:
 
 - Task Timer for each task, where users can track the time spent on a task.
 - Implemented drag-and-drop functionality to reorder tasks.
 - Notifications/reminders for upcoming tasks (due in 1 day, etc.).
-- Implemented Dark Mode.
+-> Implemented Dark Mode.

@@ -10,33 +10,20 @@ import {
   FormControl,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addTasks } from "../redux/tasksSlice";
+import { updateTasks } from "../redux/tasksSlice";
+import {changeTaskMode} from "../redux/modalSlice"
 // import { useSelector } from "react-redux";
-
 const defaultTask = {
-  userId: "",
-  title: "",
-  description: "",
-  dueDate: "",
-  priority: "", // (Low, Medium, High)
-  category: "", // (e.g., Work, Personal, Study)
-};
-
-// function checkDueDate(value) {
-//   const expectedDate = new Date(); // or set to a specific date
-//   const dueDate = new Date(value.dueDate);
-
-//   // Check if dueDate is valid
-//   if (isNaN(dueDate.getTime())) {
-//       return "select valid date";
-//   }
-
-//   // Compare dueDate with expectedDate
-//   return dueDate.getTime() === expectedDate.getTime() ? "" : "select valid date";
-// }
-
-const AddTaskInUser = () => {
-  const [newTask, setNewTask] = useState(defaultTask);
+    userId: "",
+    title: "",
+    description: "",
+    dueDate: "",
+    priority: "", // (Low, Medium, High)
+    category: "", // (e.g., Work, Personal, Study)
+  };
+const UpdateTaskInUser = () => {
+  const userTask = useSelector((state) => state.modal.updateTaskInUserData);
+  const [newTask, setNewTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
 
   const user = useSelector((state) => state.user);
@@ -71,43 +58,27 @@ const AddTaskInUser = () => {
           description: value.length > 0 ? "" : "description can not be empty",
         });
         break;
-      // case "dueDate":
-      //   setErrors({
-      //     ...errors,
-      //     dueDate: checkDueDate(value) ? "" : "select valid date",
-      //   });
-      //   break;
-      // case "priority":
-      //   setErrors({
-      //     ...errors,
-      //     priority: value.priority > 0 ? "" : "select any priority",
-      //   });
-      //   break;
-      // case "category":
-      //   setErrors({
-      //     ...errors,
-      //     category: value.category > 0 ? "" : "select any category",
-      //   });
-      //   break;
       default:
         break;
     }
   };
 
   const handleAddTaskClick = () => {
-    const updatedTask = { ...newTask, userId: user.user.email };
-    const checkTask = tasks.tasks.find((task) => {
-      return (
-        task.userId === updatedTask.userId && task.title === updatedTask.title
-      );
-    });
-    if (checkTask && checkTask.userId) {
-      console.log("task already exist, title must be unique");
-    } else {
-      dispatch(addTasks(updatedTask));
-      console.log("Task added:", updatedTask);
-    }
-    setNewTask(defaultTask);
+    dispatch(changeTaskMode(defaultTask));
+
+    // const updatedTask = { ...newTask, userId: user.user.email };
+    // const checkTask = tasks.tasks.find((task) => {
+    //   return (
+    //     task.userId === updatedTask.userId && task.title === updatedTask.title
+    //   );
+    // });
+    // if (checkTask && checkTask.userId) {
+    //   console.log("task already exist, title must be unique");
+    // } else {
+    //   dispatch(addTasks(updatedTask));
+    //   console.log("Task added:", updatedTask);
+    // }
+    // setNewTask(defaultTask);
   };
 
   return (
@@ -226,12 +197,12 @@ const AddTaskInUser = () => {
         <Grid item="true" xs={6} sx={{ width: "100%" }}>
           <Button
             variant="contained"
-            color="success"
+            color="warning"
             onClick={handleAddTaskClick}
             fullWidth
             disabled={!isFormValid}
           >
-            Add New Task
+            Update Task
           </Button>
         </Grid>
       </Grid>
@@ -239,4 +210,4 @@ const AddTaskInUser = () => {
   );
 };
 
-export default AddTaskInUser;
+export default UpdateTaskInUser;

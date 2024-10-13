@@ -64,7 +64,6 @@ const LoginDialog = () => {
   const handleLoginClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
       if (allUser && allUser.allUser.length > 0) {
-        console.log(allUser.allUser);
         const findUser = allUser.allUser.find(
           (user) => loginData.email === user.email
         );

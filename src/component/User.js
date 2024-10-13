@@ -1,15 +1,17 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
 import AddTaskInUser from "./AddTaskInUser";
+import UpdateTaskInUser from "./UpdateTaskInUser";
 import ShowUserTasks from "./ShowUserTasks";
+import { useSelector } from "react-redux";
 
 const User = () => {
-  // const tasks = useSelector((state) => state.tasks);
+  const taskMode = useSelector((state) => state.modal.taskMode);
 
   return (
     <>
-      <AddTaskInUser />
+    {taskMode ? <AddTaskInUser /> : <UpdateTaskInUser />}
+      
       <hr />
       <ShowUserTasks />
     </>

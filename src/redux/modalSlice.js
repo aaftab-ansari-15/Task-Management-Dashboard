@@ -6,6 +6,9 @@ const modalSlice = createSlice({
   initialState: {
     isSignUpOpen: false,
     isLoginOpen: false,
+    taskMode: false,
+    updateTaskInUserData: {},
+    darkMode: false
   },
   reducers: {
     openSignUpModal: (state) => {
@@ -20,6 +23,13 @@ const modalSlice = createSlice({
     closeLoginModal: (state) => {
       state.isLoginOpen = false;
     },
+    changeDarkMode: (state) => {
+      state.darkMode = !state.darkMode
+    },
+    changeTaskMode: (state, action) => {
+      state.taskMode = !state.taskMode
+      state.updateTaskInUserData = action.payload
+    }
   },
 });
 
@@ -28,5 +38,7 @@ export const {
   closeSignUpModal,
   openLoginModal,
   closeLoginModal,
+  changeDarkMode,
+  changeTaskMode
 } = modalSlice.actions;
 export default modalSlice.reducer;

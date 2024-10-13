@@ -7,8 +7,9 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector, useDispatch } from "react-redux";
-import { openSignUpModal, openLoginModal } from "../redux/modalSlice";
+import { openSignUpModal, openLoginModal, changeDarkMode } from "../redux/modalSlice";
 import { logOutUser } from "../redux/userSlice";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 export default function Navbar() {
   const dispatch = useDispatch();
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
@@ -27,6 +28,9 @@ export default function Navbar() {
   const handleLogOutClick = () => {
     dispatch(logOutUser(user.user));
   };
+  const handleDarkModeClick = ()=> {
+    dispatch(changeDarkMode());
+  }
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -45,19 +49,17 @@ export default function Navbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Task Management Dashboard
+              Task Management Dashboard {user.user ? " - " + user.user.email : ""}
             </Typography>
             <div>
               {user.user && user.user.isLogin ? (
-                <>
-                  <Button
-                    variant="solid"
-                    color="inherit"
-                    onClick={handleLogOutClick}
-                  >
-                    Log Out
-                  </Button>
-                </>
+                <Button
+                  variant="solid"
+                  color="inherit"
+                  onClick={handleLogOutClick}
+                >
+                  Log Out
+                </Button>
               ) : (
                 <>
                   <Button
@@ -76,6 +78,11 @@ export default function Navbar() {
                   </Button>
                 </>
               )}
+            </div>
+            <div>
+              <Button variant="solid" color="inherit" onClick={handleDarkModeClick}>
+                <DarkModeIcon />
+              </Button>
             </div>
           </Toolbar>
         </AppBar>
