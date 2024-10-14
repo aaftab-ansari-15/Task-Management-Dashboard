@@ -12,9 +12,9 @@ Task Management Dashboard where users can create, update, delete, and filter tas
 
 ### 2. Filtering and Sorting:
 
-- Provide options to filter tasks based on:
-- Priority (Low, Medium, High).
-- Category (Work, Personal, Study, etc.).
+-> Provide options to filter tasks based on:
+-> Priority (Low, Medium, High).     
+-> Category (Work, Personal, Study, etc.).
 - Status (Completed, In-progress, Pending).
 - Allow sorting by due date and priority.
 
@@ -25,7 +25,7 @@ Task Management Dashboard where users can create, update, delete, and filter tas
 
 ### 4. Search Functionality:
 
-- Allow users to search for tasks by title or description.
+-> Allow users to search for tasks by title or description.
 
 ### 5. UI/UX:
 

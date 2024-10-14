@@ -11,47 +11,37 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTasks } from "../redux/tasksSlice";
-import {changeTaskMode} from "../redux/modalSlice"
+import { changeTaskMode } from "../redux/modalSlice";
 // import { useSelector } from "react-redux";
 const defaultTask = {
-    userId: "",
-    title: "",
-    description: "",
-    dueDate: "",
-    priority: "", // (Low, Medium, High)
-    category: "", // (e.g., Work, Personal, Study)
-  };
+  userId: "",
+  title: "",
+  description: "",
+  dueDate: "",
+  priority: "", // (Low, Medium, High)
+  category: "", // (e.g., Work, Personal, Study)
+};
 const UpdateTaskInUser = () => {
   const userTask = useSelector((state) => state.modal.updateTaskInUserData);
-  const [newTask, setNewTask] = useState(userTask);
+  const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
-
-  const user = useSelector((state) => state.user);
-  const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
   const isFormValid =
-    !errors.title &&
     !errors.description &&
     !errors.dueDate &&
     !errors.category &&
     !errors.priority &&
-    newTask.title &&
-    newTask.description &&
-    newTask.dueDate &&
-    newTask.category &&
-    newTask.priority;
+    updatedTask.title &&
+    updatedTask.description &&
+    updatedTask.dueDate &&
+    updatedTask.category &&
+    updatedTask.priority;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewTask({ ...newTask, [name]: value });
+    setUpdatedTask({ ...updatedTask, [name]: value });
     switch (name) {
-      case "title":
-        setErrors({
-          ...errors,
-          title: value.length > 4 ? "" : "title must be greater than 4",
-        });
-        break;
       case "description":
         setErrors({
           ...errors,
@@ -64,21 +54,10 @@ const UpdateTaskInUser = () => {
   };
 
   const handleAddTaskClick = () => {
+    dispatch(updateTasks(updatedTask));
+    console.log("Task updated:", updatedTask);
+    setUpdatedTask(defaultTask);
     dispatch(changeTaskMode(defaultTask));
-
-    // const updatedTask = { ...newTask, userId: user.user.email };
-    // const checkTask = tasks.tasks.find((task) => {
-    //   return (
-    //     task.userId === updatedTask.userId && task.title === updatedTask.title
-    //   );
-    // });
-    // if (checkTask && checkTask.userId) {
-    //   console.log("task already exist, title must be unique");
-    // } else {
-    //   dispatch(addTasks(updatedTask));
-    //   console.log("Task added:", updatedTask);
-    // }
-    // setNewTask(defaultTask);
   };
 
   return (
@@ -102,10 +81,8 @@ const UpdateTaskInUser = () => {
                 type="text"
                 fullWidth
                 variant="outlined"
-                value={newTask.title}
-                onChange={handleChange}
-                error={!!errors.title}
-                helperText={errors.title}
+                disabled
+                value={updatedTask.title}
               />
             </Grid>
 
@@ -119,7 +96,7 @@ const UpdateTaskInUser = () => {
                 type="text"
                 fullWidth
                 variant="outlined"
-                value={newTask.description}
+                value={updatedTask.description}
                 onChange={handleChange}
                 error={!!errors.description}
                 helperText={errors.description}
@@ -135,7 +112,7 @@ const UpdateTaskInUser = () => {
                 type="date"
                 fullWidth
                 variant="outlined"
-                value={newTask.dueDate}
+                value={updatedTask.dueDate}
                 onChange={handleChange}
                 error={!!errors.dueDate}
                 helperText={errors.dueDate}
@@ -150,7 +127,7 @@ const UpdateTaskInUser = () => {
                   labelId="priority-label"
                   id="priority"
                   name="priority"
-                  value={newTask.priority}
+                  value={updatedTask.priority || ""}
                   onChange={handleChange}
                   // error={!!errors.priority}
                   // helperText={errors.priority}
@@ -174,7 +151,7 @@ const UpdateTaskInUser = () => {
                   labelId="category-label"
                   id="category"
                   name="category"
-                  value={newTask.category}
+                  value={updatedTask.category || ""}
                   onChange={handleChange}
                   // error={!!errors.category}
                   // helperText={errors.category}

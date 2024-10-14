@@ -10,7 +10,7 @@ const User = () => {
 
   return (
     <>
-    {taskMode ? <AddTaskInUser /> : <UpdateTaskInUser />}
+    {taskMode ? <UpdateTaskInUser /> : <AddTaskInUser />}
       
       <hr />
       <ShowUserTasks />
