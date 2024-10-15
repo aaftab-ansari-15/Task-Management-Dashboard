@@ -28,8 +28,10 @@ const UpdateTaskInUser = () => {
   const userTask = useSelector((state) => state.modal.updateTaskInUserData);
   const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
+  const [timeSpent, setTimeSpent] = useState(0);
   useEffect(() => {
-    console.log("Final Time:", userTask.timeSpent);
+    // console.log("Final Time:", userTask.timeSpent);
+    setTimeSpent(userTask.timeSpent);
   }, [userTask]);
   const isFormValid =
     !errors.description &&
@@ -58,6 +60,7 @@ const UpdateTaskInUser = () => {
   };
 
   const handleAddTaskClick = () => {
+    updatedTask.timeSpent = timeSpent;
     dispatch(updateTasks(updatedTask));
     console.log("Task updated:", updatedTask);
     setUpdatedTask(defaultTask);
