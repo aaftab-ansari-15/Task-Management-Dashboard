@@ -18,8 +18,10 @@ const defaultTask = {
   title: "",
   description: "",
   dueDate: "",
-  priority: "", // (Low, Medium, High)
-  category: "", // (e.g., Work, Personal, Study)
+  priority: "",
+  category: "",
+  status: "Pending",
+  timeSpent: 0,
 };
 
 // function checkDueDate(value) {

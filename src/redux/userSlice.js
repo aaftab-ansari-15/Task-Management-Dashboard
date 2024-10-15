@@ -4,7 +4,6 @@ const userData = JSON.parse(sessionStorage.getItem("user"));
 const initialSignUpData = {
   user: userData ? userData : null,
 };
-console.log(initialSignUpData);
 const userSlice = createSlice({
   name: "user",
   initialState: initialSignUpData,
@@ -26,7 +25,6 @@ const userSlice = createSlice({
       state.user = null;
       const allUserData = JSON.parse(localStorage.getItem("allUser") || "[]");
       const userEmail = action.payload.email;
-      console.log(userEmail);
       allUserData.forEach((user) => {
         if (user.email === userEmail) {
           user.isLogin = false;

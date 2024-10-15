@@ -8,7 +8,6 @@ try {
 } catch (error) {
   initialAllUserData = []; // Fallback to empty array if parsing fails
 }
-console.log("Initial allUserData after parsing:", initialAllUserData); //
 
 const userSlice = createSlice({
   name: "allUser",

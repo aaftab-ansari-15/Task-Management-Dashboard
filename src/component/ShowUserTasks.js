@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, TextField } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,40 +9,55 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { deleteTasks } from "../redux/tasksSlice";
 import { changeTaskMode } from "../redux/modalSlice";
-import { useState } from "react";
+import TaskStatusIcon from "./TaskStatusIcon";
+import Counter from "./Counter";
 const ShowUserTasks = () => {
-  console.log("hello");
   const dispatch = useDispatch();
+  const countRef = useRef();
   const user = useSelector((state) => state.user);
   const tasks = useSelector((state) => state.tasks);
   const [searchTerm, setSearchTerm] = useState("");
+  const [userTasks, setUserTasks] = useState([]);
+  const [priorityFilter, setPriorityFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+
   const userTask1 = tasks.tasks.filter(
     (task) => task.userId === user.user.email
   );
   const userTask2 = userTask1.filter((task) =>
     task.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const [userTasks, setUserTasks] = useState(userTask2);
-  const [priorityFilter, setPriorityFilter] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
+  useEffect(() => {
+    setUserTasks(userTask2);
+  }, [tasks, searchTerm, user.user.email]);
 
+  //Task Update
   const handleTaskUpdateClick = (task) => {
-    dispatch(changeTaskMode(task));
-    // dispatch(updateTasks(task));
-    console.log("update");
+    const finalTime = countRef.current.getCount();
+    const updatedTask = {
+      ...task,
+      timeSpent: finalTime,
+    };
+
+    dispatch(changeTaskMode(updatedTask));
+    // dispatch(updateTasks(task)); used in UpdateTaskInUser.
   };
+
+  //Task Delete
   const handleTaskDeleteClick = (task) => {
     dispatch(deleteTasks(task));
     console.log("task deleted", task);
   };
+
+  // Filter
   const handleCategoryFilterClick = () => {
-    setUserTasks(userTask2);
+    setUserTasks(userTask1);
     if (userTasks.length > 0) {
       if (categoryFilter === "" || categoryFilter === "Personal") {
         const filteredTask = userTasks.filter(
@@ -70,7 +87,7 @@ const ShowUserTasks = () => {
     // }, 1000);
   };
   const handlePriorityFilterClick = () => {
-    setUserTasks(userTask2);
+    setUserTasks(userTask1);
     if (userTasks.length > 0) {
       if (priorityFilter === "" || priorityFilter === "Medium") {
         const filteredTask = userTasks.filter(
@@ -99,7 +116,36 @@ const ShowUserTasks = () => {
 
     // }, 1000);
   };
-  const handleOnChange = (e) => {
+  const handleStatusFilterClick = () => {
+    setUserTasks(userTask1);
+    console.log(userTasks);
+    if (userTasks.length > 0) {
+      if (statusFilter === "" || statusFilter === "In-progress") {
+        const filteredTask = userTasks.filter(
+          (task) => task.status === "Pending"
+        );
+        setUserTasks(filteredTask);
+        setStatusFilter("Pending");
+        console.log("Pending", filteredTask);
+      } else if (statusFilter === "Pending") {
+        const filteredTask = userTasks.filter(
+          (task) => task.status === "Completed"
+        );
+        setUserTasks(filteredTask);
+        setStatusFilter("Completed");
+        console.log("Completed", filteredTask);
+      } else if (statusFilter === "Completed") {
+        const filteredTask = userTasks.filter(
+          (task) => task.status === "In-progress"
+        );
+        setUserTasks(filteredTask);
+        setStatusFilter("In-progress");
+        console.log("In-progress", filteredTask);
+      }
+    }
+  };
+  // Search filter
+  const handleSearchFilterOnChange = (e) => {
     setSearchTerm(e.target.value);
     console.log();
     if (e.target.value === null || e.target.value === "") {
@@ -108,87 +154,144 @@ const ShowUserTasks = () => {
       setUserTasks(userTask2);
     }
   };
+
+  // Sorting
+  const handleDefaultSortingClick = () => {
+    setUserTasks(userTask1);
+  };
+  const handleDueDateSortingClick = () => {
+    const sortedTasks = [...userTasks].sort((a, b) => {
+      const dateA = new Date(a.dueDate);
+      const dateB = new Date(b.dueDate);
+
+      return dateA - dateB;
+    });
+    setUserTasks(sortedTasks);
+  };
+
+  const handlePrioritySortingClick = () => {
+    const sortedTasks = [...userTasks].sort((a, b) => {
+      const priority = ["Low", "Medium", "High"];
+      return priority.indexOf(a.priority) - priority.indexOf(b.priority);
+    });
+    setUserTasks(sortedTasks);
+  };
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Box sx={{ width: "100%", maxWidth: 1000 }}>
-        <TextField
-          sx={{ width: "50%" }}
-          label={<span className="custom-label">Search</span>} // Use custom label
-          variant="outlined"
-          value={searchTerm}
-          onChange={(e) => handleOnChange(e)}
-          fullWidth
-        />
-        <Divider />
-        <TableContainer component={Paper} sx={{ mt: "10px" }}>
-          <Table sx={{ minWidth: 1000 }} aria-label="userTaskTable">
-            <TableHead>
-              <TableRow>
-                <TableCell>Index</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell align="right">Description</TableCell>
-                <TableCell align="right">Due Date</TableCell>
-                <TableCell align="right">
-                  Category
-                  <Button
-                    onClick={() => {
-                      handleCategoryFilterClick();
-                    }}
-                  >
-                    <SwapVertIcon />
-                  </Button>
-                </TableCell>
-                <TableCell align="right">
-                  Priority
-                  <Button onClick={() => handlePriorityFilterClick()}>
-                    <SwapVertIcon />
-                  </Button>
-                </TableCell>
-                <TableCell align="right">Update</TableCell>
-                <TableCell align="right">Delete</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {userTasks.map((task, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+    <Box sx={{ width: "100%", marginLeft: "20px" }}>
+      <TextField
+        sx={{ width: "50%" }}
+        label={<span className="custom-label">Search</span>} // Use custom label
+        variant="outlined"
+        value={searchTerm}
+        onChange={(e) => handleSearchFilterOnChange(e)}
+        fullWidth
+      />
+      <Divider sx={{ mt: "10px" }} />
+      <TableContainer component={Paper} sx={{ mt: "10px" }}>
+        <Table aria-label="userTaskTable">
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                Index
+                <Button onClick={() => handleDefaultSortingClick()}>
+                  <SwapVertIcon />
+                </Button>
+              </TableCell>
+              <TableCell>
+                Status
+                <Button onClick={() => handleStatusFilterClick()}>
+                  <FilterAltIcon />
+                </Button>
+              </TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>
+                Due Date
+                <Button onClick={() => handleDueDateSortingClick()}>
+                  <SwapVertIcon />
+                </Button>
+              </TableCell>
+              <TableCell>Time Spent</TableCell>
+              <TableCell>
+                Category
+                <Button onClick={() => handleCategoryFilterClick()}>
+                  <FilterAltIcon />
+                </Button>
+              </TableCell>
+              <TableCell>
+                Priority
+                <Button
+                  onClick={() => handlePriorityFilterClick()}
+                  sx={{
+                    marginLeft: "10px",
+                    marginRight: "10px",
+                    padding: 0,
+                    minWidth: 0,
+                  }}
                 >
-                  <TableCell component="th" scope="task">
-                    {index + 1}
-                  </TableCell>
-                  <TableCell>{task.title}</TableCell>
-                  <TableCell align="right">{task.description}</TableCell>
-                  <TableCell align="right">{task.dueDate}</TableCell>
-                  <TableCell align="right">{task.category}</TableCell>
-                  <TableCell align="right">{task.priority}</TableCell>
-                  <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      color="warning"
-                      onClick={() => handleTaskUpdateClick(task)}
-                      fullWidth
-                    >
-                      Update
-                    </Button>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      color="error"
-                      onClick={() => handleTaskDeleteClick(task)}
-                      fullWidth
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </div>
+                  <FilterAltIcon />
+                </Button>
+                <Button
+                  onClick={() => handlePrioritySortingClick()}
+                  sx={{ padding: 0, minWidth: 0 }}
+                >
+                  <SwapVertIcon />
+                </Button>
+              </TableCell>
+              <TableCell>Update</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {userTasks.map((task, index) => (
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="task">
+                  {index + 1}
+                </TableCell>
+                <TableCell sx={{ width: "150px" }}>
+                  <TaskStatusIcon status={task.status} />
+                </TableCell>
+                <TableCell>{task.title}</TableCell>
+                <TableCell>{task.description}</TableCell>
+                <TableCell>{task.dueDate}</TableCell>
+                <TableCell>
+                  {task.status === "In-progress" ? (
+                    <Counter ref={countRef} startingTime={task.timeSpent} />
+                  ) : (
+                    task.timeSpent
+                  )}
+                </TableCell>
+                <TableCell>{task.category}</TableCell>
+                <TableCell>{task.priority}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    onClick={() => handleTaskUpdateClick(task)}
+                    fullWidth
+                  >
+                    Update
+                  </Button>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleTaskDeleteClick(task)}
+                    fullWidth
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 

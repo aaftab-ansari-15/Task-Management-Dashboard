@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import {
@@ -18,15 +18,19 @@ const defaultTask = {
   title: "",
   description: "",
   dueDate: "",
-  priority: "", // (Low, Medium, High)
-  category: "", // (e.g., Work, Personal, Study)
+  priority: "",
+  category: "",
+  status: "",
+  timeSpent: 0,
 };
 const UpdateTaskInUser = () => {
+  const dispatch = useDispatch();
   const userTask = useSelector((state) => state.modal.updateTaskInUserData);
   const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
-  const dispatch = useDispatch();
-
+  useEffect(() => {
+    console.log("Final Time:", userTask.timeSpent);
+  }, [userTask]);
   const isFormValid =
     !errors.description &&
     !errors.dueDate &&
@@ -85,7 +89,6 @@ const UpdateTaskInUser = () => {
                 value={updatedTask.title}
               />
             </Grid>
-
             {/* Description */}
             <Grid item="true" xs={12} sm={6}>
               <TextField
@@ -129,8 +132,6 @@ const UpdateTaskInUser = () => {
                   name="priority"
                   value={updatedTask.priority || ""}
                   onChange={handleChange}
-                  // error={!!errors.priority}
-                  // helperText={errors.priority}
                   label="Priority"
                   fullWidth
                   sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
@@ -153,8 +154,6 @@ const UpdateTaskInUser = () => {
                   name="category"
                   value={updatedTask.category || ""}
                   onChange={handleChange}
-                  // error={!!errors.category}
-                  // helperText={errors.category}
                   label="Category"
                   fullWidth
                   sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
@@ -163,6 +162,27 @@ const UpdateTaskInUser = () => {
                   <MenuItem value="Work">Work</MenuItem>
                   <MenuItem value="Personal">Personal</MenuItem>
                   <MenuItem value="Study">Study</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            {/* Status */}
+            <Grid item="true" xs={12} sm={6} sx={{ width: "100px" }}>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="status-label">Status</InputLabel>
+                <Select
+                  labelId="status-label"
+                  id="status"
+                  name="status"
+                  value={updatedTask.status || ""}
+                  onChange={handleChange}
+                  label="status"
+                  fullWidth
+                  sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
+                  inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
+                >
+                  <MenuItem value="Completed">Completed</MenuItem>
+                  <MenuItem value="In-progress">In-progress</MenuItem>
+                  <MenuItem value="Pending">Pending</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
