@@ -12,3 +12,4 @@ export const store = configureStore({
     tasks: tasksReducer,
   },
 });
+

@@ -24,19 +24,6 @@ const defaultTask = {
   timeSpent: 0,
 };
 
-// function checkDueDate(value) {
-//   const expectedDate = new Date(); // or set to a specific date
-//   const dueDate = new Date(value.dueDate);
-
-//   // Check if dueDate is valid
-//   if (isNaN(dueDate.getTime())) {
-//       return "select valid date";
-//   }
-
-//   // Compare dueDate with expectedDate
-//   return dueDate.getTime() === expectedDate.getTime() ? "" : "select valid date";
-// }
-
 const AddTaskInUser = () => {
   const [newTask, setNewTask] = useState(defaultTask);
   const [errors, setErrors] = useState(defaultTask);

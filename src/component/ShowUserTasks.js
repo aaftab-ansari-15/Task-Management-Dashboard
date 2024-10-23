@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, TextField } from "@mui/material";
 import Table from "@mui/material/Table";
@@ -18,7 +18,7 @@ import TaskStatusIcon from "./TaskStatusIcon";
 import Counter from "./Counter";
 const ShowUserTasks = () => {
   const dispatch = useDispatch();
-  const countRef = useRef();
+  // const countRefs = useRef();
   const user = useSelector((state) => state.user);
   const tasks = useSelector((state) => state.tasks);
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +26,7 @@ const ShowUserTasks = () => {
   const [priorityFilter, setPriorityFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [draggingIndex, setDraggingIndex] = useState(null);
 
   const userTask1 = tasks.tasks.filter(
     (task) => task.userId === user.user.email
@@ -39,13 +40,7 @@ const ShowUserTasks = () => {
 
   //Task Update
   const handleTaskUpdateClick = (task) => {
-    const finalTime = countRef.current.getCount();
-    const updatedTask = {
-      ...task,
-      timeSpent: finalTime,
-    };
-
-    dispatch(changeTaskMode(updatedTask));
+    dispatch(changeTaskMode(task));
     // dispatch(updateTasks(task)); used in UpdateTaskInUser.
   };
 
@@ -57,24 +52,23 @@ const ShowUserTasks = () => {
 
   // Filter
   const handleCategoryFilterClick = () => {
-    setUserTasks(userTask1);
-    if (userTasks.length > 0) {
+    if (userTask1.length > 0) {
       if (categoryFilter === "" || categoryFilter === "Personal") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.category === "Study"
         );
         setUserTasks(filteredTask);
         setCategoryFilter("Study");
         console.log("Study");
       } else if (categoryFilter === "Study") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.category === "Work"
         );
         setUserTasks(filteredTask);
         setCategoryFilter("Work");
         console.log("Work");
       } else if (categoryFilter === "Work") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.category === "Personal"
         );
         setUserTasks(filteredTask);
@@ -82,29 +76,25 @@ const ShowUserTasks = () => {
         console.log("Personal");
       }
     }
-    // setTimeout(() => {
-
-    // }, 1000);
   };
   const handlePriorityFilterClick = () => {
-    setUserTasks(userTask1);
-    if (userTasks.length > 0) {
+    if (userTask1.length > 0) {
       if (priorityFilter === "" || priorityFilter === "Medium") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.priority === "High"
         );
         setUserTasks(filteredTask);
         setPriorityFilter("High");
         console.log("High");
       } else if (priorityFilter === "High") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.priority === "Low"
         );
         setUserTasks(filteredTask);
         setPriorityFilter("Low");
         console.log("Low");
       } else if (priorityFilter === "Low") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.priority === "Medium"
         );
         setUserTasks(filteredTask);
@@ -112,36 +102,33 @@ const ShowUserTasks = () => {
         console.log("Medium");
       }
     }
-    // setTimeout(() => {
-
-    // }, 1000);
   };
   const handleStatusFilterClick = () => {
-    setUserTasks(userTask1);
-    console.log(userTasks);
-    if (userTasks.length > 0) {
+    if (userTask1.length > 0) {
       if (statusFilter === "" || statusFilter === "In-progress") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.status === "Pending"
         );
         setUserTasks(filteredTask);
         setStatusFilter("Pending");
         console.log("Pending", filteredTask);
       } else if (statusFilter === "Pending") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.status === "Completed"
         );
         setUserTasks(filteredTask);
         setStatusFilter("Completed");
         console.log("Completed", filteredTask);
       } else if (statusFilter === "Completed") {
-        const filteredTask = userTasks.filter(
+        const filteredTask = userTask1.filter(
           (task) => task.status === "In-progress"
         );
         setUserTasks(filteredTask);
         setStatusFilter("In-progress");
         console.log("In-progress", filteredTask);
       }
+    } else {
+      console.log("nothing status fileter");
     }
   };
   // Search filter
@@ -175,6 +162,25 @@ const ShowUserTasks = () => {
       return priority.indexOf(a.priority) - priority.indexOf(b.priority);
     });
     setUserTasks(sortedTasks);
+  };
+  // Handle drag and drop
+  const handleDragStart = (index) => {
+    setDraggingIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggingIndex(null);
+  };
+
+  const handleDragOver = (e, index) => {
+    e.preventDefault();
+    if (draggingIndex === index) return;
+    const reorderedTasks = [...userTasks];
+    const draggedItem = reorderedTasks[draggingIndex];
+    reorderedTasks.splice(draggingIndex, 1); // Remove the dragged item
+    reorderedTasks.splice(index, 0, draggedItem); // Add it back in the new position
+    setUserTasks(reorderedTasks);
+    setDraggingIndex(index); // Update dragged index
   };
   return (
     <Box sx={{ width: "100%", marginLeft: "20px" }}>
@@ -245,8 +251,15 @@ const ShowUserTasks = () => {
           <TableBody>
             {userTasks.map((task, index) => (
               <TableRow
-                key={index}
+                key={task.title}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={`draggable ${
+                  draggingIndex === index ? "dragging" : ""
+                }`} // Apply dragging class
+                draggable="true"
+                onDragStart={() => handleDragStart(index)}
+                onDragEnd={handleDragEnd}
+                onDragOver={(e) => handleDragOver(e, index)}
               >
                 <TableCell component="th" scope="task">
                   {index + 1}
@@ -258,11 +271,7 @@ const ShowUserTasks = () => {
                 <TableCell>{task.description}</TableCell>
                 <TableCell>{task.dueDate}</TableCell>
                 <TableCell>
-                  {task.status === "In-progress" ? (
-                    <Counter ref={countRef} startingTime={task.timeSpent} />
-                  ) : (
-                    task.timeSpent
-                  )}
+                  {task.status === "In-progress" ? <Counter /> : task.timeSpent}
                 </TableCell>
                 <TableCell>{task.category}</TableCell>
                 <TableCell>{task.priority}</TableCell>
@@ -270,7 +279,7 @@ const ShowUserTasks = () => {
                   <Button
                     variant="contained"
                     color="warning"
-                    onClick={() => handleTaskUpdateClick(task)}
+                    onClick={() => handleTaskUpdateClick(task, index)}
                     fullWidth
                   >
                     Update

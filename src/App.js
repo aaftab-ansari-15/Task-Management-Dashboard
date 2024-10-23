@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const darkMode = useSelector((state) => state.modal.darkMode)
-  
   const darkTheme = createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",

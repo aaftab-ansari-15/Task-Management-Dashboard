@@ -4,6 +4,7 @@ import AddTaskInUser from "./AddTaskInUser";
 import UpdateTaskInUser from "./UpdateTaskInUser";
 import ShowUserTasks from "./ShowUserTasks";
 import { useSelector } from "react-redux";
+import TaskNotification from "./TaskNotification";
 const User = () => {
   const taskMode = useSelector((state) => state.modal.taskMode);
 
@@ -18,10 +19,10 @@ const User = () => {
           justifyContent: "space-between",
         }}
       >
-        <Box sx={{ width: "80%", maxWidth: 1500 }}>
+        <Box sx={{ width: "80%" }}>
           <ShowUserTasks />
         </Box>
-        <Box sx={{ width: "20%" }}>Notification</Box>
+        <Box sx={{ width: "15%" }}><TaskNotification /></Box>
       </Box>
     </>
   );
