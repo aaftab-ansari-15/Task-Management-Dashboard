@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import {
@@ -26,6 +26,7 @@ const defaultTask = {
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
   const userTask = useSelector((state) => state.modal.updateTaskInUserData);
+  console.log(userTask)
   const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
   const isFormValid =
@@ -54,7 +55,7 @@ const UpdateTaskInUser = () => {
     }
   };
 
-  const handleAddTaskClick = () => {
+  const handleUpdateTaskClick = () => {
     dispatch(updateTasks(updatedTask));
     console.log("Task updated:", updatedTask);
     setUpdatedTask(defaultTask);
@@ -192,7 +193,7 @@ const UpdateTaskInUser = () => {
           <Button
             variant="contained"
             color="warning"
-            onClick={handleAddTaskClick}
+            onClick={handleUpdateTaskClick}
             fullWidth
             disabled={!isFormValid}
           >

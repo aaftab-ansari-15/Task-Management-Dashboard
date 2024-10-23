@@ -8,7 +8,7 @@ const modalSlice = createSlice({
     isLoginOpen: false,
     darkMode: false,
     taskMode: false,
-    updateTaskInUserData: {},
+    updateTaskInUserData: {}
   },
   reducers: {
     openSignUpModal: (state) => {

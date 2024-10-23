@@ -271,7 +271,7 @@ const ShowUserTasks = () => {
                 <TableCell>{task.description}</TableCell>
                 <TableCell>{task.dueDate}</TableCell>
                 <TableCell>
-                  {task.status === "In-progress" ? <Counter /> : task.timeSpent}
+                  <Counter taskId={index} task={task} />
                 </TableCell>
                 <TableCell>{task.category}</TableCell>
                 <TableCell>{task.priority}</TableCell>
@@ -305,3 +305,4 @@ const ShowUserTasks = () => {
 };
 
 export default ShowUserTasks;
+// {/* {task.status === "In-progress" ? <Counter taskId={index} task={task} /> : task.timeSpent} */}
