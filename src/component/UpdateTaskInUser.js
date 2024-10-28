@@ -14,6 +14,7 @@ import { updateTasks } from "../redux/tasksSlice";
 import { changeTaskMode } from "../redux/modalSlice";
 // import { useSelector } from "react-redux";
 const defaultTask = {
+  taskId: "",
   userId: "",
   title: "",
   description: "",
@@ -26,7 +27,6 @@ const defaultTask = {
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
   const userTask = useSelector((state) => state.modal.updateTaskInUserData);
-  console.log(userTask)
   const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
   const isFormValid =
@@ -57,7 +57,7 @@ const UpdateTaskInUser = () => {
 
   const handleUpdateTaskClick = () => {
     dispatch(updateTasks(updatedTask));
-    console.log("Task updated:", updatedTask);
+    // console.log("Task updated:", updatedTask);
     setUpdatedTask(defaultTask);
     dispatch(changeTaskMode(defaultTask));
   };

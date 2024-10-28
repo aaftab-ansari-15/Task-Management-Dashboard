@@ -14,6 +14,7 @@ import { addTasks } from "../redux/tasksSlice";
 // import { useSelector } from "react-redux";
 
 const defaultTask = {
+  taskId: 0,
   userId: "",
   title: "",
   description: "",
@@ -60,31 +61,18 @@ const AddTaskInUser = () => {
           description: value.length > 0 ? "" : "description can not be empty",
         });
         break;
-      // case "dueDate":
-      //   setErrors({
-      //     ...errors,
-      //     dueDate: checkDueDate(value) ? "" : "select valid date",
-      //   });
-      //   break;
-      // case "priority":
-      //   setErrors({
-      //     ...errors,
-      //     priority: value.priority > 0 ? "" : "select any priority",
-      //   });
-      //   break;
-      // case "category":
-      //   setErrors({
-      //     ...errors,
-      //     category: value.category > 0 ? "" : "select any category",
-      //   });
-      //   break;
       default:
         break;
     }
   };
 
   const handleAddTaskClick = () => {
-    const updatedTask = { ...newTask, userId: user.user.email };
+    const lastIndex = tasks.tasks.length;
+    const updatedTask = {
+      ...newTask,
+      userId: user.user.email,
+      taskId: lastIndex,
+    };
     const checkTask = tasks.tasks.find((task) => {
       return (
         task.userId === updatedTask.userId && task.title === updatedTask.title

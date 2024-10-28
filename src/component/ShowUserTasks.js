@@ -271,7 +271,7 @@ const ShowUserTasks = () => {
                 <TableCell>{task.description}</TableCell>
                 <TableCell>{task.dueDate}</TableCell>
                 <TableCell>
-                  <Counter taskId={index} task={task} />
+                  <Counter task={task} />
                 </TableCell>
                 <TableCell>{task.category}</TableCell>
                 <TableCell>{task.priority}</TableCell>
