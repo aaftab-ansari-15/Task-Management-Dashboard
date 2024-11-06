@@ -13,6 +13,7 @@ import { loginUser } from "../redux/userSlice";
 import { closeSignUpModal } from "../redux/modalSlice";
 
 const initialData = {
+  userId: "",
   name: "",
   email: "",
   password: "",

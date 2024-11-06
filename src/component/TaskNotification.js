@@ -28,7 +28,7 @@ const TaskNotification = () => {
   }, [tasks]);
 
   return (
-    <div>
+    <Box sx={{}}>
       <p>Due Date Task Notification</p>
       <hr />
       <Box
@@ -51,7 +51,7 @@ const TaskNotification = () => {
           )}
         </Stack>
       </Box>
-    </div>
+    </Box>
   );
 };
 

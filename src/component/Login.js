@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../redux/userSlice";
 
 const initialData = {
+  name: "",
   email: "",
   password: "",
   isLogin: false,
@@ -73,7 +74,11 @@ const LoginDialog = () => {
           findUser.email &&
           findUser.password === loginData.password
         ) {
-          const updatedLoginData = { ...loginData, isLogin: true };
+          const updatedLoginData = {
+            ...loginData,
+            isLogin: true,
+            name: findUser.name,
+          };
           dispatch(loginUser(updatedLoginData));
           console.log("userLoggedIn", updatedLoginData);
         } else {
