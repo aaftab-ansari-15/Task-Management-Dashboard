@@ -38,6 +38,8 @@ const User = () => {
             padding: 2,
           }}
         >
+          <h2>User's All Tasks</h2>
+          <hr />
           <Box sx={{ width: "100%", display: "flex" }}>
             <Box sx={{ width: "60%", marginLeft: 3 }}>
               <Filter />
