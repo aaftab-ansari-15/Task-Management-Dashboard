@@ -21,7 +21,9 @@ const TaskNotification = () => {
       let date2 = new Date(formattedDate);
       let timeDifference = date1 - date2; // difference in milliseconds
       let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-      return daysDifference >= 0 && daysDifference <= 1;
+      // return daysDifference >= 0 && daysDifference <= 1;
+      return daysDifference <= 1;
+
     });
     const titles = filteredTask.map((task) => task.title);
     setFilteredTitles(titles);
