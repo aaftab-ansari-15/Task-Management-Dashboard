@@ -11,22 +11,15 @@ import { useSelector } from "react-redux";
 const User = () => {
   return (
     <>
-      <Box sx={{ margin: 2 }}>
-        <Box>
-          <h3>Add New Task</h3>
-        </Box>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ width: "inherit", border: "solid 2px green" }}>
-            <UpdateTaskInUser />
-            <AddTaskInUser />
-          </Box>
-        </Box>
+      <Box sx={{width:"50vw"}}>
+        <AddTaskInUser />
+        <UpdateTaskInUser />
       </Box>
-      {/* <hr /> */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          margin: 1,
         }}
       >
         <Box
@@ -38,8 +31,6 @@ const User = () => {
             padding: 2,
           }}
         >
-          <h2>User's All Tasks</h2>
-          <hr />
           <Box sx={{ width: "100%", display: "flex" }}>
             <Box sx={{ width: "60%", marginLeft: 3 }}>
               <Filter />

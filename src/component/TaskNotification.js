@@ -41,7 +41,7 @@ const TaskNotification = () => {
 
   return (
     <Box sx={{}}>
-      <p>Due Date Task Notification</p>
+      <h3>Due Date Task Notification</h3>
       <hr />
       <Box
         sx={{

@@ -70,10 +70,10 @@ const UpdateTaskInUser = () => {
     dispatch(updateTasks(updatedTask));
     // console.log("Task updated:", updatedTask);
     setUpdatedTask(defaultTask);
-    dispatch(updateTaskFrom({ arg1: false, arg2: defaultTask }));
+    dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
   };
   const handleClose = () => {
-    dispatch(updateTaskFrom({ arg1: false, arg2: defaultTask }));
+    dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
   };
 
   return (
@@ -85,22 +85,24 @@ const UpdateTaskInUser = () => {
         maxWidth="md"
         PaperProps={{
           style: {
-            overflowX: "hidden", // Prevent horizontal scrolling
-            maxWidth: "90vw", // Restrict width to 90% of the viewport
-            width: "100%",
+            overflowX: "hidden",
+            maxWidth: "70vw",
+            width: "inherit",
             border: "solid 2px orange",
           },
         }}
       >
-        <Box sx={{ mt: 4, mb: 4 }}>
+        <Box sx={{}}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               marginBottom: 2,
+              backgroundColor: "orange",
+              color: "white",
             }}
           >
-            Update this task
+            <h3>Update this task</h3>
           </Box>
           <Box
             sx={{
@@ -121,7 +123,7 @@ const UpdateTaskInUser = () => {
                   fullWidth
                   variant="outlined"
                   disabled
-                  value={updatedTask.title}
+                  value={updatedTask.title || ""}
                 />
               </Grid>
               {/* Description */}
@@ -134,7 +136,7 @@ const UpdateTaskInUser = () => {
                   type="text"
                   fullWidth
                   variant="outlined"
-                  value={updatedTask.description}
+                  value={updatedTask.description || ""}
                   onChange={handleChange}
                   error={!!errors.description}
                   helperText={errors.description}
@@ -150,7 +152,7 @@ const UpdateTaskInUser = () => {
                   type="date"
                   fullWidth
                   variant="outlined"
-                  value={updatedTask.dueDate}
+                  value={updatedTask.dueDate || ""}
                   onChange={handleChange}
                   error={!!errors.dueDate}
                   helperText={errors.dueDate}

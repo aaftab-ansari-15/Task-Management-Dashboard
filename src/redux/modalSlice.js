@@ -9,6 +9,7 @@ const modalSlice = createSlice({
     isLoginOpen: false,
     darkMode: false,
     isUpdateTaskForm: false,
+    isAddTaskForm: false,
     updateTaskInUserData: {},
   },
   reducers: {
@@ -30,6 +31,11 @@ const modalSlice = createSlice({
     changeDarkMode: (state) => {
       state.darkMode = !state.darkMode;
     },
+    addTaskFrom: (state, action) => {
+      console.log(action.payload);
+
+      state.isAddTaskForm = action.payload;
+    },
     updateTaskFrom: (state, action) => {
       console.log(action.payload);
       const { arg1, arg2 } = action.payload;
@@ -47,5 +53,6 @@ export const {
   closeLoginModal,
   changeDarkMode,
   updateTaskFrom,
+  addTaskFrom,
 } = modalSlice.actions;
 export default modalSlice.reducer;

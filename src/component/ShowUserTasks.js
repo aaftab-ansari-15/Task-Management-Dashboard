@@ -24,7 +24,6 @@ const ShowUserTasks = () => {
   });
   const [usersFilterTasks, setUsersFilterTasks] = useState(userAllTasks);
   const [searchFilter, setSearchFilter] = useState("");
-  // console.log(user, allTasks, getFilters, getSort, userAllTasks);
   useEffect(() => {
     const filteredTasks = userAllTasks.filter((task) => {
       return (
@@ -69,12 +68,20 @@ const ShowUserTasks = () => {
         });
         setUsersFilterTasks(sortedTask);
       }
+    } else if (getSort.sortBy === "" && getSort.sortOrder === "") {
+      setUsersFilterTasks(userAllTasks);
     }
   }, [getSort, allTasks]);
 
+  useEffect(() => {
+    const searchedTask = userAllTasks.filter((task) => {
+      return task.title.toLowerCase().includes(searchFilter.toLowerCase());
+    });
+    setUsersFilterTasks(searchedTask);
+  }, [searchFilter, allTasks]);
+
   const handleSearchBar = (e) => {
     setSearchFilter(e.target.value);
-    console.log(searchFilter);
   };
   return (
     <Box
@@ -102,7 +109,7 @@ const ShowUserTasks = () => {
           <SearchIcon />
           <Input
             color="secondary"
-            placeholder="Search Task"
+            placeholder="Search Task By Title"
             value={searchFilter}
             onChange={handleSearchBar}
           />

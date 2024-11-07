@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { sideBarModal } from "../redux/modalSlice";
+import { addTaskFrom, sideBarModal } from "../redux/modalSlice";
 import { useDispatch } from "react-redux";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
@@ -39,6 +39,9 @@ const SideBar = () => {
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
   };
+  const handleAddTaskClick = () => {
+    dispatch(addTaskFrom(true));
+  };
   return (
     <Box sx={{ width: 250 }} role="presentation">
       <Box
@@ -68,11 +71,28 @@ const SideBar = () => {
       <Divider />
       <Box>
         {user.user && user.user.isLogin ? (
-          <Box>
-            <Button variant="solid" color="inherit" onClick={handleLogOutClick}>
-              Log Out
-            </Button>
-          </Box>
+          <>
+            <Box>
+              <Button
+                fullWidth
+                variant="text"
+                color="success"
+                onClick={handleAddTaskClick}
+              >
+                Add New Task
+              </Button>
+            </Box>
+            <Box>
+              <Button
+                fullWidth
+                variant="text"
+                color="inherit"
+                onClick={handleLogOutClick}
+              >
+                Log Out
+              </Button>
+            </Box>
+          </>
         ) : (
           <Box>
             <Box>
