@@ -65,8 +65,8 @@ export default function Navbar() {
               <SideBar />
             </Drawer>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Task Management Dashboard{" "}
-              {user.user ? " - " + user.user.name : ""}
+              Task Management Dashboard
+              {/* {user.user ? " - " + user.user.name : ""} */}
             </Typography>
             <div>
               {user.user && user.user.isLogin ? (
