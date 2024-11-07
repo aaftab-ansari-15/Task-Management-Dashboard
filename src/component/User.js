@@ -6,29 +6,38 @@ import ShowUserTasks from "./ShowUserTasks";
 import TaskNotification from "./TaskNotification";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import { useSelector } from "react-redux";
 
 const User = () => {
   return (
     <>
       <Box sx={{ margin: 2 }}>
-        <Box>Add New Task</Box>
+        <Box>
+          <h3>Add New Task</h3>
+        </Box>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ width: "70%", border: "solid 2px green" }}>
+          <Box sx={{ width: "inherit", border: "solid 2px green" }}>
             <UpdateTaskInUser />
             <AddTaskInUser />
           </Box>
         </Box>
       </Box>
-      <hr />
+      {/* <hr /> */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
         }}
       >
-        <Box sx={{ width: "85%", border: "solid 2px #185EA5" }}>
-          <h2>User's All Tasks</h2>
-          <hr />
+        <Box
+          sx={{
+            width: "85%",
+            border: "solid 2px #185EA5",
+            marginLeft: 1,
+            marginRight: 1,
+            padding: 2,
+          }}
+        >
           <Box sx={{ width: "100%", display: "flex" }}>
             <Box sx={{ width: "60%", marginLeft: 3 }}>
               <Filter />
@@ -39,7 +48,15 @@ const User = () => {
           </Box>
           <ShowUserTasks />
         </Box>
-        <Box sx={{ width: "15%", border: "solid 2px #C41C1C" }}>
+        <Box
+          sx={{
+            width: "15%",
+            border: "solid 2px #C41C1C",
+            marginLeft: 1,
+            marginRight: 1,
+            padding: 2,
+          }}
+        >
           <TaskNotification />
         </Box>
       </Box>

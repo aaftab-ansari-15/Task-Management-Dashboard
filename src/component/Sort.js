@@ -24,8 +24,12 @@ const Sort = () => {
   };
 
   const handleSort = () => {
-    dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
-    console.log("Sorting by:", sortBy, "Order:", sortOrder);
+    if (sortBy !== "" && sortOrder !== "") {
+      dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
+      console.log("Sorting Applied: ", { sortBy, sortOrder });
+    } else {
+      console.log("Can't Sort without values");
+    }
   };
 
   const handleClear = () => {
