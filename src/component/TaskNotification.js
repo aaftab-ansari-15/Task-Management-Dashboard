@@ -60,7 +60,7 @@ const TaskNotification = () => {
           ) : (
             <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
           )}
-          {filteredTitles2.length > 0 ? (
+          {/* {filteredTitles2.length > 0 ? (
             filteredTitles2.map((title) => {
               return (
                 <Alert key={title} variant="filled" severity="error">
@@ -70,7 +70,7 @@ const TaskNotification = () => {
             })
           ) : (
             <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
-          )}
+          )} */}
         </Stack>
       </Box>
     </Box>

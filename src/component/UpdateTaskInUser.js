@@ -218,8 +218,12 @@ const UpdateTaskInUser = () => {
                     inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
                   >
                     <MenuItem value="Completed">Completed</MenuItem>
-                    <MenuItem value="In-progress">In-progress</MenuItem>
-                    <MenuItem value="Pending">Pending</MenuItem>
+                    {/* <MenuItem disabled value="In-progress">
+                      In-progress
+                    </MenuItem>
+                    <MenuItem disabled value="Pending">
+                      Pending
+                    </MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>

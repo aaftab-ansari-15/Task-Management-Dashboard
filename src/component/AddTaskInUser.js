@@ -68,9 +68,13 @@ const AddTaskInUser = () => {
         break;
     }
   };
-
+  function generateRandomID() {
+    return (
+      Date.now().toString(36) + Math.random().toString(36).substring(2, 7)
+    ).substring(0, 7);
+  }
   const handleAddTaskClick = () => {
-    const lastIndex = tasks.tasks.length;
+    const lastIndex = tasks.tasks.length + generateRandomID();
     const updatedTask = {
       ...newTask,
       userId: user.user.email,

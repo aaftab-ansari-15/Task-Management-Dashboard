@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
@@ -17,7 +17,12 @@ import {
   Tooltip,
 } from "@mui/material";
 import { deleteTasks } from "../redux/tasksSlice";
-import { addTaskFrom, updateTaskFrom } from "../redux/modalSlice";
+import {
+  addTaskFrom,
+  taskInfoModal,
+  updateTaskFrom,
+} from "../redux/modalSlice";
+import TaskInfo from "./TaskInfo";
 const UserTaskTable = ({ usersFilterTasks }) => {
   const dispatch = useDispatch();
   //Task Add
@@ -34,8 +39,14 @@ const UserTaskTable = ({ usersFilterTasks }) => {
   //   dispatch(deleteTasks(task));
   //   console.log("task deleted", task);
   // };
-
-  const handleInfoClick = () => {};
+  const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
+  const isTaskInfoOpen = useSelector((state) => state.modal.isTaskInfoOpen);
+  const openTaskInfo = (task) => {
+    dispatch(taskInfoModal({ arg1: true, arg2: task }));
+  };
+  const closeTaskInfo = () => {
+    dispatch(taskInfoModal({ arg1: false, arg2: {} }));
+  };
   return (
     <Box sx={{ width: "100%" }}>
       {/* Table Header */}
@@ -123,16 +134,34 @@ const UserTaskTable = ({ usersFilterTasks }) => {
               </Typography> */}
               <Typography sx={{ flex: 2, textAlign: "center" }}>
                 <Tooltip title="Info" arrow>
-                  <Link
+                  {/* <Link
                     to={`/taskId/${task.taskId}`}
                     color="info"
                     state={{ task }}
                     sx={{}}
                     onClick={handleInfoClick}
-                  >
-                    <MenuIcon />
                   </Link>
+                  > */}
+                  <Button onClick={() => openTaskInfo(task)}>
+                    <MenuIcon />
+                  </Button>
                 </Tooltip>
+                <Dialog
+                  open={isTaskInfoOpen}
+                  onClose={closeTaskInfo}
+                  fullScreen
+                  scroll="paper"
+                >
+                  <DialogContent
+                    style={{
+                      padding: 0, // Remove padding to ensure full screen
+                      height: "100vh", // Full height
+                      width: "100vw", // Full width
+                    }}
+                  >
+                    <TaskInfo />
+                  </DialogContent>
+                </Dialog>
               </Typography>
             </ListItem>
             {index < usersFilterTasks.length - 1 && <Divider />}

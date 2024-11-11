@@ -13,7 +13,7 @@ import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
 import { deleteTasks, updateTasks } from "../redux/tasksSlice";
 import { useDispatch } from "react-redux";
-import { updateTaskFrom } from "../redux/modalSlice";
+import { taskInfoModal, updateTaskFrom } from "../redux/modalSlice";
 import UpdateTaskInUser from "./UpdateTaskInUser";
 import Counter from "./Counter";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -32,47 +32,73 @@ const TaskCard = styled(Paper)(({ theme }) => ({
 }));
 const TaskInfo = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { task } = location.state || {};
+  // const location = useLocation();
+  // const { task } = location.state || {};
+  const task = useSelector((state) => state.modal.updateTaskInUserData1);
   const user = useSelector((state) => state.user.user);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const task1 = allTasks.find((t) => t.taskId === task.taskId);
-  const taskCompleted = task1.status === "Completed" ? true : false;
+  let taskCompleted;
+  if (task1) {
+    taskCompleted = task1.status === "Completed" ? true : false;
+  }
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });
-  useEffect(() => {}, []);
+  const [error, setError] = useState(""); // Track any errors
+
   const handleUpdateClick = () => {
     dispatch(updateTaskFrom({ arg1: true, arg2: task1 }));
   };
   const handleDeleteClick = () => {
     dispatch(deleteTasks(task1));
+    dispatch(taskInfoModal({ arg1: false, arg2: {} }));
+
     console.log("task deleted", task1);
   };
   const handleTaskButtonClick = () => {
-    if (!task1) return; // Ensure task1 exists
+    if (!task1) return;
 
-    // Check if any other task is already in "In-progress" status
     const isAnyTaskInProgress = userAllTasks.some(
       (task) => task.status === "In-progress" && task.taskId !== task1.taskId
     );
 
-    // Only proceed if no other task is in progress or if stopping the current task
-    if (!isAnyTaskInProgress || task1.status === "In-progress") {
+    if (task1.status === "Pending") {
+      if (isAnyTaskInProgress) {
+        setError("Only one task can be active at a time.");
+        console.log(
+          "Another task is already in progress. Only one task can be active at a time."
+        );
+      } else {
+        const updatedTask = {
+          ...task1,
+          status: "In-progress",
+        };
+        dispatch(updateTasks(updatedTask));
+      }
+    } else if (task1.status === "In-progress") {
       const updatedTask = {
         ...task1,
-        status: task1.status === "Pending" ? "In-progress" : "Pending",
+        status: "Pending",
       };
-
       dispatch(updateTasks(updatedTask));
-    } else {
-      console.log(
-        "Another task is already in progress. Only one task can be active at a time."
-      );
     }
   };
+
+  const closeTaskInfo = () => {
+    dispatch(taskInfoModal({ arg1: false, arg2: {} }));
+  };
   if (!task1) {
-    return <p>No task found</p>;
+    return (
+      <>
+        <p>No task found</p>
+        <Box>
+          <Button onClick={closeTaskInfo} color="primary">
+            Close
+          </Button>
+        </Box>
+      </>
+    );
   }
   return (
     <>
@@ -90,7 +116,12 @@ const TaskInfo = () => {
                 borderBottom: "1px solid #ddd", // optional border for separation
               }}
             >
-              <Box sx={{ flex: 1, textAlign: "center", marginLeft: "20%" }}>
+              <Box>
+                <Button onClick={closeTaskInfo} color="primary">
+                  Close
+                </Button>
+              </Box>
+              <Box sx={{ flex: 1, textAlign: "center", marginLeft: "5%" }}>
                 <Typography
                   variant="h4"
                   gutterBottom
@@ -105,6 +136,7 @@ const TaskInfo = () => {
                   color="primary"
                   onClick={handleTaskButtonClick}
                   disabled={taskCompleted}
+                  sx={{ marginBottom: 1 }}
                 >
                   {task1.status === "Completed" ? (
                     <>Task is Completed</>
@@ -122,6 +154,7 @@ const TaskInfo = () => {
                     </>
                   )}
                 </Button>
+                {error && <div style={{ color: "red" }}>{error}</div>}
               </Box>
             </Box>
 
@@ -207,7 +240,7 @@ const TaskInfo = () => {
                   Time Spent:
                 </Typography>
                 <Typography variant="body2" sx={{ color: "gray" }}>
-                  {/* <Counter task={task1}/> */}
+                  <Counter task={task1} />
                 </Typography>
               </Grid>
 

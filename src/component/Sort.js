@@ -14,6 +14,7 @@ const Sort = () => {
   const dispatch = useDispatch();
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
+  const [error, setError] = useState(""); // Track any errors
 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
@@ -27,7 +28,9 @@ const Sort = () => {
     if (sortBy !== "" && sortOrder !== "") {
       dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
       console.log("Sorting Applied: ", { sortBy, sortOrder });
+      setError("");
     } else {
+      setError("Can't Sort without Both values");
       console.log("Can't Sort without values");
     }
   };
@@ -35,6 +38,7 @@ const Sort = () => {
   const handleClear = () => {
     setSortBy("");
     setSortOrder("");
+    setError("");
     dispatch(clearSorting());
   };
 
@@ -128,6 +132,7 @@ const Sort = () => {
           </Button>
         </Box>
       </Box>
+      {error && <div style={{ color: "red" }}>{error}</div>}
     </>
   );
 };

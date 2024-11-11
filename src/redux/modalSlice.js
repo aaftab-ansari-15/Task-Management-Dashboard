@@ -10,7 +10,9 @@ const modalSlice = createSlice({
     darkMode: false,
     isUpdateTaskForm: false,
     isAddTaskForm: false,
+    isTaskInfoOpen: false,
     updateTaskInUserData: {},
+    updateTaskInUserData1: {},
   },
   reducers: {
     sideBarModal: (state, action) => {
@@ -40,6 +42,11 @@ const modalSlice = createSlice({
       state.isUpdateTaskForm = arg1;
       state.updateTaskInUserData = arg2;
     },
+    taskInfoModal: (state, action) => {
+      const { arg1, arg2 } = action.payload;
+      state.isTaskInfoOpen = arg1;
+      state.updateTaskInUserData1 = arg2;
+    },
   },
 });
 
@@ -52,5 +59,6 @@ export const {
   changeDarkMode,
   updateTaskFrom,
   addTaskFrom,
+  taskInfoModal,
 } = modalSlice.actions;
 export default modalSlice.reducer;
