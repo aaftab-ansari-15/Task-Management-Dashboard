@@ -4,6 +4,8 @@ import { Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
+import {Link} from "react-router-dom"
+
 import {
   List,
   ListItem,
@@ -22,16 +24,16 @@ const UserTaskTable = ({ usersFilterTasks }) => {
   const handleAddTaskClick = () => {
     dispatch(addTaskFrom(true));
   };
-  //Task Update
-  const handleTaskUpdateClick = (task) => {
-    dispatch(updateTaskFrom({ arg1: true, arg2: task }));
-  };
+  // //Task Update
+  // const handleTaskUpdateClick = (task) => {
+  //   dispatch(updateTaskFrom({ arg1: true, arg2: task }));
+  // };
 
-  //Task Delete
-  const handleTaskDeleteClick = (task) => {
-    dispatch(deleteTasks(task));
-    console.log("task deleted", task);
-  };
+  // //Task Delete
+  // const handleTaskDeleteClick = (task) => {
+  //   dispatch(deleteTasks(task));
+  //   console.log("task deleted", task);
+  // };
   
   const handleInfoClick = () => {
     
@@ -57,8 +59,8 @@ const UserTaskTable = ({ usersFilterTasks }) => {
         <Typography sx={{ flex: 1, textAlign: "center" }}>Due Date</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Priority</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Status</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Update</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Delete</Typography>
+        {/* <Typography sx={{ flex: 1, textAlign: "center" }}>Update</Typography>
+        <Typography sx={{ flex: 1, textAlign: "center" }}>Delete</Typography> */}
         <Typography sx={{ flex: 2, textAlign: "center" }}>
           <Button
             variant="outlined"
@@ -103,11 +105,11 @@ const UserTaskTable = ({ usersFilterTasks }) => {
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.status}
               </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
+              {/* <Typography sx={{ flex: 1, textAlign: "center" }}>
                 <Button
                   variant="contained"
                   color="warning"
-                  onClick={() => handleTaskUpdateClick(task, index)}
+                  onClick={() => handleTaskUpdateClick(task)}
                 >
                   Update
                 </Button>
@@ -120,12 +122,12 @@ const UserTaskTable = ({ usersFilterTasks }) => {
                 >
                   Delete
                 </Button>
-              </Typography>
+              </Typography> */}
               <Typography sx={{ flex: 2, textAlign: "center" }}>
                 <Tooltip title="Info" arrow>
-                  <Button color="info" sx={{}} onClick={handleInfoClick}>
+                  <Link to={`/taskId/${task.taskId}`} color="info" state={{ task }} sx={{}} onClick={handleInfoClick}>
                     <MenuIcon />
-                  </Button>
+                  </Link>
                 </Tooltip>
               </Typography>
             </ListItem>

@@ -24,7 +24,7 @@ const defaultTask = {
   priority: "",
   category: "",
   status: "Pending",
-  timeSpent: 0,
+  timeSpent: "0:0:0",
 };
 
 const AddTaskInUser = () => {
@@ -103,7 +103,7 @@ const AddTaskInUser = () => {
         PaperProps={{
           style: {
             overflowX: "hidden", // Prevent horizontal scrolling
-            maxWidth: "70vw", // Restrict width to 90% of the viewport
+            maxWidth: "80vw", // Restrict width to 90% of the viewport
             width: "inherit",
             border: "solid 2px green",
             padding: 2,

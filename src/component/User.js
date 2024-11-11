@@ -11,9 +11,8 @@ import { useSelector } from "react-redux";
 const User = () => {
   return (
     <>
-      <Box sx={{width:"50vw"}}>
+      <Box sx={{width:"100%"}}>
         <AddTaskInUser />
-        <UpdateTaskInUser />
       </Box>
       <Box
         sx={{

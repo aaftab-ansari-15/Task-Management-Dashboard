@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateTasks } from "../redux/tasksSlice";
 import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
 const Counter = ({ task }) => {
   const dispatch = useDispatch();
   const [counters, setCounters] = useState([]);
@@ -29,10 +30,9 @@ const Counter = ({ task }) => {
       if (interval) {
         clearInterval(interval);
       }
-    };
-  }, [task.status, task.taskId]);
+   }, [task.status, task.taskId]);
 
-  return <div>{counters[task.taskId] || task.timeSpent || 0}</div>;
+  return <>{counters[task.taskId] || task.timeSpent || 0}</>;
 };
 
 export default Counter;

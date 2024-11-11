@@ -86,7 +86,7 @@ const UpdateTaskInUser = () => {
         PaperProps={{
           style: {
             overflowX: "hidden",
-            maxWidth: "70vw",
+            maxWidth: "90vw",
             width: "inherit",
             border: "solid 2px orange",
           },

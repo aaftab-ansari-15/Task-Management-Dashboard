@@ -33,11 +33,9 @@ const modalSlice = createSlice({
     },
     addTaskFrom: (state, action) => {
       console.log(action.payload);
-
       state.isAddTaskForm = action.payload;
     },
     updateTaskFrom: (state, action) => {
-      console.log(action.payload);
       const { arg1, arg2 } = action.payload;
       state.isUpdateTaskForm = arg1;
       state.updateTaskInUserData = arg2;
