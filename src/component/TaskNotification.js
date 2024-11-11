@@ -23,8 +23,7 @@ const TaskNotification = () => {
       let timeDifference = date1 - date2; // difference in milliseconds
       let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
       // return daysDifference >= 0 && daysDifference <= 1;
-      return daysDifference <= 1;
-
+      return daysDifference > 0 && daysDifference <= 1;
     });
     const filteredTask2 = usersTask.filter((task) => {
       let date1 = new Date(task.dueDate);

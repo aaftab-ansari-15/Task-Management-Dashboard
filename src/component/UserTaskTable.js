@@ -4,7 +4,7 @@ import { Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import {
   List,
@@ -34,10 +34,8 @@ const UserTaskTable = ({ usersFilterTasks }) => {
   //   dispatch(deleteTasks(task));
   //   console.log("task deleted", task);
   // };
-  
-  const handleInfoClick = () => {
-    
-  }
+
+  const handleInfoClick = () => {};
   return (
     <Box sx={{ width: "100%" }}>
       {/* Table Header */}
@@ -125,7 +123,13 @@ const UserTaskTable = ({ usersFilterTasks }) => {
               </Typography> */}
               <Typography sx={{ flex: 2, textAlign: "center" }}>
                 <Tooltip title="Info" arrow>
-                  <Link to={`/taskId/${task.taskId}`} color="info" state={{ task }} sx={{}} onClick={handleInfoClick}>
+                  <Link
+                    to={`/taskId/${task.taskId}`}
+                    color="info"
+                    state={{ task }}
+                    sx={{}}
+                    onClick={handleInfoClick}
+                  >
                     <MenuIcon />
                   </Link>
                 </Tooltip>
