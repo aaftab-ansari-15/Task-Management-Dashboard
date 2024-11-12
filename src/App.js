@@ -8,18 +8,36 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useSelector } from "react-redux";
 
-function App() {
+const App = () => {
+  // Get the dark mode state from Redux
   const darkMode = useSelector((state) => state.modal.darkMode);
+
+  // Create a theme with custom colors based on darkMode
   const darkTheme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light",
+      mode: darkMode ? "dark" : "light", // Automatically switch between dark/light mode
+      primary: {
+        main: darkMode ? "#6200EE" : "#6200EE", // Indigo in both modes
+      },
+      secondary: {
+        main: darkMode ? "#03DAC6" : "#03DAC6", // Teal in both modes
+      },
+      background: {
+        default: darkMode ? "#121212" : "#FFFFFF", // Dark background in dark mode, white background in light mode
+        paper: darkMode ? "#1E1E1E" : "#F5F5F5", // Darker paper in dark mode, light paper in light mode
+      },
+      text: {
+        primary: darkMode ? "#E0E0E0" : "#000000", // Light gray text in dark mode, black text in light mode
+        secondary: darkMode ? "#B0B0B0" : "#616161", // Gray text in dark mode, medium gray in light mode
+      },
     },
   });
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
-        <Box>
+        <Box sx={{}}>
           <Navbar />
           <Home />
         </Box>
@@ -28,6 +46,6 @@ function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

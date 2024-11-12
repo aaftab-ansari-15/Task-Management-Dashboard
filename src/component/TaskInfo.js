@@ -15,7 +15,6 @@ import { deleteTasks, updateTasks } from "../redux/tasksSlice";
 import { useDispatch } from "react-redux";
 import { taskInfoModal, updateTaskFrom } from "../redux/modalSlice";
 import UpdateTaskInUser from "./UpdateTaskInUser";
-import Counter from "./Counter";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 const TaskCard = styled(Paper)(({ theme }) => ({
@@ -47,15 +46,6 @@ const TaskInfo = () => {
   });
   const [error, setError] = useState(""); // Track any errors
 
-  const handleUpdateClick = () => {
-    dispatch(updateTaskFrom({ arg1: true, arg2: task1 }));
-  };
-  const handleDeleteClick = () => {
-    dispatch(deleteTasks(task1));
-    dispatch(taskInfoModal({ arg1: false, arg2: {} }));
-
-    console.log("task deleted", task1);
-  };
   const handleTaskButtonClick = () => {
     if (!task1) return;
 
@@ -103,8 +93,6 @@ const TaskInfo = () => {
   return (
     <>
       <center>
-        <UpdateTaskInUser />
-
         <Box sx={{ width: "100%", maxWidth: "700px", margin: "auto", mt: 4 }}>
           <TaskCard>
             <Box
@@ -121,7 +109,7 @@ const TaskInfo = () => {
                   Close
                 </Button>
               </Box>
-              <Box sx={{ flex: 1, textAlign: "center", marginLeft: "5%" }}>
+              <Box sx={{ flex: 1, textAlign: "center", marginRight: "10%" }}>
                 <Typography
                   variant="h4"
                   gutterBottom
@@ -129,32 +117,6 @@ const TaskInfo = () => {
                 >
                   Task Information
                 </Typography>
-              </Box>
-              <Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleTaskButtonClick}
-                  disabled={taskCompleted}
-                  sx={{ marginBottom: 1 }}
-                >
-                  {task1.status === "Completed" ? (
-                    <>Task is Completed</>
-                  ) : (
-                    <>
-                      {task1.status === "Pending" ? (
-                        <>
-                          Start Task <PlayArrowIcon />
-                        </>
-                      ) : (
-                        <>
-                          Pause Task <PauseIcon />
-                        </>
-                      )}
-                    </>
-                  )}
-                </Button>
-                {error && <div style={{ color: "red" }}>{error}</div>}
               </Box>
             </Box>
 
@@ -239,9 +201,9 @@ const TaskInfo = () => {
                 <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                   Time Spent:
                 </Typography>
-                <Typography variant="body2" sx={{ color: "gray" }}>
+                {/* <Typography variant="body2" sx={{ color: "gray" }}>
                   <Counter task={task1} />
-                </Typography>
+                </Typography> */}
               </Grid>
 
               <Grid
@@ -254,33 +216,12 @@ const TaskInfo = () => {
                 }}
               >
                 <Box>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    sx={{ marginRight: 2 }}
-                    onClick={handleUpdateClick}
-                  >
-                    Update
-                  </Button>
-                </Box>
-
-                <Box>
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Assigned User:
                   </Typography>
                   <Typography variant="body2" sx={{ color: "gray" }}>
                     {task.userId}
                   </Typography>
-                </Box>
-
-                <Box>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={handleDeleteClick}
-                  >
-                    Delete
-                  </Button>
                 </Box>
               </Grid>
             </Grid>

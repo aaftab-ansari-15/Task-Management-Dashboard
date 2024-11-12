@@ -13,13 +13,8 @@ const filterSlice = createSlice({
       state.category = category;
       state.status = status;
     },
-    clearFilters: (state) => {
-      state.priority = "";
-      state.category = "";
-      state.status = "";
-    },
   },
 });
 
-export const { setFilters, clearFilters } = filterSlice.actions;
+export const { setFilters } = filterSlice.actions;
 export default filterSlice.reducer;

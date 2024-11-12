@@ -11,12 +11,8 @@ const sortSlice = createSlice({
       state.sortBy = sortBy;
       state.sortOrder = sortOrder;
     },
-    clearSorting: (state) => {
-      state.sortBy = "";
-      state.sortOrder = "";
-    },
   },
 });
 
-export const { setSorting, clearSorting } = sortSlice.actions;
+export const { setSorting } = sortSlice.actions;
 export default sortSlice.reducer;

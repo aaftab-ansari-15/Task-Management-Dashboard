@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
@@ -6,60 +6,52 @@ import {
   Select,
   MenuItem,
   Button,
+  Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { clearSorting, setSorting } from "../redux/sortSlice";
+import { setSorting } from "../redux/sortSlice";
 
 const Sort = () => {
   const dispatch = useDispatch();
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-  const [error, setError] = useState(""); // Track any errors
+  useEffect(() => {
+    dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
+  }, [sortBy, sortOrder]);
 
-  const handleSortByChange = (event) => {
-    setSortBy(event.target.value);
-  };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  const handleSortOrderChange = (event) => {
-    setSortOrder(event.target.value);
-  };
-
-  const handleSort = () => {
-    if (sortBy !== "" && sortOrder !== "") {
-      dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
-      console.log("Sorting Applied: ", { sortBy, sortOrder });
-      setError("");
-    } else {
-      setError("Can't Sort without Both values");
-      console.log("Can't Sort without values");
+    if (name === "sortBy") {
+      if (value === "") {
+        setSortOrder("");
+      }
+      setSortBy(value);
+    } else if (name === "sortOrder") {
+      setSortOrder(value);
     }
-  };
-
-  const handleClear = () => {
-    setSortBy("");
-    setSortOrder("");
-    setError("");
-    dispatch(clearSorting());
   };
 
   return (
     <>
-      <h3
-        style={{
+      <Typography
+        variant="subtitle1"
+        sx={{
           textAlign: "left",
           marginTop: 0,
           marginBottom: 0,
-          marginLeft: 20,
+          fontWeight: "bold",
         }}
       >
-        Sort By
-      </h3>
+        Sort Task
+      </Typography>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           marginBottom: 5,
+          textAlign: "initial",
         }}
       >
         <Box
@@ -67,7 +59,6 @@ const Sort = () => {
             width: "60%",
             display: "flex",
             justifyContent: "space-between",
-            marginLeft: 5,
           }}
         >
           {/* Sort By */}
@@ -82,10 +73,11 @@ const Sort = () => {
                   name="sortBy"
                   value={sortBy}
                   label="Sort By"
-                  onChange={handleSortByChange}
+                  onChange={handleChange}
                 >
                   <MenuItem value="dueDate">Due Date</MenuItem>
                   <MenuItem value="priority">Priority</MenuItem>
+                  <MenuItem value="">Clear</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -103,7 +95,7 @@ const Sort = () => {
                   name="sortOrder"
                   value={sortOrder}
                   label="Sort Order"
-                  onChange={handleSortOrderChange}
+                  onChange={handleChange}
                 >
                   <MenuItem value="asc">Ascending</MenuItem>
                   <MenuItem value="desc">Descending</MenuItem>
@@ -112,27 +104,7 @@ const Sort = () => {
             </Box>
           </Box>
         </Box>
-
-        {/* Right-side Buttons (Sort and Clear) */}
-        <Box
-          sx={{
-            width: "35%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            gap: 2,
-            marginLeft: 2,
-          }}
-        >
-          <Button variant="contained" color="primary" onClick={handleSort}>
-            Apply Sorting
-          </Button>
-          <Button variant="outlined" color="secondary" onClick={handleClear}>
-            Clear
-          </Button>
-        </Box>
       </Box>
-      {error && <div style={{ color: "red" }}>{error}</div>}
     </>
   );
 };

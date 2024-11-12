@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Select,
   MenuItem,
   Button,
+  Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { clearFilters, setFilters } from "../redux/filterSlice";
@@ -19,47 +20,59 @@ const FilterBox = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "priority") {
-      setPriority(value);
+      if (value === "") {
+        setPriority("");
+      } else {
+        setPriority(value);
+      }
     } else if (name === "category") {
-      setCategory(value);
+      if (value === "") {
+        setCategory("");
+      } else {
+        setCategory(value);
+      }
     } else if (name === "status") {
-      setStatus(value);
+      if (value === "") {
+        setStatus("");
+      } else {
+        setStatus(value);
+      }
     }
   };
-
-  const handleClearFilters = () => {
-    setPriority("");
-    setCategory("");
-    setStatus("");
-    dispatch(clearFilters());
-  };
-
-  const handleApplyFilters = () => {
-    // Apply filter logic or dispatch filters to state/store
+  useEffect(() => {
     dispatch(
       setFilters({ priority: priority, category: category, status: status })
     );
+  }, [priority, category, status]);
+
+  const handleClearFilters = () => {};
+
+  const handleApplyFilters = () => {
+    // Apply filter logic or dispatch filters to state/store
+
     console.log("Filters applied:", { priority, category, status });
   };
 
   return (
     <>
-      <h3
-        style={{
+      <Typography
+        variant="subtitle1"
+        sx={{
           textAlign: "left",
           marginTop: 0,
           marginBottom: 0,
-          marginLeft: 20,
+          fontWeight: "bold",
         }}
       >
-        Filters By
-      </h3>
+        Filter Task By
+      </Typography>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           marginBottom: 5,
+          textAlign: "initial",
         }}
       >
         <Box
@@ -67,7 +80,6 @@ const FilterBox = () => {
             width: "60%",
             display: "flex",
             justifyContent: "space-between",
-            marginLeft: 5,
           }}
         >
           {/* Priority */}
@@ -87,6 +99,7 @@ const FilterBox = () => {
                   <MenuItem value="Low">Low</MenuItem>
                   <MenuItem value="Medium">Medium</MenuItem>
                   <MenuItem value="High">High</MenuItem>
+                  <MenuItem value="">Clear</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -109,6 +122,7 @@ const FilterBox = () => {
                   <MenuItem value="Work">Work</MenuItem>
                   <MenuItem value="Personal">Personal</MenuItem>
                   <MenuItem value="Study">Study</MenuItem>
+                  <MenuItem value="">Clear</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -131,37 +145,11 @@ const FilterBox = () => {
                   <MenuItem value="Completed">Completed</MenuItem>
                   <MenuItem value="In-progress">In-progress</MenuItem>
                   <MenuItem value="Pending">Pending</MenuItem>
+                  <MenuItem value="">Clear</MenuItem>
                 </Select>
               </FormControl>
             </Box>
           </Box>
-        </Box>
-
-        {/* Right-side Buttons (Clear & Filter) */}
-        <Box
-          sx={{
-            width: "35%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            marginLeft: 2,
-          }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleApplyFilters}
-            sx={{ marginBottom: 2 }}
-          >
-            Apply Filters
-          </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={handleClearFilters}
-          >
-            Clear Filters
-          </Button>
         </Box>
       </Box>
     </>

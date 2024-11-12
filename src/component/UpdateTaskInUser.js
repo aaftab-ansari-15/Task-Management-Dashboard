@@ -8,6 +8,8 @@ import {
   Select,
   InputLabel,
   FormControl,
+  Typography,
+  Divider,
 } from "@mui/material";
 import {
   Dialog,
@@ -18,6 +20,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { updateTasks } from "../redux/tasksSlice";
 import { updateTaskFrom } from "../redux/modalSlice";
+import CancelIcon from "@mui/icons-material/Cancel";
+
 // import { useSelector } from "react-redux";
 const defaultTask = {
   taskId: "",
@@ -39,7 +43,7 @@ const UpdateTaskInUser = () => {
   useEffect(() => {
     setUpdatedTask(userTask);
   }, [userTask]);
-
+  console.log(updatedTask.status);
   const isFormValid =
     !errors.description &&
     !errors.dueDate &&
@@ -85,154 +89,141 @@ const UpdateTaskInUser = () => {
         maxWidth="md"
         PaperProps={{
           style: {
-            overflowX: "hidden",
-            maxWidth: "90vw",
-            width: "inherit",
-            border: "solid 2px orange",
+            borderRadius: "20px",
+            border: "3px solid #eba64e",
+            // height: "50vh",
+            width: "40vw",
+            overflow: "hidden",
           },
         }}
       >
-        <Box sx={{}}>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: 2,
-              backgroundColor: "orange",
-              color: "white",
+              textAlign: "center",
+              marginLeft: 4,
+              flexGrow: 2,
             }}
           >
-            <h3>Update this task</h3>
+            <Typography variant="h5">Update task</Typography>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Grid container spacing={3}>
-              {/* Title */}
-              <Grid item="true" xs={12} sm={6}>
-                <TextField
-                  margin="dense"
-                  id="title"
-                  name="title"
-                  label="Title"
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  disabled
-                  value={updatedTask.title || ""}
-                />
-              </Grid>
-              {/* Description */}
-              <Grid item="true" xs={12} sm={6}>
-                <TextField
-                  margin="dense"
-                  id="description"
-                  name="description"
-                  label="Description"
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  value={updatedTask.description || ""}
-                  onChange={handleChange}
-                  error={!!errors.description}
-                  helperText={errors.description}
-                />
-              </Grid>
-
-              {/* Due Date */}
-              <Grid item="true" xs={12} sm={6}>
-                <TextField
-                  margin="dense"
-                  id="dueDate"
-                  name="dueDate"
-                  type="date"
-                  fullWidth
-                  variant="outlined"
-                  value={updatedTask.dueDate || ""}
-                  onChange={handleChange}
-                  error={!!errors.dueDate}
-                  helperText={errors.dueDate}
-                />
-              </Grid>
-
-              {/* Priority */}
-              <Grid item="true" xs={12} sm={6} sx={{ width: "100px" }}>
-                <FormControl fullWidth margin="dense">
-                  <InputLabel id="priority-label">Priority</InputLabel>
-                  <Select
-                    labelId="priority-label"
-                    id="priority"
-                    name="priority"
-                    value={updatedTask.priority || ""}
-                    onChange={handleChange}
-                    label="Priority"
-                    fullWidth
-                    sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                    inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
-                  >
-                    <MenuItem value="Low">Low</MenuItem>
-                    <MenuItem value="Medium">Medium</MenuItem>
-                    <MenuItem value="High">High</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              {/* Category */}
-              <Grid item="true" xs={12} sm={6} sx={{ width: "100px" }}>
-                <FormControl fullWidth margin="dense">
-                  <InputLabel id="category-label">Category</InputLabel>
-                  <Select
-                    labelId="category-label"
-                    id="category"
-                    name="category"
-                    value={updatedTask.category || ""}
-                    onChange={handleChange}
-                    label="Category"
-                    fullWidth
-                    sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                    inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
-                  >
-                    <MenuItem value="Work">Work</MenuItem>
-                    <MenuItem value="Personal">Personal</MenuItem>
-                    <MenuItem value="Study">Study</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              {/* Status */}
-              <Grid item="true" xs={12} sm={6} sx={{ width: "100px" }}>
-                <FormControl fullWidth margin="dense">
-                  <InputLabel id="status-label">Status</InputLabel>
-                  <Select
-                    labelId="status-label"
-                    id="status"
-                    name="status"
-                    value={updatedTask.status || ""}
-                    onChange={handleChange}
-                    label="status"
-                    fullWidth
-                    sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                    inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
-                  >
-                    <MenuItem value="Completed">Completed</MenuItem>
-                    {/* <MenuItem disabled value="In-progress">
-                      In-progress
-                    </MenuItem>
-                    <MenuItem disabled value="Pending">
-                      Pending
-                    </MenuItem> */}
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-            {/* Add Button */}
+          <Box sx={{ marginRight: 2 }}>
+            <Button onClick={handleClose}>
+              <CancelIcon />
+            </Button>
           </Box>
         </Box>
-        <Grid container spacing={5}>
-          <Grid item="true" xs={6} sx={{ width: "100%" }}>
+        <Divider />
+        <Box sx={{ mx: "15%", my: 4 }}>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="inherit">Task Name</Typography>
+
+            <TextField
+              margin="dense"
+              id="title"
+              name="title"
+              label="Title"
+              type="text"
+              fullWidth
+              variant="outlined"
+              disabled
+              value={updatedTask.title || ""}
+            />
+          </Box>
+
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="inherit">Task Description</Typography>
+
+            <TextField
+              margin="dense"
+              id="description"
+              name="description"
+              label="Description"
+              type="text"
+              fullWidth
+              variant="outlined"
+              value={updatedTask.description}
+              onChange={handleChange}
+              error={!!errors.description}
+              helperText={errors.description}
+            />
+          </Box>
+
+          <Box sx={{ display: "flex", justifyContent: "space-around", mb: 3 }}>
+            <Box sx={{ width: "-webkit-fill-available", mr: 1 }}>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="priority-label">Priority</InputLabel>
+                <Select
+                  labelId="priority-label"
+                  id="priority"
+                  name="priority"
+                  value={updatedTask.priority}
+                  onChange={handleChange}
+                  label="Priority"
+                  fullWidth
+                >
+                  <MenuItem value="Low">Low</MenuItem>
+                  <MenuItem value="Medium">Medium</MenuItem>
+                  <MenuItem value="High">High</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+
+            <Box sx={{ width: "-webkit-fill-available", mx: 1 }}>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="category-label">Category</InputLabel>
+                <Select
+                  labelId="category-label"
+                  id="category"
+                  name="category"
+                  value={updatedTask.category}
+                  onChange={handleChange}
+                  // error={!!errors.category}
+                  // helperText={errors.category}
+                  label="Category"
+                  fullWidth
+                >
+                  <MenuItem value="Work">Work</MenuItem>
+                  <MenuItem value="Personal">Personal</MenuItem>
+                  <MenuItem value="Study">Study</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: "-webkit-fill-available", ml: 1 }}>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="status-label">Status</InputLabel>
+                <Select
+                  labelId="status-label"
+                  id="status"
+                  name="status"
+                  value={updatedTask.status || ""}
+                  onChange={handleChange}
+                  label="status"
+                  fullWidth
+                >
+                  <MenuItem value="Completed">Completed</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Box>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="inherit">Task Due Date</Typography>
+
+            <TextField
+              margin="dense"
+              id="dueDate"
+              name="dueDate"
+              type="date"
+              fullWidth
+              variant="outlined"
+              value={updatedTask.dueDate}
+              onChange={handleChange}
+              error={!!errors.dueDate}
+              helperText={errors.dueDate}
+            />
+          </Box>
+
+          <Box sx={{}}>
             <Button
               variant="contained"
               color="warning"
@@ -242,8 +233,8 @@ const UpdateTaskInUser = () => {
             >
               Update Task
             </Button>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Dialog>
     </>
   );
