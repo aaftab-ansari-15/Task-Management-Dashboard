@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Divider } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import AddTaskInUser from "./AddTaskInUser";
 import UpdateTaskInUser from "./UpdateTaskInUser";
 import ShowUserTasks from "./ShowUserTasks";
@@ -8,10 +8,17 @@ import Filter from "./Filter";
 import Sort from "./Sort";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles"; // To access the theme inside components
+import { useDispatch } from "react-redux";
+import { addTaskFrom } from "../redux/modalSlice";
 
 const User = () => {
   // Get the current theme using useTheme hook
   const theme = useTheme();
+  const dispatch = useDispatch()
+  //Task Add
+  const handleAddTaskClick = () => {
+    dispatch(addTaskFrom(true));
+  };
 
   return (
     <>
@@ -23,7 +30,16 @@ const User = () => {
         }}
       >
         <Box sx={{ height: "150px", display: "flex", overflow: "hidden" }}>
-          <Box sx={{ width: "50vw" }}>Box</Box>
+          <Box sx={{ width: "50vw" }}>
+            <Button
+              variant="outlined"
+              color="success"
+              onClick={handleAddTaskClick}
+              sx={{ backgroundColor: "#14b003", width: "50%", color: "white" }}
+            >
+              Add Task
+            </Button>
+          </Box>
           <Divider
             sx={{
               mr: 2,
@@ -61,6 +77,9 @@ const User = () => {
         <TaskNotification />
       </Box> 
       */}
+      <UpdateTaskInUser />
+      <AddTaskInUser />
+      {/* <TaskNotification /> */}
     </>
   );
 };

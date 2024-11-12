@@ -24,8 +24,11 @@ export default function Navbar() {
   const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
   const isSideBar = useSelector((state) => state.modal.isSideBar);
   const user = useSelector((state) => state.user);
-  const toggleDrawer = () => {
+  const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
+  };
+  const handleSideBarClose = () => {
+    dispatch(sideBarModal(false));
   };
   const handleSignUpClick = () => {
     if (!isLoginDialogOpen) {
@@ -43,6 +46,7 @@ export default function Navbar() {
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
   };
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -57,11 +61,11 @@ export default function Navbar() {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={toggleDrawer}
+              onClick={handleSideBarOpen}
             >
               <MenuIcon />
             </IconButton>
-            <Drawer open={isSideBar}>
+            <Drawer open={isSideBar} onClose={handleSideBarClose}>
               <SideBar />
             </Drawer>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTasks } from "../redux/tasksSlice";
 import { addTaskFrom } from "../redux/modalSlice";
 import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
+
 // import { useSelector } from "react-redux";
 
 const defaultTask = {
@@ -108,6 +110,7 @@ const AddTaskInUser = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
+            marginTop:"70px",
             borderRadius: "20px",
             border: "3px solid #008f25",
             // height: "50vh",
@@ -116,138 +119,158 @@ const AddTaskInUser = () => {
           },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
-          <Box
-            sx={{
-              textAlign: "center",
-              marginLeft: 4,
-              flexGrow: 2,
-            }}
-          >
-            <Typography variant="h5">Add New Task</Typography>
-          </Box>
-          <Box sx={{ marginRight: 2 }}>
-            <Button onClick={handleClose}>
-              <CancelIcon />
-            </Button>
-          </Box>
-        </Box>
-        <Divider />
-        <Box sx={{ mx: "15%", my: 4 }}>
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="inherit">New Task Name</Typography>
-
-            <TextField
-              margin="dense"
-              id="title"
-              name="title"
-              label="Title"
-              type="text"
-              fullWidth
-              variant="outlined"
-              value={newTask.title}
-              onChange={handleChange}
-              error={!!errors.title}
-              helperText={errors.title}
-            />
-          </Box>
-
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="inherit">Task Description</Typography>
-
-            <TextField
-              margin="dense"
-              id="description"
-              name="description"
-              label="Description"
-              type="text"
-              fullWidth
-              variant="outlined"
-              value={newTask.description}
-              onChange={handleChange}
-              error={!!errors.description}
-              helperText={errors.description}
-            />
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "space-around", mb: 3 }}>
-            <Box sx={{ width: "-webkit-fill-available", mr: 1 }}>
-              <Typography variant="inherit">Set Priority</Typography>
-
-              <FormControl fullWidth margin="dense">
-                <InputLabel id="priority-label">Priority</InputLabel>
-                <Select
-                  labelId="priority-label"
-                  id="priority"
-                  name="priority"
-                  value={newTask.priority}
-                  onChange={handleChange}
-                  // error={!!errors.priority}
-                  // helperText={errors.priority}
-                  label="Priority"
-                  fullWidth
-                  sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                  inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
-                >
-                  <MenuItem value="Low">Low</MenuItem>
-                  <MenuItem value="Medium">Medium</MenuItem>
-                  <MenuItem value="High">High</MenuItem>
-                </Select>
-              </FormControl>
+        {isAddTaskForm && (
+          <>
+            <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  flexGrow: 2,
+                }}
+              >
+                <Typography variant="h5">Add New Task</Typography>
+              </Box>
             </Box>
+            <Divider />
+            <Box sx={{ mx: "15%", my: 4 }}>
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="inherit">New Task Name</Typography>
 
-            <Box sx={{ width: "-webkit-fill-available", ml: 1 }}>
-              <Typography variant="inherit">Set Category</Typography>
-              <FormControl fullWidth margin="dense">
-                <InputLabel id="category-label">Category</InputLabel>
-                <Select
-                  labelId="category-label"
-                  id="category"
-                  name="category"
-                  value={newTask.category}
-                  onChange={handleChange}
-                  // error={!!errors.category}
-                  // helperText={errors.category}
-                  label="Category"
+                <TextField
+                  margin="dense"
+                  id="title"
+                  name="title"
+                  label="Title"
+                  type="text"
                   fullWidth
-                  sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                  inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
-                >
-                  <MenuItem value="Work">Work</MenuItem>
-                  <MenuItem value="Personal">Personal</MenuItem>
-                  <MenuItem value="Study">Study</MenuItem>
-                </Select>
-              </FormControl>
+                  variant="outlined"
+                  value={newTask.title}
+                  onChange={handleChange}
+                  error={!!errors.title}
+                  helperText={errors.title}
+                />
+              </Box>
+
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="inherit">Task Description</Typography>
+
+                <TextField
+                  margin="dense"
+                  id="description"
+                  name="description"
+                  label="Description"
+                  type="text"
+                  fullWidth
+                  variant="outlined"
+                  value={newTask.description}
+                  onChange={handleChange}
+                  error={!!errors.description}
+                  helperText={errors.description}
+                />
+              </Box>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-around", mb: 3 }}
+              >
+                <Box sx={{ width: "-webkit-fill-available", mr: 1 }}>
+                  <Typography variant="inherit">Set Priority</Typography>
+
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="priority-label">Priority</InputLabel>
+                    <Select
+                      labelId="priority-label"
+                      id="priority"
+                      name="priority"
+                      value={newTask.priority}
+                      onChange={handleChange}
+                      // error={!!errors.priority}
+                      // helperText={errors.priority}
+                      label="Priority"
+                      fullWidth
+                      sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
+                      inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
+                    >
+                      <MenuItem value="Low">Low</MenuItem>
+                      <MenuItem value="Medium">Medium</MenuItem>
+                      <MenuItem value="High">High</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+
+                <Box sx={{ width: "-webkit-fill-available", ml: 1 }}>
+                  <Typography variant="inherit">Set Category</Typography>
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="category-label">Category</InputLabel>
+                    <Select
+                      labelId="category-label"
+                      id="category"
+                      name="category"
+                      value={newTask.category}
+                      onChange={handleChange}
+                      // error={!!errors.category}
+                      // helperText={errors.category}
+                      label="Category"
+                      fullWidth
+                      sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
+                      inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
+                    >
+                      <MenuItem value="Work">Work</MenuItem>
+                      <MenuItem value="Personal">Personal</MenuItem>
+                      <MenuItem value="Study">Study</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Box>
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="inherit">Task Due Date</Typography>
+
+                <TextField
+                  margin="dense"
+                  id="dueDate"
+                  name="dueDate"
+                  type="date"
+                  fullWidth
+                  variant="outlined"
+                  value={newTask.dueDate}
+                  onChange={handleChange}
+                  error={!!errors.dueDate}
+                  helperText={errors.dueDate}
+                />
+              </Box>
+
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Box sx={{ marginRight: 2, width: "50%" }}>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={handleAddTaskClick}
+                    fullWidth
+                    disabled={!isFormValid}
+                    sx={{
+                      border: "2px solid #388e3c",
+                      "&.Mui-disabled": {
+                        backgroundColor: "success.main", // Keep the success color
+                        color: "white", // Optionally, you can specify the text color too
+                      },
+                    }}
+                  >
+                    <span>Add</span>
+                  </Button>
+                </Box>
+                <Box sx={{ marginLeft: 2, width: "50%" }}>
+                  <Button
+                    // sx={{ border:"2px solid #793ee0"}}
+                    variant="contained"
+                    color="error"
+                    fullWidth
+                    onClick={handleClose}
+                  >
+                    <span>Cancel</span> <CloseIcon />
+                  </Button>
+                </Box>
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="inherit">Task Due Date</Typography>
-
-            <TextField
-              margin="dense"
-              id="dueDate"
-              name="dueDate"
-              type="date"
-              fullWidth
-              variant="outlined"
-              value={newTask.dueDate}
-              onChange={handleChange}
-              error={!!errors.dueDate}
-              helperText={errors.dueDate}
-            />
-          </Box>
-
-          <Box sx={{}}>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={handleAddTaskClick}
-              fullWidth
-              disabled={!isFormValid}
-            >
-              Add New Task
-            </Button>
-          </Box>
-        </Box>
+          </>
+        )}
       </Dialog>
     </>
   );

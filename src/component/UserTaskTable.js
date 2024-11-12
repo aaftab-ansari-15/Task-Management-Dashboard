@@ -36,13 +36,8 @@ const UserTaskTable = ({ usersFilterTasks }) => {
     dispatch(deleteTasks(task));
     console.log("task deleted", task);
   };
-  const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
-  const isTaskInfoOpen = useSelector((state) => state.modal.isTaskInfoOpen);
   const openTaskInfo = (task) => {
     dispatch(taskInfoModal({ arg1: true, arg2: task }));
-  };
-  const closeTaskInfo = () => {
-    dispatch(taskInfoModal({ arg1: false, arg2: {} }));
   };
   return (
     <Box sx={{ width: "100%" }}>
@@ -128,28 +123,13 @@ const UserTaskTable = ({ usersFilterTasks }) => {
                     <MenuIcon />
                   </Button>
                 </Tooltip>
-                <Dialog
-                  open={isTaskInfoOpen}
-                  onClose={closeTaskInfo}
-                  fullScreen
-                  scroll="paper"
-                >
-                  <DialogContent
-                    style={{
-                      padding: 0, // Remove padding to ensure full screen
-                      height: "100vh", // Full height
-                      width: "100vw", // Full width
-                    }}
-                  >
-                    <TaskInfo />
-                  </DialogContent>
-                </Dialog>
               </Typography>
             </ListItem>
             {index < usersFilterTasks.length - 1 && <Divider />}
           </Box>
         ))}
       </List>
+      <TaskInfo />
     </Box>
   );
 };

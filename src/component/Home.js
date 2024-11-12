@@ -8,12 +8,10 @@ import TaskNotification from "./TaskNotification";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
+  // const 
   return (
     <>
       <div>{user.user && user.user.isLogin ? <User /> : <ImageCarousel />}</div>
-      <AddTaskInUser />
-      <UpdateTaskInUser />
-      <TaskNotification />
     </>
   );
 };
