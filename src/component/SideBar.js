@@ -97,14 +97,14 @@ const SideBar = () => {
           </Button>
         </Box>
         <Box>
-          <Typography variant="h5">TMD</Typography>
+          <Typography variant="h5" sx={{fontWeight:"bold"}}>T M D</Typography>
         </Box>
         <Box>
           <IconButton
             size="large"
-            color="inherit"
             aria-label="menu"
             onClick={toggleDrawer}
+            sx={{color:"black"}}
           >
             <CloseIcon />
           </IconButton>
