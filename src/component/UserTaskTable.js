@@ -46,7 +46,7 @@ const UserTaskTable = ({ usersFilterTasks }) => {
         sx={{
           display: "flex",
           padding: 1,
-          bgcolor: "primary.main",
+          bgcolor: "secondary.main",
           color: "white",
           fontWeight: "bold",
         }}

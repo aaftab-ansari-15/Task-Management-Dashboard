@@ -17,6 +17,7 @@ import {
 } from "../redux/modalSlice";
 import { logOutUser } from "../redux/userSlice";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LoginIcon from "@mui/icons-material/Login";
 import SideBar from "./SideBar";
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export default function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
-          sx={{ backgroundColor: "#32383E", color: "white" }}
+          sx={{ bgcolor: "background.paper", color: "text.primary" }}
         >
           <Toolbar>
             <IconButton
@@ -65,9 +66,6 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Drawer open={isSideBar} onClose={handleSideBarClose}>
-              <SideBar />
-            </Drawer>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Task Management Dashboard
               {/* {user.user ? " - " + user.user.name : ""} */}
@@ -112,6 +110,26 @@ export default function Navbar() {
           </Toolbar>
         </AppBar>
       </Box>
+      <Drawer
+        open={isSideBar}
+        onClose={handleSideBarClose}
+        PaperProps={{
+          sx: {
+            color: "text.primary",
+            borderRadius: 4, // Apply border radius to the drawer's inner paper
+            top: "0px", // You can set the top margin here as well if needed
+            bottom: "0px",
+            // mt:2,
+            // ml:2,
+            // height:"97vh",
+          // bgcolor: "#85e0f9",
+
+
+          },
+        }}
+      >
+        <SideBar />
+      </Drawer>
     </>
   );
 }

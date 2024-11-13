@@ -13,6 +13,7 @@ const modalSlice = createSlice({
     isTaskInfoOpen: false,
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
+    componentName:"MyTasksListOldUi",
   },
   reducers: {
     sideBarModal: (state, action) => {
@@ -47,6 +48,9 @@ const modalSlice = createSlice({
       state.isTaskInfoOpen = arg1;
       state.updateTaskInUserData1 = arg2;
     },
+    changeComponent: (state, action) => {
+      state.componentName = action.payload
+    }
   },
 });
 
@@ -60,5 +64,6 @@ export const {
   updateTaskFrom,
   addTaskFrom,
   taskInfoModal,
+  changeComponent,
 } = modalSlice.actions;
 export default modalSlice.reducer;

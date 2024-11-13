@@ -7,7 +7,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { closeLoginModal } from "../redux/modalSlice";
+import { changeComponent, closeLoginModal } from "../redux/modalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../redux/userSlice";
 
@@ -80,6 +80,7 @@ const LoginDialog = () => {
             name: findUser.name,
           };
           dispatch(loginUser(updatedLoginData));
+          dispatch(changeComponent("MyTasksListOldUi"))
           console.log("userLoggedIn", updatedLoginData);
         } else {
           console.log("email or password is incorrect");
