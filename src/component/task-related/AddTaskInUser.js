@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
+import { useDispatch, useSelector } from "react-redux";
+import { addTasks } from "../../redux/tasksSlice";
+import { addTaskFrom } from "../../redux/modalSlice";
 import {
   TextField,
   Button,
@@ -12,14 +14,7 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { addTasks } from "../redux/tasksSlice";
-import { addTaskFrom } from "../redux/modalSlice";
-import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
-
-// import { useSelector } from "react-redux";
-
 const defaultTask = {
   taskId: 0,
   userId: "",
@@ -110,7 +105,7 @@ const AddTaskInUser = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            marginTop:"70px",
+            marginTop: "70px",
             borderRadius: "20px",
             border: "3px solid #008f25",
             // height: "50vh",

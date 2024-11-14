@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeDarkMode, sideBarModal } from "../../redux/modalSlice";
+import { logOutUser } from "../../redux/userSlice";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -8,37 +11,23 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  openSignUpModal,
-  openLoginModal,
-  changeDarkMode,
-  sideBarModal,
-} from "../redux/modalSlice";
-import { logOutUser } from "../redux/userSlice";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LoginIcon from "@mui/icons-material/Login";
-import SideBar from "./SideBar";
 export default function Navbar() {
   const dispatch = useDispatch();
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
   const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
-  const isSideBar = useSelector((state) => state.modal.isSideBar);
   const user = useSelector((state) => state.user);
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
   };
-  const handleSideBarClose = () => {
-    dispatch(sideBarModal(false));
-  };
+
   const handleSignUpClick = () => {
     if (!isLoginDialogOpen) {
-      dispatch(openSignUpModal());
     }
   };
   const handleLoginClick = () => {
     if (!isSignUpDialogOpen) {
-      dispatch(openLoginModal());
     }
   };
   const handleLogOutClick = () => {
@@ -110,26 +99,6 @@ export default function Navbar() {
           </Toolbar>
         </AppBar>
       </Box>
-      <Drawer
-        open={isSideBar}
-        onClose={handleSideBarClose}
-        PaperProps={{
-          sx: {
-            color: "text.primary",
-            borderRadius: 4, // Apply border radius to the drawer's inner paper
-            top: "0px", // You can set the top margin here as well if needed
-            bottom: "0px",
-            // mt:2,
-            // ml:2,
-            // height:"97vh",
-          // bgcolor: "#85e0f9",
-
-
-          },
-        }}
-      >
-        <SideBar />
-      </Drawer>
     </>
   );
 }

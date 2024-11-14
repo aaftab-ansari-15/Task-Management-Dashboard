@@ -1,15 +1,7 @@
 import React from "react";
-import { Box, Button, Divider, Typography } from "@mui/material";
-import AddTaskInUser from "./AddTaskInUser";
-import UpdateTaskInUser from "./UpdateTaskInUser";
-import ShowUserTasks from "./ShowUserTasks";
-import TaskNotification from "./TaskNotification";
-import Filter from "./Filter";
-import Sort from "./Sort";
-import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles"; // To access the theme inside components
+import { Box, Button, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addTaskFrom, changeComponent } from "../redux/modalSlice";
+import { addTaskFrom, changeComponent } from "../../redux/modalSlice";
 const NavigationPanel = () => {
   const dispatch = useDispatch();
   //Task Add
@@ -19,13 +11,19 @@ const NavigationPanel = () => {
   const handleNotificationClick = () => {
     dispatch(changeComponent("TaskNotification"));
   };
+  const handleDashboardClick = () => {
+    dispatch(changeComponent("Dashboard"));
+  };
+  const handleTaskListClick = () => {
+    dispatch(changeComponent("MyTasksListNewUi"));
+  };
   return (
-    <Box sx={{ width: "50vw" }}>
+    <Box flex={{ xs: "100%", sm: "40%" }}>
       <Box sx={{ display: "flex", my: 2 }}>
         <Box sx={{ width: "60%", mx: 2 }}>
           <Button
             fullWidth
-            onClick={handleAddTaskClick}
+            onClick={handleDashboardClick}
             sx={{
               backgroundColor: "#0f9ae9",
               color: "white",
@@ -51,7 +49,7 @@ const NavigationPanel = () => {
         <Box sx={{ width: "40%", mx: 2 }}>
           <Button
             fullWidth
-            onClick={handleAddTaskClick}
+            onClick={handleTaskListClick}
             sx={{
               backgroundColor: "#e90f99",
               color: "white",

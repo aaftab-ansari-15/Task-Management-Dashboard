@@ -1,20 +1,13 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import {
   addTaskFrom,
   changeComponent,
+  changeDarkMode,
   sideBarModal,
-} from "../redux/modalSlice";
-import { useDispatch } from "react-redux";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
-import LogoutIcon from "@mui/icons-material/Logout";
-import TocIcon from '@mui/icons-material/Toc';
+} from "../../redux/modalSlice";
+
+import { useSelector, useDispatch } from "react-redux";
+import { logOutUser } from "../../redux/userSlice";
 import {
   Button,
   List,
@@ -23,15 +16,19 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { useSelector } from "react-redux";
-import {
-  openSignUpModal,
-  openLoginModal,
-  changeDarkMode,
-} from "../redux/modalSlice";
-import { logOutUser } from "../redux/userSlice";
-import LoginIcon from '@mui/icons-material/Login';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import TocIcon from "@mui/icons-material/Toc";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+
 const SideBar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -48,12 +45,10 @@ const SideBar = () => {
   };
   const handleSignUpClick = () => {
     if (!isLoginDialogOpen) {
-      dispatch(openSignUpModal());
     }
   };
   const handleLoginClick = () => {
     if (!isSignUpDialogOpen) {
-      dispatch(openLoginModal());
     }
   };
   const handleLogOutClick = () => {
@@ -70,14 +65,14 @@ const SideBar = () => {
   };
   const handleDashboardClick = () => {
     dispatch(changeComponent("Dashboard"));
-  }
+  };
   const handleNotificationClick = () => {
     dispatch(changeComponent("TaskNotification"));
-  }
+  };
   const handleTaskListClick = () => {
     dispatch(changeComponent("MyTasksListNewUi"));
   };
-  
+
   return (
     <Box sx={{ width: 310, height: "100%" }} role="presentation">
       <Box
@@ -97,14 +92,16 @@ const SideBar = () => {
           </Button>
         </Box>
         <Box>
-          <Typography variant="h5" sx={{fontWeight:"bold"}}>T M D</Typography>
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            T M D
+          </Typography>
         </Box>
         <Box>
           <IconButton
             size="large"
             aria-label="menu"
             onClick={toggleDrawer}
-            sx={{color:"black"}}
+            sx={{ color: "black" }}
           >
             <CloseIcon />
           </IconButton>
@@ -135,7 +132,7 @@ const SideBar = () => {
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
               </ListItemButton>
-              
+
               <ListItemButton
                 selected={selectedIndex === 3}
                 onClick={(event) => {
@@ -174,7 +171,7 @@ const SideBar = () => {
                 <ListItemText primary="Notifications" />
               </ListItemButton>
             </List>
-            <Divider sx={{my:2}}/>
+            <Divider sx={{ my: 2 }} />
             <List component="nav" aria-label="" sx={{ mt: 2 }}>
               <ListItemButton
                 selected={selectedIndex === 6}

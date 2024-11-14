@@ -1,28 +1,31 @@
 import "./App.css";
-import Box from "@mui/material/Box";
-import Home from "./component/Home";
-import Navbar from "./component/Navbar";
-import SignUpDialog from "./component/SignUp";
-import LoginDialog from "./component/Login";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import Navbar from "./component/features/Navbar";
+import SignUpDialog from "./component/Authentication/SignUp";
+import LoginDialog from "./component/Authentication/Login";
 import { useSelector } from "react-redux";
+import ImageCarousel from "./component/features/ImageCarousel";
+import User from "./component/Authentication/User";
+import AuthModal from "./component/Authentication/AuthModal";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const App = () => {
   // Get the dark mode state from Redux
   const darkMode = useSelector((state) => state.modal.darkMode);
+  const user = useSelector((state) => state.user);
 
   // Create a theme with custom colors based on darkMode
   const darkTheme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light", 
+      mode: darkMode ? "dark" : "light",
       primary: {
         main: darkMode ? "#6200EE" : "#6200EE", // Indigo in both modes
       },
       secondary: {
         main: darkMode ? "#03DAC6" : "#03DAC6", // Teal in both modes
       },
-      backgroundOposite:{
+      backgroundOposite: {
         paper: darkMode ? "#f9f9f9" : "#090909",
       },
       background: {
@@ -39,14 +42,9 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <div className="App">
-        <Box sx={{}}>
-          <Navbar />
-          <Home/>
-        </Box>
-        <SignUpDialog />
-        <LoginDialog />
-      </div>
+      <Box sx={{ bgcolor: "background.paper", color: "text.primary" }}>
+        {user.user && user.user.isLogin ? <User /> : <AuthModal />}
+      </Box>
     </ThemeProvider>
   );
 };

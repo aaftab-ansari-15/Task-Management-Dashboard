@@ -1,0 +1,222 @@
+[
+  {
+    "taskId": "1a2b3c4d",
+    "userId": "",
+    "title": "Fix Bugs",
+    "description": "Fix critical bugs in the user dashboard",
+    "dueDate": "2024-11-15",
+    "priority": "High",
+    "category": "Work",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "5e6f7g8h",
+    "userId": "",
+    "title": "Prepare Presentation",
+    "description": "Create slides for the monthly team update",
+    "dueDate": "2024-11-20",
+    "priority": "Medium",
+    "category": "Work",
+    "status": "In-progress",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "9i1j2k3l",
+    "userId": "",
+    "title": "Grocery Shopping",
+    "description": "Buy groceries for the week",
+    "dueDate": "2024-11-16",
+    "priority": "Low",
+    "category": "Personal",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "4m5n6o7p",
+    "userId": "",
+    "title": "Complete Assignment",
+    "description": "Finish the math assignment",
+    "dueDate": "2024-11-18",
+    "priority": "High",
+    "category": "Study",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "8q9r1s2t",
+    "userId": "",
+    "title": "Team Meeting",
+    "description": "Discuss project status with the team",
+    "dueDate": "2024-11-19",
+    "priority": "Medium",
+    "category": "Work",
+    "status": "Completed",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "3u4v5w6x",
+    "userId": "",
+    "title": "Exercise",
+    "description": "30-minute morning workout",
+    "dueDate": "2024-11-16",
+    "priority": "Medium",
+    "category": "Personal",
+    "status": "In-progress",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "7y8z1a2b",
+    "userId": "",
+    "title": "Code Review",
+    "description": "Review pull requests for the API project",
+    "dueDate": "2024-11-17",
+    "priority": "High",
+    "category": "Work",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "3c4d5e6f",
+    "userId": "",
+    "title": "Read Book",
+    "description": "Read the next chapter of the book",
+    "dueDate": "2024-11-20",
+    "priority": "Low",
+    "category": "Personal",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "9g1h2i3j",
+    "userId": "",
+    "title": "Write Report",
+    "description": "Draft a report for the quarterly review",
+    "dueDate": "2024-11-21",
+    "priority": "High",
+    "category": "Work",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "5k6l7m8n",
+    "userId": "",
+    "title": "Clean Room",
+    "description": "Organize and clean the bedroom",
+    "dueDate": "2024-11-16",
+    "priority": "Low",
+    "category": "Personal",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "1o2p3q4r",
+    "userId": "",
+    "title": "Submit Project",
+    "description": "Finalize and submit the group project",
+    "dueDate": "2024-11-18",
+    "priority": "High",
+    "category": "Study",
+    "status": "In-progress",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "6s7t8u9v",
+    "userId": "",
+    "title": "Schedule Doctor Appointment",
+    "description": "Call to set up a check-up appointment",
+    "dueDate": "2024-11-17",
+    "priority": "Medium",
+    "category": "Personal",
+    "status": "Completed",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "2w3x4y5z",
+    "userId": "",
+    "title": "Update Resume",
+    "description": "Add recent project experience to resume",
+    "dueDate": "2024-11-22",
+    "priority": "Medium",
+    "category": "Work",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "7a8b9c1d",
+    "userId": "",
+    "title": "Study for Exam",
+    "description": "Review notes for the upcoming exam",
+    "dueDate": "2024-11-19",
+    "priority": "High",
+    "category": "Study",
+    "status": "In-progress",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "3e4f5g6h",
+    "userId": "",
+    "title": "Water Plants",
+    "description": "Water indoor and outdoor plants",
+    "dueDate": "2024-11-16",
+    "priority": "Low",
+    "category": "Personal",
+    "status": "Completed",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "1i2j3k4l",
+    "userId": "",
+    "title": "Design Mockups",
+    "description": "Create mockups for the new UI feature",
+    "dueDate": "2024-11-20",
+    "priority": "High",
+    "category": "Work",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "5m6n7o8p",
+    "userId": "",
+    "title": "Plan Weekend Trip",
+    "description": "Arrange accommodation and travel for weekend getaway",
+    "dueDate": "2024-11-18",
+    "priority": "Medium",
+    "category": "Personal",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "9q1r2s3t",
+    "userId": "",
+    "title": "Research Topic",
+    "description": "Research for the upcoming history project",
+    "dueDate": "2024-11-21",
+    "priority": "Medium",
+    "category": "Study",
+    "status": "Pending",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "4u5v6w7x",
+    "userId": "",
+    "title": "Create Budget Plan",
+    "description": "Plan monthly budget for November",
+    "dueDate": "2024-11-15",
+    "priority": "Medium",
+    "category": "Personal",
+    "status": "Completed",
+    "timeSpent": "0:0:0"
+  },
+  {
+    "taskId": "8y9z1a2b",
+    "userId": "",
+    "title": "Prepare for Presentation",
+    "description": "Practice slides for team presentation",
+    "dueDate": "2024-11-18",
+    "priority": "High",
+    "category": "Work",
+    "status": "In-progress",
+    "timeSpent": "0:0:0"
+  }
+]

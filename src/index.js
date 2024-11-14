@@ -6,17 +6,13 @@ import "./index.css";
 import App from "./App";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import TaskInfo from "./component/TaskInfo";
 
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
 //     element: <App />,
 //   },
-//   {
-//     path: "taskId/:taskId",
-//     element: <TaskInfo />,
-//   },
+//
 // ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

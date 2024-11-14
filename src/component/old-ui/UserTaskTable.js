@@ -1,28 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogActions, DialogContent, Input } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import AddIcon from "@mui/icons-material/Add";
-import { Link } from "react-router-dom";
-
+import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteTasks } from "../../redux/tasksSlice";
+import { taskInfoModal, updateTaskFrom } from "../../redux/modalSlice";
+import TaskInfo from "./TaskInfo";
 import {
   List,
   ListItem,
-  ListItemText,
-  Typography,
   Box,
   Divider,
   Button,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import { deleteTasks } from "../redux/tasksSlice";
-import {
-  addTaskFrom,
-  taskInfoModal,
-  updateTaskFrom,
-} from "../redux/modalSlice";
-import TaskInfo from "./TaskInfo";
+import MenuIcon from "@mui/icons-material/Menu";
+
 const UserTaskTable = ({ usersFilterTasks }) => {
   const dispatch = useDispatch();
 

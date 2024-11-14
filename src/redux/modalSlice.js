@@ -5,34 +5,24 @@ const modalSlice = createSlice({
   name: "modal",
   initialState: {
     isSideBar: false,
-    isSignUpOpen: false,
-    isLoginOpen: false,
+    authComponent: "SignUp",
     darkMode: false,
     isUpdateTaskForm: false,
     isAddTaskForm: false,
     isTaskInfoOpen: false,
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
-    componentName:"MyTasksListOldUi",
+    componentName: "MyTasksListOldUi",
   },
   reducers: {
-    sideBarModal: (state, action) => {
-      state.isSideBar = action.payload;
-    },
-    openSignUpModal: (state) => {
-      state.isSignUpOpen = true;
-    },
-    closeSignUpModal: (state) => {
-      state.isSignUpOpen = false;
-    },
-    openLoginModal: (state) => {
-      state.isLoginOpen = true;
-    },
-    closeLoginModal: (state) => {
-      state.isLoginOpen = false;
-    },
     changeDarkMode: (state) => {
       state.darkMode = !state.darkMode;
+    },
+    setAuthComponent: (state, action) => {
+      state.authComponent = action.payload;
+    },
+    sideBarModal: (state, action) => {
+      state.isSideBar = action.payload;
     },
     addTaskFrom: (state, action) => {
       console.log(action.payload);
@@ -49,18 +39,15 @@ const modalSlice = createSlice({
       state.updateTaskInUserData1 = arg2;
     },
     changeComponent: (state, action) => {
-      state.componentName = action.payload
-    }
+      state.componentName = action.payload;
+    },
   },
 });
 
 export const {
-  sideBarModal,
-  openSignUpModal,
-  closeSignUpModal,
-  openLoginModal,
-  closeLoginModal,
   changeDarkMode,
+  setAuthComponent,
+  sideBarModal,
   updateTaskFrom,
   addTaskFrom,
   taskInfoModal,

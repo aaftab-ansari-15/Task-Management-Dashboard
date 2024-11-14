@@ -1,18 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import UserTaskTable from "./UserTaskTable";
 import { Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Box,
-  Divider,
-} from "@mui/material";
-import UserTaskTable from "./UserTaskTable";
-import { useEffect } from "react";
+import { Box } from "@mui/material";
 const priorityOrder = { Low: 1, Medium: 2, High: 3 };
 const ShowUserTasks = () => {
   const user = useSelector((state) => state.user.user);

@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTasks } from "../../redux/tasksSlice";
+import { taskInfoModal } from "../../redux/modalSlice";
+import { styled } from "@mui/system";
 import {
   Box,
   Typography,
@@ -10,14 +13,7 @@ import {
   Button,
   Dialog,
 } from "@mui/material";
-import { styled } from "@mui/system";
-import { useSelector } from "react-redux";
-import { deleteTasks, updateTasks } from "../redux/tasksSlice";
-import { useDispatch } from "react-redux";
-import { taskInfoModal, updateTaskFrom } from "../redux/modalSlice";
-import UpdateTaskInUser from "./UpdateTaskInUser";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
+
 const TaskCard = styled(Paper)(({ theme }) => ({
   borderRadius: "15px",
   border: "2px solid #f7246e",
@@ -34,8 +30,6 @@ const TaskInfo = () => {
   const dispatch = useDispatch();
   const isTaskInfoOpen = useSelector((state) => state.modal.isTaskInfoOpen);
 
-  // const location = useLocation();
-  // const { task } = location.state || {};
   const task = useSelector((state) => state.modal.updateTaskInUserData1);
   const user = useSelector((state) => state.user.user);
   const allTasks = useSelector((state) => state.tasks.tasks);
@@ -47,7 +41,7 @@ const TaskInfo = () => {
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });
-  const [error, setError] = useState(""); // Track any errors
+  const [error, setError] = useState("");
 
   const handleTaskButtonClick = () => {
     if (!task1) return;
@@ -93,7 +87,7 @@ const TaskInfo = () => {
             borderRadius: "20px",
             width: "40vw",
             overflow: "hidden",
-            backgroundColor: "inherit", // Use 'inherit' to match parent background or set a specific color
+            backgroundColor: "inherit",
           },
         }}
       >
@@ -105,7 +99,7 @@ const TaskInfo = () => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between", // space between for alignment
+                    justifyContent: "space-between",
                     padding: 2,
                   }}
                 >

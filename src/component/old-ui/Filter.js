@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { clearFilters, setFilters } from "../redux/filterSlice";
+import { setFilters } from "../../redux/filterSlice";
 
 const FilterBox = () => {
   const dispatch = useDispatch();
@@ -44,14 +44,6 @@ const FilterBox = () => {
       setFilters({ priority: priority, category: category, status: status })
     );
   }, [priority, category, status]);
-
-  const handleClearFilters = () => {};
-
-  const handleApplyFilters = () => {
-    // Apply filter logic or dispatch filters to state/store
-
-    console.log("Filters applied:", { priority, category, status });
-  };
 
   return (
     <>

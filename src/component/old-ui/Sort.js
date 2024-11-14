@@ -5,11 +5,10 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Button,
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setSorting } from "../redux/sortSlice";
+import { setSorting } from "../../redux/sortSlice";
 
 const Sort = () => {
   const dispatch = useDispatch();
