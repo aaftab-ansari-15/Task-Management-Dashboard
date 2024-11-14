@@ -42,7 +42,7 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box sx={{ bgcolor: "background.paper", color: "text.primary" }}>
+      <Box sx={{maxHeight:"100vh", maxWidth:"100vw", height:"100vh", bgcolor: "background.paper", color: "text.primary" }}>
         {user.user && user.user.isLogin ? <User /> : <AuthModal />}
       </Box>
     </ThemeProvider>

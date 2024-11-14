@@ -9,9 +9,9 @@ const AuthModal = () => {
   const authState = useSelector((state) => state.modal.authComponent);
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <Box sx={{ width: "50vw", height: "100vh" }}>
-        <Box sx={{ mt: 4, ml: "60px", display: "flex", alignItems: "center" }}>
+    <Box sx={{ display: "flex", flexWrap:"initial", height:"85vh"}}>
+      <Box  sx={{flex:1 }}>
+        <Box sx={{ pt: 4, ml: "60px", display: "flex", alignItems: "center" }}>
           <SvgIcon sx={{ fontSize: "50px", color: "#9f5aaf", mr: "15px" }}>
             <DashboardIcon />
           </SvgIcon>
@@ -19,16 +19,14 @@ const AuthModal = () => {
             Task<span style={{ fontWeight: "bold" }}>Management</span>Dashboard
           </Typography>
         </Box>
-        <Box sx={{ m: "100px" }}>
-          <center>
-            <Box sx={{ width: "50%", textAlign: "left" }}>
+        <Box sx={{ height:"100%", margin: "auto",width: "50%", pt:"5vh"}}>
+            <Box sx={{ width: "100%", textAlign: "left" }}>
               {authState === "SignUp" && <SignUpDialog />}
               {authState === "Login" && <LoginDialog />}
             </Box>
-          </center>
         </Box>
       </Box>
-      <Box sx={{ width: "50vw", height: "100vh" }}>
+      <Box sx={{ flex:1}}>
         <ImageCarousel />
       </Box>
     </Box>

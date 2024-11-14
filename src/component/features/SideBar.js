@@ -59,18 +59,28 @@ const SideBar = () => {
   };
   const handleAddTaskClick = () => {
     dispatch(addTaskFrom(true));
+    dispatch(sideBarModal(false));
+
   };
   const handleMyTaskClick = () => {
     dispatch(changeComponent("MyTasksListOldUi"));
+    dispatch(sideBarModal(false));
+
   };
   const handleDashboardClick = () => {
     dispatch(changeComponent("Dashboard"));
+    dispatch(sideBarModal(false));
+
   };
   const handleNotificationClick = () => {
     dispatch(changeComponent("TaskNotification"));
+    dispatch(sideBarModal(false));
+
   };
   const handleTaskListClick = () => {
     dispatch(changeComponent("MyTasksListNewUi"));
+    dispatch(sideBarModal(false));
+
   };
 
   return (
