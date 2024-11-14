@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import NavigationPanel from "./NavigationPanel";
 import defaultTaskData from "../../Data/defaultTasks.json";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -32,7 +31,14 @@ const MyTasksListOldUI = () => {
     dispatch(addTaskFrom(true));
   };
   return (
-    <Box>
+   
+    <Box sx={{
+      border: `solid 2px ${theme.palette.primary.main}`,
+      borderRadius:2, // Use primary color from theme
+      m: 2,
+      padding: 2,
+      color: "text.primary",
+    }}>
       <Box sx={{ height: "150px", display: "flex", overflow: "hidden" }}>
         <Box sx={{ flex: 1 }}>
           <Button

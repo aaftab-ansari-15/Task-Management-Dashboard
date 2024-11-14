@@ -13,7 +13,6 @@ import SideBar from "../features/SideBar";
 import { useDispatch } from "react-redux";
 import { sideBarModal } from "../../redux/modalSlice";
 const User = () => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const componentName = useSelector((state) => state.modal.componentName);
   const isSideBar = useSelector((state) => state.modal.isSideBar);
@@ -43,31 +42,15 @@ const User = () => {
         onClose={handleSideBarClose}
         PaperProps={{
           sx: {
-            color: "text.primary",
             borderRadius: 4, // Apply border radius to the drawer's inner paper
-            top: "0px", // You can set the top margin here as well if needed
-            bottom: "0px",
-            // mt:2,
-            // ml:2,
-            // height:"97vh",
-            // bgcolor: "#85e0f9",
+            top: 0, // You can set the top margin here as well if needed
+            bottom: 0,
           },
         }}
       >
         <SideBar />
       </Drawer>
-      <Box
-        sx={{
-          border: `solid 2px ${theme.palette.primary.main}`, // Use primary color from theme
-          m: 2,
-          padding: 2,
-          bgcolor: "background.paper",
-          color: "text.primary",
-        }}
-      >
-        {renderComponent()}
-      </Box>
-
+      {renderComponent()}
       <UpdateTaskInUser />
       <AddTaskInUser />
     </>
