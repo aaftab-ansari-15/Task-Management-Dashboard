@@ -120,7 +120,6 @@ const SideBar = () => {
           overflow: "hidden",
           p: 4,
           color: "text.primary",
-          backgroundColor: "#C9E6F0",
         }}
       >
         {user.user && user.user.isLogin ? (

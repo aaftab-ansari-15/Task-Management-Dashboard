@@ -45,6 +45,7 @@ const User = () => {
             borderRadius: 4, // Apply border radius to the drawer's inner paper
             top: 0, // You can set the top margin here as well if needed
             bottom: 0,
+            backgroundColor: "#C9E6F0",
           },
         }}
       >
