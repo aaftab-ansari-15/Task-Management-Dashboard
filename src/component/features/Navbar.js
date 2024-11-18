@@ -42,7 +42,7 @@ export default function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
-          sx={{ bgcolor: "background.paper", color: "text.primary" }}
+          sx={{ bgcolor: "#78B3CE", color: "text.primary" }}
         >
           <Toolbar>
             <IconButton
@@ -55,7 +55,7 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography textAlign="center" variant="h5" sx={{ flexGrow: 1 }}>
               Task Management Dashboard
               {/* {user.user ? " - " + user.user.name : ""} */}
             </Typography>

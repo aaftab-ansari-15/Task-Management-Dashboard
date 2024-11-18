@@ -1,5 +1,6 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+
 .App {
   text-align: center;
 }
@@ -34,7 +35,12 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.MuiBox-root .css-19enzn8 {
+  background-color: #d6d030;
 }

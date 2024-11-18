@@ -50,6 +50,7 @@ const UserTaskTable = ({ usersFilterTasks }) => {
         <Typography sx={{ flex: 1, textAlign: "center" }}>Category</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Due Date</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Priority</Typography>
+        <Typography sx={{ flex: 1, textAlign: "center" }}>Pinned</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Status</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Update</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Delete</Typography>
@@ -86,6 +87,9 @@ const UserTaskTable = ({ usersFilterTasks }) => {
               </Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.priority}
+              </Typography>
+              <Typography sx={{ flex: 1, textAlign: "center" }}>
+                {`${task.pinned}`}
               </Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.status}

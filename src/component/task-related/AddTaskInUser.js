@@ -25,6 +25,7 @@ const defaultTask = {
   category: "",
   status: "Pending",
   timeSpent: "0:0:0",
+  pined: false,
 };
 
 const AddTaskInUser = () => {
