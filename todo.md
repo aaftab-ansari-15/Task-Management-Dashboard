@@ -54,3 +54,6 @@ task{
     "timeSpent": "0:0:0",
     "pinned": true
   },
+  addOnAnother{
+    gitGraph, md, muiDatePicker, dayjs
+  }
