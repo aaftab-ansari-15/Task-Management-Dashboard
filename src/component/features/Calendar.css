@@ -1,3 +1,71 @@
+/* mui react calendar */
+.MuiDateCalendar-root {
+  padding-top: 5%;
+}
+/* .MuiDayCalendar-weekDayLabel {
+  color: #b49edb !important;
+  font-weight: 900 !important; 
+  font-size: xx-large !important;
+} */
+.MuiDayCalendar-weekDayLabel {
+  color: #d2c5e9 !important;  /* Text color */
+  font-weight: 900 !important; /* Bold font */
+  font-size: xx-large !important; /* Large font size */
+  
+  /* Text shadow for a glowing effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 25px rgba(60, 0, 134, 0.7), 0 0 5px rgba(110, 0, 244, 0.7);
+  
+  /* Box shadow for a more prominent edge */
+  box-shadow: 0 4px 6px #d2c5e9, 0 1px 3px #d2c5e9;
+  
+  /* Edge cut effect (using border radius and background gradient) */
+  padding: 10px 20px;  /* Add some padding around the text */
+  border-radius: 15px;  /* Rounded corners */
+  /* background: linear-gradient(135deg, #056b36, #b49edb);  */
+  -webkit-background-clip: text; /* Clip background to text */
+  color: transparent;  /* Make the text transparent to show the background */
+}
+
+.css-1chuxo2-MuiPickersCalendarHeader-label {
+  font-weight: 900;
+  color: #472aa0;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiPickersCalendarHeader-switchViewIcon{
+  color: #472aa0;
+  font-size: larger !important;
+}
+.MuiPickersDay-root{
+  font-size: large !important;
+  color: #472aa0 !important;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.MuiPickersArrowSwitcher-leftArrowIcon{
+  color: #472aa0 !important;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.MuiPickersArrowSwitcher-rightArrowIcon{
+  color: #472aa0 !important;
+}
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected{
+  box-shadow: 0 4px 6px #d2c5e9, 0 1px 3px #d2c5e9;
+
+  color: whitesmoke !important;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium{
+  font-size: xx-large !important;
+}
+.bottomGridHeading{
+  font-weight: bolder !important;
+  text-align:start !important;
+  margin-left: 10% !important;
+  margin-top: 4% !important;
+  margin-bottom: 4% !important;
+}
+.shadowDivider{
+  
+  /* Box shadow for a more prominent edge */
+  box-shadow: 0 3px 5px #693db7;
+  
+}
+/* npm react calender */
 .react-calendar__month-view__weekdays {
   color: rgb(65, 66, 66);
   font-weight: bold;

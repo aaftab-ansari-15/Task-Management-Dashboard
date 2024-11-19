@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 import { addGeneratedTasks } from "../../redux/tasksSlice";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { addTaskFrom } from "../../redux/modalSlice";
+import { addTaskForm } from "../../redux/modalSlice";
+import NavigationPanel from "./NavigationPanel";
 const MyTasksListOldUI = () => {
   // Get the current theme using useTheme hook
   const theme = useTheme();
@@ -28,7 +29,7 @@ const MyTasksListOldUI = () => {
   };
   //Task Add
   const handleAddTaskClick = () => {
-    dispatch(addTaskFrom(true));
+    dispatch(addTaskForm(true));
   };
   return (
    
@@ -40,6 +41,7 @@ const MyTasksListOldUI = () => {
       color: "text.primary",
     }}>
       <Box sx={{ height: "150px", display: "flex", overflow: "hidden" }}>
+      {/* <Box sx={{ flex: 1 }}><NavigationPanel /></Box> */}
         <Box sx={{ flex: 1 }}>
           <Button
             onClick={handleAddTaskClick}
@@ -57,6 +59,7 @@ const MyTasksListOldUI = () => {
           </Button>
         </Box>
         <Divider
+        className="shadowDivider"
           sx={{
             mx: 2,
             border: `1px solid ${theme.palette.secondary.main}`, // Use secondary color for divider

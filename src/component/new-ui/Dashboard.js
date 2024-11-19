@@ -5,12 +5,10 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
 import CalendarComp from "../features/CalendarComp";
 import "../features/Calendar.css";
-import { useSelector } from "react-redux";
 import TaskList from "../task-related/TaskList";
 import { Divider, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setTaskForTaskList } from "../../redux/useFullSlice";
+import BasicDateCalendar from "../features/MuiCalendar";
+import "../features/Calendar.css";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
   ...theme.typography.body2,
@@ -18,30 +16,12 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
   ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
+    backgroundColor: "#1A2027 !important" ,
+    color: "#eef5ff !important"
+
   }),
 }));
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
-  const user = useSelector((state) => state.user.user);
-  const allTasks = useSelector((state) => state.tasks.tasks);
-  const userAllTasks = allTasks.filter((task) => {
-    return task.userId === user.email;
-  });
-  useEffect(() => {
-    const getFormateOfDate = () => {
-      const date = new Date(getPickUpDate);
-      const formattedDate = date.toLocaleDateString("en-CA");
-      return formattedDate;
-    };
-    const enteredDate = getFormateOfDate();
-    const getTasks = userAllTasks.filter((task) => {
-      return task.dueDate === enteredDate;
-    });
-    dispatch(setTaskForTaskList(getTasks));
-  }, [getPickUpDate]);
-
   return (
     <Box
       sx={{
@@ -51,39 +31,53 @@ const Dashboard = () => {
         backgroundColor: "#C9E6F0",
       }}
     >
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}></Grid>
-        <Grid
-          container
-          sx={{
-            alignItems: "stretch",
-            mb: 2,
-          }}
-          spacing={3}
-        >
-          <Grid size={5} sx={{}}>
-            <Item className="calendar-item">
-              <CalendarComp />
-            </Item>
-          </Grid>
-          <Grid size={7} sx={{}}>
-            <Item className="calendar-item">
-              <CalendarComp />
-            </Item>
-          </Grid>
+      <Grid container sx={{ mb: 2}} spacing={3}>
+        <Grid size={4} sx={{}}>
+          <Item className="calendar-item" sx={{height:"350px", borderRadius:4, backgroundColor:"#9d9bff"}}>
+            <BasicDateCalendar />
+            {/* <CalendarComp /> */}
+          </Item>
         </Grid>
-        <Grid size={12} sx={{ mt: 2 }}>
-          <Item>
-            <Box>
-              <Typography textAlign={"start"} ml={4} my={2} variant="h5">
-                My Tasks
-              </Typography>
-              <Divider sx={{ my: 2 }} />
-              <TaskList />
+        <Grid size={8} sx={{}}>
+          <Item sx={{color:"#3d3d41", height:"350px", borderRadius:4, backgroundColor:"#5cd669"}}>
+            <TaskList />
+          </Item>
+        </Grid>
+      </Grid>
+      <Grid container sx={{mb: 2}} spacing={3}>
+        <Grid size={4} sx={{}}>
+          <Item sx={{ color:"#3d3d41", borderRadius:4,color:"", backgroundColor:"#3cd9b1"}}>
+          <Typography className="bottomGridHeading" variant="h5">
+              Category
+            </Typography>
+            <Divider className="shadowDivider" sx={{ my: 2 }} />
+            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
             </Box>
           </Item>
         </Grid>
-      </Box>
+        <Grid size={4} sx={{}}>
+          <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#eda7ff"}}>
+          <Typography color="#3d3d41" className="bottomGridHeading" variant="h5">
+              Priority
+            </Typography>
+            <Divider className="shadowDivider" sx={{ my: 2 }} />
+            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
+            </Box>
+          </Item>
+        </Grid>
+        <Grid size={4} sx={{}}>
+          <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#f6bb54"}}>
+          <Typography className="bottomGridHeading" variant="h5">
+              Notification
+            </Typography>
+            <Divider className="shadowDivider" sx={{ my: 2 }} />
+            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
+            </Box>
+          </Item>
+        </Grid>
+      </Grid>
+      
+     
     </Box>
   );
 };

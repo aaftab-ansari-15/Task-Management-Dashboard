@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { addTasks } from "../../redux/tasksSlice";
-import { addTaskFrom } from "../../redux/modalSlice";
+import { addTaskForm } from "../../redux/modalSlice";
 import {
   TextField,
   Button,
@@ -93,10 +93,10 @@ const AddTaskInUser = () => {
       console.log("Task added:", updatedTask);
     }
     setNewTask(defaultTask);
-    dispatch(addTaskFrom(false));
+    dispatch(addTaskForm(false));
   };
   const handleClose = () => {
-    dispatch(addTaskFrom(false));
+    dispatch(addTaskForm(false));
   };
 
   return (

@@ -8,7 +8,7 @@ const useFull = createSlice({
   },
   reducers: {
     changePickUpDate: (state, action) => {
-      state.pickUpDate = action.payload;
+      state.pickUpDate = action.payload.payload;
     },
     setTaskForTaskList: (state, action) => {
       state.taskListData = action.payload;

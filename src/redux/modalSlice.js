@@ -12,6 +12,7 @@ const modalSlice = createSlice({
     isTaskInfoOpen: false,
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
+    addTaskInUserData:{},
     componentName: "Dashboard",
   },
   reducers: {
@@ -24,7 +25,7 @@ const modalSlice = createSlice({
     sideBarModal: (state, action) => {
       state.isSideBar = action.payload;
     },
-    addTaskFrom: (state, action) => {
+    addTaskForm: (state, action) => {
       console.log(action.payload);
       state.isAddTaskForm = action.payload;
     },
@@ -49,7 +50,7 @@ export const {
   setAuthComponent,
   sideBarModal,
   updateTaskFrom,
-  addTaskFrom,
+  addTaskForm,
   taskInfoModal,
   changeComponent,
 } = modalSlice.actions;

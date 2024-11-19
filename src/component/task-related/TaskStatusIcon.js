@@ -6,23 +6,12 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 const TaskStatusIcon = ({ status }) => {
   switch (status) {
     case "Completed":
-      return (
-        <>
-          <AssignmentTurnedInIcon color="success" /> Completed
-        </>
-      );
+      return <AssignmentTurnedInIcon color="success" />;
+
     case "In-progress":
-      return (
-        <>
-          <EventRepeatIcon color="warning" /> In-progress
-        </>
-      );
+      return <EventRepeatIcon color="warning" />;
     case "Pending":
-      return (
-        <>
-          <PendingIcon color="error" /> Pending
-        </>
-      );
+      return <PendingIcon color="error" />;
     default:
       return null; // Return null or a default icon if status is unknown
   }

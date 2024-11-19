@@ -4,7 +4,7 @@ import SignUpDialog from "./component/Authentication/SignUp";
 import LoginDialog from "./component/Authentication/Login";
 import { useSelector } from "react-redux";
 import ImageCarousel from "./component/features/ImageCarousel";
-import User from "./component/Authentication/User";
+import MainLayout from "./component/new-ui/MainLayout";
 import AuthModal from "./component/Authentication/AuthModal";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -43,7 +43,7 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Box sx={{maxHeight:"100vh", maxWidth:"100vw", height:"100vh", bgcolor: "background.paper", color: "text.primary" }}>
-        {user.user && user.user.isLogin ? <User /> : <AuthModal />}
+        {user.user && user.user.isLogin ? <MainLayout /> : <AuthModal />}
       </Box>
     </ThemeProvider>
   );

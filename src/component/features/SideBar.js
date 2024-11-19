@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  addTaskFrom,
+  addTaskForm,
   changeComponent,
   changeDarkMode,
   sideBarModal,
@@ -56,10 +56,6 @@ const SideBar = () => {
   };
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
-  };
-  const handleAddTaskClick = () => {
-    dispatch(addTaskFrom(true));
-    dispatch(sideBarModal(false));
   };
   const handleMyTaskClick = () => {
     dispatch(changeComponent("MyTasksListOldUi"));
