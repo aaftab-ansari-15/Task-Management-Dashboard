@@ -12,7 +12,7 @@ const modalSlice = createSlice({
     isTaskInfoOpen: false,
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
-    addTaskInUserData:{},
+    addTaskInUserData: {},
     componentName: "Dashboard",
   },
   reducers: {
@@ -26,8 +26,9 @@ const modalSlice = createSlice({
       state.isSideBar = action.payload;
     },
     addTaskForm: (state, action) => {
-      console.log(action.payload);
-      state.isAddTaskForm = action.payload;
+      const { formState, data } = action.payload;
+      state.isAddTaskForm = formState;
+      state.addTaskInUserData = data;
     },
     updateTaskFrom: (state, action) => {
       const { arg1, arg2 } = action.payload;

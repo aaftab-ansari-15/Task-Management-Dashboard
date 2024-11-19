@@ -9,6 +9,7 @@ import { setTaskForTaskList } from "../../redux/useFullSlice";
 import TaskStatusIcon from "./TaskStatusIcon";
 import { addTaskForm } from "../../redux/modalSlice";
 import AddIcon from '@mui/icons-material/Add';
+import { DashboardsHeading } from "../features/DashboardsHeading";
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -27,20 +28,15 @@ const TaskList = () => {
   }, [getPickUpDate]);
   const handleChange = (e) => {
     // const { name, checked } = e.target;
-    console.log(getTasksListData);
   };
   const handleAddClick = () => {
-    dispatch(addTaskForm({ state: true, data: getPickUpDate }));
+    dispatch(addTaskForm({ formState: true, data: {dueDate:getPickUpDate} }));
   };
-  console.log(getTasksListData)
   return (
     <>
       <Box mx={4} my={2} display={"flex"} justifyContent={"space-between"}>
-        <Box>
-          <Typography fontWeight={"bolder"} textAlign={"start"} variant="h5">
-            My Tasks
-          </Typography>
-        </Box>
+        
+        <DashboardsHeading headingName={"My Task"} className={"bottomGridHeading1"} width1={"70%"} width2={"30%"}/>
         <Box sx={{ alignItems: "center" }}>
           <Tooltip title="Add Task on this date">
             <Button onClick={handleAddClick}>
@@ -74,12 +70,22 @@ const TaskList = () => {
                       }}
                     />
                   </Grid>
-                  <Grid size={5}>
+                  <Grid size={4}>
                     <Typography ml={2} textAlign={"start"} variant="h6">
                       {task.title}
                     </Typography>
                   </Grid>
-                  <Grid size={3}>
+                  <Grid size={2}>
+                    <Typography ml={2} textAlign={"start"} variant="h6">
+                      {task.category}
+                    </Typography>
+                  </Grid>
+                  <Grid size={1}>
+                    <Typography ml={2} textAlign={"start"} variant="h6">
+                      {task.priority}
+                    </Typography>
+                  </Grid>
+                  <Grid size={4} paddingLeft={"7%"}>
                     <Typography
                       component="div"
                       ml={2}
@@ -96,11 +102,7 @@ const TaskList = () => {
                       <span>{task.status}</span>
                     </Typography>
                   </Grid>
-                  <Grid size={3}>
-                    <Typography ml={2} textAlign={"start"} variant="h6">
-                      {task.priority}
-                    </Typography>
-                  </Grid>
+                  
                 </Grid>
               );
             })

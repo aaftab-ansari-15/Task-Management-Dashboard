@@ -9,6 +9,9 @@ import TaskList from "../task-related/TaskList";
 import { Divider, Typography } from "@mui/material";
 import BasicDateCalendar from "../features/MuiCalendar";
 import "../features/Calendar.css";
+import Category from "./Dashboards/Category";
+import Notifications from "./Dashboards/Notifications";
+import TaskTrackTime from "./Dashboards/TaskTrackTime";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
   ...theme.typography.body2,
@@ -47,32 +50,19 @@ const Dashboard = () => {
       <Grid container sx={{mb: 2}} spacing={3}>
         <Grid size={4} sx={{}}>
           <Item sx={{ color:"#3d3d41", borderRadius:4,color:"", backgroundColor:"#3cd9b1"}}>
-          <Typography className="bottomGridHeading" variant="h5">
-              Category
-            </Typography>
-            <Divider className="shadowDivider" sx={{ my: 2 }} />
-            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
-            </Box>
+            <Category />
+            
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
           <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#eda7ff"}}>
-          <Typography color="#3d3d41" className="bottomGridHeading" variant="h5">
-              Priority
-            </Typography>
-            <Divider className="shadowDivider" sx={{ my: 2 }} />
-            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
-            </Box>
+            <TaskTrackTime />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
           <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#f6bb54"}}>
-          <Typography className="bottomGridHeading" variant="h5">
-              Notification
-            </Typography>
-            <Divider className="shadowDivider" sx={{ my: 2 }} />
-            <Box sx={{overflowY: "auto",maxHeight:"240px"}}>
-            </Box>
+            <Notifications />
+          
           </Item>
         </Grid>
       </Grid>

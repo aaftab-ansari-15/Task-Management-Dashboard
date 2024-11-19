@@ -58,6 +58,15 @@
   margin-left: 10% !important;
   margin-top: 4% !important;
   margin-bottom: 4% !important;
+  transition:  0.3s ease-in-out;
+}
+
+.DashboardBox2Heading:hover{
+  width: 100%;
+}
+.bottomGridHeading1{
+  font-weight:bolder !important; 
+  text-align:start;
 }
 .shadowDivider{
   

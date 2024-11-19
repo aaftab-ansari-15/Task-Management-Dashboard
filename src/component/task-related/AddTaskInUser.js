@@ -15,6 +15,7 @@ import {
   Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useLayoutEffect } from "react";
 const defaultTask = {
   taskId: 0,
   userId: "",
@@ -30,9 +31,14 @@ const defaultTask = {
 
 const AddTaskInUser = () => {
   const isAddTaskForm = useSelector((state) => state.modal.isAddTaskForm);
-  const [newTask, setNewTask] = useState(defaultTask);
-  const [errors, setErrors] = useState(defaultTask);
-
+  const data = useSelector((state) => state.modal.addTaskInUserData)
+  const newTask1 = {
+    ...defaultTask,
+    ...data
+  };
+  console.log(newTask1)
+  const [newTask, setNewTask] = useState(newTask1);
+  const [errors, setErrors] = useState(newTask1);
   const user = useSelector((state) => state.user);
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
@@ -98,7 +104,10 @@ const AddTaskInUser = () => {
   const handleClose = () => {
     dispatch(addTaskForm(false));
   };
-
+  useLayoutEffect(() => {
+    setNewTask(newTask1)
+  
+  }, [data])
   return (
     <>
       <Dialog

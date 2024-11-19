@@ -1,5 +1,9 @@
+workon{
+    tasklist/checkbox
+}
 watch{
     itemstyle/dashboard
+    checkbox/tasklist
 }
 idea{
     no task on this date,///
