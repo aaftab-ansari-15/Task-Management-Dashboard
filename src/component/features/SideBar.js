@@ -60,27 +60,22 @@ const SideBar = () => {
   const handleAddTaskClick = () => {
     dispatch(addTaskFrom(true));
     dispatch(sideBarModal(false));
-
   };
   const handleMyTaskClick = () => {
     dispatch(changeComponent("MyTasksListOldUi"));
     dispatch(sideBarModal(false));
-
   };
   const handleDashboardClick = () => {
     dispatch(changeComponent("Dashboard"));
     dispatch(sideBarModal(false));
-
   };
   const handleNotificationClick = () => {
     dispatch(changeComponent("TaskNotification"));
     dispatch(sideBarModal(false));
-
   };
   const handleTaskListClick = () => {
-    dispatch(changeComponent("MyTasksListNewUi"));
+    dispatch(changeComponent("MyTasksList"));
     dispatch(sideBarModal(false));
-
   };
 
   return (
@@ -94,6 +89,7 @@ const SideBar = () => {
           // bgcolor: "#139bba",
           // color: "text.primary",
           height: "10vh",
+          backgroundColor: "#78B3CE",
         }}
       >
         <Box>
@@ -121,7 +117,6 @@ const SideBar = () => {
 
       <Box
         sx={{
-          height: "85vh",
           overflow: "hidden",
           p: 4,
           color: "text.primary",
@@ -153,7 +148,7 @@ const SideBar = () => {
                 <ListItemIcon>
                   <TocIcon />
                 </ListItemIcon>
-                <ListItemText primary="Task List (New UI)" />
+                <ListItemText primary="Task List" />
               </ListItemButton>
               <ListItemButton
                 selected={selectedIndex === 4}

@@ -15,7 +15,7 @@ const NavigationPanel = () => {
     dispatch(changeComponent("Dashboard"));
   };
   const handleTaskListClick = () => {
-    dispatch(changeComponent("MyTasksListNewUi"));
+    dispatch(changeComponent("MyTasksList"));
   };
   return (
     <Box flex={{ xs: "100%", sm: "40%" }}>

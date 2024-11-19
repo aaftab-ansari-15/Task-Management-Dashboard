@@ -13,6 +13,8 @@ import {
   Divider,
   Box,
   Dialog,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -26,6 +28,7 @@ const defaultTask = {
   category: "",
   status: "",
   timeSpent: 0,
+  pined: false,
 };
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
@@ -48,8 +51,16 @@ const UpdateTaskInUser = () => {
     updatedTask.priority;
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedTask({ ...updatedTask, [name]: value });
+    const { name, value, checked } = e.target;
+    console.log(name, value, checked);
+    if (name === "pinned") {
+      setUpdatedTask((prevState) => ({
+        ...prevState,
+        [name]: checked, // Update the state dynamically
+      }));
+    } else {
+      setUpdatedTask({ ...updatedTask, [name]: value });
+    }
     switch (name) {
       case "description":
         setErrors({
@@ -102,20 +113,39 @@ const UpdateTaskInUser = () => {
             </Box>
             <Divider />
             <Box sx={{ mx: "15%", my: 4 }}>
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">Task Name</Typography>
+              <Box sx={{ mb: 3, display: "flex" }}>
+                <Box sx={{ flexGrow: 2 }}>
+                  <Typography variant="inherit">Task Name</Typography>
 
-                <TextField
-                  margin="dense"
-                  id="title"
-                  name="title"
-                  label="Title"
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  disabled
-                  value={updatedTask.title || ""}
-                />
+                  <TextField
+                    margin="dense"
+                    id="title"
+                    name="title"
+                    label="Title"
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                    disabled
+                    value={updatedTask.title || ""}
+                  />
+                </Box>
+                <Box sx={{ ml: 2, pl: 2 }}>
+                  <Typography variant="inherit">Pin Task</Typography>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        id="pinned"
+                        name="pinned"
+                        color="secondary"
+                        checked={updatedTask.pinned || false}
+                        onChange={handleChange}
+                        sx={{
+                          "& .MuiSvgIcon-root": { fontSize: 50 },
+                        }}
+                      />
+                    }
+                  />
+                </Box>
               </Box>
 
               <Box sx={{ mb: 3 }}>

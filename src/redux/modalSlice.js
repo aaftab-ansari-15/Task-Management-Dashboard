@@ -12,7 +12,7 @@ const modalSlice = createSlice({
     isTaskInfoOpen: false,
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
-    componentName: "MyTasksListOldUi",
+    componentName: "Dashboard",
   },
   reducers: {
     changeDarkMode: (state) => {
