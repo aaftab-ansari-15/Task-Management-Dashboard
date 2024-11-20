@@ -6,10 +6,10 @@ const TaskTrackTime = () => {
   return (
     <>
       <DashboardsHeading
-        headingName={"Track Time"}
+        headingName={"TrackTime"}
         className={"bottomGridHeading"}
-        width1={"100%"}
-        width2={"50%"}
+        width1={"70%"}
+        width2={"40%"}
       />
       <Divider className="shadowDivider" sx={{ my: 2 }} />
       <Box sx={{ overflowY: "auto", maxHeight: "240px" }}></Box>

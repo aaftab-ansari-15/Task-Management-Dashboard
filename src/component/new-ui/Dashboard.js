@@ -5,22 +5,23 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
 import CalendarComp from "../features/CalendarComp";
 import "../features/Calendar.css";
-import TaskList from "../task-related/TaskList";
 import { Divider, Typography } from "@mui/material";
 import BasicDateCalendar from "../features/MuiCalendar";
 import "../features/Calendar.css";
 import Category from "./Dashboards/Category";
 import Notifications from "./Dashboards/Notifications";
 import TaskTrackTime from "./Dashboards/TaskTrackTime";
+import TaskList from "./Dashboards/TaskList";
+
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
+  backgroundColor: "",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
   ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027 !important" ,
-    color: "#eef5ff !important"
+    backgroundColor: "" ,
+    color: ""
 
   }),
 }));
@@ -28,39 +29,40 @@ const Dashboard = () => {
   return (
     <Box
       sx={{
-        p: 4,
+        px: 4,
+        pb:1,
         pt: "5vh",
         borderRadius: 2,
-        backgroundColor: "#C9E6F0",
+        backgroundColor: "",
       }}
     >
       <Grid container sx={{ mb: 2}} spacing={3}>
         <Grid size={4} sx={{}}>
-          <Item className="calendar-item" sx={{height:"350px", borderRadius:4, backgroundColor:"#9d9bff"}}>
+          <Item className="calendar-item" sx={{height:"350px", borderRadius:4, backgroundColor:""}}>
             <BasicDateCalendar />
             {/* <CalendarComp /> */}
           </Item>
         </Grid>
         <Grid size={8} sx={{}}>
-          <Item sx={{color:"#3d3d41", height:"350px", borderRadius:4, backgroundColor:"#5cd669"}}>
+          <Item className="DashboardMainComponentsItem" sx={{ height:"350px", borderRadius:4, backgroundColor:""}}>
             <TaskList />
           </Item>
         </Grid>
       </Grid>
       <Grid container sx={{mb: 2}} spacing={3}>
         <Grid size={4} sx={{}}>
-          <Item sx={{ color:"#3d3d41", borderRadius:4,color:"", backgroundColor:"#3cd9b1"}}>
+          <Item className="DashboardMainComponentsItem" sx={{ color:"#3d3d41", borderRadius:4,color:"", backgroundColor:""}}>
             <Category />
             
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#eda7ff"}}>
+          <Item className="DashboardMainComponentsItem" sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:""}}>
             <TaskTrackTime />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:"#f6bb54"}}>
+          <Item className="DashboardMainComponentsItem" sx={{ color:"#3d3d41", borderRadius:4, color:"", backgroundColor:""}}>
             <Notifications />
           
           </Item>

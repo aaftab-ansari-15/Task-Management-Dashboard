@@ -28,9 +28,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import TocIcon from "@mui/icons-material/Toc";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-
+import { ThemeContext, useTheme } from "@emotion/react";
+import BentoIcon from '@mui/icons-material/Bento';
+import BlurOnIcon from '@mui/icons-material/BlurOn';
 const SideBar = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const user = useSelector((state) => state.user);
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
   const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
@@ -80,34 +83,23 @@ const SideBar = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           position: "sticky",
-          // bgcolor: "#139bba",
-          // color: "text.primary",
+          bgcolor: theme.palette.primary.main,
+          color: "",
           height: "10vh",
-          backgroundColor: "#78B3CE",
         }}
       >
-        <Box>
-          <Button variant="solid" color="inherit" onClick={handleDarkModeClick}>
-            <DarkModeIcon />
-          </Button>
-        </Box>
+        <Box sx={{ml:3, mr:1}}>
+          <BlurOnIcon />
+          {/* <BentoIcon />*/}
+          </Box> 
         <Box>
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            T M D
+            Manange
           </Typography>
         </Box>
-        <Box>
-          <IconButton
-            size="large"
-            aria-label="menu"
-            onClick={toggleDrawer}
-            sx={{ color: "black" }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
+        
       </Box>
       <Divider />
 

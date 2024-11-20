@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, ListItem, Typography } from "@mui/material";
 import "../../features/Calendar.css";
 import React from "react";
 import { DashboardsHeading } from "../../features/DashboardsHeading";
@@ -9,11 +9,18 @@ const Category = () => {
       <DashboardsHeading
         headingName={"Caetegory"}
         className={"bottomGridHeading"}
-        width1={"100%"}
-        width2={"50%"}
+        width1={"70%"}
+        width2={"35%"}
       />
       <Divider className="shadowDivider" sx={{ my: 2 }} />
-      <Box sx={{ overflowY: "auto", maxHeight: "240px" }}></Box>
+      <Box sx={{ border:"2px solid", }}>
+      <ListItem>ads</ListItem>
+      <ListItem>ads</ListItem>
+      <ListItem>ads</ListItem>
+      <ListItem>ads</ListItem>
+      <ListItem>ads</ListItem>
+      <ListItem>ads</ListItem>
+      </Box>
     </>
   );
 };

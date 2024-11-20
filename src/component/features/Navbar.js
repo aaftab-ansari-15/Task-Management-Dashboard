@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LoginIcon from "@mui/icons-material/Login";
 export default function Navbar() {
   const dispatch = useDispatch();
   const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
@@ -40,10 +39,7 @@ export default function Navbar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          sx={{ bgcolor: "#78B3CE", color: "text.primary" }}
-        >
+        <AppBar position="static" sx={{ bgcolor: "", color: "" }}>
           <Toolbar>
             <IconButton
               size="large"
@@ -55,7 +51,12 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography textAlign="center" variant="h5" sx={{ flexGrow: 1 }}>
+            <Typography
+              fontWeight={"900"}
+              textAlign="center"
+              variant="h5"
+              sx={{ flexGrow: 1 }}
+            >
               Task Management Dashboard
               {/* {user.user ? " - " + user.user.name : ""} */}
             </Typography>
@@ -66,7 +67,12 @@ export default function Navbar() {
                   color="inherit"
                   onClick={handleLogOutClick}
                 >
-                  Log Out
+                  <Typography
+                    fontWeight={"bold"}
+                    variant="h6"
+                  >
+                    Log Out
+                  </Typography>
                 </Button>
               ) : (
                 <>

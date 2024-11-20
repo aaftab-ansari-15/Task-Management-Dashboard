@@ -36,7 +36,6 @@ const AddTaskInUser = () => {
     ...defaultTask,
     ...data
   };
-  console.log(newTask1)
   const [newTask, setNewTask] = useState(newTask1);
   const [errors, setErrors] = useState(newTask1);
   const user = useSelector((state) => state.user);

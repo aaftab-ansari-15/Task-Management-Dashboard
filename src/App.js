@@ -1,9 +1,5 @@
 import "./App.css";
-import Navbar from "./component/features/Navbar";
-import SignUpDialog from "./component/Authentication/SignUp";
-import LoginDialog from "./component/Authentication/Login";
 import { useSelector } from "react-redux";
-import ImageCarousel from "./component/features/ImageCarousel";
 import MainLayout from "./component/new-ui/MainLayout";
 import AuthModal from "./component/Authentication/AuthModal";
 import Box from "@mui/material/Box";
@@ -16,33 +12,39 @@ const App = () => {
   const user = useSelector((state) => state.user);
 
   // Create a theme with custom colors based on darkMode
-  const darkTheme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-      primary: {
-        main: darkMode ? "#6200EE" : "#6200EE", // Indigo in both modes
-      },
-      secondary: {
-        main: darkMode ? "#03DAC6" : "#03DAC6", // Teal in both modes
-      },
-      backgroundOposite: {
-        paper: darkMode ? "#f9f9f9" : "#090909",
-      },
-      background: {
-        default: darkMode ? "#121212" : "#FFFFFF", // Dark background in dark mode, white background in light mode
-        paper: darkMode ? "#090909" : "#f9f9f9", // Darker paper in dark mode, light paper in light mode
-      },
-      text: {
-        primary: darkMode ? "#E0E0E0" : "#000000", // Light gray text in dark mode, black text in light mode
-        secondary: darkMode ? "#B0B0B0" : "#616161", // Gray text in dark mode, medium gray in light mode
-      },
+const theme = createTheme({
+  palette: {
+    mode: darkMode ? 'dark' : 'light',
+    primary: {
+      main: darkMode ? '#ffef00' : '#ffef00', // Adjust the yellow hex code as needed
+      dark: darkMode ? '#FFA000' : '#FFA000', //dark yellow
+      light: darkMode ? '#fffabf' : '#fffabf',
+      light1: darkMode ? "#fdf265" : "#fdf265",
+    
     },
-  });
+    secondary: {
+      main: darkMode ? '#007BFF' : '#007BFF',
+      dark: darkMode ? '#0057B8' : '#0057B8',
+      light: darkMode ? '#B3D1FF' : '#B3D1FF',
+    },
+    background: {
+      
+      default: darkMode ? '#fffee5' : '#fffee5', //light yellow
+      // default: darkMode ? '#121212' : '#F0F0F0', // white
+      paper: darkMode ? '#242424' : '#FFF', // white
+    },
+    text: {
+      primary: darkMode ? '#FFF' : '#000',
+      secondary: darkMode ? '#2a2a2a' : '#575757',
+    },
+  },
+  // shadows: darkMode ? [] : ['0px 2px 4px rgba(0, 0, 0, 0.1)'], // Conditional shadows
+});
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{maxHeight:"100vh", maxWidth:"100vw", height:"100vh", bgcolor: "background.paper", color: "text.primary" }}>
+      <Box sx={{maxHeight:"100vh", maxWidth:"100vw", height:"100vh" }}>
         {user.user && user.user.isLogin ? <MainLayout /> : <AuthModal />}
       </Box>
     </ThemeProvider>

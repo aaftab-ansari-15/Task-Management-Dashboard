@@ -7,76 +7,72 @@
   font-weight: 900 !important; 
   font-size: xx-large !important;
 } */
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+  background-color: #fa7e01 !important;
+}
+.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin:hover {
+
+  background-color: #fa7e01 !important;
+  /* Hover effect */
+  border-radius: 10px;
+}
 .MuiDayCalendar-weekDayLabel {
-  color: #d2c5e9 !important;  /* Text color */
   font-weight: 900 !important; /* Bold font */
   font-size: xx-large !important; /* Large font size */
   
   /* Text shadow for a glowing effect */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 25px rgba(60, 0, 134, 0.7), 0 0 5px rgba(110, 0, 244, 0.7);
+  /* text-shadow: 2px 2px 4px rgb(255, 255, 255), 0 0 5px rgb(255, 255, 255); */
   
   /* Box shadow for a more prominent edge */
-  box-shadow: 0 4px 6px #d2c5e9, 0 1px 3px #d2c5e9;
+  box-shadow: 0 4px 6px #ffffff, 0 1px 3px #ffffff;
   
   /* Edge cut effect (using border radius and background gradient) */
   padding: 10px 20px;  /* Add some padding around the text */
   border-radius: 15px;  /* Rounded corners */
   /* background: linear-gradient(135deg, #056b36, #b49edb);  */
-  -webkit-background-clip: text; /* Clip background to text */
-  color: transparent;  /* Make the text transparent to show the background */
 }
 
 .css-1chuxo2-MuiPickersCalendarHeader-label {
   font-weight: 900;
-  color: #472aa0;
 }
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiPickersCalendarHeader-switchViewIcon{
-  color: #472aa0;
   font-size: larger !important;
 }
 .MuiPickersDay-root{
   font-size: large !important;
-  color: #472aa0 !important;
 }
-.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.MuiPickersArrowSwitcher-leftArrowIcon{
-  color: #472aa0 !important;
-}
-.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.MuiPickersArrowSwitcher-rightArrowIcon{
-  color: #472aa0 !important;
-}
-.MuiButtonBase-root.MuiPickersDay-root.Mui-selected{
-  box-shadow: 0 4px 6px #d2c5e9, 0 1px 3px #d2c5e9;
 
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected{
+  box-shadow: 0 4px 6px #ffffff, 0 1px 3px #ffffff;
+  font-weight: 900 !important;
   color: whitesmoke !important;
 }
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium{
   font-size: xx-large !important;
 }
+.DashboardMainComponentsItem:hover .DashboardBoxHeading{
+  width: 100%;
+}
 .bottomGridHeading{
   font-weight: bolder !important;
   text-align:start !important;
-  margin-left: 10% !important;
-  margin-top: 4% !important;
-  margin-bottom: 4% !important;
+  margin-left: 5% !important;
   transition:  0.3s ease-in-out;
 }
-
-.DashboardBox2Heading:hover{
-  width: 100%;
-}
 .bottomGridHeading1{
+  margin-left: 5% !important;
   font-weight:bolder !important; 
   text-align:start;
 }
 .shadowDivider{
   
   /* Box shadow for a more prominent edge */
-  box-shadow: 0 3px 5px #693db7;
+  box-shadow: 0 3px 5px #ffffff;
   
 }
 /* npm react calender */
 .react-calendar__month-view__weekdays {
-  color: rgb(65, 66, 66);
+  color: rgb(255, 255, 255);
   font-weight: bold;
   font-style: normal;
 }
@@ -91,14 +87,12 @@
   border-radius: 10px;
   background-color: #fce4ec;
   /* Light pink */
-  box-shadow: 0px 4px 6px rgba(170, 14, 14, 0.1);
+  box-shadow: 0px 4px 6px rgb(255, 255, 255);
 }
 
-.react-calendar__tile--active {
+.react-calendar__tile {
   margin: 2;
-  background-color: #fffb06 !important;
-  /* Active day */
-  color: rgb(0, 0, 0) !important;
+  background-color: #ffb806 !important;
 }
 
 .react-calendar__tile:hover {

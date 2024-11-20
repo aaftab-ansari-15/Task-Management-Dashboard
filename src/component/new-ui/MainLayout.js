@@ -11,7 +11,9 @@ import SideBar from "../features/SideBar";
 import { useDispatch } from "react-redux";
 import { sideBarModal } from "../../redux/modalSlice";
 import MyTasksList from "./MyTasksList";
+import { useTheme } from "@emotion/react";
 const MainLayout = () => {
+  const theme = useTheme();
   const dispatch = useDispatch();
   const componentName = useSelector((state) => state.modal.componentName);
   const isSideBar = useSelector((state) => state.modal.isSideBar);
@@ -35,17 +37,17 @@ const MainLayout = () => {
   };
 
   return (
-    <>
+    <Box>
       <Navbar />
       <Drawer
         open={isSideBar}
         onClose={handleSideBarClose}
         PaperProps={{
           sx: {
-            borderRadius:2,
+            borderRadius: 2,
             top: 0,
             bottom: 0,
-            backgroundColor: "#C9E6F0",
+            bgcolor: theme.palette.background.default,
           },
         }}
       >
@@ -54,7 +56,7 @@ const MainLayout = () => {
       {renderComponent()}
       <UpdateTaskInUser />
       <AddTaskInUser />
-    </>
+    </Box>
   );
 };
 

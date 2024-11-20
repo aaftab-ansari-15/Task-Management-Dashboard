@@ -1,5 +1,6 @@
 workon{
     tasklist/checkbox
+    font bold(logout, tmd)
 }
 watch{
     itemstyle/dashboard
