@@ -7,6 +7,7 @@ import tasksReducer from "./tasksSlice";
 import filterReducer from "./filterSlice";
 import sortReducer from "./sortSlice";
 import useFullReducer from "./useFullSlice";
+import categoryReducer from "./categorySlice"
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -16,5 +17,6 @@ export const store = configureStore({
     filter: filterReducer,
     sort: sortReducer,
     useFull: useFullReducer,
+    category: categoryReducer
   },
 });

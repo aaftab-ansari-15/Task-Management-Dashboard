@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setTaskForTaskList } from "../../../redux/useFullSlice";
-import TaskStatusIcon from "../../task-related/TaskStatusIcon";
+import TaskStatusIcon from "../../features/TaskStatusIcon";
 import { addTaskForm } from "../../../redux/modalSlice";
 import AddIcon from "@mui/icons-material/Add";
 import SplitscreenIcon from "@mui/icons-material/Splitscreen";
@@ -46,12 +46,12 @@ const TaskList = () => {
   };
   return (
     <>
-      <Box mx={4} my={2} display={"flex"} justifyContent={"space-between"}>
+      <Box ml={2} mr={4} my={1} display={"flex"} justifyContent={"space-between"}>
         <DashboardsHeading
           headingName={"My Task"}
           className={"bottomGridHeading1"}
           width1={"50%"}
-          width2={"30%"}
+          width2={"50%"}
         />
         <Box sx={{ alignItems: "center" }}>
           <Tooltip title="Add Task on this date">

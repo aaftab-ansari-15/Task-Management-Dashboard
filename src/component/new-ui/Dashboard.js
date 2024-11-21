@@ -29,14 +29,13 @@ const Dashboard = () => {
   return (
     <Box
       sx={{
-        px: 4,
-        pb:1,
-        pt: "5vh",
+        px: "100px",
+        pt:4,
         borderRadius: 2,
         backgroundColor: "",
       }}
     >
-      <Grid container sx={{ mb: 2}} spacing={3}>
+      <Grid container spacing={3}>
         <Grid size={4} sx={{}}>
           <Item className="calendar-item" sx={{height:"350px", borderRadius:4, backgroundColor:""}}>
             <BasicDateCalendar />
@@ -49,7 +48,7 @@ const Dashboard = () => {
           </Item>
         </Grid>
       </Grid>
-      <Grid container sx={{mb: 2}} spacing={3}>
+      <Grid container sx={{mt: 2}} spacing={3}>
         <Grid size={4} sx={{}}>
           <Item className="DashboardMainComponentsItem" sx={{ color:"#3d3d41", borderRadius:4,color:"", backgroundColor:""}}>
             <Category />

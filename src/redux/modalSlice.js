@@ -10,10 +10,13 @@ const modalSlice = createSlice({
     isUpdateTaskForm: false,
     isAddTaskForm: false,
     isTaskInfoOpen: false,
+    isCategoryForm: false,
+    newCategoryDate: "",
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
     addTaskInUserData: {},
     componentName: "Dashboard",
+    
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -40,6 +43,16 @@ const modalSlice = createSlice({
       state.isTaskInfoOpen = arg1;
       state.updateTaskInUserData1 = arg2;
     },
+    categoryForm: (state, action) => {
+      state.isCategoryForm = action.payload;
+      if(action.payload){
+        state.newCategoryDate = new Date().toISOString().split('T')[0];
+      }
+      else{
+        state.newCategoryDate = ""
+      }
+      console.log(state.newCategoryDate)
+    },
     changeComponent: (state, action) => {
       state.componentName = action.payload;
     },
@@ -53,6 +66,7 @@ export const {
   updateTaskFrom,
   addTaskForm,
   taskInfoModal,
+  categoryForm,
   changeComponent,
 } = modalSlice.actions;
 export default modalSlice.reducer;

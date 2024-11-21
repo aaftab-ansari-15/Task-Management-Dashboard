@@ -9,8 +9,8 @@ const Notifications = () => {
       <DashboardsHeading
         headingName={"Notification"}
         className={"bottomGridHeading"}
-        width1={"70%"}
-        width2={"39%"}
+        width1={"50%"}
+        width2={"50%"}
       />
 
       <Divider className="shadowDivider" sx={{ my: 2 }} />

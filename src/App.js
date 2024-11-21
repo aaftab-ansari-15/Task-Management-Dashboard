@@ -16,13 +16,14 @@ const theme = createTheme({
   palette: {
     mode: darkMode ? 'dark' : 'light',
     primary: {
-      main: darkMode ? '#ffef00' : '#ffef00', // Adjust the yellow hex code as needed
+      main: darkMode ? '#fff233' : '#fff233', // Adjust the yellow hex code as needed
       dark: darkMode ? '#FFA000' : '#FFA000', //dark yellow
       light: darkMode ? '#fffabf' : '#fffabf',
       light1: darkMode ? "#fdf265" : "#fdf265",
     
     },
     secondary: {
+      
       main: darkMode ? '#007BFF' : '#007BFF',
       dark: darkMode ? '#0057B8' : '#0057B8',
       light: darkMode ? '#B3D1FF' : '#B3D1FF',

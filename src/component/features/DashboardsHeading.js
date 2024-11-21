@@ -29,7 +29,7 @@ export const DashboardsHeading = ({
           bgcolor: theme.palette.primary.main,
         }}
       >
-        <Typography className={className} variant="h6">
+        <Typography className={className} variant="h5">
           {headingName}
         </Typography>
       </Box>

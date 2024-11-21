@@ -17,8 +17,9 @@
   border-radius: 10px;
 }
 .MuiDayCalendar-weekDayLabel {
-  font-weight: 900 !important; /* Bold font */
-  font-size: xx-large !important; /* Large font size */
+  font-weight: 700 !important;
+  font-size: x-large !important;
+  padding: 4;
   
   /* Text shadow for a glowing effect */
   /* text-shadow: 2px 2px 4px rgb(255, 255, 255), 0 0 5px rgb(255, 255, 255); */
@@ -48,7 +49,7 @@
   color: whitesmoke !important;
 }
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium{
-  font-size: xx-large !important;
+  font-size: x-large !important;
 }
 .DashboardMainComponentsItem:hover .DashboardBoxHeading{
   width: 100%;
@@ -60,7 +61,7 @@
   transition:  0.3s ease-in-out;
 }
 .bottomGridHeading1{
-  margin-left: 5% !important;
+  /* margin-left: 5% !important; */
   font-weight:bolder !important; 
   text-align:start;
 }
