@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import defaultTaskData from "../../Data/defaultTasks.json";
+import defaultTaskData from "../../../Data/defaultTasks.json";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { addGeneratedTasks } from "../../redux/tasksSlice";
+import { addGeneratedTasks } from "../../../redux/tasksSlice";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { addTaskForm } from "../../redux/modalSlice";
+import { addTaskForm } from "../../../redux/modalSlice";
 import NavigationPanel from "./NavigationPanel";
 const MyTasksListOldUI = () => {
   // Get the current theme using useTheme hook
@@ -59,7 +59,6 @@ const MyTasksListOldUI = () => {
           </Button>
         </Box>
         <Divider
-        className="shadowDivider"
           sx={{
             mx: 2,
             border: `1px solid ${theme.palette.secondary.main}`, // Use secondary color for divider

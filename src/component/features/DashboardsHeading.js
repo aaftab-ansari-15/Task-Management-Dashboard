@@ -6,33 +6,35 @@ export const DashboardsHeading = ({
   className,
   width1,
   width2,
+  numberOfTask,
 }) => {
   const theme = useTheme();
 
   return (
-    <Box
-      className="DashboardBoxHeading"
-      sx={{
-        width: width1,
-        transition: "width 0.3s ease-in-out",
-        borderRadius: 5,
-        bgcolor: theme.palette.primary.light,
-      }}
-    >
-      <Box
-        className="DashboardBoxHeading"
-        sx={{
-          width: width2,
-          transition: "width 0.3s ease-in-out",
-          borderRadius: 4,
-          p: "3px",
-          bgcolor: theme.palette.primary.main,
-        }}
-      >
-        <Typography className={className} variant="h5">
-          {headingName}
-        </Typography>
-      </Box>
-    </Box>
+    <Typography className={className} variant="h5">
+      {headingName}
+    </Typography>
+    // <Box
+    //   className=" DashboardBox2Heading"
+    //   sx={{
+    //     width: width1,
+    //     transition: "width 0.3s ease-in-out",
+    //     borderRadius: 5,
+    //     bgcolor: theme.palette.primary.light,
+    //   }}
+    // >
+    //   <Box
+    //     className=" DashboardBox1Heading"
+    //     sx={{
+    //       width: width2,
+    //       transition: "width 0.3s ease-in-out",
+    //       borderRadius: 4,
+    //       p: "3px",
+    //       bgcolor: theme.palette.primary.main,
+    //     }}
+    //   >
+
+    //   </Box>
+    // </Box>
   );
 };

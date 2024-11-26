@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Dashboard from "./Dashboard";
-import MyTasksListOldUI from "../old-ui/MyTasksListOldUI";
-import TaskNotification from "./TaskNotification";
+import Dashboard from "./new-ui/Dashboard";
+import MyTasksListOldUI from "./old-ui/MyTasksListOldUI";
+import TaskNotification from "./new-ui/TaskNotification";
 import AddTaskInUser from "../forms/AddTaskInUser";
 import UpdateTaskInUser from "../forms/UpdateTaskInUser";
 import { Box, Drawer } from "@mui/material";
-import Navbar from "../features/Navbar";
-import SideBar from "../features/SideBar";
+import Navbar from "./Navbar";
+import SideBar from "./SideBar";
 import { useDispatch } from "react-redux";
 import { sideBarModal } from "../../redux/modalSlice";
-import MyTasksList from "./MyTasksList";
+import MyTasksList from "./new-ui/MyTasksList";
 import { useTheme } from "@emotion/react";
+import "../../style/main-layout.css";
 const MainLayout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -44,10 +45,11 @@ const MainLayout = () => {
         onClose={handleSideBarClose}
         PaperProps={{
           sx: {
-            borderRadius: 2,
+            width: 310,
             top: 0,
             bottom: 0,
-            bgcolor: theme.palette.background.default,
+            borderRadius:2,
+            bgcolor: theme.palette.background.default
           },
         }}
       >

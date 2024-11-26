@@ -73,7 +73,7 @@ const LoginDialog = () => {
             name: findUser.name,
           };
           dispatch(loginUser(updatedLoginData));
-          dispatch(changeComponent("MyTasksListOldUi"));
+          dispatch(changeComponent("Dashboard"));
           console.log("userLoggedIn", updatedLoginData);
         } else {
           console.log("email or password is incorrect");

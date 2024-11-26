@@ -1,6 +1,23 @@
 workon{
-    tasklist/checkbox
-    font bold(logout, tmd)
+    //tasklist/checkbox:
+    //theme in new file and optimize it.:
+    //rename components and css file 
+    //logo swap sidebar
+    //font light(tmd, sidebar ) new name
+    //username at nav
+    //color change on calendar
+    //category add at top
+    //task-counter
+    //on complete text mute
+    icon at low, medium... and tooltip
+    work on filter at tasklist and tooltip for status and priority.
+    text if overflow use (...)elips
+    style scroll bar
+    checkbox add icon for good style
+    task should hover and give style
+    pop to ask for commpleting task
+    No task lil small and center
+    at Notification => Completed Task
 }
 watch{
     itemstyle/dashboard

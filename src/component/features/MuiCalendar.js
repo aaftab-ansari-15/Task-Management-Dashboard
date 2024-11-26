@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { changePickUpDate } from '../../redux/useFullSlice';
-import "./Calendar.css";
+import "../../style/features.css";
 
 export default function BasicDateCalendar() {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function BasicDateCalendar() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar value={value} onChange={(newValue) => setValue(newValue)}/>
+      <DateCalendar sx={{}} value={value} onChange={(newValue) => setValue(newValue)}/>
     </LocalizationProvider>
   );
 }

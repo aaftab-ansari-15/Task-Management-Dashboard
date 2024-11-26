@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addTaskForm, changeComponent } from "../../redux/modalSlice";
+import { addTaskForm, changeComponent } from "../../../redux/modalSlice";
 const NavigationPanel = () => {
   const dispatch = useDispatch();
   //Task Add
