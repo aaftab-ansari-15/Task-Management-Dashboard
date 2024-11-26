@@ -9,7 +9,7 @@ workon{
     //category add at top
     //task-counter
     //on complete text mute
-    icon at low, medium... and tooltip
+    //icon at low, medium... and tooltip
     work on filter at tasklist and tooltip for status and priority.
     text if overflow use (...)elips
     style scroll bar
