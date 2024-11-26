@@ -11,6 +11,7 @@ import {
   Button,
   Tooltip,
   Typography,
+  IconButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -38,7 +39,6 @@ const UserTaskTable = ({ usersFilterTasks }) => {
           display: "flex",
           padding: 1,
           bgcolor: "secondary.main",
-          color: "white",
           fontWeight: "bold",
         }}
       >
@@ -113,10 +113,10 @@ const UserTaskTable = ({ usersFilterTasks }) => {
                 </Button>
               </Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
-                <Tooltip title="Info" arrow>
-                  <Button onClick={() => openTaskInfo(task)}>
+                <Tooltip title="Info">
+                  <IconButton onClick={() => openTaskInfo(task)}>
                     <MenuIcon />
-                  </Button>
+                  </IconButton>
                 </Tooltip>
               </Typography>
             </ListItem>

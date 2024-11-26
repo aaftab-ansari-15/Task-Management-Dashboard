@@ -1,6 +1,13 @@
-import { Divider, IconButton, Tooltip, Typography } from "@mui/material";
+import {
+  Alert,
+  Collapse,
+  Divider,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -13,11 +20,12 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import LowPriorityIcon from "@mui/icons-material/LowPriority";
 import SplitscreenIcon from "@mui/icons-material/Splitscreen";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import CloseIcon from '@mui/icons-material/Close';
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { useTheme } from "@emotion/react";
 import { updateTasks } from "../../../../redux/tasksSlice";
+import TaskCompleteAlert from "../../../features/TaskCompleteAlert";
 const renderPriorityIcon = (priority) => {
-  console.log(priority);
   switch (priority) {
     case "Low":
       return <LowPriorityIcon sx={{ color: "#00bf00" }} />;
@@ -39,12 +47,17 @@ const TaskList = () => {
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertTask, setAlertTask] = useState({});
   useEffect(() => {
     const getTasks = userAllTasks.filter((task) => {
       return task.dueDate === getPickUpDate;
     });
     dispatch(setTaskForTaskList(getTasks));
   }, [getPickUpDate, allTasks]);
+  useLayoutEffect(() => {
+    console.log(alertTask)
+  }, [alertTask])
   const handleChange = (e, task) => {
     e.preventDefault();
     const { name, checked } = e.target;
@@ -57,6 +70,8 @@ const TaskList = () => {
     }
   };
   const handleTaskClick = (task) => {
+    setOpenAlert(true);
+    setAlertTask(task);
     const updatedTask = {
       ...task,
       status: task.status !== "Completed" ? "Completed" : "Pending",
@@ -97,6 +112,25 @@ const TaskList = () => {
           </Tooltip>
         </Box>
       </Box>
+      <Collapse in={openAlert}>
+            <Alert
+              // task={alertTask}
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpenAlert(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            > Do you want to complete this task {alertTask.title}
+              </Alert>
+          </Collapse>
       <Divider sx={{ mt: 2 }} />
       <Box sx={{ overflowY: "auto", maxHeight: "230px" }}>
         <Box sx={{ px: 2, py: 1 }}>

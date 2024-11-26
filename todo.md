@@ -10,14 +10,14 @@ workon{
     //task-counter
     //on complete text mute
     //icon at low, medium... and tooltip
-    work on filter at tasklist and tooltip for status and priority.
-    text if overflow use (...)elips
+    //at Notification => Completed Task
+    //No task lil small and center
+    //text if overflow use (...)elips
+    //checkbox add icon for good style
+    //task should hover and give style
+    pop to ask for commpleting task // make new state variables, redux
     style scroll bar
-    checkbox add icon for good style
-    task should hover and give style
-    pop to ask for commpleting task
-    No task lil small and center
-    at Notification => Completed Task
+    work on filter at tasklist and tooltip for status and priority.
 }
 watch{
     itemstyle/dashboard

@@ -74,6 +74,11 @@ const MyTasksListOldUI = () => {
               width: "80%",
               height: "80%",
               display: "flex",
+              bgcolor:"#0097ff",
+              color:"white",
+              ":hover":{
+                bgcolor:"#1662ec",
+              }
             }}
             variant="contained"
           >
