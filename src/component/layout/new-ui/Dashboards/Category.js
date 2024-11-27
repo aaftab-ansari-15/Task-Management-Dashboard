@@ -21,8 +21,10 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryForm } from "../../../../redux/modalSlice";
 import AddCategory from "../../../forms/AddCategory";
+import { useTheme } from "@emotion/react";
 const Category = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const getCategoryData = useSelector((state) => state.category);
   const renderIcon = (iconName) => {
     switch (iconName) {
@@ -36,7 +38,6 @@ const Category = () => {
         return <AddCircleOutlineIcon />;
     }
   };
-  console.log(getCategoryData);
   const handleAddCategory = () => {
     dispatch(categoryForm(true));
   };
@@ -59,7 +60,23 @@ const Category = () => {
         </Box>
       </Box>
       <Divider sx={{ mt: 2 }} />
-      <Box sx={{ overflow: "auto", maxHeight: "250px" }}>
+      <Box
+        sx={{
+          overflow: "auto",
+          maxHeight: "250px",
+          "&::-webkit-scrollbar": {
+            width: "0.5rem",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: "10px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: theme.palette.text.primary,
+            borderRadius: "10px",
+          },
+        }}
+      >
         <List sx={{ width: "100%" }}>
           {getCategoryData.length > 0 &&
             getCategoryData.map((data, index) => {
@@ -73,7 +90,7 @@ const Category = () => {
                     <ListItemText primary={data.name} secondary={data.date} />
                   </ListItem>
                   {getCategoryData.length - 1 > index ? (
-                    <Divider sx={{ }} />
+                    <Divider sx={{}} />
                   ) : (
                     <></>
                   )}

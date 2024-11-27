@@ -15,18 +15,12 @@ workon{
     //text if overflow use (...)elips
     //checkbox add icon for good style
     //task should hover and give style
-    pop to ask for commpleting task // make new state variables, redux
-    style scroll bar
+    //pop to ask for commpleting task // make new state variables, redux
+    {maxheight changing respec to alert is open or not}
+    //style scroll bar
     work on filter at tasklist and tooltip for status and priority.
 }
-watch{
-    itemstyle/dashboard
-    checkbox/tasklist
-}
-idea{
-    no task on this date,///
-    
-}
+
 dashbaord: {
     calender, 
     Mytask(small version){
@@ -35,7 +29,7 @@ dashbaord: {
     }, 
     Category, 
     tracking, 
-    ,
+    completed tasks,
 }
 
 My Tasks{}
@@ -49,16 +43,12 @@ My Task (old): {
     NavigationPannel
     Filter
     Sort
-
 } 
-color{
-    pink: #eda7ff
-    purple: #9d9bff
-    orange: #f6bb54
-    green: #5cd669
-    ble: #4e8ef7
-    Teal: #3cd9b1
-    Yellow: #ffdf7d
+user{
+  "name": "zaid",
+  "email": "zzzz@zz.z",
+  "password": "zzz12!@",
+  "isLogin": true
 }
 task{
     "taskId": "task-014",
@@ -72,6 +62,7 @@ task{
     "timeSpent": "0:0:0",
     "pinned": true
   },
+
   addOnAnother{
-    gitGraph, md, muiDatePicker, dayjs
+        muiDatePicker, dayjs
   }

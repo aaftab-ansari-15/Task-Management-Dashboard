@@ -11,12 +11,13 @@ const modalSlice = createSlice({
     isAddTaskForm: false,
     isTaskInfoOpen: false,
     isCategoryForm: false,
+    isTaskAlert: false,
     newCategoryDate: "",
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
     addTaskInUserData: {},
+    taskAlertData:{},
     componentName: "Dashboard",
-    
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -28,6 +29,16 @@ const modalSlice = createSlice({
     sideBarModal: (state, action) => {
       state.isSideBar = action.payload;
     },
+    taskInfoModal: (state, action) => {
+      const { arg1, arg2 } = action.payload;
+      state.isTaskInfoOpen = arg1;
+      state.updateTaskInUserData1 = arg2;
+    },
+    taskAlert: (state, action) => {
+      const  {alertState, taskAlertData} = action.payload;
+      state.isTaskAlert = alertState;
+      state.taskAlertData = taskAlertData;
+    },
     addTaskForm: (state, action) => {
       const { formState, data } = action.payload;
       state.isAddTaskForm = formState;
@@ -37,11 +48,6 @@ const modalSlice = createSlice({
       const { arg1, arg2 } = action.payload;
       state.isUpdateTaskForm = arg1;
       state.updateTaskInUserData = arg2;
-    },
-    taskInfoModal: (state, action) => {
-      const { arg1, arg2 } = action.payload;
-      state.isTaskInfoOpen = arg1;
-      state.updateTaskInUserData1 = arg2;
     },
     categoryForm: (state, action) => {
       state.isCategoryForm = action.payload;
@@ -68,5 +74,6 @@ export const {
   taskInfoModal,
   categoryForm,
   changeComponent,
+  taskAlert,
 } = modalSlice.actions;
 export default modalSlice.reducer;

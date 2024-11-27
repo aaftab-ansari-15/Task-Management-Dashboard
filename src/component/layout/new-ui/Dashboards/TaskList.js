@@ -1,5 +1,5 @@
+import React from "react";
 import {
-  Alert,
   Collapse,
   Divider,
   IconButton,
@@ -7,39 +7,23 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import React, { useLayoutEffect, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setTaskForTaskList } from "../../../../redux/useFullSlice";
 import TaskStatusIcon from "../../../features/TaskStatusIcon";
-import { addTaskForm } from "../../../../redux/modalSlice";
+import { addTaskForm, taskAlert } from "../../../../redux/modalSlice";
 import AddIcon from "@mui/icons-material/Add";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import LowPriorityIcon from "@mui/icons-material/LowPriority";
-import SplitscreenIcon from "@mui/icons-material/Splitscreen";
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
-import CloseIcon from '@mui/icons-material/Close';
-import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { useTheme } from "@emotion/react";
-import { updateTasks } from "../../../../redux/tasksSlice";
-import TaskCompleteAlert from "../../../features/TaskCompleteAlert";
-const renderPriorityIcon = (priority) => {
-  switch (priority) {
-    case "Low":
-      return <LowPriorityIcon sx={{ color: "#00bf00" }} />;
-    case "Medium":
-      return <DragHandleIcon sx={{ color: "#ff8400" }} />;
-    case "High":
-      return <PriorityHighIcon sx={{ color: "#f10000" }} />;
-    default:
-      return <>!</>;
-  }
-};
+import TaskAlert from "../../../features/TaskAlert";
+import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
+import "../../../../style/dashboards.css";
 const TaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const taskAlertState = useSelector((state) => state.modal.isTaskAlert);
   const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
   const getTasksListData = useSelector((state) => state.useFull.taskListData);
   const user = useSelector((state) => state.user.user);
@@ -47,36 +31,14 @@ const TaskList = () => {
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });
-  const [openAlert, setOpenAlert] = useState(false);
-  const [alertTask, setAlertTask] = useState({});
   useEffect(() => {
     const getTasks = userAllTasks.filter((task) => {
       return task.dueDate === getPickUpDate;
     });
     dispatch(setTaskForTaskList(getTasks));
   }, [getPickUpDate, allTasks]);
-  useLayoutEffect(() => {
-    console.log(alertTask)
-  }, [alertTask])
-  const handleChange = (e, task) => {
-    e.preventDefault();
-    const { name, checked } = e.target;
-    if (name === "taskDone") {
-      const updatedTask = {
-        ...task,
-        status: checked ? "Completed" : "Pending",
-      };
-      dispatch(updateTasks(updatedTask));
-    }
-  };
   const handleTaskClick = (task) => {
-    setOpenAlert(true);
-    setAlertTask(task);
-    const updatedTask = {
-      ...task,
-      status: task.status !== "Completed" ? "Completed" : "Pending",
-    };
-    dispatch(updateTasks(updatedTask));
+    dispatch(taskAlert({ alertState: true, taskAlertData: task }));
   };
   const handleAddClick = () => {
     dispatch(
@@ -85,6 +47,7 @@ const TaskList = () => {
   };
   return (
     <>
+      <TaskAlert />
       <Box
         ml={2}
         mr={4}
@@ -112,28 +75,27 @@ const TaskList = () => {
           </Tooltip>
         </Box>
       </Box>
-      <Collapse in={openAlert}>
-            <Alert
-              // task={alertTask}
-              action={
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setOpenAlert(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            > Do you want to complete this task {alertTask.title}
-              </Alert>
-          </Collapse>
       <Divider sx={{ mt: 2 }} />
-      <Box sx={{ overflowY: "auto", maxHeight: "230px" }}>
-        <Box sx={{ px: 2, py: 1 }}>
+      <Box
+        // className="style-scrollbar"
+        sx={{
+          mt: 3,
+          overflowY: "auto",
+          maxHeight: taskAlertState ? "150px" : "200px",
+          "&::-webkit-scrollbar": {
+            width: "0.5rem",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: "10px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: theme.palette.text.primary,
+            borderRadius: "10px",
+          },
+        }}
+      >
+        <Box sx={{ px: 3 }}>
           {getTasksListData.length > 0 ? (
             getTasksListData.map((task, index) => {
               return (
@@ -149,7 +111,7 @@ const TaskList = () => {
                   }}
                   className="dashboard-tasklist-task"
                 >
-                  <Grid container spacing={2} sx={{ mx: 1, my: 2 }}>
+                  <Grid container spacing={2} sx={{ py: 2 }}>
                     <Grid size={2}>
                       {task.status === "Completed" ? (
                         <CheckCircleOutlineIcon
@@ -201,32 +163,13 @@ const TaskList = () => {
                       </Tooltip>
                     </Grid>
                     <Grid size={2}>
-                      <Tooltip
-                        title={
-                          <Typography variant="body1">
-                            {task.priority} priority
-                          </Typography>
-                        }
-                      >
-                        {renderPriorityIcon(task.priority)}
-                      </Tooltip>
+                      <TaskPriorityIcon priority={task.priority} />
                     </Grid>
                     <Grid size={2}>
-                      <Tooltip
-                        title={
-                          <Typography variant="body1">
-                            status - {task.status}
-                          </Typography>
-                        }
-                      >
-                        <TaskStatusIcon status={task.status} />
-                        {/* {"\u00A0"} */}
-                        {/* <span>{task.status}</span> */}
-                      </Tooltip>
+                      <TaskStatusIcon status={task.status} />
                     </Grid>
                   </Grid>
                   {getTasksListData.length - 1 > index ? <Divider /> : <></>}
-                  {/* <Divider /> */}
                 </Box>
               );
             })
