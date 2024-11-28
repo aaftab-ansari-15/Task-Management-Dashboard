@@ -52,7 +52,6 @@ const UpdateTaskInUser = () => {
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
-    console.log(name, value, checked);
     if (name === "pinned") {
       setUpdatedTask((prevState) => ({
         ...prevState,
@@ -75,7 +74,6 @@ const UpdateTaskInUser = () => {
 
   const handleUpdateTaskClick = () => {
     dispatch(updateTasks(updatedTask));
-    // console.log("Task updated:", updatedTask);
     setUpdatedTask(defaultTask);
     dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
   };
@@ -115,7 +113,7 @@ const UpdateTaskInUser = () => {
             <Box sx={{ mx: "15%", my: 4 }}>
               <Box sx={{ mb: 3, display: "flex" }}>
                 <Box sx={{ flexGrow: 2 }}>
-                  <Typography variant="inherit">Task Name</Typography>
+                  <Typography variant="inherit">Task name</Typography>
 
                   <TextField
                     margin="dense"
@@ -125,18 +123,19 @@ const UpdateTaskInUser = () => {
                     type="text"
                     fullWidth
                     variant="outlined"
+                    color="secondary"
                     disabled
                     value={updatedTask.title || ""}
                   />
                 </Box>
                 <Box sx={{ ml: 2, pl: 2 }}>
-                  <Typography variant="inherit">Pin Task</Typography>
+                  <Typography variant="inherit">Pin task</Typography>
                   <FormControlLabel
                     control={
                       <Checkbox
                         id="pinned"
                         name="pinned"
-                        color="secondary"
+                        color="info"
                         checked={updatedTask.pinned || false}
                         onChange={handleChange}
                         sx={{
@@ -149,7 +148,7 @@ const UpdateTaskInUser = () => {
               </Box>
 
               <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">Task Description</Typography>
+                <Typography variant="inherit">Task description</Typography>
 
                 <TextField
                   margin="dense"
@@ -159,6 +158,7 @@ const UpdateTaskInUser = () => {
                   type="text"
                   fullWidth
                   variant="outlined"
+                  color="info"
                   value={updatedTask.description || ""}
                   onChange={handleChange}
                   error={!!errors.description}
@@ -177,6 +177,7 @@ const UpdateTaskInUser = () => {
                       id="priority"
                       name="priority"
                       defaultValue=""
+                      color="info"
                       value={updatedTask.priority || ""}
                       onChange={handleChange}
                       label="Priority"
@@ -197,6 +198,7 @@ const UpdateTaskInUser = () => {
                       id="category"
                       name="category"
                       defaultValue=""
+                      color="info"
                       value={updatedTask.category || ""}
                       onChange={handleChange}
                       // error={!!errors.category}
@@ -221,6 +223,7 @@ const UpdateTaskInUser = () => {
                       value={updatedTask.status || ""}
                       onChange={handleChange}
                       label="status"
+                      color="info"
                       fullWidth
                     >
                       <MenuItem disabled value="Pending">
@@ -235,7 +238,7 @@ const UpdateTaskInUser = () => {
                 </Box>
               </Box>
               <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">Task Due Date</Typography>
+                <Typography variant="inherit">Task due date</Typography>
 
                 <TextField
                   margin="dense"
@@ -244,6 +247,7 @@ const UpdateTaskInUser = () => {
                   type="date"
                   fullWidth
                   variant="outlined"
+                  color="info"
                   value={updatedTask.dueDate || ""}
                   onChange={handleChange}
                   error={!!errors.dueDate}

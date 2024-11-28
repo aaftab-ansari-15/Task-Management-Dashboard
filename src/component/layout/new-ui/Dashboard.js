@@ -42,10 +42,7 @@ const Dashboard = () => {
           </Item>
         </Grid>
         <Grid size={8} sx={{}}>
-          <Item
-            
-            sx={{ height: "44vh", borderRadius: 4, backgroundColor: "" }}
-          >
+          <Item sx={{ height: "44vh", borderRadius: 4, backgroundColor: "" }}>
             <TaskList />
           </Item>
         </Grid>
@@ -53,12 +50,8 @@ const Dashboard = () => {
       <Grid container sx={{ mt: 2 }} spacing={3}>
         <Grid size={4} sx={{}}>
           <Item
-            
             sx={{
-              color: "#3d3d41",
               borderRadius: 4,
-              color: "",
-              backgroundColor: "",
             }}
           >
             <Category />
@@ -66,28 +59,20 @@ const Dashboard = () => {
         </Grid>
         <Grid size={4} sx={{}}>
           <Item
-            
             sx={{
-              color: "#3d3d41",
               borderRadius: 4,
-              color: "",
-              backgroundColor: "",
             }}
           >
-            <TaskTrackTime />
+            <CompletedTasks />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
           <Item
-            
             sx={{
-              color: "#3d3d41",
               borderRadius: 4,
-              color: "",
-              backgroundColor: "",
             }}
           >
-            <CompletedTasks />
+            <TaskTrackTime />
           </Item>
         </Grid>
       </Grid>

@@ -18,18 +18,16 @@ const MyTasksListOldUI = () => {
   const [disableGenerateButton, setDisableGenerateButton] = useState(false);
 
   const handleGenerateTaskClick = () => {
-    console.log(defaultTaskData);
     const setUsersDefaultTasks = defaultTaskData.map((task) => ({
       ...task,
       userId: user.email,
     }));
-    console.log(setUsersDefaultTasks);
     dispatch(addGeneratedTasks(setUsersDefaultTasks));
     setDisableGenerateButton(true);
   };
   //Task Add
   const handleAddTaskClick = () => {
-    dispatch(addTaskForm(true));
+    dispatch(addTaskForm({ formState:true, data:{} }));
   };
   return (
    

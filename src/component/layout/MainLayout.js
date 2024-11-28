@@ -13,6 +13,7 @@ import { sideBarModal } from "../../redux/modalSlice";
 import MyTasksList from "./new-ui/MyTasksList";
 import { useTheme } from "@emotion/react";
 import "../../style/main-layout.css";
+import Forms from "../forms/Forms";
 const MainLayout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const MainLayout = () => {
   const handleSideBarClose = () => {
     dispatch(sideBarModal(false));
   };
-  const renderComponent = () => {
+  const renderInnerComponent = () => {
     switch (componentName) {
       case "Dashboard":
         return <Dashboard />;
@@ -55,9 +56,8 @@ const MainLayout = () => {
       >
         <SideBar />
       </Drawer>
-      {renderComponent()}
-      <UpdateTaskInUser />
-      <AddTaskInUser />
+      {renderInnerComponent()}
+      <Forms />
     </Box>
   );
 };

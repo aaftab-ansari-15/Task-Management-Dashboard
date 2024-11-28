@@ -12,7 +12,6 @@ const modalSlice = createSlice({
     isTaskInfoOpen: false,
     isCategoryForm: false,
     isTaskAlert: false,
-    newCategoryDate: "",
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
     addTaskInUserData: {},
@@ -51,13 +50,6 @@ const modalSlice = createSlice({
     },
     categoryForm: (state, action) => {
       state.isCategoryForm = action.payload;
-      if(action.payload){
-        state.newCategoryDate = new Date().toISOString().split('T')[0];
-      }
-      else{
-        state.newCategoryDate = ""
-      }
-      console.log(state.newCategoryDate)
     },
     changeComponent: (state, action) => {
       state.componentName = action.payload;

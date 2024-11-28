@@ -52,6 +52,7 @@ const SideBar = () => {
   };
   const handleLogOutClick = () => {
     dispatch(logOutUser(user.user));
+    dispatch(sideBarModal(false))
   };
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
@@ -101,108 +102,74 @@ const SideBar = () => {
           color: "text.primary",
         }}
       >
-        {user.user && user.user.isLogin ? (
-          <>
-            <List component="nav" aria-label="">
-              <ListItemButton
-                selected={selectedIndex === 2}
-                onClick={(event) => {
-                  handleListItemClick(event, 2);
-                  handleDashboardClick();
-                }}
-              >
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
+        <List component="nav" aria-label="">
+          <ListItemButton
+            selected={selectedIndex === 2}
+            onClick={(event) => {
+              handleListItemClick(event, 2);
+              handleDashboardClick();
+            }}
+          >
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
 
-              <ListItemButton
-                selected={selectedIndex === 3}
-                onClick={(event) => {
-                  handleListItemClick(event, 3);
-                  handleTaskListClick();
-                }}
-              >
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Task List" />
-              </ListItemButton>
-              <ListItemButton
-                selected={selectedIndex === 4}
-                onClick={(event) => {
-                  handleListItemClick(event, 4);
-                  handleMyTaskClick();
-                }}
-              >
-                <ListItemIcon>
-                  <TocIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Task (Old  UI)" />
-              </ListItemButton>
+          <ListItemButton
+            selected={selectedIndex === 3}
+            onClick={(event) => {
+              handleListItemClick(event, 3);
+              handleTaskListClick();
+            }}
+          >
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Task List" />
+          </ListItemButton>
+          <ListItemButton
+            selected={selectedIndex === 4}
+            onClick={(event) => {
+              handleListItemClick(event, 4);
+              handleMyTaskClick();
+            }}
+          >
+            <ListItemIcon>
+              <TocIcon />
+            </ListItemIcon>
+            <ListItemText primary="My Task (Old  UI)" />
+          </ListItemButton>
 
-              <ListItemButton
-                selected={selectedIndex === 5}
-                onClick={(event) => {
-                  handleListItemClick(event, 5);
-                  handleNotificationClick();
-                }}
-              >
-                <ListItemIcon>
-                  <NotificationImportantIcon />
-                </ListItemIcon>
-                <ListItemText primary="Notifications" />
-              </ListItemButton>
-            </List>
-            <Divider sx={{ my: 2 }} />
-            <List component="nav" aria-label="" sx={{ mt: 2 }}>
-              <ListItemButton
-                selected={selectedIndex === 6}
-                onClick={(event) => {
-                  handleListItemClick(event, 6);
-                  handleLogOutClick();
-                }}
-              >
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
+          <ListItemButton
+            selected={selectedIndex === 5}
+            onClick={(event) => {
+              handleListItemClick(event, 5);
+              handleNotificationClick();
+            }}
+          >
+            <ListItemIcon>
+              <NotificationImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Notifications" />
+          </ListItemButton>
+        </List>
+        <Divider sx={{ my: 2 }} />
+        <List component="nav" aria-label="" sx={{ mt: 2 }}>
+          <ListItemButton
+            selected={selectedIndex === 6}
+            onClick={(event) => {
+              handleListItemClick(event, 6);
+              handleLogOutClick();
+            }}
+          >
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
 
-                <ListItemText primary="Log Out" />
-              </ListItemButton>
-            </List>
-          </>
-        ) : (
-          <List component="nav" aria-label="" sx={{}}>
-            <ListItemButton
-              selected={selectedIndex === 0}
-              onClick={(event) => {
-                handleListItemClick(event, 0);
-                handleSignUpClick();
-              }}
-            >
-              <ListItemIcon>
-                <HowToRegIcon />
-              </ListItemIcon>
-
-              <ListItemText primary="Sign Up" />
-            </ListItemButton>
-
-            <ListItemButton
-              selected={selectedIndex === 1}
-              onClick={(event) => {
-                handleListItemClick(event, 1);
-                handleLoginClick();
-              }}
-            >
-              <ListItemIcon>
-                <LoginIcon />
-              </ListItemIcon>
-
-              <ListItemText primary="Login" />
-            </ListItemButton>
-          </List>
-        )}
+            <ListItemText primary="Log Out" />
+          </ListItemButton>
+        </List>
       </Box>
     </>
   );

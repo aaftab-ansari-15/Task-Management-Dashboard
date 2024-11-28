@@ -6,7 +6,7 @@ const NavigationPanel = () => {
   const dispatch = useDispatch();
   //Task Add
   const handleAddTaskClick = () => {
-    dispatch(addTaskForm(true));
+    dispatch(addTaskForm({ formState: true, data:{} }));
   };
   const handleNotificationClick = () => {
     dispatch(changeComponent("TaskNotification"));

@@ -17,7 +17,6 @@ const TaskAlert = () => {
       ...alertTask,
       status: alertTask.status !== "Completed" ? "Completed" : "Pending",
     };
-    console.log(updatedTask);
     dispatch(updateTasks(updatedTask));
     dispatch(taskAlert({ alertState: false, taskAlertData: {} }));
   };

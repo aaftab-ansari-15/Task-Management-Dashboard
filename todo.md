@@ -18,7 +18,12 @@ workon{
     //pop to ask for commpleting task // make new state variables, redux
     {maxheight changing respec to alert is open or not}
     //style scroll bar
-    work on filter at tasklist and tooltip for status and priority.
+    //tooltip for status and priority.
+    //Made Form Component for all forms in one.
+    //addcategory added
+    work on filter at tasklist
+    complete Complted task section
+    work on Task Time Tracker
 }
 
 dashbaord: {

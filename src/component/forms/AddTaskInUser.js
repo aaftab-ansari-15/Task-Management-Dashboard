@@ -31,10 +31,10 @@ const defaultTask = {
 
 const AddTaskInUser = () => {
   const isAddTaskForm = useSelector((state) => state.modal.isAddTaskForm);
-  const data = useSelector((state) => state.modal.addTaskInUserData)
+  const data = useSelector((state) => state.modal.addTaskInUserData);
   const newTask1 = {
     ...defaultTask,
-    ...data
+    ...data,
   };
   const [newTask, setNewTask] = useState(newTask1);
   const [errors, setErrors] = useState(newTask1);
@@ -45,7 +45,6 @@ const AddTaskInUser = () => {
   const isFormValid =
     !errors.title &&
     !errors.description &&
-    !errors.dueDate &&
     !errors.category &&
     !errors.priority &&
     newTask.title &&
@@ -98,15 +97,14 @@ const AddTaskInUser = () => {
       console.log("Task added:", updatedTask);
     }
     setNewTask(defaultTask);
-    dispatch(addTaskForm(false));
+    dispatch(addTaskForm({ formState: false, data: {} }));
   };
   const handleClose = () => {
-    dispatch(addTaskForm(false));
+    dispatch(addTaskForm({ formState: false, data: {} }));
   };
   useLayoutEffect(() => {
-    setNewTask(newTask1)
-  
-  }, [data])
+    setNewTask(newTask1);
+  }, [data]);
   return (
     <>
       <Dialog
@@ -132,13 +130,13 @@ const AddTaskInUser = () => {
                   flexGrow: 2,
                 }}
               >
-                <Typography variant="h5">Add New Task</Typography>
+                <Typography variant="h5">Add new task</Typography>
               </Box>
             </Box>
             <Divider />
             <Box sx={{ mx: "15%", my: 4 }}>
               <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">New Task Name</Typography>
+                <Typography variant="inherit">New task name</Typography>
 
                 <TextField
                   margin="dense"
@@ -148,6 +146,7 @@ const AddTaskInUser = () => {
                   type="text"
                   fullWidth
                   variant="outlined"
+                  color="info"
                   value={newTask.title}
                   onChange={handleChange}
                   error={!!errors.title}
@@ -156,7 +155,7 @@ const AddTaskInUser = () => {
               </Box>
 
               <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">Task Description</Typography>
+                <Typography variant="inherit">Task description</Typography>
 
                 <TextField
                   margin="dense"
@@ -166,6 +165,7 @@ const AddTaskInUser = () => {
                   type="text"
                   fullWidth
                   variant="outlined"
+                  color="info"
                   value={newTask.description}
                   onChange={handleChange}
                   error={!!errors.description}
@@ -176,7 +176,7 @@ const AddTaskInUser = () => {
                 sx={{ display: "flex", justifyContent: "space-around", mb: 3 }}
               >
                 <Box sx={{ width: "-webkit-fill-available", mr: 1 }}>
-                  <Typography variant="inherit">Set Priority</Typography>
+                  <Typography variant="inherit">Set priority</Typography>
 
                   <FormControl fullWidth margin="dense">
                     <InputLabel id="priority-label">Priority</InputLabel>
@@ -184,6 +184,7 @@ const AddTaskInUser = () => {
                       labelId="priority-label"
                       id="priority"
                       name="priority"
+                      color="info"
                       value={newTask.priority}
                       onChange={handleChange}
                       // error={!!errors.priority}
@@ -201,13 +202,14 @@ const AddTaskInUser = () => {
                 </Box>
 
                 <Box sx={{ width: "-webkit-fill-available", ml: 1 }}>
-                  <Typography variant="inherit">Set Category</Typography>
+                  <Typography variant="inherit">Set category</Typography>
                   <FormControl fullWidth margin="dense">
                     <InputLabel id="category-label">Category</InputLabel>
                     <Select
                       labelId="category-label"
                       id="category"
                       name="category"
+                      color="info"
                       value={newTask.category}
                       onChange={handleChange}
                       // error={!!errors.category}
@@ -225,7 +227,7 @@ const AddTaskInUser = () => {
                 </Box>
               </Box>
               <Box sx={{ mb: 3 }}>
-                <Typography variant="inherit">Task Due Date</Typography>
+                <Typography variant="inherit">Task due date</Typography>
 
                 <TextField
                   margin="dense"
@@ -233,11 +235,10 @@ const AddTaskInUser = () => {
                   name="dueDate"
                   type="date"
                   fullWidth
+                  color="info"
                   variant="outlined"
                   value={newTask.dueDate}
                   onChange={handleChange}
-                  error={!!errors.dueDate}
-                  helperText={errors.dueDate}
                 />
               </Box>
 
