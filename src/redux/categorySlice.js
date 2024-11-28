@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialData = [
-  { id:"asd78adx2", name: "Work", icon: "WorkIcon", date: "27/11/2024" },
-  { id:"asD342fs3", name: "Personal", icon: "PersonIcon", date: "29/11/2024" },
-  { id:"ja612a2fa", name: "Study", icon: "SchoolIcon", date: "18/11/2024" },
+  { id:"asd78adx2", name: "Work", icon: "Work", date: "27/11/2024" },
+  { id:"asD342fs3", name: "Personal", icon: "Personal", date: "29/11/2024" },
+  { id:"ja612a2fa", name: "Study", icon: "Study", date: "18/11/2024" },
 ];
 const categorySlice = createSlice({
   name: "category",

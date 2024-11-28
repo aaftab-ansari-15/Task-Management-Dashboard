@@ -1,26 +1,28 @@
-import React from 'react'
+import React from "react";
 import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { Avatar } from '@mui/material';
+import { Avatar, Tooltip, Typography } from "@mui/material";
 
 const renderIcon = (icon) => {
-    switch (icon) {
-      case "WorkIcon":
-        return <WorkIcon />;
-      case "SchoolIcon":
-        return <SchoolIcon />;
-      case "PersonIcon":
-        return <PersonIcon />;
-      default:
-        return <AddCircleOutlineIcon />;
-    }
-  };
-const CategoryIcons = ({icon}) => {
+  switch (icon) {
+    case "Work":
+      return <WorkIcon />;
+    case "Study":
+      return <SchoolIcon />;
+    case "Personal":
+      return <PersonIcon />;
+    default:
+      return <AddCircleOutlineIcon />;
+  }
+};
+const CategoryIcons = ({ icon }) => {
   return (
-    <Avatar>{renderIcon(icon)}</Avatar>
-  )
-}
+    <Tooltip title={<Typography variant="body1">category</Typography>}>
+      <Avatar>{renderIcon(icon)}</Avatar>
+    </Tooltip>
+  );
+};
 
-export default CategoryIcons
+export default CategoryIcons;

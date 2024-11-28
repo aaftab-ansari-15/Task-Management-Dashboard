@@ -110,6 +110,7 @@ const LoginDialog = () => {
         type="email"
         fullWidth
         variant="outlined"
+        color="info"
         value={loginData.email}
         onChange={handleChange}
         error={!!errors.email}
@@ -126,6 +127,7 @@ const LoginDialog = () => {
         type="password"
         fullWidth
         variant="outlined"
+        color="info"
         value={loginData.password}
         onChange={handleChange}
         error={!!errors.password}

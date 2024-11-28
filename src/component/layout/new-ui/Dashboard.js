@@ -52,6 +52,7 @@ const Dashboard = () => {
           <Item
             sx={{
               borderRadius: 4,
+              height:"310px"
             }}
           >
             <Category />
@@ -61,6 +62,8 @@ const Dashboard = () => {
           <Item
             sx={{
               borderRadius: 4,
+              height:"310px"
+
             }}
           >
             <CompletedTasks />
@@ -70,6 +73,8 @@ const Dashboard = () => {
           <Item
             sx={{
               borderRadius: 4,
+              height:"310px"
+
             }}
           >
             <TaskTrackTime />

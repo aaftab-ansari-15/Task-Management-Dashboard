@@ -14,6 +14,8 @@ import MyTasksList from "./new-ui/MyTasksList";
 import { useTheme } from "@emotion/react";
 import "../../style/main-layout.css";
 import Forms from "../forms/Forms";
+import ErrorPage from "./new-ui/ErrorPage";
+import AboutPage from "./new-ui/AboutPage";
 const MainLayout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -33,8 +35,10 @@ const MainLayout = () => {
         return <MyTasksList />;
       case "TaskNotification":
         return <TaskNotification />;
+      case "About":
+        return <AboutPage />;
       default:
-        return null;
+        return <ErrorPage />;
     }
   };
 
@@ -49,8 +53,8 @@ const MainLayout = () => {
             width: 310,
             top: 0,
             bottom: 0,
-            borderRadius:2,
-            bgcolor: theme.palette.background.default
+            borderRadius: 2,
+            bgcolor: theme.palette.background.default,
           },
         }}
       >

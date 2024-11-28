@@ -112,6 +112,7 @@ const SignUpDialog = () => {
         label="Name"
         type="text"
         variant="outlined"
+        color="info"
         fullWidth
         value={SignUpData.name}
         onChange={handleChange}
@@ -129,6 +130,7 @@ const SignUpDialog = () => {
         type="email"
         fullWidth
         variant="outlined"
+        color="info"
         value={SignUpData.email}
         onChange={handleChange}
         error={!!errors.email}
@@ -145,6 +147,7 @@ const SignUpDialog = () => {
         type="password"
         fullWidth
         variant="outlined"
+        color="info"
         value={SignUpData.password}
         onChange={handleChange}
         error={!!errors.password}

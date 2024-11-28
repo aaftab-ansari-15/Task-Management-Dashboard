@@ -20,6 +20,7 @@ import { useTheme } from "@emotion/react";
 import TaskAlert from "../../../features/TaskAlert";
 import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
 import "../../../../style/dashboards.css";
+import CategoryIcons from "../../../features/CategoryIcons";
 const TaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -79,7 +80,7 @@ const TaskList = () => {
       <Box
         // className="style-scrollbar"
         sx={{
-          mt: 3,
+          mt: 4,
           overflowY: "auto",
           maxHeight: taskAlertState ? "150px" : "200px",
           "&::-webkit-scrollbar": {
@@ -99,78 +100,76 @@ const TaskList = () => {
           {getTasksListData.length > 0 ? (
             getTasksListData.map((task, index) => {
               return (
-                <Box
-                  key={task.taskId}
-                  onClick={() => handleTaskClick(task)}
-                  sx={{
-                    cursor: "pointer",
-                    ":hover": {
-                      backgroundColor: theme.palette.primary.light,
-                      color: "black",
-                    },
-                  }}
-                  className="dashboard-tasklist-task"
-                >
-                  <Grid container spacing={2} sx={{ py: 2 }}>
-                    <Grid size={2}>
-                      {task.status === "Completed" ? (
-                        <CheckCircleOutlineIcon
-                          sx={{
-                            color: theme.palette.primary.dark,
-                          }}
-                        />
-                      ) : (
-                        <RadioButtonUncheckedIcon
-                          sx={{
-                            color: theme.palette.primary.dark,
-                          }}
-                        />
-                      )}
-                    </Grid>
-                    <Grid size={4}>
-                      <Tooltip
-                        title={
-                          <Typography variant="body1">{task.title}</Typography>
-                        }
-                      >
-                        <Typography
-                          ml={2}
-                          textAlign={"start"}
-                          variant="body1"
-                          sx={{
-                            textDecoration:
-                              task.status === "Completed"
-                                ? "line-through"
-                                : "none",
-                            textOverflow: "ellipsis", // Shows ellipsis by default
-                            whiteSpace: "nowrap", // Prevents text wrapping by default
-                            overflow: "hidden", // Hides overflowing text
-                          }}
+                <>
+                  <Box
+                    key={task.taskId}
+                    onClick={() => handleTaskClick(task)}
+                    sx={{
+                      py: 1,
+                      cursor: "pointer",
+                      borderRadius: 4,
+                      ":hover": {
+                        backgroundColor: theme.palette.primary.light,
+                        color: "black",
+                      },
+                    }}
+                    className="dashboard-tasklist-task"
+                  >
+                    <Grid container spacing={2} sx={{  }}>
+                      <Grid size={2}>
+                        {task.status === "Completed" ? (
+                          <CheckCircleOutlineIcon
+                            sx={{
+                              color: theme.palette.primary.dark,
+                            }}
+                          />
+                        ) : (
+                          <RadioButtonUncheckedIcon
+                            sx={{
+                              color: theme.palette.primary.dark,
+                            }}
+                          />
+                        )}
+                      </Grid>
+                      <Grid size={4}>
+                        <Tooltip
+                          title={
+                            <Typography variant="body1">
+                              {task.title}
+                            </Typography>
+                          }
                         >
-                          {task.title}
-                        </Typography>
-                      </Tooltip>
+                          <Typography
+                            ml={2}
+                            textAlign={"start"}
+                            variant="body1"
+                            sx={{
+                              textDecoration:
+                                task.status === "Completed"
+                                  ? "line-through"
+                                  : "none",
+                              textOverflow: "ellipsis", // Shows ellipsis by default
+                              whiteSpace: "nowrap", // Prevents text wrapping by default
+                              overflow: "hidden", // Hides overflowing text
+                            }}
+                          >
+                            {task.title}
+                          </Typography>
+                        </Tooltip>
+                      </Grid>
+                      <Grid size={2}>
+                        <CategoryIcons icon={task.category} />
+                      </Grid>
+                      <Grid size={2}>
+                        <TaskPriorityIcon priority={task.priority} />
+                      </Grid>
+                      <Grid size={2}>
+                        <TaskStatusIcon status={task.status} />
+                      </Grid>
                     </Grid>
-                    <Grid size={2}>
-                      <Tooltip
-                        title={
-                          <Typography variant="body1">category</Typography>
-                        }
-                      >
-                        <Typography ml={2} textAlign={"start"} variant="body1">
-                          {task.category}
-                        </Typography>
-                      </Tooltip>
-                    </Grid>
-                    <Grid size={2}>
-                      <TaskPriorityIcon priority={task.priority} />
-                    </Grid>
-                    <Grid size={2}>
-                      <TaskStatusIcon status={task.status} />
-                    </Grid>
-                  </Grid>
+                  </Box>
                   {getTasksListData.length - 1 > index ? <Divider /> : <></>}
-                </Box>
+                </>
               );
             })
           ) : (

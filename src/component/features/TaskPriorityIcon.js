@@ -1,17 +1,18 @@
 import React from "react";
 import LowPriorityIcon from "@mui/icons-material/LowPriority";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import ReportIcon from '@mui/icons-material/Report';
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { forwardRef } from "react";
-import { Tooltip, Typography } from "@mui/material";
+import { colors, Tooltip, Typography } from "@mui/material";
 const renderPriorityIcon = (priority) => {
   switch (priority) {
     case "Low":
       return <LowPriorityIcon sx={{ color: "#00bf00" }} />;
     case "Medium":
-      return <DragHandleIcon sx={{ color: "#ff8400" }} />;
+      return <PriorityHighIcon sx={{ color: "#ff8400" }} />
     case "High":
-      return <PriorityHighIcon sx={{ color: "#f10000" }} />;
+      return <ReportIcon sx={{color:"#f10000"}} />;
     default:
       return <span>!</span>;
   }

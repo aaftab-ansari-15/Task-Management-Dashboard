@@ -14,17 +14,17 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LoginIcon from "@mui/icons-material/Login";
 import TocIcon from "@mui/icons-material/Toc";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import { useTheme } from "@emotion/react";
+import InfoIcon from '@mui/icons-material/Info';
 import BlurOnIcon from "@mui/icons-material/BlurOn";
+import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 const SideBar = () => {
@@ -42,20 +42,9 @@ const SideBar = () => {
   const toggleDrawer = () => {
     dispatch(sideBarModal(false));
   };
-  const handleSignUpClick = () => {
-    if (!isLoginDialogOpen) {
-    }
-  };
-  const handleLoginClick = () => {
-    if (!isSignUpDialogOpen) {
-    }
-  };
   const handleLogOutClick = () => {
     dispatch(logOutUser(user.user));
-    dispatch(sideBarModal(false))
-  };
-  const handleDarkModeClick = () => {
-    dispatch(changeDarkMode());
+    dispatch(sideBarModal(false));
   };
   const handleMyTaskClick = () => {
     dispatch(changeComponent("MyTasksListOldUi"));
@@ -73,6 +62,10 @@ const SideBar = () => {
     dispatch(changeComponent("MyTasksList"));
     dispatch(sideBarModal(false));
   };
+  const handleAboutClick = () => {
+    dispatch(changeComponent("About"));
+    dispatch(sideBarModal(false));
+  }
 
   return (
     <>
@@ -88,8 +81,8 @@ const SideBar = () => {
       >
         <Box sx={{ ml: 3, mr: 1, display: "flex", alignItems: "center" }}>
           <MenuOpenIcon />
-          <Typography variant="h5" sx={{ ml: 2, fontWeight: "bold" }}>
-            T3
+          <Typography variant="h6" sx={{ ml: 2, fontWeight: "bold" }}>
+            Navigation
           </Typography>
         </Box>
       </Box>
@@ -102,7 +95,7 @@ const SideBar = () => {
           color: "text.primary",
         }}
       >
-        <List component="nav" aria-label="">
+        <List component="sidebar-header" aria-label="">
           <ListItemButton
             selected={selectedIndex === 2}
             onClick={(event) => {
@@ -155,11 +148,23 @@ const SideBar = () => {
           </ListItemButton>
         </List>
         <Divider sx={{ my: 2 }} />
-        <List component="nav" aria-label="" sx={{ mt: 2 }}>
-          <ListItemButton
+        <List component="sidebar-footer" aria-label="" sx={{ mt: 2 }}>
+        <ListItemButton
             selected={selectedIndex === 6}
             onClick={(event) => {
               handleListItemClick(event, 6);
+              handleAboutClick();
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="About" />
+          </ListItemButton>
+          <ListItemButton
+            selected={selectedIndex === 7}
+            onClick={(event) => {
+              handleListItemClick(event, 7);
               handleLogOutClick();
             }}
           >

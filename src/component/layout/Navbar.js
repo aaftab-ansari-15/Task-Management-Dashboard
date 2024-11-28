@@ -64,12 +64,12 @@ export default function Navbar() {
               // color="#505050"
               sx={{ flexGrow: 1 }}
             >
-              Timely Task Tracker
+              Compito
             </Typography>
 
             <Box mr={1}>
               <Tooltip
-                title={<Typography variant="h6">{user.user.name}</Typography>}
+                title={<Typography variant="body1">{user.user.name}</Typography>}
               >
                 <IconButton sx={{ color: theme.palette.text.primary }}>
                   <PersonIcon fontSize="large" />

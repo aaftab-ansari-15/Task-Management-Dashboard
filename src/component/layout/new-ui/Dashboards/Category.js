@@ -49,7 +49,7 @@ const Category = () => {
       <Box
         sx={{
           overflow: "auto",
-          maxHeight: "250px",
+          maxHeight: "240px",
           "&::-webkit-scrollbar": {
             width: "0.5rem",
           },
