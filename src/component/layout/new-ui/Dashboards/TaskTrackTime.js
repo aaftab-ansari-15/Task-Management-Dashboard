@@ -5,7 +5,7 @@ const TaskTrackTime = () => {
   return (
     <>
       <Typography className="bottomGridHeading" variant="h6">
-        Track Task Time
+        Track task time
       </Typography>
       <Divider sx={{ my: 2 }} />
       <Box sx={{ overflowY: "auto", maxHeight: "240px" }}></Box>

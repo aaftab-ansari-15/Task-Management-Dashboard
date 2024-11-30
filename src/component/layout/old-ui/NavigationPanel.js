@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addTaskForm, changeComponent } from "../../../redux/modalSlice";
+import { DASHBOARD, MY_TASKS, NOTIFICATIONS } from "../../../constants/componentsName.";
 const NavigationPanel = () => {
   const dispatch = useDispatch();
   //Task Add
@@ -9,13 +10,13 @@ const NavigationPanel = () => {
     dispatch(addTaskForm({ formState: true, data:{} }));
   };
   const handleNotificationClick = () => {
-    dispatch(changeComponent("TaskNotification"));
+    dispatch(changeComponent(NOTIFICATIONS));
   };
   const handleDashboardClick = () => {
-    dispatch(changeComponent("Dashboard"));
+    dispatch(changeComponent(DASHBOARD));
   };
   const handleTaskListClick = () => {
-    dispatch(changeComponent("MyTasksList"));
+    dispatch(changeComponent(MY_TASKS));
   };
   return (
     <Box flex={{ xs: "100%", sm: "40%" }}>

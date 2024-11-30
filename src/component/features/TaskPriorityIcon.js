@@ -8,11 +8,11 @@ import { colors, Tooltip, Typography } from "@mui/material";
 const renderPriorityIcon = (priority) => {
   switch (priority) {
     case "Low":
-      return <LowPriorityIcon sx={{ color: "#00bf00" }} />;
+      return <LowPriorityIcon sx={{ color: "#009900" }} />;
     case "Medium":
-      return <PriorityHighIcon sx={{ color: "#ff8400" }} />
+      return <PriorityHighIcon sx={{ color: "#004bad" }} />
     case "High":
-      return <ReportIcon sx={{color:"#f10000"}} />;
+      return <ReportIcon sx={{color:"#c50000"}} />;
     default:
       return <span>!</span>;
   }

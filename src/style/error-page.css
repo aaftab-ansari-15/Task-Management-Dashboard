@@ -1,0 +1,38 @@
+.error-container {
+    text-align: center;
+    padding: 2rem;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+  
+  .error-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e63946;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+    margin: 1rem 0;
+    color: #555;
+  }
+  
+  .error-button {
+    background-color: #008f25;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .error-button:hover {
+    background-color: #005f19;
+  }
+  

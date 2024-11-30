@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Divider,
+  Grid2,
   IconButton,
   List,
   ListItem,
@@ -28,23 +29,20 @@ const Category = () => {
   };
   return (
     <>
-      <Box display={"flex"} justifyContent={"space-between"} px={2}>
-        <Box>
+      <Grid2 container sx={{ alignItems: "center" }}>
+        <Grid2 size={10}>
           <Typography className="bottomGridHeading" variant="h6">
             Caetegory
           </Typography>
-        </Box>
-        <Box>
+        </Grid2>
+        <Grid2 size={2}>
           <Tooltip title="Add new category">
-            <IconButton
-              sx={{ bgcolor: theme.palette.primary.main, borderRadius: 4 }}
-              onClick={handleAddCategory}
-            >
+            <IconButton sx={{ m:0, p:0 }} onClick={handleAddCategory}>
               <AddIcon />
             </IconButton>
           </Tooltip>
-        </Box>
-      </Box>
+        </Grid2>
+      </Grid2>
       <Divider sx={{ mt: 2 }} />
       <Box
         sx={{
@@ -54,33 +52,36 @@ const Category = () => {
             width: "0.5rem",
           },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.scrollbar.thumb,
             borderRadius: "10px",
           },
           "&::-webkit-scrollbar-track": {
-            backgroundColor: theme.palette.text.primary,
+            backgroundColor: theme.palette.scrollbar.track,
             borderRadius: "10px",
+            my:3
           },
         }}
       >
-        <List sx={{ width: "100%" }}>
+        <List sx={{ width: "100%", px: 2, py: 0 }}>
           {getCategoryData.length > 0 &&
             getCategoryData.map((data, index) => {
               return (
-                <Box key={data.id}>
-                  <ListItem className="ListItemCategory">
-                    <Box className="showStyleOnList" />
-                    <ListItemAvatar sx={{ ml: 2 }}>
-                      <CategoryIcons icon={data.icon} />
-                    </ListItemAvatar>
-                    <ListItemText primary={data.name} secondary={data.date} />
-                  </ListItem>
+                <React.Fragment key={data.id}>
+                  <Box sx={{ py: 1 }}>
+                    <ListItem className="ListItemCategory" sx={{ p: 0 }}>
+                      <Box className="showStyleOnList" />
+                      <ListItemAvatar sx={{ ml: 2 }}>
+                        <CategoryIcons icon={data.icon} />
+                      </ListItemAvatar>
+                      <ListItemText primary={data.name} secondary={data.date} />
+                    </ListItem>
+                  </Box>
                   {getCategoryData.length - 1 > index ? (
-                    <Divider sx={{}} />
+                    <Divider />
                   ) : (
                     <></>
                   )}
-                </Box>
+                </React.Fragment>
               );
             })}
         </List>

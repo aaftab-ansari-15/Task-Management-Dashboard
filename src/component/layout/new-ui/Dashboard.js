@@ -14,35 +14,32 @@ import TaskList from "./Dashboards/TaskList";
 import "./../../../style/dashboards.css";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "",
+  // background: "linear-gradient(135deg, rgba(251, 248, 147, 0.6), rgba(255, 255, 255, 0.4))",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "",
-    color: "",
-  }),
+  backdropFilter: "blur(10px)", 
+  WebkitBackdropFilter: "blur(10px)", 
+  borderRadius: 2,
+  border: `1px solid ${theme.palette.divider}`, 
 }));
 const Dashboard = () => {
   return (
     <Box
       sx={{
         px: "100px",
-        pt: 4,
-        borderRadius: 2,
-        backgroundColor: "",
+        pt: 3,
       }}
     >
       <Grid container spacing={3}>
         <Grid size={4} sx={{}}>
-          <Item sx={{ height: "44vh", borderRadius: 4 }}>
+          <Item sx={{ height: "44vh",borderRadius: 2, }}>
             <BasicDateCalendar />
             {/* <CalendarComp /> */}
           </Item>
         </Grid>
         <Grid size={8} sx={{}}>
-          <Item sx={{ height: "44vh", borderRadius: 4, backgroundColor: "" }}>
+          <Item sx={{ height: "44vh", borderRadius: 2, }}>
             <TaskList />
           </Item>
         </Grid>
@@ -51,30 +48,23 @@ const Dashboard = () => {
         <Grid size={4} sx={{}}>
           <Item
             sx={{
-              borderRadius: 4,
-              height:"310px"
+              height: "310px",
+              borderRadius: 2,
             }}
           >
             <Category />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item
-            sx={{
-              borderRadius: 4,
-              height:"310px"
-
-            }}
-          >
+          <Item sx={{ height: "310px", borderRadius: 2, }}>
             <CompletedTasks />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item
+          <Item 
             sx={{
-              borderRadius: 4,
-              height:"310px"
-
+              height: "310px",
+              borderRadius: 2,
             }}
           >
             <TaskTrackTime />

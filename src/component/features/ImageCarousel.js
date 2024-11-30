@@ -4,15 +4,27 @@ import { Box } from "@mui/material";
 import image1 from "../../assets/image1.webp";
 // import image2 from "../../assets/image2.jpg";
 const ImageCarousel = () => {
-  return (<>
-    <img src={image1} alt="" style={{ height: "100%", width: "100%" }} />
-    {/* <img src={image2} alt="" style={{ height: "100%", width: "100%" }} /> */}
-    </>// <Slider
-    //   style={{
-    //     overflow: "hidden",
-    //   }}
-    // >
-    // </Slider>
+  return (
+    <Box
+      sx={{
+        height: "100vh", // Full viewport height
+        width: "100%",
+        overflow: "hidden", // Ensures no scrollbars
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src={image1}
+        alt="Carousel Slide"
+        style={{
+          width: "100%",
+          height: "100%",
+          // objectFit: "cover", 
+        }}
+      />
+    </Box>
   );
 };
 

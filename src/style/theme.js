@@ -23,6 +23,10 @@ const lightTheme = createTheme({
         primary: '#2a2a2a', // '#000'
         // secondary: '#2a2a2a',
       },
+      scrollbar:{
+        thumb: '#f8fa93',
+        track: '#7b7b7b',
+      }
     },
   });
   const darkTheme = createTheme({
@@ -50,6 +54,10 @@ const lightTheme = createTheme({
         primary: '#FFF', //'#000'
         // secondary: '#2a2a2a',
       },
+      scrollbar:{
+        thumb: '#555555',
+        track: '#e9e9e9',
+      }
     },
   });
   

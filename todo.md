@@ -21,9 +21,26 @@ workon{
     //tooltip for status and priority.
     //Made Form Component for all forms in one.
     //addcategory added
+    //complete Complted task section
+    //drawer inside sidebar
+    //priority blue, red
+    //text category
+    //hover radius
+    //checkobox
+    //changing date clear alert
+    //disable my task, when aler opens
+    //made better data.json
+    //click on compito dashboaard
+    //log out button beside change theme
+    //change name at sidebar.
+    //change name at navbar wrt component name
+    //calender selected not bbold
+    //scrllbar light color
     work on filter at tasklist
-    complete Complted task section
+    click on peofile open profile component
+    click on profile, user data, change: name, password.
     work on Task Time Tracker
+
 }
 
 dashbaord: {

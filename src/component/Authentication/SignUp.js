@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/allUserSlice";
 import { loginUser } from "../../redux/userSlice";
 import { changeComponent, setAuthComponent } from "../../redux/modalSlice";
+import { DASHBOARD, TASKS_LIST_OLD_UI } from "../../constants/componentsName.";
 
 const initialData = {
   userId: "",
@@ -81,7 +82,7 @@ const SignUpDialog = () => {
           const updatedSignUpData = { ...SignUpData, isLogin: true };
           dispatch(addUser(updatedSignUpData));
           dispatch(loginUser(updatedSignUpData));
-          dispatch(changeComponent("MyTasksListOldUi"));
+          dispatch(changeComponent(DASHBOARD));
         }
       }
     } else {

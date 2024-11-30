@@ -12,15 +12,19 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setTaskForTaskList } from "../../../../redux/useFullSlice";
 import TaskStatusIcon from "../../../features/TaskStatusIcon";
-import { addTaskForm, taskAlert } from "../../../../redux/modalSlice";
+import {
+  addTaskForm,
+  taskAlert,
+  updateTaskFrom,
+} from "../../../../redux/modalSlice";
 import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { useTheme } from "@emotion/react";
 import TaskAlert from "../../../features/TaskAlert";
 import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
 import "../../../../style/dashboards.css";
-import CategoryIcons from "../../../features/CategoryIcons";
 const TaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -46,6 +50,9 @@ const TaskList = () => {
       addTaskForm({ formState: true, data: { dueDate: getPickUpDate } })
     );
   };
+  const handleTaskUpdateClick = (task) => {
+    dispatch(updateTaskFrom({ arg1: true, arg2: task }));
+  };
   return (
     <>
       <TaskAlert />
@@ -57,7 +64,7 @@ const TaskList = () => {
         justifyContent={"space-between"}
       >
         <Typography className="bottomGridHeading1" variant="h6">
-          My Task ({getTasksListData.length})
+          My tasks ({getTasksListData.length})
         </Typography>
         <Box sx={{ alignItems: "center" }}>
           <Tooltip
@@ -67,11 +74,8 @@ const TaskList = () => {
               </Typography>
             }
           >
-            <IconButton
-              sx={{ bgcolor: theme.palette.primary.main, borderRadius: 4 }}
-              onClick={handleAddClick}
-            >
-              <AddIcon sx={{ color: "black" }} />
+            <IconButton sx={{ borderRadius: 4 }} onClick={handleAddClick}>
+              <AddIcon sx={{}} />
             </IconButton>
           </Tooltip>
         </Box>
@@ -87,51 +91,66 @@ const TaskList = () => {
             width: "0.5rem",
           },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.scrollbar.thumb,
             borderRadius: "10px",
           },
           "&::-webkit-scrollbar-track": {
-            backgroundColor: theme.palette.text.primary,
+            backgroundColor: theme.palette.scrollbar.track,
             borderRadius: "10px",
+            my:3
           },
         }}
       >
-        <Box sx={{ px: 3 }}>
+        <Box
+          sx={{
+            px: 3,
+            pointerEvents: taskAlertState ? "none" : "auto",
+            backgroundColor: taskAlertState
+              ? "rgba(0, 0, 0, 0.1)"
+              : "transparent",
+            opacity: taskAlertState ? 0.6 : 1,
+          }}
+        >
           {getTasksListData.length > 0 ? (
             getTasksListData.map((task, index) => {
               return (
-                <>
-                  <Box
-                    key={task.taskId}
-                    onClick={() => handleTaskClick(task)}
+                <React.Fragment key={task.taskId}>
+                  <Grid
+                    container
+                    alignItems={"center"}
                     sx={{
-                      py: 1,
+                      py: 2,
                       cursor: "pointer",
-                      borderRadius: 4,
                       ":hover": {
                         backgroundColor: theme.palette.primary.light,
                         color: "black",
                       },
                     }}
-                    className="dashboard-tasklist-task"
                   >
-                    <Grid container spacing={2} sx={{  }}>
-                      <Grid size={2}>
+                    <Grid
+                      size={10}
+                      container
+                      onClick={() => handleTaskClick(task)}
+                      className="dashboard-tasklist-task"
+                    >
+                      <Grid size={1}>
                         {task.status === "Completed" ? (
                           <CheckCircleOutlineIcon
                             sx={{
-                              color: theme.palette.primary.dark,
+                              borderRadius: 4,
+                              bgcolor: theme.palette.primary.main,
                             }}
                           />
                         ) : (
                           <RadioButtonUncheckedIcon
                             sx={{
-                              color: theme.palette.primary.dark,
+                              borderRadius: 4,
+                              bgcolor: theme.palette.primary.main,
                             }}
                           />
                         )}
                       </Grid>
-                      <Grid size={4}>
+                      <Grid size={6}>
                         <Tooltip
                           title={
                             <Typography variant="body1">
@@ -141,6 +160,7 @@ const TaskList = () => {
                         >
                           <Typography
                             ml={2}
+                            maxWidth={"210px"}
                             textAlign={"start"}
                             variant="body1"
                             sx={{
@@ -157,19 +177,35 @@ const TaskList = () => {
                           </Typography>
                         </Tooltip>
                       </Grid>
-                      <Grid size={2}>
-                        <CategoryIcons icon={task.category} />
-                      </Grid>
-                      <Grid size={2}>
-                        <TaskPriorityIcon priority={task.priority} />
-                      </Grid>
-                      <Grid size={2}>
-                        <TaskStatusIcon status={task.status} />
+                      <Grid container size={5}>
+                        <Grid size={4}>
+                          <Typography textAlign={"start"} variant="body1">
+                            {task.category}
+                          </Typography>
+                        </Grid>
+                        <Grid size={4}>
+                          <TaskPriorityIcon priority={task.priority} />
+                        </Grid>
+                        <Grid size={4}>
+                          <TaskStatusIcon status={task.status} />
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Box>
+                    <Grid size={2}>
+                      <Tooltip
+                        title={<Typography variant="body1">edit</Typography>}
+                      >
+                        <IconButton
+                          sx={{ p: 0 }}
+                          onClick={() => handleTaskUpdateClick(task)}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Grid>
+                  </Grid>
                   {getTasksListData.length - 1 > index ? <Divider /> : <></>}
-                </>
+                </React.Fragment>
               );
             })
           ) : (

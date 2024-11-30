@@ -1,5 +1,6 @@
 // src/redux/modalSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import { DASHBOARD } from "../constants/componentsName.";
 
 const modalSlice = createSlice({
   name: "modal",
@@ -16,7 +17,7 @@ const modalSlice = createSlice({
     updateTaskInUserData1: {},
     addTaskInUserData: {},
     taskAlertData:{},
-    componentName: "Dashboard",
+    componentName: DASHBOARD,
   },
   reducers: {
     changeDarkMode: (state) => {

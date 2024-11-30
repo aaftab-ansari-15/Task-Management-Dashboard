@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeDarkMode, sideBarModal } from "../../redux/modalSlice";
+import {
+  changeComponent,
+  changeDarkMode,
+  sideBarModal,
+} from "../../redux/modalSlice";
 import { logOutUser } from "../../redux/userSlice";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,32 +12,24 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 import MenuIcon from "@mui/icons-material/Menu";
 import ContrastIcon from "@mui/icons-material/Contrast";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import LinearScaleIcon from '@mui/icons-material/LinearScale';
+import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Tooltip } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import { NOTIFICATIONS } from "../../constants/componentsName.";
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
-  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
+  const componentName = useSelector((state) => state.modal.componentName);
   const user = useSelector((state) => state.user);
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
-  };
-
-  const handleSignUpClick = () => {
-    if (!isLoginDialogOpen) {
-    }
-  };
-  const handleLoginClick = () => {
-    if (!isSignUpDialogOpen) {
-    }
   };
   const handleLogOutClick = () => {
     dispatch(logOutUser(user.user));
@@ -41,7 +37,10 @@ export default function Navbar() {
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
   };
-
+  const handleNotificationClick = () => {
+    dispatch(changeComponent(NOTIFICATIONS));
+    dispatch(sideBarModal(false));
+  };
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -57,24 +56,60 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              fontWeight={"900"}
-              textAlign="start"
-              variant="h5"
-              // color="#505050"
-              sx={{ flexGrow: 1 }}
-            >
-              Compito
-            </Typography>
+            <Box sx={{ flexGrow: 1 }}>
+              <Typography
+                fontWeight={"900"}
+                textAlign="start"
+                fontStyle={"oblique"}
+                variant="h5"
+                color={theme.palette.text.primary}
+              >
+                {componentName}
+              </Typography>
+            </Box>
 
+            <Button></Button>
             <Box mr={1}>
               <Tooltip
-                title={<Typography variant="body1">{user.user.name}</Typography>}
+                title={
+                  <Typography variant="body1">{user.user.name}</Typography>
+                }
               >
                 <IconButton sx={{ color: theme.palette.text.primary }}>
-                  <PersonIcon fontSize="large" />
+                  <PersonIcon />
                 </IconButton>
               </Tooltip>
+              <IconButton>
+                <HorizontalRuleIcon
+                  fontSize="large"
+                  sx={{ transform: "rotate(90deg)" }}
+                />
+              </IconButton>
+              <Tooltip
+                title={<Typography variant="body1">Notifications</Typography>}
+              >
+                <IconButton
+                  sx={{ color: theme.palette.text.primary }}
+                  onClick={handleNotificationClick}
+                >
+                  <NotificationImportantIcon />
+                </IconButton>
+              </Tooltip>
+              <IconButton>
+                <HorizontalRuleIcon
+                  fontSize="large"
+                  sx={{ transform: "rotate(90deg)" }}
+                />
+              </IconButton>
+              <Tooltip title={<Typography variant="body1">Log Out</Typography>}>
+                <IconButton
+                  sx={{ color: theme.palette.text.primary }}
+                  onClick={handleLogOutClick}
+                >
+                  <LogoutIcon />
+                </IconButton>
+              </Tooltip>
+
               <IconButton>
                 <HorizontalRuleIcon
                   fontSize="large"
@@ -88,7 +123,7 @@ export default function Navbar() {
                   sx={{ color: theme.palette.text.primary }}
                   onClick={handleDarkModeClick}
                 >
-                  <ContrastIcon fontSize="medium" />
+                  <ContrastIcon />
                 </IconButton>
               </Tooltip>
             </Box>

@@ -3,6 +3,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { changeComponent, setAuthComponent } from "../../redux/modalSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
+import { DASHBOARD } from "../../constants/componentsName.";
 
 const initialData = {
   name: "",
@@ -73,7 +74,7 @@ const LoginDialog = () => {
             name: findUser.name,
           };
           dispatch(loginUser(updatedLoginData));
-          dispatch(changeComponent("Dashboard"));
+          dispatch(changeComponent(DASHBOARD));
           console.log("userLoggedIn", updatedLoginData);
         } else {
           console.log("email or password is incorrect");

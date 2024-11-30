@@ -59,9 +59,6 @@ const AddCategory = () => {
         onClose={handleCancelClick}
         PaperProps={{
           style: {
-            marginTop: "100px",
-            borderRadius: "20px",
-            border: "3px solid #fdff00",
             width: "40vw",
             overflow: "hidden",
           },
@@ -105,7 +102,18 @@ const AddCategory = () => {
             />
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Box sx={{ marginRight: 2, width: "50%" }}>
+          <Box sx={{ marginRight: 2, width: "50%" }}>
+              <Button
+                // sx={{ border:"2px solid #793ee0"}}
+                variant="contained"
+                color="error"
+                fullWidth
+                onClick={handleCancelClick}
+              >
+                <span>Cancel</span> <CloseIcon />
+              </Button>
+            </Box>
+            <Box sx={{ marginLeft: 2, width: "50%" }}>
               <Button
                 variant="contained"
                 color="success"
@@ -122,17 +130,7 @@ const AddCategory = () => {
                 <span>Add</span>
               </Button>
             </Box>
-            <Box sx={{ marginLeft: 2, width: "50%" }}>
-              <Button
-                // sx={{ border:"2px solid #793ee0"}}
-                variant="contained"
-                color="error"
-                fullWidth
-                onClick={handleCancelClick}
-              >
-                <span>Cancel</span> <CloseIcon />
-              </Button>
-            </Box>
+            
           </Box>
         </Box>
       </Dialog>

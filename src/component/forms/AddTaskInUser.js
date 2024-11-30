@@ -113,9 +113,6 @@ const AddTaskInUser = () => {
         PaperProps={{
           style: {
             marginTop: "70px",
-            borderRadius: "20px",
-            border: "3px solid #008f25",
-            // height: "50vh",
             width: "40vw",
             overflow: "hidden",
           },
@@ -245,6 +242,17 @@ const AddTaskInUser = () => {
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Box sx={{ marginRight: 2, width: "50%" }}>
                   <Button
+                    // sx={{ border:"2px solid #793ee0"}}
+                    variant="contained"
+                    color="error"
+                    fullWidth
+                    onClick={handleClose}
+                  >
+                    <span>Cancel</span> <CloseIcon />
+                  </Button>
+                </Box>
+                <Box sx={{ marginLeft: 2, width: "50%" }}>
+                  <Button
                     variant="contained"
                     color="success"
                     onClick={handleAddTaskClick}
@@ -259,17 +267,6 @@ const AddTaskInUser = () => {
                     }}
                   >
                     <span>Add</span>
-                  </Button>
-                </Box>
-                <Box sx={{ marginLeft: 2, width: "50%" }}>
-                  <Button
-                    // sx={{ border:"2px solid #793ee0"}}
-                    variant="contained"
-                    color="error"
-                    fullWidth
-                    onClick={handleClose}
-                  >
-                    <span>Cancel</span> <CloseIcon />
                   </Button>
                 </Box>
               </Box>

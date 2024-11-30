@@ -42,11 +42,8 @@ const UserTaskTable = ({ usersFilterTasks }) => {
           fontWeight: "bold",
         }}
       >
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Task ID</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Title</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>
-          Description
-        </Typography>
+        <Typography sx={{ flex: 1, textAlign: "center" }}>Description</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Category</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Due Date</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Priority</Typography>
@@ -54,9 +51,7 @@ const UserTaskTable = ({ usersFilterTasks }) => {
         <Typography sx={{ flex: 1, textAlign: "center" }}>Status</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Update</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Delete</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>
-          Information
-        </Typography>
+        <Typography sx={{ flex: 1, textAlign: "center" }}>Information</Typography>
       </Box>
 
       {/* Task List */}
@@ -70,9 +65,6 @@ const UserTaskTable = ({ usersFilterTasks }) => {
             }}
           >
             <ListItem>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.taskId}
-              </Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.title}
               </Typography>

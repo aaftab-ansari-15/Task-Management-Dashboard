@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  changeComponent,
-  changeDarkMode,
-  sideBarModal,
-} from "../../redux/modalSlice";
+import { changeComponent, sideBarModal } from "../../redux/modalSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 import { logOutUser } from "../../redux/userSlice";
 import {
+  Drawer,
   List,
   ListItemButton,
   ListItemIcon,
@@ -22,53 +19,57 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 import LogoutIcon from "@mui/icons-material/Logout";
 import TocIcon from "@mui/icons-material/Toc";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PersonIcon from '@mui/icons-material/Person';
 import BlurOnIcon from "@mui/icons-material/BlurOn";
-import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
+import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import {
+  ABOUT,
+  DASHBOARD,
+  MY_TASKS,
+  NOTIFICATIONS,
+  TASKS_LIST_OLD_UI,
+} from "../../constants/componentsName.";
 
 const SideBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const user = useSelector((state) => state.user);
-  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
-  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
+  const isSideBar = useSelector((state) => state.modal.isSideBar);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
+  const handleSideBarClose = () => {
+    dispatch(sideBarModal(false));
+  };
   const handleListItemClick = (event, index) => {
     event.preventDefault();
     setSelectedIndex(index);
-  };
-  const toggleDrawer = () => {
-    dispatch(sideBarModal(false));
   };
   const handleLogOutClick = () => {
     dispatch(logOutUser(user.user));
     dispatch(sideBarModal(false));
   };
-  const handleMyTaskClick = () => {
-    dispatch(changeComponent("MyTasksListOldUi"));
+  const navigateToComponent = (componentName) => {
+    dispatch(changeComponent(componentName));
     dispatch(sideBarModal(false));
   };
-  const handleDashboardClick = () => {
-    dispatch(changeComponent("Dashboard"));
-    dispatch(sideBarModal(false));
-  };
-  const handleNotificationClick = () => {
-    dispatch(changeComponent("TaskNotification"));
-    dispatch(sideBarModal(false));
-  };
-  const handleTaskListClick = () => {
-    dispatch(changeComponent("MyTasksList"));
-    dispatch(sideBarModal(false));
-  };
-  const handleAboutClick = () => {
-    dispatch(changeComponent("About"));
-    dispatch(sideBarModal(false));
-  }
 
   return (
-    <>
+    <Drawer
+      open={isSideBar}
+      onClose={handleSideBarClose}
+      PaperProps={{
+        sx: {
+          width: 310,
+          top: 0,
+          bottom: 0,
+          borderRadius: 2,
+          bgcolor: theme.palette.background.default,
+        },
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -81,8 +82,13 @@ const SideBar = () => {
       >
         <Box sx={{ ml: 3, mr: 1, display: "flex", alignItems: "center" }}>
           <MenuOpenIcon />
-          <Typography variant="h6" sx={{ ml: 2, fontWeight: "bold" }}>
-            Navigation
+          <Typography
+            variant="h6"
+            fontWeight={"900"}
+            fontStyle={"oblique"}
+            ml={2}
+          >
+            Compito
           </Typography>
         </Box>
       </Box>
@@ -100,7 +106,7 @@ const SideBar = () => {
             selected={selectedIndex === 2}
             onClick={(event) => {
               handleListItemClick(event, 2);
-              handleDashboardClick();
+              navigateToComponent(DASHBOARD);
             }}
           >
             <ListItemIcon>
@@ -113,32 +119,32 @@ const SideBar = () => {
             selected={selectedIndex === 3}
             onClick={(event) => {
               handleListItemClick(event, 3);
-              handleTaskListClick();
+              navigateToComponent(MY_TASKS);
             }}
           >
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Task List" />
+            <ListItemText primary="My tasks" />
           </ListItemButton>
           <ListItemButton
             selected={selectedIndex === 4}
             onClick={(event) => {
               handleListItemClick(event, 4);
-              handleMyTaskClick();
+              navigateToComponent(TASKS_LIST_OLD_UI);
             }}
           >
             <ListItemIcon>
               <TocIcon />
             </ListItemIcon>
-            <ListItemText primary="My Task (Old  UI)" />
+            <ListItemText primary="Tasks list" />
           </ListItemButton>
 
           <ListItemButton
             selected={selectedIndex === 5}
             onClick={(event) => {
               handleListItemClick(event, 5);
-              handleNotificationClick();
+              navigateToComponent(NOTIFICATIONS);
             }}
           >
             <ListItemIcon>
@@ -149,11 +155,24 @@ const SideBar = () => {
         </List>
         <Divider sx={{ my: 2 }} />
         <List component="sidebar-footer" aria-label="" sx={{ mt: 2 }}>
-        <ListItemButton
+          <ListItemButton
             selected={selectedIndex === 6}
             onClick={(event) => {
               handleListItemClick(event, 6);
-              handleAboutClick();
+              navigateToComponent();
+            }}
+          >
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+
+            <ListItemText primary="Profile" />
+          </ListItemButton>
+          <ListItemButton
+            selected={selectedIndex === 7}
+            onClick={(event) => {
+              handleListItemClick(event, 7);
+              navigateToComponent(ABOUT);
             }}
           >
             <ListItemIcon>
@@ -161,10 +180,11 @@ const SideBar = () => {
             </ListItemIcon>
             <ListItemText primary="About" />
           </ListItemButton>
-          <ListItemButton
-            selected={selectedIndex === 7}
+
+          {/* <ListItemButton
+            selected={selectedIndex === 8}
             onClick={(event) => {
-              handleListItemClick(event, 7);
+              handleListItemClick(event, 8);
               handleLogOutClick();
             }}
           >
@@ -173,10 +193,10 @@ const SideBar = () => {
             </ListItemIcon>
 
             <ListItemText primary="Log Out" />
-          </ListItemButton>
+          </ListItemButton> */}
         </List>
       </Box>
-    </>
+    </Drawer>
   );
 };
 

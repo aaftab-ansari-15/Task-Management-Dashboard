@@ -27,31 +27,34 @@ const CompletedTasks = () => {
       <Grid2 container sx={{ alignItems: "center" }}>
         <Grid2 size={8}>
           <Typography className="bottomGridHeading" variant="h6">
-            Completed Tasks
+            Completed tasks
           </Typography>
         </Grid2>
         <Grid2 size={4}>
-          <Typography className="bottomGridHeading" variant="body2">
+          <Typography fontWeight={"700"} align="right" variant="body2">
             {getPickUpDate}
           </Typography>
         </Grid2>
       </Grid2>
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={{ mt: 2 }} />
       <Box
         sx={{
           overflowY: "auto",
-          maxHeight: "230px",
+          maxHeight: "240px",
           "&::-webkit-scrollbar": {
             width: "0.5rem",
           },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.scrollbar.thumb,
             borderRadius: "10px",
+            
           },
           "&::-webkit-scrollbar-track": {
-            backgroundColor: theme.palette.text.primary,
+            backgroundColor: theme.palette.scrollbar.track,
             borderRadius: "10px",
+            my:3
+
           },
         }}
       >
@@ -59,51 +62,54 @@ const CompletedTasks = () => {
           {getCompletedTasksListData.length > 0 ? (
             getCompletedTasksListData.map((task, index) => {
               return (
-                <Box
-                  key={task.taskId}
-                  sx={{
-                    
-                    cursor: "pointer", borderRadius: 4,
-                    ":hover": {
-                      backgroundColor: theme.palette.primary.light,
-                      color: "black",
-                    },
-                  }}
-                  className="dashboard-tasklist-task"
-                >
-                  <Grid2 container spacing={2} sx={{ py: 2 }}>
-                    <Grid2 size={6}>
-                      <Tooltip
-                        title={
-                          <Typography variant="body1">{task.title}</Typography>
-                        }
+                <React.Fragment key={task.taskId}>
+                  <Box
+                    sx={{
+                      py: 2,
+                      cursor: "pointer",
+                      ":hover": {
+                        backgroundColor: theme.palette.primary.light,
+                        color: "black",
+                      },
+                    }}
+                    className="dashboard-tasklist-task"
+                  >
+                    <Grid2 container spacing={2} alignItems={"center"}>
+                      <Grid2
+                        size={3}
+                        sx={{ display: "flex", justifyContent: "start" }}
                       >
-                        <Typography
-                          textAlign={"start"}
-                          variant="body1"
-                          sx={{
-                            textDecoration:
-                              task.status === "Completed"
-                                ? "line-through"
-                                : "none",
-                            textOverflow: "ellipsis", // Shows ellipsis by default
-                            whiteSpace: "nowrap", // Prevents text wrapping by default
-                            overflow: "hidden", // Hides overflowing text
-                          }}
+                        <CategoryIcons icon={task.category} />
+                      </Grid2>
+                      <Grid2 size={9}>
+                        <Tooltip
+                          title={
+                            <Typography variant="body1">
+                              {task.title}
+                            </Typography>
+                          }
                         >
-                          {task.title}
-                        </Typography>
-                      </Tooltip>
+                          <Typography
+                            textAlign={"start"}
+                            variant="body1"
+                            sx={{
+                              textDecoration:
+                                task.status === "Completed"
+                                  ? "line-through"
+                                  : "none",
+                              textOverflow: "ellipsis", // Shows ellipsis by default
+                              whiteSpace: "nowrap", // Prevents text wrapping by default
+                              overflow: "hidden", // Hides overflowing text
+                            }}
+                          >
+                            {task.title}
+                          </Typography>
+                        </Tooltip>
+                      </Grid2>
                     </Grid2>
-                    <Grid2
-                      size={6}
-                      sx={{ display: "flex", justifyContent: "end" }}
-                    >
-                      <CategoryIcons icon={task.category} />
-                    </Grid2>
-                  </Grid2>
+                  </Box>
                   {getTasksListData.length - 1 > index ? <Divider /> : <></>}
-                </Box>
+                </React.Fragment>
               );
             })
           ) : (
