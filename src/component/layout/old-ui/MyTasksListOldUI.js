@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
@@ -15,8 +15,14 @@ const MyTasksListOldUI = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const [disableGenerateButton, setDisableGenerateButton] = useState(false);
+  const allTasks = useSelector((state) => state.tasks.tasks);
 
+  const [disableGenerateButton, setDisableGenerateButton] = useState(false);
+  useEffect(() => {
+    if (allTasks.length > 0) {
+      setDisableGenerateButton(true);
+    }
+  }, allTasks);
   const handleGenerateTaskClick = () => {
     const setUsersDefaultTasks = defaultTaskData.map((task) => ({
       ...task,
@@ -27,19 +33,20 @@ const MyTasksListOldUI = () => {
   };
   //Task Add
   const handleAddTaskClick = () => {
-    dispatch(addTaskForm({ formState:true, data:{} }));
+    dispatch(addTaskForm({ formState: true, data: {} }));
   };
   return (
-   
-    <Box sx={{
-      border: `solid 2px ${theme.palette.primary.main}`,
-      borderRadius:2, // Use primary color from theme
-      m: 2,
-      padding: 2,
-      color: "text.primary",
-    }}>
+    <Box
+      sx={{
+        border: `solid 2px ${theme.palette.primary.main}`,
+        borderRadius: 2, // Use primary color from theme
+        m: 2,
+        padding: 2,
+        color: "text.primary",
+      }}
+    >
       <Box sx={{ height: "150px", display: "flex", overflow: "hidden" }}>
-      {/* <Box sx={{ flex: 1 }}><NavigationPanel /></Box> */}
+        {/* <Box sx={{ flex: 1 }}><NavigationPanel /></Box> */}
         <Box sx={{ flex: 1 }}>
           <Button
             onClick={handleAddTaskClick}
@@ -72,11 +79,11 @@ const MyTasksListOldUI = () => {
               width: "80%",
               height: "80%",
               display: "flex",
-              bgcolor:"#0097ff",
-              color:"white",
-              ":hover":{
-                bgcolor:"#1662ec",
-              }
+              bgcolor: "#0097ff",
+              color: "white",
+              ":hover": {
+                bgcolor: "#1662ec",
+              },
             }}
             variant="contained"
           >
@@ -90,18 +97,18 @@ const MyTasksListOldUI = () => {
           }}
         />
         <Box
-        sx={{
-          display: "flex",
-          flex: 2,
-        }}
-      >
-        <Box sx={{ ml: 4 }}>
-          <Filter />
+          sx={{
+            display: "flex",
+            flex: 2,
+          }}
+        >
+          <Box sx={{ ml: 4 }}>
+            <Filter />
+          </Box>
+          <Box sx={{ marginLeft: 5 }}>
+            <Sort />
+          </Box>
         </Box>
-        <Box sx={{ marginLeft: 5 }}>
-          <Sort />
-        </Box>
-      </Box>
       </Box>
 
       <ShowUserTasks />

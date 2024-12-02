@@ -155,7 +155,7 @@ const SideBar = () => {
         </List>
         <Divider sx={{ my: 2 }} />
         <List component="sidebar-footer" aria-label="" sx={{ mt: 2 }}>
-          <ListItemButton
+          {/* <ListItemButton
             selected={selectedIndex === 6}
             onClick={(event) => {
               handleListItemClick(event, 6);
@@ -167,7 +167,7 @@ const SideBar = () => {
             </ListItemIcon>
 
             <ListItemText primary="Profile" />
-          </ListItemButton>
+          </ListItemButton> */}
           <ListItemButton
             selected={selectedIndex === 7}
             onClick={(event) => {

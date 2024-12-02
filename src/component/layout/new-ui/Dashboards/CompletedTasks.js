@@ -15,11 +15,9 @@ const CompletedTasks = () => {
     []
   );
   useEffect(() => {
-    console.log(getTasksListData);
     const completedTasks = getTasksListData.filter((task) => {
       return task.status === "Completed";
     });
-    console.log(completedTasks);
     setGetCompletedTasksListData(completedTasks);
   }, [getTasksListData]);
   return (
