@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Button,
   Collapse,
   Divider,
+  Grid2,
   IconButton,
   Tooltip,
   Typography,
@@ -25,6 +27,7 @@ import { useTheme } from "@emotion/react";
 import TaskAlert from "../../../features/TaskAlert";
 import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
 import "../../../../style/dashboards.css";
+const priorities = ["Low", "Medium", "High", "Clear"];
 const TaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -36,12 +39,16 @@ const TaskList = () => {
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });
+  const [filterValue, setFilterValue] = useState("Clear");
   useEffect(() => {
     const getTasks = userAllTasks.filter((task) => {
-      return task.dueDate === getPickUpDate;
+      const matchesDueDate = task.dueDate === getPickUpDate;
+      const matchesPriority =
+        filterValue === "Clear" || task.priority === filterValue;
+      return matchesDueDate && matchesPriority;
     });
     dispatch(setTaskForTaskList(getTasks));
-  }, [getPickUpDate, allTasks]);
+  }, [getPickUpDate, allTasks, filterValue]);
   const handleTaskClick = (task) => {
     dispatch(taskAlert({ alertState: true, taskAlertData: task }));
   };
@@ -53,33 +60,68 @@ const TaskList = () => {
   const handleTaskUpdateClick = (task) => {
     dispatch(updateTaskFrom({ arg1: true, arg2: task }));
   };
+  const handlePriorityFilterClick = (priority) => {
+    setFilterValue(priority);
+  };
+  const getFilterButtonStyles = (priority) => ({
+    p: 0,
+    textTransform: "none",
+    color: theme.palette.text.primary,
+    fontWeight: filterValue === priority ? "900" : "normal",
+  });
+
+  const getFilterGridStyles = (priority) => ({
+    py: "5px",
+    bgcolor: filterValue === priority ? theme.palette.primary.grey : "inherit",
+    borderRadius: 2,
+  });
   return (
     <>
       <TaskAlert />
-      <Box
-        ml={2}
-        mr={4}
-        my={1}
-        display={"flex"}
-        justifyContent={"space-between"}
-      >
-        <Typography className="bottomGridHeading1" variant="h6">
-          My tasks ({getTasksListData.length})
-        </Typography>
-        <Box sx={{ alignItems: "center" }}>
-          <Tooltip
-            title={
-              <Typography variant="body1">
-                Create a task for ({getPickUpDate})
-              </Typography>
-            }
+      <Grid2 container ml={2} mr={3} my={1} alignItems={"center"}>
+        <Grid2 size={7}>
+          <Typography className="bottomGridHeading1" variant="h6">
+            My tasks ({getTasksListData.length})
+          </Typography>
+        </Grid2>
+
+        <Grid2 container size={5} sx={{ alignItems: "center" }}>
+          <Grid2
+            container
+            size={10}
+            sx={{
+              px: 1,
+              py: 1,
+              borderRadius: 2,
+              border: "1px solid #818181",
+            }}
           >
-            <IconButton sx={{ borderRadius: 4 }} onClick={handleAddClick}>
-              <AddIcon sx={{}} />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </Box>
+            {priorities.map((priority) => (
+              <Grid2 key={priority} size={3} sx={getFilterGridStyles(priority)}>
+                <Button
+                  onClick={() => handlePriorityFilterClick(priority)}
+                  sx={getFilterButtonStyles(priority)}
+                >
+                  {priority}
+                </Button>
+              </Grid2>
+            ))}
+          </Grid2>
+          <Grid2 size={2} textAlign={"end"}>
+            <Tooltip
+              title={
+                <Typography variant="body1">
+                  Create a task for ({getPickUpDate})
+                </Typography>
+              }
+            >
+              <IconButton sx={{ borderRadius: 4 }} onClick={handleAddClick}>
+                <AddIcon sx={{}} />
+              </IconButton>
+            </Tooltip>
+          </Grid2>
+        </Grid2>
+      </Grid2>
       <Divider sx={{ mt: 2 }} />
       <Box
         // className="style-scrollbar"
@@ -97,7 +139,7 @@ const TaskList = () => {
           "&::-webkit-scrollbar-track": {
             backgroundColor: theme.palette.scrollbar.track,
             borderRadius: "10px",
-            my:3
+            my: 3,
           },
         }}
       >
@@ -139,6 +181,7 @@ const TaskList = () => {
                             sx={{
                               borderRadius: 4,
                               bgcolor: theme.palette.primary.main,
+                              color: "black",
                             }}
                           />
                         ) : (
@@ -146,6 +189,7 @@ const TaskList = () => {
                             sx={{
                               borderRadius: 4,
                               bgcolor: theme.palette.primary.main,
+                              color: "black",
                             }}
                           />
                         )}

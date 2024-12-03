@@ -36,15 +36,15 @@ workon{
     //change name at navbar wrt component name
     //calender selected not bbold
     //scrllbar light color
-    work on filter at tasklist
+    //work on filter at tasklist
     work on Task Time Tracker
     click on peofile open profile component
     click on profile, user data, change: name, password.
 
 }
 madeChnagesForVercelToHost{
+    //TaskTrackTime, MyTasks, TaskNotification{component is in progress}, MyTaskListOldUI{added useEffect for disable TaskGenrate}, 
     Login, SignUp{added genrate funtion}, 
-    TaskTrackTime, MyTasks, TaskNotification{added component is in progress}, MyTaskListOldUI{added useEffect for disable TaskGenrate}, 
     SideBar{comment profile section}
 }
 dashbaord: {

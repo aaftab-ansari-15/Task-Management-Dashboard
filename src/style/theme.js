@@ -5,6 +5,7 @@ const lightTheme = createTheme({
       primary: {
         main: '#fff233', // Adjust the yellow hex code as needed
         dark: '#ffdb00', //dark yellow
+        grey: '#dedede',
         light: '#fffabf',
         light1: "#fdf265",
       
@@ -27,6 +28,7 @@ const lightTheme = createTheme({
         thumb: '#f8fa93',
         track: '#7b7b7b',
       }
+
     },
   });
   const darkTheme = createTheme({
@@ -35,6 +37,7 @@ const lightTheme = createTheme({
       primary: {
         main: '#fff233', // Adjust the yellow hex code as needed
         dark: '#ffdb00', //dark yellow
+        grey: '#606060',
         light: '#fffabf',
         light1: "#fdf265",
       
