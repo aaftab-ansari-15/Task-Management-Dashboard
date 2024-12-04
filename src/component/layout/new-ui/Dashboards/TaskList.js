@@ -94,6 +94,11 @@ const TaskList = () => {
               py: 1,
               borderRadius: 2,
               border: "1px solid #818181",
+              pointerEvents: taskAlertState ? "none" : "auto",
+              backgroundColor: taskAlertState
+                ? "rgba(0, 0, 0, 0.1)"
+                : "transparent",
+              opacity: taskAlertState ? 0.6 : 1,
             }}
           >
             {priorities.map((priority) => (
@@ -107,7 +112,13 @@ const TaskList = () => {
               </Grid2>
             ))}
           </Grid2>
-          <Grid2 size={2} textAlign={"end"}>
+          <Grid2
+            size={2}
+            textAlign={"end"}
+            sx={{
+              pointerEvents: taskAlertState ? "none" : "auto",
+            }}
+          >
             <Tooltip
               title={
                 <Typography variant="body1">

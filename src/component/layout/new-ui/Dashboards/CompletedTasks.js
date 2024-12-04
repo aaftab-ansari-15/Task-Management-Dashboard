@@ -91,10 +91,6 @@ const CompletedTasks = () => {
                             textAlign={"start"}
                             variant="body1"
                             sx={{
-                              textDecoration:
-                                task.status === "Completed"
-                                  ? "line-through"
-                                  : "none",
                               textOverflow: "ellipsis", // Shows ellipsis by default
                               whiteSpace: "nowrap", // Prevents text wrapping by default
                               overflow: "hidden", // Hides overflowing text
@@ -121,7 +117,7 @@ const CompletedTasks = () => {
               }}
             >
               <Typography fontSize="larger" fontWeight="700">
-                No Completed Task on this date
+                No completed Task on this date
               </Typography>
             </Box>
           )}
