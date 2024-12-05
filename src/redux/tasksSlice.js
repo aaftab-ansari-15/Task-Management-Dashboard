@@ -1,11 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-const tasks = JSON.parse(localStorage.getItem("tasks"));
-const initialTasks = {
-  tasks: tasks ? tasks : [],
-};
+import {
+  getLocalStorageData,
+  setLocalStorageData,
+  removeLocalStorageData,
+} from "../storage/localStorageUtils";
+import {
+  getSessionStorageData,
+  setSessionStorageData,
+  removeSessionStorageData,
+} from "../storage/sessionStorageUtils";
 const tasksSlice = createSlice({
   name: "tasks",
-  initialState: initialTasks,
+  initialState: {
+    allUsersTasks: getLocalStorageData("allUsersTasks"),
+    currentUsersTasks: get
+  },
   reducers: {
     addTasks: (state, action) => {
       const newTask = action.payload;
@@ -39,5 +48,5 @@ const tasksSlice = createSlice({
 });
 
 export const { addTasks, addGeneratedTasks, updateTasks, deleteTasks } =
-  tasksSlice.actions;
+tasksSlice.actions;
 export default tasksSlice.reducer;

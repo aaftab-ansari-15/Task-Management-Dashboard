@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../../redux/currentUserSlice";
+import { loginUser } from "../../redux/userCurrentSlice";
 import { DASHBOARD } from "../../constants/componentsName.";
 import defaultTaskData from "../../Data/defaultTasks.json";
 import { addGeneratedTasks } from "../../redux/tasksSlice";

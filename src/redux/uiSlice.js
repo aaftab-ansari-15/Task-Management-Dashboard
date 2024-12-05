@@ -5,9 +5,9 @@ import { DASHBOARD } from "../constants/componentsName.";
 const uiSlice = createSlice({
   name: "modal",
   initialState: {
-    isSideBar: false,
     authComponent: "SignUp",
-    darkMode: false,
+    isSidebarVisible: false,
+    isDarkMode: false,
     isUpdateTaskForm: false,
     isAddTaskForm: false,
     isTaskInfoOpen: false,

@@ -12,7 +12,6 @@ import taskTrackTimeReducer from "./taskTrackTime"
 export const store = configureStore({
   reducer: {
     users: usersReducer,
-    currentUser: currentUserReducer,
     ui: uiReducer,
     tasks: tasksReducer,
     filter: filterReducer,
