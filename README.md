@@ -2,6 +2,8 @@
 
 Compito is a dynamic Task Management Dashboard where users can create, update, delete, and filter tasks. The dashboard support multiple users and include features like categories, priority levels, and task deadlines.
 
+## Live Link: https://compito-dashboard.netlify.app/
+
 ## Features:
 
 ### 1. Task CRUD (Create, Read, Update, Delete) Operations:
