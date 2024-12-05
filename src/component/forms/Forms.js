@@ -18,9 +18,9 @@ const renderForm = (formName) => {
   }
 };
 const Forms = () => {
-  const isAddTaskForm = useSelector((state) => state.modal.isAddTaskForm);
-  const isUpdateTaskForm = useSelector((state) => state.modal.isUpdateTaskForm);
-  const isCategoryFormOpen = useSelector((state) => state.modal.isCategoryForm);
+  const isAddTaskForm = useSelector((state) => state.ui.isAddTaskForm);
+  const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);
+  const isCategoryFormOpen = useSelector((state) => state.ui.isCategoryForm);
   const [formName, setFormName] = useState("");
   useEffect(() => {
     if (isAddTaskForm) {

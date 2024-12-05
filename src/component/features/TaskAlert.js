@@ -1,7 +1,7 @@
 import { Alert, Collapse, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { taskAlert } from "../../redux/modalSlice";
+import { taskAlert } from "../../redux/uiSlice";
 import { updateTasks } from "../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
 import CheckIcon from "@mui/icons-material/Check";
@@ -9,8 +9,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const TaskAlert = () => {
   const dispatch = useDispatch();
-  const taskAlertState = useSelector((state) => state.modal.isTaskAlert);
-  const alertTask = useSelector((state) => state.modal.taskAlertData);
+  const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
+  const alertTask = useSelector((state) => state.ui.taskAlertData);
   // useEffect(() => {}, []);
   const handleCompleteTask = () => {
     const updatedTask = {

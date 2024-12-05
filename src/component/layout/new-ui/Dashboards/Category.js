@@ -14,7 +14,7 @@ import {
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryForm } from "../../../../redux/modalSlice";
+import { categoryForm } from "../../../../redux/uiSlice";
 import AddCategory from "../../../forms/AddCategory";
 import { useTheme } from "@emotion/react";
 import CategoryIcons from "../../../features/CategoryIcons";
@@ -22,7 +22,7 @@ const Category = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const getCategoryData = useSelector((state) => state.category);
-  const isFormOpen = useSelector((state) => state.modal.isCategoryForm);
+  const isFormOpen = useSelector((state) => state.ui.isCategoryForm);
 
   const handleAddCategory = () => {
     dispatch(categoryForm(true));

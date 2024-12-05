@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { changePickUpDate } from "../../redux/useFullSlice";
 import "../../style/features.css";
-import { taskAlert } from "../../redux/modalSlice";
+import { taskAlert } from "../../redux/uiSlice";
 
 export default function BasicDateCalendar() {
   const dispatch = useDispatch();

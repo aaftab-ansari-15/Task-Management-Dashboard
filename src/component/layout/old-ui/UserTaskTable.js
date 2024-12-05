@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteTasks } from "../../../redux/tasksSlice";
-import { taskInfoModal, updateTaskFrom } from "../../../redux/modalSlice";
+import { taskInfoModal, updateTaskFrom } from "../../../redux/uiSlice";
 import TaskInfo from "./TaskInfo";
 import {
   List,

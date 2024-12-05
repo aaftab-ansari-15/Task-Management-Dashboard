@@ -4,8 +4,8 @@ import {
   changeComponent,
   changeDarkMode,
   sideBarModal,
-} from "../../redux/modalSlice";
-import { logOutUser } from "../../redux/userSlice";
+} from "../../redux/uiSlice";
+import { logOutUser } from "../../redux/currentUserSlice";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -26,8 +26,8 @@ import { NOTIFICATIONS } from "../../constants/componentsName.";
 export default function Navbar() {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const componentName = useSelector((state) => state.modal.componentName);
-  const user = useSelector((state) => state.user);
+  const componentName = useSelector((state) => state.ui.componentName);
+  const user = useSelector((state) => state.currentUser);
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
   };

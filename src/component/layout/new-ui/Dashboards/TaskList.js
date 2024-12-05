@@ -18,7 +18,7 @@ import {
   addTaskForm,
   taskAlert,
   updateTaskFrom,
-} from "../../../../redux/modalSlice";
+} from "../../../../redux/uiSlice";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -31,10 +31,10 @@ const priorities = ["Low", "Medium", "High", "Clear"];
 const TaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const taskAlertState = useSelector((state) => state.modal.isTaskAlert);
+  const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
   const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
   const getTasksListData = useSelector((state) => state.useFull.taskListData);
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;

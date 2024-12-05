@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
-import { changeComponent, setAuthComponent } from "../../redux/modalSlice";
+import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../../redux/userSlice";
+import { loginUser } from "../../redux/currentUserSlice";
 import { DASHBOARD } from "../../constants/componentsName.";
 import defaultTaskData from "../../Data/defaultTasks.json";
 import { addGeneratedTasks } from "../../redux/tasksSlice";
@@ -29,8 +29,8 @@ const LoginDialog = () => {
   const [errors, setErrors] = useState(initialData);
 
   const dispatch = useDispatch();
-  const isLoginDialogOpen = useSelector((state) => state.modal.isLoginOpen);
-  const allUser = useSelector((state) => state.allUser);
+  const isLoginDialogOpen = useSelector((state) => state.ui.isLoginOpen);
+  const users = useSelector((state) => state.users);
 
   const isFormValid =
     !errors.email && !errors.password && loginData.email && loginData.password;
@@ -60,8 +60,8 @@ const LoginDialog = () => {
 
   const handleLoginClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (allUser && allUser.allUser.length > 0) {
-        const findUser = allUser.allUser.find(
+      if (users && users.users.length > 0) {
+        const findUser = users.users.find(
           (user) => loginData.email === user.email
         );
 

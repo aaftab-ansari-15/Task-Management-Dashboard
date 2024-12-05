@@ -40,8 +40,10 @@ workon{
     work on Task Time Tracker
     click on peofile open profile component
     click on profile, user data, change: name, password.
-
 }
+    workon(slice - ui)
+    wathing(component - signup)
+
 madeChnagesForVercelToHost{
     //TaskTrackTime, MyTasks, TaskNotification{component is in progress}, MyTaskListOldUI{added useEffect for disable TaskGenrate}, 
     Login, SignUp{added genrate funtion}, 

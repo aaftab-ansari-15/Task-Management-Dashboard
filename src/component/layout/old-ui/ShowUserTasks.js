@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/material";
 const priorityOrder = { Low: 1, Medium: 2, High: 3 };
 const ShowUserTasks = () => {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const getFilters = useSelector((state) => state.filter);
   const getSort = useSelector((state) => state.sort);

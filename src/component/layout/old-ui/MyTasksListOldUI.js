@@ -8,13 +8,13 @@ import { useSelector } from "react-redux";
 import { addGeneratedTasks } from "../../../redux/tasksSlice";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { addTaskForm } from "../../../redux/modalSlice";
+import { addTaskForm } from "../../../redux/uiSlice";
 import NavigationPanel from "./NavigationPanel";
 const MyTasksListOldUI = () => {
   // Get the current theme using useTheme hook
   const theme = useTheme();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
 
   const [disableGenerateButton, setDisableGenerateButton] = useState(false);

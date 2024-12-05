@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTasks } from "../../redux/tasksSlice";
-import { updateTaskFrom } from "../../redux/modalSlice";
+import { updateTaskFrom } from "../../redux/uiSlice";
 import {
   TextField,
   Button,
@@ -32,8 +32,8 @@ const defaultTask = {
 };
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
-  const isUpdateTaskForm = useSelector((state) => state.modal.isUpdateTaskForm);
-  const userTask = useSelector((state) => state.modal.updateTaskInUserData);
+  const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);
+  const userTask = useSelector((state) => state.ui.updateTaskInUserData);
   const [updatedTask, setUpdatedTask] = useState(userTask);
   const [errors, setErrors] = useState(defaultTask);
   useEffect(() => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { changeComponent, sideBarModal } from "../../redux/modalSlice";
+import { changeComponent, sideBarModal } from "../../redux/uiSlice";
 
 import { useSelector, useDispatch } from "react-redux";
-import { logOutUser } from "../../redux/userSlice";
+import { logOutUser } from "../../redux/currentUserSlice";
 import {
   Drawer,
   List,
@@ -36,8 +36,8 @@ import {
 const SideBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const user = useSelector((state) => state.user);
-  const isSideBar = useSelector((state) => state.modal.isSideBar);
+  const user = useSelector((state) => state.currentUser);
+  const isSideBar = useSelector((state) => state.ui.isSideBar);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleSideBarClose = () => {

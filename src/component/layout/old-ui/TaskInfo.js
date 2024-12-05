@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTasks } from "../../../redux/tasksSlice";
-import { taskInfoModal } from "../../../redux/modalSlice";
+import { taskInfoModal } from "../../../redux/uiSlice";
 import { styled } from "@mui/system";
 import {
   Box,
@@ -28,10 +28,10 @@ const TaskCard = styled(Paper)(({ theme }) => ({
 }));
 const TaskInfo = () => {
   const dispatch = useDispatch();
-  const isTaskInfoOpen = useSelector((state) => state.modal.isTaskInfoOpen);
+  const isTaskInfoOpen = useSelector((state) => state.ui.isTaskInfoOpen);
 
-  const task = useSelector((state) => state.modal.updateTaskInUserData1);
-  const user = useSelector((state) => state.user.user);
+  const task = useSelector((state) => state.ui.updateTaskInUserData1);
+  const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const task1 = allTasks.find((t) => t.taskId === task.taskId);
   let taskCompleted;

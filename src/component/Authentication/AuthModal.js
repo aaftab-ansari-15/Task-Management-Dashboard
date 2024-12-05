@@ -6,7 +6,7 @@ import { Box, Icon, SvgIcon, Typography } from "@mui/material";
 import ImageCarousel from "../features/ImageCarousel";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 const AuthModal = () => {
-  const authState = useSelector((state) => state.modal.authComponent);
+  const authState = useSelector((state) => state.ui.authComponent);
 
   return (
     <Box sx={{ display: "flex", flexWrap:"initial", height:"85vh"}}>

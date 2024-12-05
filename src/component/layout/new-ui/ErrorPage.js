@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../style/error-page.css"
 import { useDispatch } from "react-redux";
-import { changeComponent } from "../../../redux/modalSlice";
+import { changeComponent } from "../../../redux/uiSlice";
 import { DASHBOARD } from "../../../constants/componentsName.";
 const ErrorPage = () => {
     const dispatch = useDispatch();

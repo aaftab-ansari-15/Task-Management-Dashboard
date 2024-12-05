@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../redux/allUserSlice";
-import { loginUser } from "../../redux/userSlice";
-import { changeComponent, setAuthComponent } from "../../redux/modalSlice";
+import { addUser } from "../../redux/usersSlice";
+import { loginUser } from "../../redux/currentUserSlice";
+import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import defaultTaskData from "../../Data/defaultTasks.json";
-import { DASHBOARD, TASKS_LIST_OLD_UI } from "../../constants/componentsName.";
+import { DASHBOARD } from "../../constants/componentsName.";
 import { addGeneratedTasks } from "../../redux/tasksSlice";
 
 const initialData = {
@@ -29,8 +29,8 @@ const SignUpDialog = () => {
   const [SignUpData, setSignUpData] = useState(initialData);
   const [errors, setErrors] = useState(initialData);
 
-  const isSignUpDialogOpen = useSelector((state) => state.modal.isSignUpOpen);
-  const allUser = useSelector((state) => state.allUser);
+  const isSignUpDialogOpen = useSelector((state) => state.ui.isSignUpOpen);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const isFormValid =
@@ -72,8 +72,8 @@ const SignUpDialog = () => {
 
   const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (allUser && allUser.allUser) {
-        const findUser = allUser.allUser.find(
+      if (users && users.users) {
+        const findUser = users.users.find(
           (user) => SignUpData.email === user.email
         );
 

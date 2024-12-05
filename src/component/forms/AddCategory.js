@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { categoryForm } from "../../redux/modalSlice";
+import { categoryForm } from "../../redux/uiSlice";
 import {addCategory} from '../../redux/categorySlice'
 import CloseIcon from "@mui/icons-material/Close";
 const initialCategoryData = {
@@ -20,7 +20,7 @@ const initialCategoryData = {
 };
 const AddCategory = () => {
   const dispatch = useDispatch();
-  const isCategoryFormOpen = useSelector((state) => state.modal.isCategoryForm);
+  const isCategoryFormOpen = useSelector((state) => state.ui.isCategoryForm);
   const categoryData = useSelector((state) => state.category);
   const [newCategory, setNewCategory] = useState(initialCategoryData);
 

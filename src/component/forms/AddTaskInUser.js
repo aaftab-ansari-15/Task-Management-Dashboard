@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { addTasks } from "../../redux/tasksSlice";
-import { addTaskForm } from "../../redux/modalSlice";
+import { addTaskForm } from "../../redux/uiSlice";
 import {
   TextField,
   Button,
@@ -30,15 +30,15 @@ const defaultTask = {
 };
 
 const AddTaskInUser = () => {
-  const isAddTaskForm = useSelector((state) => state.modal.isAddTaskForm);
-  const data = useSelector((state) => state.modal.addTaskInUserData);
+  const isAddTaskForm = useSelector((state) => state.ui.isAddTaskForm);
+  const data = useSelector((state) => state.ui.addTaskInUserData);
   const newTask1 = {
     ...defaultTask,
     ...data,
   };
   const [newTask, setNewTask] = useState(newTask1);
   const [errors, setErrors] = useState(newTask1);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.currentUser);
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 

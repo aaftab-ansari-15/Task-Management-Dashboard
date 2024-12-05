@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { changeComponent } from "../../../redux/modalSlice";
+import { changeComponent } from "../../../redux/uiSlice";
 import { useTheme } from "@emotion/react";
 import { DASHBOARD } from "../../../constants/componentsName.";
 
