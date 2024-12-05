@@ -9,6 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import InfoIcon from '@mui/icons-material/Info';
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useSelector } from "react-redux";
@@ -45,7 +47,7 @@ const TaskTrackTime = () => {
   };
   return (
     <>
-      <Grid2 container alignItems={"center"}>
+      <Grid2 mt={1} container alignItems={"center"}>
         <Grid2 size={10}>
           <Typography className="bottomGridHeading" variant="h6">
             Track task time
@@ -53,7 +55,8 @@ const TaskTrackTime = () => {
         </Grid2>
         <Grid2 size={2}>
           <Tooltip title="Click on Start to start timer.">
-            <AddIcon />
+          <Typography fontFamily={"monospace"} fontWeight={"bolder"} variant="h6">i</Typography>
+            {/* <QuestionMarkIcon sx={{color:theme.palette.text.primary}} /> */}
           </Tooltip>
         </Grid2>
       </Grid2>

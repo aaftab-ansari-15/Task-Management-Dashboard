@@ -29,7 +29,7 @@ const Category = () => {
   };
   return (
     <>
-      <Grid2 container sx={{ alignItems: "center" }}>
+      <Grid2 mt={1} container sx={{ alignItems: "center" }}>
         <Grid2 size={10}>
           <Typography className="bottomGridHeading" variant="h6">
             Caetegory

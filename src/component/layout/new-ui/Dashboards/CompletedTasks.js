@@ -22,14 +22,14 @@ const CompletedTasks = () => {
   }, [getTasksListData]);
   return (
     <>
-      <Grid2 container sx={{ alignItems: "center" }}>
+      <Grid2 mt={1} container sx={{ alignItems: "center" }}>
         <Grid2 size={8}>
           <Typography className="bottomGridHeading" variant="h6">
             Completed tasks
           </Typography>
         </Grid2>
         <Grid2 size={4}>
-          <Typography fontWeight={"700"} align="right" variant="body2">
+        <Typography fontFamily={"monospace"} fontWeight={"bolder"} variant="body1">
             {getPickUpDate}
           </Typography>
         </Grid2>
@@ -46,13 +46,11 @@ const CompletedTasks = () => {
           "&::-webkit-scrollbar-thumb": {
             backgroundColor: theme.palette.scrollbar.thumb,
             borderRadius: "10px",
-            
           },
           "&::-webkit-scrollbar-track": {
             backgroundColor: theme.palette.scrollbar.track,
             borderRadius: "10px",
-            my:3
-
+            my: 3,
           },
         }}
       >
