@@ -4,8 +4,6 @@ import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userCurrentSlice";
 import { DASHBOARD } from "../../constants/componentsName.";
-import defaultTaskData from "../../Data/defaultTasks.json";
-import { addGeneratedTasks } from "../../redux/tasksSlice";
 
 const initialData = {
   name: "",
@@ -76,7 +74,6 @@ const LoginDialog = () => {
             name: findUser.name,
           };
           dispatch(loginUser(updatedLoginData));
-          handleGenerateTaskClick(updatedLoginData); // Genrate tasks for new user
           dispatch(changeComponent(DASHBOARD));
           console.log("userLoggedIn", updatedLoginData);
         } else {
@@ -89,13 +86,6 @@ const LoginDialog = () => {
       console.log("Form has errors");
     }
     setLoginData(initialData);
-  };
-  const handleGenerateTaskClick = (user) => {
-    const setUsersDefaultTasks = defaultTaskData.map((task) => ({
-      ...task,
-      userId: user.email,
-    }));
-    dispatch(addGeneratedTasks(setUsersDefaultTasks));
   };
   const handleSignUpInsteadClick = () => {
     dispatch(setAuthComponent("SignUp"));

@@ -83,7 +83,7 @@ const SignUpDialog = () => {
           const updatedSignUpData = { ...SignUpData, isLogin: true };
           dispatch(addUser(updatedSignUpData));
           dispatch(loginUser(updatedSignUpData));
-          handleGenerateTaskClick(updatedSignUpData); // Genrate tasks for new user
+          dispatch(addGeneratedTasks({data:defaultTaskData, userId:findUser.email}));
           dispatch(changeComponent(DASHBOARD));
         }
       }
@@ -97,7 +97,6 @@ const SignUpDialog = () => {
       ...task,
       userId: user.email,
     }));
-    dispatch(addGeneratedTasks(setUsersDefaultTasks));
   };
   const handleLoginInsteadClick = () => {
     dispatch(setAuthComponent("Login"));

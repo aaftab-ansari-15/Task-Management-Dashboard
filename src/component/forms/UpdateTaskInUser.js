@@ -20,7 +20,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const defaultTask = {
   taskId: "",
-  userId: "",
   title: "",
   description: "",
   dueDate: "",

@@ -40,8 +40,7 @@ workon{
 
     //updated user and currentSlice
     //added storage funtions to get,set, remove.
-    update taskSlice
-    add currentUsersTasks
+    //update taskSlice
     work on Task Time Tracker
     click on peofile open profile component
     click on profile, user data, change: name, password.
@@ -50,6 +49,10 @@ workon{
 
     workon(slice - ui)
     wathing(component - AuthModal)
+    changes{
+        allUser: users
+        user: currentUser
+    }
 
 }
 

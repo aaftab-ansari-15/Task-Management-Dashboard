@@ -2,34 +2,26 @@ import React, { useEffect, useState } from "react";
 import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import defaultTaskData from "../../../Data/defaultTasks.json";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { addGeneratedTasks } from "../../../redux/tasksSlice";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { addTaskForm } from "../../../redux/uiSlice";
+import { addTaskForm, changeComponent } from "../../../redux/uiSlice";
 import NavigationPanel from "./NavigationPanel";
+import { DASHBOARD } from "../../../constants/componentsName.";
 const MyTasksListOldUI = () => {
   // Get the current theme using useTheme hook
   const theme = useTheme();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
-
-  const [disableGenerateButton, setDisableGenerateButton] = useState(false);
   useEffect(() => {
     if (allTasks.length > 0) {
       setDisableGenerateButton(true);
     }
   }, allTasks);
-  const handleGenerateTaskClick = () => {
-    const setUsersDefaultTasks = defaultTaskData.map((task) => ({
-      ...task,
-      userId: user.email,
-    }));
-    dispatch(addGeneratedTasks(setUsersDefaultTasks));
-    setDisableGenerateButton(true);
+  const nevigateToDashboard = () => {
+    dispatch(changeComponent(DASHBOARD));
   };
   //Task Add
   const handleAddTaskClick = () => {
@@ -72,7 +64,7 @@ const MyTasksListOldUI = () => {
         <Box sx={{ flex: 1 }}>
           <Button
             disabled={disableGenerateButton}
-            onClick={handleGenerateTaskClick}
+            onClick={nevigateToDashboard}
             sx={{
               mt: 2,
               ml: 2,
@@ -87,7 +79,7 @@ const MyTasksListOldUI = () => {
             }}
             variant="contained"
           >
-            <Typography variant="body1">Generate-Task</Typography>
+            <Typography variant="body1">Dashboard</Typography>
           </Button>
         </Box>
         <Divider

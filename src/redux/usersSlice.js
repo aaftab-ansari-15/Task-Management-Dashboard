@@ -19,22 +19,22 @@ const usersSlice = createSlice({
   },
   reducers: {
     addUser: (state, action) => {
-      const newUser = action.payload;
-      state.users.push(newUser);
+      const {data} = action.payload;
+      state.users.push(data);
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
     },
     updateUser: (state, action) => {
-      const updatedUserData = action.payload;
+      const {data} = action.payload;
       state.users = state.users.map((user) =>
-        user.email === updatedUserData.email
-          ? { ...user, ...updatedUserData }
+        user.email === data.email
+          ? { ...user, ...data }
           : user
       );
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
     },
     deleteUser: (state, action) => {
-      const userEmail = action.payload.email;
-      state.users = state.users.filter((user) => user.email !== userEmail);
+      const {userId} = action.payload;
+      state.users = state.users.filter((user) => user.email !== userId);
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
     },
     deleteAllusers: (state) => {
@@ -42,20 +42,22 @@ const usersSlice = createSlice({
       removeLocalStorageData(STORAGE_KEYS.USERS);
     },
     loginUser: (state, action) => {
+      const {data} = action.payload;
       const usersData = getLocalStorageData(STORAGE_KEYS.USERS);
       usersData.forEach((user) => {
-        if (user.email === action.payload.email) {
+        if (user.email === data.email) {
           user.isLogin = true;
         }
       });
-      state.curretUser = action.payload;
+      state.curretUser = data;
       setLocalStorageData(STORAGE_KEYS.USERS, usersData);
       setSessionStorageData(STORAGE_KEYS.CURRENT_USER, action.payload);
     },
     logOutUser: (state, action) => {
+      const {userId} = action.payload;
       const usersData = getLocalStorageData(STORAGE_KEYS.USERS);
       usersData.forEach((user) => {
-        if (user.email === action.payload.email) {
+        if (user.email === userId) {
           user.isLogin = false;
         }
       });

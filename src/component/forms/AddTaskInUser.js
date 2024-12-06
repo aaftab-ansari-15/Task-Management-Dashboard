@@ -18,7 +18,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useLayoutEffect } from "react";
 const defaultTask = {
   taskId: 0,
-  userId: "",
   title: "",
   description: "",
   dueDate: "",
@@ -38,7 +37,7 @@ const AddTaskInUser = () => {
   };
   const [newTask, setNewTask] = useState(newTask1);
   const [errors, setErrors] = useState(newTask1);
-  const user = useSelector((state) => state.currentUser);
+  const user = useSelector((state) => state.users.currentUser);
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
@@ -82,7 +81,6 @@ const AddTaskInUser = () => {
     const lastIndex = tasks.tasks.length + generateRandomID();
     const updatedTask = {
       ...newTask,
-      userId: user.user.email,
       taskId: lastIndex,
     };
     const checkTask = tasks.tasks.find((task) => {
@@ -93,7 +91,7 @@ const AddTaskInUser = () => {
     if (checkTask && checkTask.userId) {
       console.log("task already exist, title must be unique");
     } else {
-      dispatch(addTasks(updatedTask));
+      dispatch(addTasks({data: updatedTask, userId: user.email}));
       console.log("Task added:", updatedTask);
     }
     setNewTask(defaultTask);
