@@ -14,9 +14,9 @@ const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
     tasks: getLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS),
-    currentTask:{},
+    taskByDate: [],
   },
-    
+
   reducers: {
     generateTasks: (state, action) => {
       const { data, userId } = action.payload;
@@ -32,7 +32,11 @@ const tasksSlice = createSlice({
         state.tasks[userIndex].tasks = [...state.tasks[userIndex].tasks, data];
       } else {
         // Add a new user with their first task
-        state.tasks.push({ userId: userId, taskInProgress:false, tasks: [data] });
+        state.tasks.push({
+          userId: userId,
+          taskInProgress: false,
+          tasks: [data],
+        });
       }
       // Persist updated tasks to localStorage
       setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
@@ -42,8 +46,8 @@ const tasksSlice = createSlice({
       const userIndex = state.tasks.findIndex((user) => user.userId === userId);
       if (userIndex !== -1) {
         // Update tasks for the existing user
-        state.tasks[userIndex].tasks = state.tasks[userIndex].tasks.map((task) =>
-          task.taskId === taskId ? { ...task, ...data } : task
+        state.tasks[userIndex].tasks = state.tasks[userIndex].tasks.map(
+          (task) => (task.taskId === taskId ? { ...task, ...data } : task)
         );
         setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
       } else {
@@ -79,14 +83,22 @@ const tasksSlice = createSlice({
         console.error(`User with ID ${userId} not found.`);
       }
     },
-    taskTrackTimer:(state, action) => {
-      const {status, task} = action.payload
-      state.currentTask = task;
-      state.taskInProgress= status;
-  }
+    taskTrackTimer: (state, action) => {
+      // const {status, task} = action.payload
+      // state.currentTask = task;
+      // state.taskInProgress= status;
+    },
+    setTaskForTaskList: (state, action) => {
+      state.taskByCurrentDate = action.payload;
+    },
   },
 });
 
-export const { generateTasks, addTask, updateTask, deleteTask, updateTaskTrackTimer } =
-  tasksSlice.actions;
+export const {
+  generateTasks,
+  addTask,
+  updateTask,
+  deleteTask,
+  updateTaskTrackTimer,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

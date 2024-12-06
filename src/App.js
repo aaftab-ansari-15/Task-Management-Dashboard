@@ -8,7 +8,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "./style/theme";
 const App = () => {
   const curretUser = useSelector((state) => state.currentUser.curretUser);
-  const darkMode = useSelector((state) => state.ui.darkMode);
+  const darkMode = useSelector((state) => state.ui.isDarkMode);
   const theme = darkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>

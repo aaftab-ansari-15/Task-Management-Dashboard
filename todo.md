@@ -52,6 +52,7 @@ workon{
     changes{
         allUser: users
         user: currentUser
+        taskListData, taskByCurrentDate: taskByDate
     }
 
 }

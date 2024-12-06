@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userCurrentSlice";
-import { DASHBOARD } from "../../constants/componentsName.";
+import { DASHBOARD, SIGNUP } from "../../constants/componentsName.";
 
 const initialData = {
   name: "",
@@ -88,7 +88,7 @@ const LoginDialog = () => {
     setLoginData(initialData);
   };
   const handleSignUpInsteadClick = () => {
-    dispatch(setAuthComponent("SignUp"));
+    dispatch(setAuthComponent(SIGNUP));
   };
 
   return (

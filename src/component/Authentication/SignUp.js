@@ -5,7 +5,7 @@ import { addUser } from "../../redux/usersSlice";
 import { loginUser } from "../../redux/userCurrentSlice";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import defaultTaskData from "../../Data/defaultTasks.json";
-import { DASHBOARD } from "../../constants/componentsName.";
+import { DASHBOARD, LOGIN } from "../../constants/componentsName.";
 import { addGeneratedTasks } from "../../redux/tasksSlice";
 
 const initialData = {
@@ -99,7 +99,7 @@ const SignUpDialog = () => {
     }));
   };
   const handleLoginInsteadClick = () => {
-    dispatch(setAuthComponent("Login"));
+    dispatch(setAuthComponent(LOGIN));
   };
 
   return (

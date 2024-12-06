@@ -26,7 +26,7 @@ import { NOTIFICATIONS } from "../../constants/componentsName.";
 export default function Navbar() {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const componentName = useSelector((state) => state.ui.componentName);
+  const componentName = useSelector((state) => state.ui.mainLayoutComponent);
   const user = useSelector((state) => state.currentUser);
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));

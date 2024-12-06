@@ -13,9 +13,9 @@ import ErrorPage from "./new-ui/ErrorPage";
 import AboutPage from "./new-ui/AboutPage";
 import { ABOUT, DASHBOARD, MY_TASKS, NOTIFICATIONS, TASKS_LIST_OLD_UI } from "../../constants/componentsName.";
 const MainLayout = () => {
-  const componentName = useSelector((state) => state.ui.componentName);
+  const componentName = useSelector((state) => state.ui.mainLayoutComponent);
   
-  const renderInnerComponent = () => {
+  const renderMainLayputComponent = () => {
     switch (componentName) {
       case DASHBOARD:
         return <Dashboard />;
@@ -36,7 +36,7 @@ const MainLayout = () => {
     <Box>
       <Navbar />
       <SideBar />
-      {renderInnerComponent()}
+      {renderMainLayputComponent()}
       <Forms />
     </Box>
   );

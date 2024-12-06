@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Box, Icon, SvgIcon, Typography } from "@mui/material";
 import ImageCarousel from "../features/ImageCarousel";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import { SIGNUP } from "../../constants/componentsName.";
 const AuthModal = () => {
   const authState = useSelector((state) => state.ui.authComponent);
 
@@ -21,8 +22,8 @@ const AuthModal = () => {
         </Box>
         <Box sx={{ height:"100%", margin: "auto",width: "50%", pt:"5vh"}}>
             <Box sx={{ width: "100%", textAlign: "left" }}>
-              {authState === "SignUp" && <SignUpDialog />}
-              {authState === "Login" && <LoginDialog />}
+              {authState === SIGNUP && <SignUpDialog />}
+              {authState === LOGIN && <LoginDialog />}
             </Box>
         </Box>
       </Box>

@@ -5,23 +5,24 @@ import { DASHBOARD } from "../constants/componentsName.";
 const uiSlice = createSlice({
   name: "modal",
   initialState: {
-    authComponent: "SignUp",
+    mainLayoutComponent: DASHBOARD,
+    authComponent: SIGNUP,
     isSidebarVisible: false,
     isDarkMode: false,
     isUpdateTaskForm: false,
     isAddTaskForm: false,
-    isTaskInfoOpen: false,
     isCategoryForm: false,
+    isTaskInfoOpen: false,
     isTaskAlert: false,
+    pickUpDate: new Date().toISOString(),
     updateTaskInUserData: {},
     updateTaskInUserData1: {},
     addTaskInUserData: {},
     taskAlertData:{},
-    componentName: DASHBOARD,
   },
   reducers: {
     changeDarkMode: (state) => {
-      state.darkMode = !state.darkMode;
+      state.isDarkMode = !state.darkMode;
     },
     setAuthComponent: (state, action) => {
       state.authComponent = action.payload;
@@ -53,7 +54,10 @@ const uiSlice = createSlice({
       state.isCategoryForm = action.payload;
     },
     changeComponent: (state, action) => {
-      state.componentName = action.payload;
+      state.mainLayoutComponent = action.payload;
+    },
+    changePickUpDate: (state, action) => {
+      state.pickUpDate = action.payload.payload;
     },
   },
 });

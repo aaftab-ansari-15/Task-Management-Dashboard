@@ -11,13 +11,11 @@ import categoryReducer from "./categorySlice"
 import taskTrackTimeReducer from "./taskTrackTime"
 export const store = configureStore({
   reducer: {
-    users: usersReducer,
     ui: uiReducer,
+    users: usersReducer,
     tasks: tasksReducer,
+    category: categoryReducer,
     filter: filterReducer,
     sort: sortReducer,
-    useFull: useFullReducer,
-    category: categoryReducer,
-    taskTrackTime: taskTrackTimeReducer,
   },
 });

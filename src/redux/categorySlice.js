@@ -8,7 +8,7 @@ const categorySlice = createSlice({
       state.push(action.payload);
     },
     deleteCategory:(state, action) => {
-
+      state.pop();
     }
   },
 });

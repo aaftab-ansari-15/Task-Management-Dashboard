@@ -9,7 +9,7 @@ import CategoryIcons from "../../../features/CategoryIcons";
 
 const CompletedTasks = () => {
   const theme = useTheme();
-  const getTasksListData = useSelector((state) => state.useFull.taskListData);
+  const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
   const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
   const [getCompletedTasksListData, setGetCompletedTasksListData] = useState(
     []

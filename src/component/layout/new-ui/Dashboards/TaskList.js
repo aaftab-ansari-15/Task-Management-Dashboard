@@ -33,7 +33,7 @@ const TaskList = () => {
   const theme = useTheme();
   const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
   const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
-  const getTasksListData = useSelector((state) => state.useFull.taskListData);
+  const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
   const user = useSelector((state) => state.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const userAllTasks = allTasks.filter((task) => {
