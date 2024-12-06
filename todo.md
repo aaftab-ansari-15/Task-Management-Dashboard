@@ -41,7 +41,7 @@ workon{
     //updated user and currentSlice
     //added storage funtions to get,set, remove.
     //update taskSlice
-    work on Task Time Tracker
+    work on Task Time Tracker taskslice
     click on peofile open profile component
     click on profile, user data, change: name, password.
 
@@ -60,49 +60,4 @@ madeChnagesForVercelToHost{
 //TaskTrackTime, MyTasks, TaskNotification{component is in progress}, MyTaskListOldUI{added useEffect for disable TaskGenrate},
 Login, SignUp{added genrate funtion},
 SideBar{comment profile section}
-}
-dashbaord: {
-calender,
-Mytask(small version){
-add tasks,
-show completed tasks
-},
-Category,
-tracking,
-completed tasks,
-}
-
-My Tasks{}
-
-Notifications{}
-
-My Task (old): {
-task{
-add, generate, update, delete, show(list-table), info.
-},
-NavigationPannel
-Filter
-Sort
-}
-user{
-"name": "zaid",
-"email": "zzzz@zz.z",
-"password": "zzz12!@",
-"isLogin": true
-}
-task{
-"taskId": "task-014",
-"userId": "",
-"title": "Task 14",
-"description": "Description for task 14",
-"dueDate": "2024-11-14",
-"priority": "Medium",
-"category": "Personal",
-"status": "In-progress",
-"timeSpent": "0:0:0",
-"pinned": true
-},
-
-addOnAnother{
-muiDatePicker, dayjs
 }
