@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setTaskForTaskList } from "../../../../redux/useFullSlice";
-import TaskStatusIcon from "../../../features/TaskStatusIcon";
+import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import {
   addTaskForm,
   taskAlert,
@@ -24,8 +24,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { useTheme } from "@emotion/react";
-import TaskAlert from "../../../features/TaskAlert";
-import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
+import TaskAlert from "../../../common/TaskAlert";
+import TaskPriorityIcon from "../../../icons/TaskPriorityIcon";
 import "../../../../style/dashboards.css";
 const priorities = ["Low", "Medium", "High", "Clear"];
 const TaskList = () => {

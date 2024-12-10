@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
 import CalendarComp from "../../features/CalendarComp";
 import { Divider, Typography } from "@mui/material";
-import BasicDateCalendar from "../../features/MuiCalendar";
+import BasicDateCalendar from "../../common/MuiCalendar";
 import Category from "./Dashboards/Category";
 import Notifications from "./Dashboards/Notifications";
 import CompletedTasks from "./Dashboards/CompletedTasks";

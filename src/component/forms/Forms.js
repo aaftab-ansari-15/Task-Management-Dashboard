@@ -1,22 +1,7 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import AddTaskInUser from "./AddTaskInUser";
-import UpdateTaskInUser from "./UpdateTaskInUser";
-import AddCategory from "./AddCategory";
-import { useEffect } from "react";
-import { useState } from "react";
-const renderForm = (formName) => {
-  switch (formName) {
-    case "AddTask":
-      return <AddTaskInUser />;
-    case "UpdateTask":
-      return <UpdateTaskInUser />;
-    case "AddCategory":
-      return <AddCategory />;
-    default:
-      return <></>;
-  }
-};
+import { renderForm } from "../../utills/componentRender";
+
 const Forms = () => {
   const isAddTaskForm = useSelector((state) => state.ui.isAddTaskForm);
   const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);

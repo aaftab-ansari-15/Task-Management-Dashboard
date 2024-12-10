@@ -6,20 +6,15 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { changePickUpDate } from "../../redux/useFullSlice";
+
 import "../../style/features.css";
-import { taskAlert } from "../../redux/uiSlice";
+import { setSelectedDate, taskAlert } from "../../redux/uiSlice";
 
 export default function BasicDateCalendar() {
   const dispatch = useDispatch();
   const [value, setValue] = useState(dayjs(new Date()));
   useEffect(() => {
-    dispatch(
-      changePickUpDate({
-        type: "SET_DATE",
-        payload: value.format("YYYY-MM-DD"),
-      })
-    );
+    dispatch(setSelectedDate({ date: value.format("YYYY-MM-DD") }));
     dispatch(taskAlert({ alertState: false, taskAlertData: {} }));
   }, [value]);
 

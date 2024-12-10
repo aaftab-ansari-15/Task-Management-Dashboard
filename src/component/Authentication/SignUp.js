@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../redux/usersSlice";
-import { loginUser } from "../../redux/userCurrentSlice";
+import { addUser, loginUser } from "../../redux/usersSlice";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import defaultTaskData from "../../Data/defaultTasks.json";
 import { DASHBOARD, LOGIN } from "../../constants/componentsName.";
-import { addGeneratedTasks } from "../../redux/tasksSlice";
-
+import { generateTasks } from "../../redux/tasksSlice";
+import { validateEmail, validatePassword } from "../../utills/validations";
 const initialData = {
   name: "",
   email: "",
@@ -15,24 +14,11 @@ const initialData = {
   isLogin: false,
 };
 
-const validateEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-};
-
-const validatePassword = (password) => {
-  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$#%*?&])[A-Za-z\d@$!%#*?&]{6,}$/.test(
-    password
-  );
-};
-
 const SignUpDialog = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
   const [SignUpData, setSignUpData] = useState(initialData);
   const [errors, setErrors] = useState(initialData);
-
-  const isSignUpDialogOpen = useSelector((state) => state.ui.isSignUpOpen);
-  const users = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-
   const isFormValid =
     !errors.name &&
     !errors.email &&
@@ -72,10 +58,8 @@ const SignUpDialog = () => {
 
   const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (users && users.users) {
-        const findUser = users.users.find(
-          (user) => SignUpData.email === user.email
-        );
+      if (users && users.lenght > 0) {
+        const findUser = users.find((user) => SignUpData.email === user.email);
 
         if (findUser && findUser.email) {
           console.log("Email already exist, Login instead");
@@ -83,7 +67,9 @@ const SignUpDialog = () => {
           const updatedSignUpData = { ...SignUpData, isLogin: true };
           dispatch(addUser(updatedSignUpData));
           dispatch(loginUser(updatedSignUpData));
-          dispatch(addGeneratedTasks({data:defaultTaskData, userId:findUser.email}));
+          dispatch(
+            generateTasks({ data: defaultTaskData, userId: findUser.email })
+          );
           dispatch(changeComponent(DASHBOARD));
         }
       }
@@ -91,12 +77,6 @@ const SignUpDialog = () => {
       console.log("Form has errors");
     }
     setSignUpData(initialData);
-  };
-  const handleGenerateTaskClick = (user) => {
-    const setUsersDefaultTasks = defaultTaskData.map((task) => ({
-      ...task,
-      userId: user.email,
-    }));
   };
   const handleLoginInsteadClick = () => {
     dispatch(setAuthComponent(LOGIN));

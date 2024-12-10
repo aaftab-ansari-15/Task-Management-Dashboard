@@ -15,7 +15,7 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
-import CategoryIcons from "../../../features/CategoryIcons";
+import CategoryIcons from "../../../icons/CategoryIcons";
 import { updateTasks, updateTaskTrackTimer } from "../../../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
 const TaskTrackTime = () => {
@@ -94,7 +94,7 @@ const TaskTrackTime = () => {
                         size={2}
                         sx={{ display: "flex", justifyContent: "start" }}
                       >
-                        <CategoryIcons icon={task.category} />
+                        <CategoryIcons category={task.category} />
                       </Grid2>
                       <Grid2 size={6}>
                         <Tooltip

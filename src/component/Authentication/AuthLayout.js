@@ -2,13 +2,12 @@ import React from "react";
 import SignUpDialog from "./SignUp";
 import LoginDialog from "./Login";
 import { useSelector } from "react-redux";
-import { Box, Icon, SvgIcon, Typography } from "@mui/material";
-import ImageCarousel from "../features/ImageCarousel";
+import { Box, SvgIcon, Typography } from "@mui/material";
+import ImageCarousel from "../common/ImageCarousel";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { SIGNUP } from "../../constants/componentsName.";
-const AuthModal = () => {
-  const authState = useSelector((state) => state.ui.authComponent);
-
+import { LOGIN, SIGNUP } from "../../constants/componentsName.";
+const AuthLayout = () => {
+  const authComponent = useSelector((state) => state.ui.authComponent);
   return (
     <Box sx={{ display: "flex", flexWrap:"initial", height:"85vh"}}>
       <Box  sx={{flex:1 }}>
@@ -22,8 +21,8 @@ const AuthModal = () => {
         </Box>
         <Box sx={{ height:"100%", margin: "auto",width: "50%", pt:"5vh"}}>
             <Box sx={{ width: "100%", textAlign: "left" }}>
-              {authState === SIGNUP && <SignUpDialog />}
-              {authState === LOGIN && <LoginDialog />}
+              {authComponent === SIGNUP && <SignUpDialog />}
+              {authComponent === LOGIN && <LoginDialog />}
             </Box>
         </Box>
       </Box>
@@ -34,4 +33,4 @@ const AuthModal = () => {
   );
 };
 
-export default AuthModal;
+export default AuthLayout;

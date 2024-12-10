@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { categoryForm } from "../../../../redux/uiSlice";
 import AddCategory from "../../../forms/AddCategory";
 import { useTheme } from "@emotion/react";
-import CategoryIcons from "../../../features/CategoryIcons";
+import CategoryIcons from "../../../icons/CategoryIcons";
 const Category = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -71,7 +71,7 @@ const Category = () => {
                     <ListItem className="ListItemCategory" sx={{ p: 0 }}>
                       <Box className="showStyleOnList" />
                       <ListItemAvatar sx={{ ml: 2 }}>
-                        <CategoryIcons icon={data.icon} />
+                        <CategoryIcons category={data.icon} />
                       </ListItemAvatar>
                       <ListItemText primary={data.name} secondary={data.date} />
                     </ListItem>

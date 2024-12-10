@@ -14,7 +14,6 @@ const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
     tasks: getLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS),
-    taskByDate: [],
   },
 
   reducers: {
@@ -83,14 +82,7 @@ const tasksSlice = createSlice({
         console.error(`User with ID ${userId} not found.`);
       }
     },
-    taskTrackTimer: (state, action) => {
-      // const {status, task} = action.payload
-      // state.currentTask = task;
-      // state.taskInProgress= status;
-    },
-    setTaskForTaskList: (state, action) => {
-      state.taskByCurrentDate = action.payload;
-    },
+    
   },
 });
 

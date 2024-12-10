@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../../redux/userCurrentSlice";
 import { DASHBOARD, SIGNUP } from "../../constants/componentsName.";
-
+import { validateEmail, validatePassword } from "../../utills/validations";
+import { loginUser } from "../../redux/usersSlice";
 const initialData = {
   name: "",
   email: "",
@@ -12,23 +12,11 @@ const initialData = {
   isLogin: false,
 };
 
-const validateEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-};
-
-const validatePassword = (password) => {
-  return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!$%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
-    password
-  );
-};
-
 const LoginDialog = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
   const [loginData, setLoginData] = useState(initialData);
   const [errors, setErrors] = useState(initialData);
-
-  const dispatch = useDispatch();
-  const isLoginDialogOpen = useSelector((state) => state.ui.isLoginOpen);
-  const users = useSelector((state) => state.users);
 
   const isFormValid =
     !errors.email && !errors.password && loginData.email && loginData.password;
@@ -58,11 +46,8 @@ const LoginDialog = () => {
 
   const handleLoginClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (users && users.users.length > 0) {
-        const findUser = users.users.find(
-          (user) => loginData.email === user.email
-        );
-
+      if (users && users.length > 0) {
+        const findUser = users.find((user) => loginData.email === user.email);
         if (
           findUser &&
           findUser.email &&

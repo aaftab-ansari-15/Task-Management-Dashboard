@@ -3,9 +3,9 @@ import { Box, Grid, Divider, Typography, Tooltip, Grid2 } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
-import TaskPriorityIcon from "../../../features/TaskPriorityIcon";
-import TaskStatusIcon from "../../../features/TaskStatusIcon";
-import CategoryIcons from "../../../features/CategoryIcons";
+import TaskPriorityIcon from "../../../icons/TaskPriorityIcon";
+import TaskStatusIcon from "../../../icons/TaskStatusIcon";
+import CategoryIcons from "../../../icons/CategoryIcons";
 
 const CompletedTasks = () => {
   const theme = useTheme();
@@ -75,7 +75,7 @@ const CompletedTasks = () => {
                         size={3}
                         sx={{ display: "flex", justifyContent: "start" }}
                       >
-                        <CategoryIcons icon={task.category} />
+                        <CategoryIcons category={task.category} />
                       </Grid2>
                       <Grid2 size={9}>
                         <Tooltip

@@ -45,20 +45,35 @@ workon{
     click on peofile open profile component
     click on profile, user data, change: name, password.
 
-}{
-
-    workon(slice - ui)
-    wathing(component - AuthModal)
-    changes{
-        allUser: users
-        user: currentUser
-        taskListData, taskByCurrentDate: taskByDate
-    }
-
 }
-
 madeChnagesForVercelToHost{
 //TaskTrackTime, MyTasks, TaskNotification{component is in progress}, MyTaskListOldUI{added useEffect for disable TaskGenrate},
 Login, SignUp{added genrate funtion},
 SideBar{comment profile section}
+}
+
+watching =->
+<!-- file-wise -->
+//App{
+    //AuthLayout{
+        //Signup, 
+        //Login
+        //ImageCarousel->common
+    } 
+    //Mainlayout{
+
+    }
+}
+<!-- folder-wise -->
+component{
+    //authentication
+    //common
+    forms
+    icons
+    layout{
+        new-ui{
+            dashboard
+        }
+        old-ui
+    }
 }
