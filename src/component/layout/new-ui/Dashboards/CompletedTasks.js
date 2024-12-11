@@ -3,8 +3,6 @@ import { Box, Grid, Divider, Typography, Tooltip, Grid2 } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
-import TaskPriorityIcon from "../../../icons/TaskPriorityIcon";
-import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import CategoryIcons from "../../../icons/CategoryIcons";
 
 const CompletedTasks = () => {

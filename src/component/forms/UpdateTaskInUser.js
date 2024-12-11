@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTasks } from "../../redux/tasksSlice";
 import { updateTaskFrom } from "../../redux/uiSlice";
 import {
   TextField,
@@ -17,6 +16,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { updateTask } from "../../redux/tasksSlice";
 
 const defaultTask = {
   taskId: "",
@@ -72,7 +72,7 @@ const UpdateTaskInUser = () => {
   };
 
   const handleUpdateTaskClick = () => {
-    dispatch(updateTasks(updatedTask));
+    dispatch(updateTask(updatedTask));
     setUpdatedTask(defaultTask);
     dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
   };

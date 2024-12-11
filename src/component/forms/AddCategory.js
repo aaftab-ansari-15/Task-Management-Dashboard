@@ -7,11 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { categoryForm } from "../../redux/uiSlice";
 import {addCategory} from '../../redux/categorySlice'
 import CloseIcon from "@mui/icons-material/Close";
+import { generateRandomID } from "../../utills/genral";
 const initialCategoryData = {
   id: "",
   name: "",
@@ -29,14 +29,10 @@ const AddCategory = () => {
     setNewCategory({ ...newCategory, [name]: value });
     console.log(name, value);
   };
-  function generateRandomID() {
-    return (
-      Date.now().toString(36) + Math.random().toString(36).substring(2, 7)
-    ).substring(0, 7);
-  }
+
   const handleAddClick = () => {
     const lastIndex = categoryData.length + generateRandomID();
-    const icon = "defaultIcoon";
+    const icon = "defaultIcon";
     const updatedCategory = {
       ...newCategory,
       id: lastIndex,

@@ -4,7 +4,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
 const TaskNotification = () => {
-  const user = useSelector((state) => state.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
   const tasks = useSelector((state) => state.tasks);
   const usersTask = tasks.tasks.filter(
     (task) => task.userId === user.user.email

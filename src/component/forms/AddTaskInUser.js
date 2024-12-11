@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
-import { addTasks } from "../../redux/tasksSlice";
-import { addTaskForm } from "../../redux/uiSlice";
+import { addTask } from "../../redux/tasksSlice";
 import {
   TextField,
   Button,
@@ -16,6 +15,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLayoutEffect } from "react";
+import { addTaskForm } from "../../redux/uiSlice";
+import { generateRandomID } from "../../utills/genral";
 const defaultTask = {
   taskId: 0,
   title: "",
@@ -72,11 +73,6 @@ const AddTaskInUser = () => {
         break;
     }
   };
-  function generateRandomID() {
-    return (
-      Date.now().toString(36) + Math.random().toString(36).substring(2, 7)
-    ).substring(0, 7);
-  }
   const handleAddTaskClick = () => {
     const lastIndex = tasks.tasks.length + generateRandomID();
     const updatedTask = {
@@ -91,7 +87,7 @@ const AddTaskInUser = () => {
     if (checkTask && checkTask.userId) {
       console.log("task already exist, title must be unique");
     } else {
-      dispatch(addTasks({data: updatedTask, userId: user.email}));
+      dispatch(addTask({data: updatedTask, userId: user.email}));
       console.log("Task added:", updatedTask);
     }
     setNewTask(defaultTask);

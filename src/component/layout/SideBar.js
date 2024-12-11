@@ -1,8 +1,6 @@
 import React from "react";
 import { changeComponent, sideBarModal } from "../../redux/uiSlice";
-
 import { useSelector, useDispatch } from "react-redux";
-import { logOutUser } from "../../redux/currentUserSlice";
 import {
   Drawer,
   List,
@@ -17,13 +15,8 @@ import Divider from "@mui/material/Divider";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
-import LogoutIcon from "@mui/icons-material/Logout";
 import TocIcon from "@mui/icons-material/Toc";
 import InfoIcon from "@mui/icons-material/Info";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PersonIcon from '@mui/icons-material/Person';
-import BlurOnIcon from "@mui/icons-material/BlurOn";
-import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import {
   ABOUT,
@@ -36,8 +29,7 @@ import {
 const SideBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const user = useSelector((state) => state.currentUser);
-  const isSideBar = useSelector((state) => state.ui.isSideBar);
+  const isSidebarVisible = useSelector((state) => state.ui.isSidebarVisible);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleSideBarClose = () => {
@@ -47,10 +39,6 @@ const SideBar = () => {
     event.preventDefault();
     setSelectedIndex(index);
   };
-  const handleLogOutClick = () => {
-    dispatch(logOutUser(user.user));
-    dispatch(sideBarModal(false));
-  };
   const navigateToComponent = (componentName) => {
     dispatch(changeComponent(componentName));
     dispatch(sideBarModal(false));
@@ -58,7 +46,7 @@ const SideBar = () => {
 
   return (
     <Drawer
-      open={isSideBar}
+      open={isSidebarVisible}
       onClose={handleSideBarClose}
       PaperProps={{
         sx: {
@@ -73,11 +61,9 @@ const SideBar = () => {
       <Box
         sx={{
           display: "flex",
-          // alignItems: "center",
           bgcolor: theme.palette.secondary.main,
           py: 2,
           pl: 1,
-          // height: "10vh",
         }}
       >
         <Box sx={{ ml: 3, mr: 1, display: "flex", alignItems: "center" }}>
@@ -180,20 +166,6 @@ const SideBar = () => {
             </ListItemIcon>
             <ListItemText primary="About" />
           </ListItemButton>
-
-          {/* <ListItemButton
-            selected={selectedIndex === 8}
-            onClick={(event) => {
-              handleListItemClick(event, 8);
-              handleLogOutClick();
-            }}
-          >
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-
-            <ListItemText primary="Log Out" />
-          </ListItemButton> */}
         </List>
       </Box>
     </Drawer>

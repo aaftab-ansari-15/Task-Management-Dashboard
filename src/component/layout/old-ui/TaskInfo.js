@@ -31,7 +31,7 @@ const TaskInfo = () => {
   const isTaskInfoOpen = useSelector((state) => state.ui.isTaskInfoOpen);
 
   const task = useSelector((state) => state.ui.updateTaskInUserData1);
-  const user = useSelector((state) => state.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   const task1 = allTasks.find((t) => t.taskId === task.taskId);
   let taskCompleted;

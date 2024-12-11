@@ -5,7 +5,6 @@ import {
   changeDarkMode,
   sideBarModal,
 } from "../../redux/uiSlice";
-import { logOutUser } from "../../redux/currentUserSlice";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,28 +17,28 @@ import ContrastIcon from "@mui/icons-material/Contrast";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Tooltip } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { NOTIFICATIONS } from "../../constants/componentsName.";
+import { logoutUser } from "../../redux/usersSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const componentName = useSelector((state) => state.ui.mainLayoutComponent);
-  const user = useSelector((state) => state.currentUser);
+  const currentUser = useSelector((state) => state.users.currentUser);
+  
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
   };
   const handleLogOutClick = () => {
-    dispatch(logOutUser(user.user));
+    dispatch(logoutUser(currentUser));
   };
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
   };
   const handleNotificationClick = () => {
     dispatch(changeComponent(NOTIFICATIONS));
-    dispatch(sideBarModal(false));
   };
   return (
     <>
@@ -72,7 +71,7 @@ export default function Navbar() {
             <Box mr={1}>
               <Tooltip
                 title={
-                  <Typography variant="body1">{user.user.name}</Typography>
+                  <Typography variant="body1">{user.name}</Typography>
                 }
               >
                 <IconButton sx={{ color: theme.palette.text.primary }}>
@@ -127,14 +126,6 @@ export default function Navbar() {
                 </IconButton>
               </Tooltip>
             </Box>
-            {/* <Button
-                variant="solid"
-                color="inherit"
-                onClick={handleLogOutClick}
-                sx={{m:0, p:0}}
-              >
-                <LogoutIcon fontSize="medium"/>
-              </Button> */}
           </Toolbar>
         </AppBar>
       </Box>

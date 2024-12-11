@@ -54,22 +54,61 @@ SideBar{comment profile section}
 
 watching =->
 <!-- file-wise -->
-//App{
-    //AuthLayout{
-        //Signup, 
-        //Login
-        //ImageCarousel->common
+//App.js{
+    //AuthLayout.js{
+        //Signup.js, 
+        //Login.js
+        //ImageCarousel.js
+    }
+    //features{
+        //ImageCarousel.js
+        //MuiCalendadr.js
+        //TaskAlert.js
     } 
-    //Mainlayout{
-
+    //Forms.js{
+            //AddCategory.js
+            //AddTaskInUser.js
+            //UpdateTaskInUser.js
+    }
+    //icons{
+        //TaskCategoryIcon.js
+        //TaskPriorityIcon.js
+        //TaskStatusIcon.js
+    }
+    //Mainlayout.js{
+        //Navbar.js
+        //Sidebar.js
+        new-ui{
+            Dashboard.js{
+                Category.js
+                CompletedTasks.js
+                Notifications.js
+                TaskList.js
+                TaskTrackTime.js
+            }
+            AboutPage.js
+            ErrorPage.js
+            MyTasks.js
+            TaskNotification.js
+        }
+        old-ui{
+             MyTasksListOldUI.js{
+                Filter.js
+                MyTaskListOldUI.js
+                ShowUserTasks.js
+                Sort.js
+                TaskInfo.js
+                UserTaskTable.js
+            }
+        }
     }
 }
 <!-- folder-wise -->
 component{
     //authentication
-    //common
-    forms
-    icons
+    //features
+    //forms
+    //icons
     layout{
         new-ui{
             dashboard

@@ -13,7 +13,7 @@ const MyTasksListOldUI = () => {
   // Get the current theme using useTheme hook
   const theme = useTheme();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
   const allTasks = useSelector((state) => state.tasks.tasks);
   useEffect(() => {
     if (allTasks.length > 0) {

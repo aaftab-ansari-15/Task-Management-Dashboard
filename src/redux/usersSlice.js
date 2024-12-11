@@ -53,7 +53,7 @@ const usersSlice = createSlice({
       setLocalStorageData(STORAGE_KEYS.USERS, usersData);
       setSessionStorageData(STORAGE_KEYS.CURRENT_USER, action.payload);
     },
-    logOutUser: (state, action) => {
+    logoutUser: (state, action) => {
       const {userId} = action.payload;
       const usersData = getLocalStorageData(STORAGE_KEYS.USERS);
       usersData.forEach((user) => {
@@ -74,6 +74,6 @@ export const {
   deleteUser,
   deleteuserss,
   loginUser,
-  logOutUser,
+  logoutUser,
 } = usersSlice.actions;
 export default usersSlice.reducer;

@@ -1,23 +1,21 @@
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Alert, Collapse, IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { taskAlert } from "../../redux/uiSlice";
-import { updateTasks } from "../../redux/tasksSlice";
-import { useDispatch } from "react-redux";
+import { updateTask } from "../../redux/tasksSlice";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 
 const TaskAlert = () => {
   const dispatch = useDispatch();
-  const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
+  const isTaskAlertOpen = useSelector((state) => state.ui.isTaskAlert);
   const alertTask = useSelector((state) => state.ui.taskAlertData);
-  // useEffect(() => {}, []);
   const handleCompleteTask = () => {
     const updatedTask = {
       ...alertTask,
       status: alertTask.status !== "Completed" ? "Completed" : "Pending",
     };
-    dispatch(updateTasks(updatedTask));
+    dispatch(updateTask(updatedTask));
     dispatch(taskAlert({ alertState: false, taskAlertData: {} }));
   };
   const handleAlertClose = () => {
@@ -25,7 +23,7 @@ const TaskAlert = () => {
   };
   return (
     <Collapse
-      in={taskAlertState}
+      in={isTaskAlertOpen}
       sx={{
         textOverflow: "ellipsis", // Shows ellipsis by default
         whiteSpace: "nowrap", // Prevents text wrapping by default
