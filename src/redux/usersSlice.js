@@ -15,7 +15,7 @@ const usersSlice = createSlice({
   name: "users",
   initialState: {
     users: getLocalStorageData(STORAGE_KEYS.USERS),
-    curretUser: getSessionStorageData(STORAGE_KEYS.CURRENT_USER),
+    currentUser: getSessionStorageData(STORAGE_KEYS.CURRENT_USER),
   },
   reducers: {
     addUser: (state, action) => {
@@ -49,7 +49,7 @@ const usersSlice = createSlice({
           user.isLogin = true;
         }
       });
-      state.curretUser = data;
+      state.currentUser = data;
       setLocalStorageData(STORAGE_KEYS.USERS, usersData);
       setSessionStorageData(STORAGE_KEYS.CURRENT_USER, action.payload);
     },
@@ -61,7 +61,7 @@ const usersSlice = createSlice({
           user.isLogin = false;
         }
       });
-      state.curretUser = null;
+      state.currentUser = null;
       setLocalStorageData(STORAGE_KEYS.USERS, usersData);
       removeSessionStorageData(STORAGE_KEYS.CURRENT_USER);
     },

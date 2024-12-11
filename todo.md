@@ -85,13 +85,13 @@ watching =->
             MyTasks.js
             TaskNotification.js
         }
-        old-ui{
+        //old-ui{
              //TasksListOldUI.js{
                 //Filter.js
                 //TaskPanel.js
                 //Sort.js
                 //TaskInfo.js
-                UserTaskTable.js
+                //UserTaskTable.js
             }
         }
     }

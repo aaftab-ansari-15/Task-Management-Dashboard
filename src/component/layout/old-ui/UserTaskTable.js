@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteTasks } from "../../../redux/tasksSlice";
-import { taskInfoModal, updateTaskFrom } from "../../../redux/uiSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { taskInfoModal, updateTaskForm } from "../../../redux/uiSlice";
+
 import TaskInfo from "./TaskInfo";
 import {
   List,
@@ -16,18 +16,19 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 const UserTaskTable = ({ usersFilterTasks }) => {
+  
   const dispatch = useDispatch();
-
+  const currentUser = useSelector((state) => state.users.currentUser)
   //Task Update
   const handleTaskUpdateClick = (task) => {
-    dispatch(updateTaskFrom({ arg1: true, arg2: task }));
+    dispatch(updateTaskForm({ arg1: true, arg2: task }));
   };
-
   //Task Delete
   const handleTaskDeleteClick = (task) => {
-    dispatch(deleteTasks(task));
+    dispatch(deleteTask({userId: currentUser.email, taskId: task.taskId}));
     console.log("task deleted", task);
   };
+  //Open Task Information
   const openTaskInfo = (task) => {
     dispatch(taskInfoModal({ arg1: true, arg2: task }));
   };

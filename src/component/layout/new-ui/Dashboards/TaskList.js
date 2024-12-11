@@ -17,7 +17,7 @@ import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import {
   addTaskForm,
   taskAlert,
-  updateTaskFrom,
+  updateTaskForm,
 } from "../../../../redux/uiSlice";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -58,7 +58,7 @@ const TaskList = () => {
     );
   };
   const handleTaskUpdateClick = (task) => {
-    dispatch(updateTaskFrom({ arg1: true, arg2: task }));
+    dispatch(updateTaskForm({ arg1: true, arg2: task }));
   };
   const handlePriorityFilterClick = (priority) => {
     setFilterValue(priority);

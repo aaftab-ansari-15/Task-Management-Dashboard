@@ -3,7 +3,7 @@ import SignUpDialog from "./SignUp";
 import LoginDialog from "./Login";
 import { useSelector } from "react-redux";
 import { Box, SvgIcon, Typography } from "@mui/material";
-import ImageCarousel from "../common/ImageCarousel";
+import ImageCarousel from "../features/ImageCarousel";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { LOGIN, SIGNUP } from "../../constants/componentsName.";
 const AuthLayout = () => {

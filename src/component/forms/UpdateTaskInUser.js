@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskFrom } from "../../redux/uiSlice";
+import { updateTaskForm } from "../../redux/uiSlice";
 import {
   TextField,
   Button,
@@ -75,10 +75,10 @@ const UpdateTaskInUser = () => {
   const handleUpdateTaskClick = () => {
     dispatch(updateTask({ data: updatedTask, userId: currentUser.email, taskId: updatedTask.taskId}));
     setUpdatedTask(defaultTask);
-    dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
+    dispatch(updateTaskForm({ arg1: false, arg2: {} }));
   };
   const handleClose = () => {
-    dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
+    dispatch(updateTaskForm({ arg1: false, arg2: {} }));
   };
 
   return (

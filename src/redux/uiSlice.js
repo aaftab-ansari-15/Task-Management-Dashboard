@@ -48,7 +48,7 @@ const uiSlice = createSlice({
       state.isAddTaskForm = formState;
       state.addTaskFormData = data;
     },
-    updateTaskFrom: (state, action) => {
+    updateTaskForm: (state, action) => {
       const { arg1, arg2 } = action.payload;
       state.isUpdateTaskForm = arg1;
       state.updateTaskFormData = arg2;
@@ -67,7 +67,7 @@ export const {
   changeDarkMode,
   setAuthComponent,
   sideBarModal,
-  updateTaskFrom,
+  updateTaskForm,
   addTaskForm,
   taskInfoModal,
   categoryForm,
