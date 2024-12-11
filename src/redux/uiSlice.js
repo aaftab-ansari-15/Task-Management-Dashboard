@@ -15,14 +15,17 @@ const uiSlice = createSlice({
     isTaskInfoOpen: false,
     isTaskAlert: false,
     selectedDate: new Date().toISOString(),
-    updateTaskInUserData: {},
-    updateTaskInUserData1: {},
-    addTaskInUserData: {},
+    updateTaskFormData: {},
+    taskInfoData: {},
+    addTaskFormData: {},
     taskAlertData: {},
   },
   reducers: {
     changeDarkMode: (state) => {
       state.isDarkMode = !state.isDarkMode;
+    },
+    changeComponent: (state, action) => {
+      state.mainLayoutComponent = action.payload;
     },
     setAuthComponent: (state, action) => {
       state.authComponent = action.payload;
@@ -33,7 +36,7 @@ const uiSlice = createSlice({
     taskInfoModal: (state, action) => {
       const { arg1, arg2 } = action.payload;
       state.isTaskInfoOpen = arg1;
-      state.updateTaskInUserData1 = arg2;
+      state.taskInfoData = arg2;
     },
     taskAlert: (state, action) => {
       const { alertState, taskAlertData } = action.payload;
@@ -43,18 +46,15 @@ const uiSlice = createSlice({
     addTaskForm: (state, action) => {
       const { formState, data } = action.payload;
       state.isAddTaskForm = formState;
-      state.addTaskInUserData = data;
+      state.addTaskFormData = data;
     },
     updateTaskFrom: (state, action) => {
       const { arg1, arg2 } = action.payload;
       state.isUpdateTaskForm = arg1;
-      state.updateTaskInUserData = arg2;
+      state.updateTaskFormData = arg2;
     },
     categoryForm: (state, action) => {
       state.isCategoryForm = action.payload;
-    },
-    changeComponent: (state, action) => {
-      state.mainLayoutComponent = action.payload;
     },
     setSelectedDate: (state, action) => {
       const { date } = action.payload;

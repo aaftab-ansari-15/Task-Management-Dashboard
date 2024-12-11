@@ -25,14 +25,14 @@ const defaultTask = {
   priority: "",
   category: "",
   status: "Pending",
-  timeSpent: "0:0:0",
+  timeSpent: "00:00:00",
   pined: false,
 };
 
 const AddTaskInUser = () => {
   const dispatch = useDispatch();
   const isAddTaskForm = useSelector((state) => state.ui.isAddTaskForm);
-  const data = useSelector((state) => state.ui.addTaskInUserData);
+  const data = useSelector((state) => state.ui.addTaskFormData);
   const newTask1 = {
     ...defaultTask,
     ...data,
@@ -41,11 +41,7 @@ const AddTaskInUser = () => {
   const [errors, setErrors] = useState(newTask1);
   const currentUser = useSelector((state) => state.users.currentUser);
   const allTasks = useSelector((state) => state.tasks.allTasks);
-  const currentUserTasks = allTasks.find((obj) => {
-    if (obj.userId === currentUser.email) {
-      return obj.tasks;
-    }
-  });
+  const currentUserTasks = allTasks.find(obj => obj.userId === currentUser.email)?.tasks || [];
   const isFormValid =
     !errors.title &&
     !errors.description &&

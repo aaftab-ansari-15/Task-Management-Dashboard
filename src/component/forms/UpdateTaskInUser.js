@@ -26,19 +26,19 @@ const defaultTask = {
   priority: "",
   category: "",
   status: "",
-  timeSpent: 0,
+  timeSpent: "00:00:00",
   pined: false,
 };
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser)
   const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);
-  const userTask = useSelector((state) => state.ui.updateTaskInUserData);
-  const [updatedTask, setUpdatedTask] = useState(userTask);
+  const updateTaskFormData = useSelector((state) => state.ui.updateTaskFormData);
+  const [updatedTask, setUpdatedTask] = useState(updateTaskFormData);
   const [errors, setErrors] = useState(defaultTask);
   useEffect(() => {
-    setUpdatedTask(userTask);
-  }, [userTask]);
+    setUpdatedTask(updateTaskFormData);
+  }, [updateTaskFormData]);
   const isFormValid =
     !errors.description &&
     !errors.dueDate &&

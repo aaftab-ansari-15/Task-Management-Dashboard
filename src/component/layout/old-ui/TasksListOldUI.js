@@ -1,12 +1,12 @@
 import React from "react";
-import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { addTaskForm, changeComponent } from "../../../redux/uiSlice";
 import { DASHBOARD } from "../../../constants/componentsName.";
+import TasksPanel from "./TasksPanel";
 
 const TasksListOldUI = () => {
   
@@ -26,7 +26,7 @@ const TasksListOldUI = () => {
     <Box
       sx={{
         border: `solid 2px ${theme.palette.primary.main}`,
-        borderRadius: 2, // Use primary color from theme
+        borderRadius: 2, 
         m: 2,
         padding: 2,
         color: "text.primary",
@@ -96,7 +96,7 @@ const TasksListOldUI = () => {
           </Box>
         </Box>
       </Box>
-      <ShowUserTasks />
+      <TasksPanel />
     </Box>
   );
 };

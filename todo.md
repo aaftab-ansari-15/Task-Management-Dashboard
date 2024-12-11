@@ -94,9 +94,9 @@ watching =->
         old-ui{
              //TasksListOldUI.js{
                 //Filter.js
-                ShowUserTasks.js
+                //TaskPanel.js
                 //Sort.js
-                TaskInfo.js
+                //TaskInfo.js
                 UserTaskTable.js
             }
         }
@@ -115,10 +115,29 @@ component{
         old-ui
     }
 }
-{
+users[
     {
-        userId:,
-        tasks:[],
+        name: "aaftab",
+        email: "aaftabkansari15@gmail.com",
+        password: "jhk45$%",
+    }
+]
+allTasks[
+    {
+        userId:email,
+        tasks:[
+            {
+                taskId: "as21adW21",
+                title: "Fix bugs",
+                description: "Solve every bugs created when project migrated",
+                dueDate: "20/12/2024",
+                priority: "High",
+                category: "Work",
+                status: "Pending",
+                timeSpent: "00:00:00",
+                pined: false,
+            }
+        ],
 
     }
-}
+]

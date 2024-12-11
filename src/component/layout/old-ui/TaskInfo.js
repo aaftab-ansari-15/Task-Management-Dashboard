@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTasks } from "../../../redux/tasksSlice";
 import { taskInfoModal } from "../../../redux/uiSlice";
 import { styled } from "@mui/system";
 import {
@@ -15,8 +14,7 @@ import {
 } from "@mui/material";
 
 const TaskCard = styled(Paper)(({ theme }) => ({
-  borderRadius: "15px",
-  border: "2px solid #f7246e",
+  borderRadius: "4px",
   padding: theme.spacing(3),
   backgroundColor: "#fff",
   boxShadow: "0px 10px 15px rgba(0, 0, 0, 0.1)",
@@ -27,51 +25,10 @@ const TaskCard = styled(Paper)(({ theme }) => ({
   },
 }));
 const TaskInfo = () => {
+
   const dispatch = useDispatch();
   const isTaskInfoOpen = useSelector((state) => state.ui.isTaskInfoOpen);
-
-  const task = useSelector((state) => state.ui.updateTaskInUserData1);
-  const user = useSelector((state) => state.users.currentUser);
-  const allTasks = useSelector((state) => state.tasks.allTasks);
-  const task1 = allTasks.find((t) => t.taskId === task.taskId);
-  let taskCompleted;
-  if (task1) {
-    taskCompleted = task1.status === "Completed" ? true : false;
-  }
-  const userAllTasks = allTasks.filter((task) => {
-    return task.userId === user.email;
-  });
-  const [error, setError] = useState("");
-
-  const handleTaskButtonClick = () => {
-    if (!task1) return;
-
-    const isAnyTaskInProgress = userAllTasks.some(
-      (task) => task.status === "In-progress" && task.taskId !== task1.taskId
-    );
-
-    if (task1.status === "Pending") {
-      if (isAnyTaskInProgress) {
-        setError("Only one task can be active at a time.");
-        console.log(
-          "Another task is already in progress. Only one task can be active at a time."
-        );
-      } else {
-        const updatedTask = {
-          ...task1,
-          status: "In-progress",
-        };
-        dispatch(updateTasks(updatedTask));
-      }
-    } else if (task1.status === "In-progress") {
-      const updatedTask = {
-        ...task1,
-        status: "Pending",
-      };
-      dispatch(updateTasks(updatedTask));
-    }
-  };
-
+  const task = useSelector((state) => state.ui.taskInfoData);
   const closeTaskInfo = () => {
     dispatch(taskInfoModal({ arg1: false, arg2: {} }));
   };
@@ -91,7 +48,7 @@ const TaskInfo = () => {
           },
         }}
       >
-        {task1 ? (
+        {task ? (
           <center>
             <Box sx={{ width: "100%", maxWidth: "700px", margin: "auto" }}>
               <TaskCard>
@@ -130,7 +87,7 @@ const TaskInfo = () => {
                       Task ID:
                     </Typography>
                     <Typography variant="body2" sx={{ color: "gray" }}>
-                      {task1.taskId}
+                      {task.taskId}
                     </Typography>
                   </Grid>
 
@@ -139,7 +96,7 @@ const TaskInfo = () => {
                       Title:
                     </Typography>
                     <Typography variant="body2" sx={{ color: "gray" }}>
-                      {task1.title}
+                      {task.title}
                     </Typography>
                   </Grid>
 
@@ -148,7 +105,7 @@ const TaskInfo = () => {
                       Category:
                     </Typography>
                     <Typography variant="body2" sx={{ color: "gray" }}>
-                      {task1.category}
+                      {task.category}
                     </Typography>
                   </Grid>
 
@@ -157,11 +114,11 @@ const TaskInfo = () => {
                       Priority:
                     </Typography>
                     <Chip
-                      label={task1.priority}
+                      label={task.priority}
                       color={
-                        task1.priority === "High"
+                        task.priority === "High"
                           ? "error"
-                          : task1.priority === "Medium"
+                          : task.priority === "Medium"
                           ? "warning"
                           : "success"
                       }
@@ -176,7 +133,7 @@ const TaskInfo = () => {
                       variant="body2"
                       sx={{ color: "gray", whiteSpace: "pre-line" }}
                     >
-                      {task1.description}
+                      {task.description}
                     </Typography>
                   </Grid>
 
@@ -185,7 +142,7 @@ const TaskInfo = () => {
                       Due Date:
                     </Typography>
                     <Typography variant="body2" sx={{ color: "gray" }}>
-                      {new Date(task1.dueDate).toLocaleDateString()}
+                      {new Date(task.dueDate).toLocaleDateString()}
                     </Typography>
                   </Grid>
 
@@ -194,7 +151,7 @@ const TaskInfo = () => {
                       Status:
                     </Typography>
                     <Typography variant="body2" sx={{ color: "gray" }}>
-                      {task1.status}
+                      {task.status}
                     </Typography>
                   </Grid>
 
@@ -203,7 +160,7 @@ const TaskInfo = () => {
                       Time Spent:
                     </Typography>
                     {/* <Typography variant="body2" sx={{ color: "gray" }}>
-                  <Counter task={task1} />
+                  <Counter task={task} />
                 </Typography> */}
                   </Grid>
 
