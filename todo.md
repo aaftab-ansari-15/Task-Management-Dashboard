@@ -92,11 +92,10 @@ watching =->
             TaskNotification.js
         }
         old-ui{
-             MyTasksListOldUI.js{
-                Filter.js
-                MyTaskListOldUI.js
+             //TasksListOldUI.js{
+                //Filter.js
                 ShowUserTasks.js
-                Sort.js
+                //Sort.js
                 TaskInfo.js
                 UserTaskTable.js
             }
@@ -114,5 +113,12 @@ component{
             dashboard
         }
         old-ui
+    }
+}
+{
+    {
+        userId:,
+        tasks:[],
+
     }
 }

@@ -34,8 +34,8 @@ const TaskList = () => {
   const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
   const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
   const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
-  const user = useSelector((state) => state.user.currentUser);
-  const allTasks = useSelector((state) => state.tasks.tasks);
+  const user = useSelector((state) => state.users.currentUser);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
   const userAllTasks = allTasks.filter((task) => {
     return task.userId === user.email;
   });

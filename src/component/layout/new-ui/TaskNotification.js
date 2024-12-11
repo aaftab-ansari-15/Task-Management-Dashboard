@@ -4,10 +4,10 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
 const TaskNotification = () => {
-  const user = useSelector((state) => state.user.currentUser);
-  const tasks = useSelector((state) => state.tasks);
-  const usersTask = tasks.tasks.filter(
-    (task) => task.userId === user.user.email
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
+  const usersTask = allTasks.tasks.filter(
+    (task) => task.userId === currentUser.email
   );
   const [filteredTitles1, setFilteredTitles1] = useState([]);
   const [filteredTitles2, setFilteredTitles2] = useState([]);
@@ -36,7 +36,7 @@ const TaskNotification = () => {
     const titles2 = filteredTask2.map((task) => task.title);
     setFilteredTitles1(titles1);
     setFilteredTitles2(titles2);
-  }, [tasks]);
+  }, [allTasks]);
 
   return (
     <Box sx={{}}>

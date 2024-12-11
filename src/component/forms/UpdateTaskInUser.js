@@ -31,6 +31,7 @@ const defaultTask = {
 };
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.users.currentUser)
   const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);
   const userTask = useSelector((state) => state.ui.updateTaskInUserData);
   const [updatedTask, setUpdatedTask] = useState(userTask);
@@ -72,7 +73,7 @@ const UpdateTaskInUser = () => {
   };
 
   const handleUpdateTaskClick = () => {
-    dispatch(updateTask(updatedTask));
+    dispatch(updateTask({ data: updatedTask, userId: currentUser.email, taskId: updatedTask.taskId}));
     setUpdatedTask(defaultTask);
     dispatch(updateTaskFrom({ arg1: false, arg2: {} }));
   };

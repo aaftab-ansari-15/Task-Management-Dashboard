@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ShowUserTasks from "./ShowUserTasks";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { addTaskForm, changeComponent } from "../../../redux/uiSlice";
-import NavigationPanel from "./NavigationPanel";
 import { DASHBOARD } from "../../../constants/componentsName.";
-const MyTasksListOldUI = () => {
-  // Get the current theme using useTheme hook
+
+const TasksListOldUI = () => {
+  
   const theme = useTheme();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser);
-  const allTasks = useSelector((state) => state.tasks.tasks);
-  useEffect(() => {
-    if (allTasks.length > 0) {
-      setDisableGenerateButton(true);
-    }
-  }, allTasks);
-  const nevigateToDashboard = () => {
-    dispatch(changeComponent(DASHBOARD));
-  };
+  
   //Task Add
   const handleAddTaskClick = () => {
     dispatch(addTaskForm({ formState: true, data: {} }));
   };
+  // Goto Dashboard
+  const nevigateToDashboard = () => {
+    dispatch(changeComponent(DASHBOARD));
+  };
+
   return (
     <Box
       sx={{
@@ -38,7 +33,6 @@ const MyTasksListOldUI = () => {
       }}
     >
       <Box sx={{ height: "150px", display: "flex", overflow: "hidden" }}>
-        {/* <Box sx={{ flex: 1 }}><NavigationPanel /></Box> */}
         <Box sx={{ flex: 1 }}>
           <Button
             onClick={handleAddTaskClick}
@@ -58,7 +52,7 @@ const MyTasksListOldUI = () => {
         <Divider
           sx={{
             mx: 2,
-            border: `1px solid ${theme.palette.secondary.main}`, // Use secondary color for divider
+            border: `1px solid ${theme.palette.secondary.main}`,
           }}
         />
         <Box sx={{ flex: 1 }}>
@@ -85,7 +79,7 @@ const MyTasksListOldUI = () => {
         <Divider
           sx={{
             mx: 2,
-            border: `1px solid ${theme.palette.secondary.main}`, // Use secondary color for divider
+            border: `1px solid ${theme.palette.secondary.main}`,
           }}
         />
         <Box
@@ -97,15 +91,14 @@ const MyTasksListOldUI = () => {
           <Box sx={{ ml: 4 }}>
             <Filter />
           </Box>
-          <Box sx={{ marginLeft: 5 }}>
+          <Box sx={{ ml: 4 }}>
             <Sort />
           </Box>
         </Box>
       </Box>
-
       <ShowUserTasks />
     </Box>
   );
 };
 
-export default MyTasksListOldUI;
+export default TasksListOldUI;

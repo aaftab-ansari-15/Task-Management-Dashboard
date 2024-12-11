@@ -30,6 +30,7 @@ const defaultTask = {
 };
 
 const AddTaskInUser = () => {
+  const dispatch = useDispatch();
   const isAddTaskForm = useSelector((state) => state.ui.isAddTaskForm);
   const data = useSelector((state) => state.ui.addTaskInUserData);
   const newTask1 = {
@@ -38,10 +39,13 @@ const AddTaskInUser = () => {
   };
   const [newTask, setNewTask] = useState(newTask1);
   const [errors, setErrors] = useState(newTask1);
-  const user = useSelector((state) => state.users.currentUser);
-  const tasks = useSelector((state) => state.tasks);
-  const dispatch = useDispatch();
-
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
+  const currentUserTasks = allTasks.find((obj) => {
+    if (obj.userId === currentUser.email) {
+      return obj.tasks;
+    }
+  });
   const isFormValid =
     !errors.title &&
     !errors.description &&
@@ -74,20 +78,20 @@ const AddTaskInUser = () => {
     }
   };
   const handleAddTaskClick = () => {
-    const lastIndex = tasks.tasks.length + generateRandomID();
+    const createTaskId = currentUserTasks.length + generateRandomID();
     const updatedTask = {
       ...newTask,
-      taskId: lastIndex,
+      taskId: createTaskId,
     };
-    const checkTask = tasks.tasks.find((task) => {
+    const checkTask = currentUserTasks.find((task) => {
       return (
-        task.userId === updatedTask.userId && task.title === updatedTask.title
+        task.taskId === updatedTask.taskId || task.title === updatedTask.title
       );
     });
-    if (checkTask && checkTask.userId) {
-      console.log("task already exist, title must be unique");
+    if (checkTask && checkTask.taskId && checkTask.title) {
+      console.log("task already exist, title must be unique.");
     } else {
-      dispatch(addTask({data: updatedTask, userId: user.email}));
+      dispatch(addTask({ data: updatedTask, userId: currentUser.email }));
       console.log("Task added:", updatedTask);
     }
     setNewTask(defaultTask);

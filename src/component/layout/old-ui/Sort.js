@@ -14,13 +14,9 @@ const Sort = () => {
   const dispatch = useDispatch();
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-  useEffect(() => {
-    dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
-  }, [sortBy, sortOrder]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "sortBy") {
       if (value === "") {
         setSortOrder("");
@@ -30,6 +26,9 @@ const Sort = () => {
       setSortOrder(value);
     }
   };
+  useEffect(() => {
+    dispatch(setSorting({ sortBy: sortBy, sortOrder: sortOrder }));
+  }, [sortBy, sortOrder]);
 
   return (
     <>

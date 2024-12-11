@@ -4,51 +4,45 @@ import {
   setLocalStorageData,
   removeLocalStorageData,
 } from "../storage/localStorageUtils";
-import {
-  getSessionStorageData,
-  setSessionStorageData,
-  removeSessionStorageData,
-} from "../storage/sessionStorageUtils";
 import STORAGE_KEYS from "../constants/storageKey";
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    tasks: getLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS),
+    allTasks: getLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS),
   },
 
   reducers: {
     generateTasks: (state, action) => {
       const { data, userId } = action.payload;
-      state.tasks.push({ userId: userId, tasks: [data] });
-      setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
+      state.allTasks.push({ userId: userId, tasks: [data] });
+      setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
     },
     addTask: (state, action) => {
       const { data, userId } = action.payload;
-      const userIndex = state.tasks.findIndex((user) => user.userId === userId);
+      const userIndex = state.allTasks.findIndex((user) => user.userId === userId);
 
       if (userIndex !== -1) {
         // Update tasks for the existing user
-        state.tasks[userIndex].tasks = [...state.tasks[userIndex].tasks, data];
+        state.allTasks[userIndex].tasks = [...state.allTasks[userIndex].tasks, data];
       } else {
         // Add a new user with their first task
-        state.tasks.push({
+        state.allTasks.push({
           userId: userId,
-          taskInProgress: false,
           tasks: [data],
         });
       }
       // Persist updated tasks to localStorage
-      setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
+      setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
     },
     updateTask: (state, action) => {
       const { data, userId, taskId } = action.payload;
-      const userIndex = state.tasks.findIndex((user) => user.userId === userId);
+      const userIndex = state.allTasks.findIndex((user) => user.userId === userId);
       if (userIndex !== -1) {
         // Update tasks for the existing user
-        state.tasks[userIndex].tasks = state.tasks[userIndex].tasks.map(
+        state.allTasks[userIndex].tasks = state.allTasks[userIndex].tasks.map(
           (task) => (task.taskId === taskId ? { ...task, ...data } : task)
         );
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
+        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
@@ -56,12 +50,12 @@ const tasksSlice = createSlice({
     deleteTask: (state, action) => {
       const { userId, taskId } = action.payload;
 
-      const userIndex = state.tasks.findIndex((user) => user.userId === userId);
+      const userIndex = state.allTasks.findIndex((user) => user.userId === userId);
       if (userIndex !== -1) {
-        state.tasks[userIndex].tasks = state.tasks[userIndex].tasks.filter(
+        state.allTasks[userIndex].tasks = state.allTasks[userIndex].tasks.filter(
           (task) => task.taskId !== taskId
         );
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
+        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
@@ -70,14 +64,14 @@ const tasksSlice = createSlice({
       const { userId } = action.payload;
 
       // Find the user by userId
-      const userIndex = state.tasks.findIndex((user) => user.userId === userId);
+      const userIndex = state.allTasks.findIndex((user) => user.userId === userId);
 
       if (userIndex !== -1) {
         // Clear all tasks for the specified user
-        state.tasks[userIndex].tasks = [];
+        state.allTasks[userIndex].tasks = [];
 
         // Persist the updated state to localStorage
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.tasks);
+        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }

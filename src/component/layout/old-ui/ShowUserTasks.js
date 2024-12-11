@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import UserTaskTable from "./UserTaskTable";
+import { Box } from "@mui/material";
 import { Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box } from "@mui/material";
+
 const priorityOrder = { Low: 1, Medium: 2, High: 3 };
+
 const ShowUserTasks = () => {
-  const user = useSelector((state) => state.user.currentUser);
-  const allTasks = useSelector((state) => state.tasks.tasks);
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
   const getFilters = useSelector((state) => state.filter);
   const getSort = useSelector((state) => state.sort);
-  const userAllTasks = allTasks.filter((task) => {
-    return task.userId === user.email;
+  const currentUserAllTasks = allTasks.filter((task) => {
+    return task.userId === currentUser.email;
   });
-  const [usersFilterTasks, setUsersFilterTasks] = useState(userAllTasks);
+  const [usersFilterTasks, setUsersFilterTasks] = useState(currentUserAllTasks);
   const [searchFilter, setSearchFilter] = useState("");
   useEffect(() => {
-    const filteredTasks = userAllTasks.filter((task) => {
+    const filteredTasks = currentUserAllTasks.filter((task) => {
       return (
         (getFilters.priority === "" || getFilters.priority === task.priority) &&
         (getFilters.category === "" || getFilters.category === task.category) &&
@@ -29,14 +31,14 @@ const ShowUserTasks = () => {
   useEffect(() => {
     if (getSort.sortBy === "priority") {
       if (getSort.sortOrder === "asc") {
-        const sortedTask = userAllTasks.sort((a, b) => {
+        const sortedTask = currentUserAllTasks.sort((a, b) => {
           const priorityA = priorityOrder[a.priority] || 0;
           const priorityB = priorityOrder[b.priority] || 0;
           return priorityA - priorityB; // Ascending by priority
         });
         setUsersFilterTasks(sortedTask);
       } else if (getSort.sortOrder === "desc") {
-        const sortedTask = userAllTasks.sort((a, b) => {
+        const sortedTask = currentUserAllTasks.sort((a, b) => {
           const priorityA = priorityOrder[a.priority] || 0;
           const priorityB = priorityOrder[b.priority] || 0;
           return priorityB - priorityA; // Descending by priority
@@ -45,14 +47,14 @@ const ShowUserTasks = () => {
       }
     } else if (getSort.sortBy === "dueDate") {
       if (getSort.sortOrder === "asc") {
-        const sortedTask = userAllTasks.sort((a, b) => {
+        const sortedTask = currentUserAllTasks.sort((a, b) => {
           const dateA = new Date(a.dueDate);
           const dateB = new Date(b.dueDate);
           return dateA - dateB; // Ascending order by date
         });
         setUsersFilterTasks(sortedTask);
       } else if (getSort.sortOrder === "desc") {
-        const sortedTask = userAllTasks.sort((a, b) => {
+        const sortedTask = currentUserAllTasks.sort((a, b) => {
           const dateA = new Date(a.dueDate);
           const dateB = new Date(b.dueDate);
           return dateB - dateA; // Descending order by date
@@ -60,12 +62,12 @@ const ShowUserTasks = () => {
         setUsersFilterTasks(sortedTask);
       }
     } else if (getSort.sortBy === "" && getSort.sortOrder === "") {
-      setUsersFilterTasks(userAllTasks);
+      setUsersFilterTasks(currentUserAllTasks);
     }
   }, [getSort, allTasks]);
 
   useEffect(() => {
-    const searchedTask = userAllTasks.filter((task) => {
+    const searchedTask = currentUserAllTasks.filter((task) => {
       return task.title.toLowerCase().includes(searchFilter.toLowerCase());
     });
     setUsersFilterTasks(searchedTask);
@@ -91,7 +93,7 @@ const ShowUserTasks = () => {
         }}
       >
         <Box>
-          <h4>User Name: {user.name}</h4>
+          <h4>User Name: {currentUser.name}</h4>
         </Box>
         <Box>
           <h2>User's All Tasks</h2>
