@@ -3,12 +3,11 @@ import { Box } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
-const TaskNotification = () => {
+const TaskDueToday = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
   const allTasks = useSelector((state) => state.tasks.allTasks);
-  const usersTask = allTasks.tasks.filter(
-    (task) => task.userId === currentUser.email
-  );
+    const currentUserTasks = allTasks.find(obj => obj.userId === currentUser.email)?.tasks || [];
+
   const [filteredTitles1, setFilteredTitles1] = useState([]);
   const [filteredTitles2, setFilteredTitles2] = useState([]);
   useEffect(() => {
@@ -17,15 +16,16 @@ const TaskNotification = () => {
     let month = String(todayDate.getMonth() + 1).padStart(2, "0");
     let year = String(todayDate.getFullYear());
     let formattedDate = `${year}-${month}-${day}`;
-    const filteredTask1 = usersTask.filter((task) => {
+    // filteredTask1 is due today tasks
+    // filteredTask1 is expired tasks
+    const filteredTask1 = currentUserTasks.filter((task) => {
       let date1 = new Date(task.dueDate);
       let date2 = new Date(formattedDate);
       let timeDifference = date1 - date2; // difference in milliseconds
       let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-      // return daysDifference >= 0 && daysDifference <= 1;
       return daysDifference > 0 && daysDifference <= 1;
     });
-    const filteredTask2 = usersTask.filter((task) => {
+    const filteredTask2 = currentUserTasks.filter((task) => {
       let date1 = new Date(task.dueDate);
       let date2 = new Date(formattedDate);
       let timeDifference = date1 - date2; // difference in milliseconds
@@ -53,28 +53,17 @@ const TaskNotification = () => {
             filteredTitles1.map((title) => {
               return (
                 <Alert key={title} variant="filled" severity="warning">
-                  Task {title} due is in 1 day.
+                  <span style={{fontWeight:"bolder"}}>Task:</span> {title} due is in 1 day.
                 </Alert>
               );
             })
           ) : (
             <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
           )}
-          {/* {filteredTitles2.length > 0 ? (
-            filteredTitles2.map((title) => {
-              return (
-                <Alert key={title} variant="filled" severity="error">
-                  Task {title} is expired.
-                </Alert>
-              );
-            })
-          ) : (
-            <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
-          )} */}
         </Stack>
       </Box>
     </Box>
   );
 };
 
-export default TaskNotification;
+export default TaskDueToday;

@@ -6,8 +6,6 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-
-import "../../style/features.css";
 import { setSelectedDate, taskAlert } from "../../redux/uiSlice";
 
 export default function BasicDateCalendar() {

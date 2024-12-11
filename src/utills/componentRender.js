@@ -4,7 +4,7 @@ import UpdateTaskInUser from "../component/forms/UpdateTaskInUser";
 import TasksListOldUI from "../component/layout/old-ui/TasksListOldUI";
 import Dashboard from "../component/layout/new-ui/Dashboard";
 import MyTasks from "../component/layout/new-ui/MyTasks";
-import TaskNotification from "../component/layout/new-ui/TaskNotification";
+import TaskDueToday from "../component/layout/new-ui/TaskDueToday";
 import AboutPage from "../component/layout/new-ui/AboutPage";
 import ErrorPage from "../component/layout/new-ui/ErrorPage";
 import {
@@ -24,7 +24,7 @@ export const renderMainLayoutComponent = (componentName) => {
     case MY_TASKS:
       return <MyTasks />;
     case NOTIFICATIONS:
-      return <TaskNotification />;
+      return <TaskDueToday />;
     case ABOUT:
       return <AboutPage />;
     default:
@@ -40,6 +40,6 @@ export const renderForm = (formName) => {
     case "AddCategory":
       return <AddCategory />;
     default:
-      return <ErrorPage />;
+      return null;
   }
 };

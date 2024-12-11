@@ -15,16 +15,16 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
-import CategoryIcons from "../../../icons/CategoryIcons";
-import { updateTasks, updateTaskTrackTimer } from "../../../../redux/tasksSlice";
+import TaskCategoryIcon from "../../../icons/TaskCategoryIcon";
+import { updateTask } from "../../../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
-const TaskTrackTime = () => {
+const WidgetTaskTrackTime = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
-  const taskInProgress = useSelector(
-    (state) => state.taskTrackTime.taskInProgress
-  );
+  const getTasksListData = useSelector((state) => state.ui.displayDashboardTasks);
+  // const taskInProgress = useSelector(
+  //   (state) => state.taskTrackTime.taskInProgress
+  // );
   const [pendingTasksListData, setPendingTasksListData] = useState([]);
   useEffect(() => {
     const pendingTasks = getTasksListData.filter((task) => {
@@ -37,18 +37,18 @@ const TaskTrackTime = () => {
       ...task,
       status: task.status === "Pending" ? "In-progress" : "Pending",
     };
-    dispatch(updateTasks(updatedTask));
-    if (taskInProgress === true) {
-      dispatch(updateTaskTrackTimer({ status: false, task: {} }));
-    } else {
-      dispatch(updateTaskTrackTimer({ status: true, task: updatedTask }));
-    }
+    dispatch(updateTask(updatedTask));
+    // if (taskInProgress === true) {
+    //   dispatch(updateTaskTrackTimer({ status: false, task: {} }));
+    // } else {
+    //   dispatch(updateTaskTrackTimer({ status: true, task: updatedTask }));
+    // }
   };
   return (
     <>
       <Grid2 mt={1} container alignItems={"center"}>
         <Grid2 size={10}>
-          <Typography className="bottomGridHeading" variant="h6">
+          <Typography className="dashboard-widget-title" variant="h6">
             Track task time
           </Typography>
         </Grid2>
@@ -94,7 +94,7 @@ const TaskTrackTime = () => {
                         size={2}
                         sx={{ display: "flex", justifyContent: "start" }}
                       >
-                        <CategoryIcons category={task.category} />
+                        <TaskCategoryIcon category={task.category} />
                       </Grid2>
                       <Grid2 size={6}>
                         <Tooltip
@@ -131,7 +131,7 @@ const TaskTrackTime = () => {
                         ) : (
                           <Button
                             onClick={() => handleStartTaskTimer(task)}
-                            disabled={taskInProgress}
+                            // disabled={taskInProgress}
                             sx={{
                               bgcolor: theme.palette.primary.grey,
                               color: theme.palette.text.primary,
@@ -168,4 +168,4 @@ const TaskTrackTime = () => {
   );
 };
 
-export default TaskTrackTime;
+export default WidgetTaskTrackTime;

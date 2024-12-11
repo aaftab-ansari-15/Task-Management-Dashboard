@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Task CRUD Operations",
+    "description": "Create, update, delete, and view tasks seamlessly. Manage your work efficiently."
+  },
+  {
+    "title": "Filtering and Sorting",
+    "description": "Filter tasks by priority, category, or status. Sort tasks by due date or priority level."
+  },
+  {
+    "title": "Multi-User System",
+    "description": "Supports multiple users. Each user can register, log in, and manage their own tasks securely."
+  },
+  {
+    "title": "Dark Mode",
+    "description": "Switch between light and dark modes for a comfortable viewing experience."
+  },
+  {
+    "title": "Dashboard with Calendar",
+    "description": "Organized dashboard featuring a calendar and task lists"
+  },
+  {
+    "title": "Task Timer",
+    "description": "Track the time spent on each task and improve your productivity."
+  },
+  {
+    "title": "Notifications",
+    "description": "Get reminders for upcoming tasks based on their due dates."
+  }
+]

@@ -51,7 +51,7 @@ const usersSlice = createSlice({
       });
       state.currentUser = data;
       setLocalStorageData(STORAGE_KEYS.USERS, usersData);
-      setSessionStorageData(STORAGE_KEYS.CURRENT_USER, action.payload);
+      setSessionStorageData(STORAGE_KEYS.CURRENT_USER, state.currentUser);
     },
     logoutUser: (state, action) => {
       const {userId} = action.payload;

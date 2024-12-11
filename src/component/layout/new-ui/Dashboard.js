@@ -1,28 +1,13 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
-import CalendarComp from "../../features/CalendarComp";
-import { Divider, Typography } from "@mui/material";
-import BasicDateCalendar from "../../common/MuiCalendar";
-import Category from "./Dashboards/Category";
-import Notifications from "./Dashboards/Notifications";
-import CompletedTasks from "./Dashboards/CompletedTasks";
-import TaskTrackTime from "./Dashboards/TaskTrackTime";
-import TaskList from "./Dashboards/TaskList";
-import "./../../../style/dashboards.css";
+import BasicDateCalendar from "../../features/MuiCalendar";
+import Category from "./Dashboards/WidgetCategory";
+import CompletedTasks from "./Dashboards/WidgetCompletedTasks";
+import TaskTrackTime from "./Dashboards/WidgetTaskTrackTime";
+import TaskList from "./Dashboards/WidgetTaskList";
+import { Item } from "../../../style/genral";
 
-const Item = styled(Paper)(({ theme }) => ({
-  // background: "linear-gradient(135deg, rgba(251, 248, 147, 0.6), rgba(255, 255, 255, 0.4))",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  backdropFilter: "blur(10px)", 
-  WebkitBackdropFilter: "blur(10px)", 
-  borderRadius: 2,
-  border: `1px solid ${theme.palette.divider}`, 
-}));
 const Dashboard = () => {
   return (
     <Box
@@ -35,7 +20,6 @@ const Dashboard = () => {
         <Grid size={4} sx={{}}>
           <Item sx={{ height: "44vh",borderRadius: 2, }}>
             <BasicDateCalendar />
-            {/* <CalendarComp /> */}
           </Item>
         </Grid>
         <Grid size={8} sx={{}}>

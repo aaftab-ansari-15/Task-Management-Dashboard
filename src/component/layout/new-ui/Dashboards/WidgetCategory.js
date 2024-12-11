@@ -17,8 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { categoryForm } from "../../../../redux/uiSlice";
 import AddCategory from "../../../forms/AddCategory";
 import { useTheme } from "@emotion/react";
-import CategoryIcons from "../../../icons/CategoryIcons";
-const Category = () => {
+import CategoryIcons from "../../../icons/TaskCategoryIcon";
+const WidgetCategory = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const getCategoryData = useSelector((state) => state.category);
@@ -31,7 +31,7 @@ const Category = () => {
     <>
       <Grid2 mt={1} container sx={{ alignItems: "center" }}>
         <Grid2 size={10}>
-          <Typography className="bottomGridHeading" variant="h6">
+          <Typography className="dashboard-widget-title" variant="h6">
             Caetegory
           </Typography>
         </Grid2>
@@ -68,8 +68,8 @@ const Category = () => {
               return (
                 <React.Fragment key={data.id}>
                   <Box sx={{ py: 1 }}>
-                    <ListItem className="ListItemCategory" sx={{ p: 0 }}>
-                      <Box className="showStyleOnList" />
+                    <ListItem className="widget-list-item-category" sx={{p:0, m:0}}>
+                      <Box className="list-item-highlight" />
                       <ListItemAvatar sx={{ ml: 2 }}>
                         <CategoryIcons category={data.icon} />
                       </ListItemAvatar>
@@ -90,4 +90,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default WidgetCategory;

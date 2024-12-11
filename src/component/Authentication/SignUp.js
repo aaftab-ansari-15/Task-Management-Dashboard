@@ -58,20 +58,21 @@ const SignUpDialog = () => {
 
   const handleSignUpClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (users && users.lenght > 0) {
-        const findUser = users.find((user) => SignUpData.email === user.email);
-
-        if (findUser && findUser.email) {
-          console.log("Email already exist, Login instead");
-        } else {
-          const updatedSignUpData = { ...SignUpData, isLogin: true };
-          dispatch(addUser(updatedSignUpData));
-          dispatch(loginUser(updatedSignUpData));
-          dispatch(
-            generateTasks({ data: defaultTaskData, userId: findUser.email })
-          );
-          dispatch(changeComponent(DASHBOARD));
-        }
+      const findUser = users.find((user) => user.email === SignUpData.email);
+      if (findUser && findUser.email) {
+        console.log("Email already exist, Login instead");
+      } else {
+        const updatedSignUpData = { ...SignUpData, isLogin: true };
+        dispatch(addUser({ data: updatedSignUpData }));
+        dispatch(loginUser({ data: updatedSignUpData }));
+        dispatch(
+          generateTasks({
+            data: defaultTaskData,
+            userId: updatedSignUpData.email,
+          })
+        );
+        dispatch(changeComponent(DASHBOARD));
+        console.log("welcome user: ", updatedSignUpData.name);
       }
     } else {
       console.log("Form has errors");

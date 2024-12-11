@@ -13,6 +13,7 @@ const TasksPanel = () => {
   const getFilters = useSelector((state) => state.filter);
   const getSort = useSelector((state) => state.sort);
   const currentUserTasks = allTasks.find(obj => obj.userId === currentUser.email)?.tasks || [];
+  console.log(currentUserTasks);
   const [usersFilterTasks, setUsersFilterTasks] = useState(currentUserTasks);
   const [searchFilter, setSearchFilter] = useState("");
   useEffect(() => {

@@ -10,6 +10,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 export const renderStatusIcon = (status) => {
+  console.log(status);
     switch (status) {
       case "Completed":
         return (

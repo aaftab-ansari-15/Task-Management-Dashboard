@@ -3,12 +3,13 @@ import { Box, Grid, Divider, Typography, Tooltip, Grid2 } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
-import CategoryIcons from "../../../icons/CategoryIcons";
-
-const CompletedTasks = () => {
+import TaskCategoryIcon from "../../../icons/TaskCategoryIcon";
+const WidgetCompletedTasks = () => {
   const theme = useTheme();
-  const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
-  const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
+  const getTasksListData = useSelector(
+    (state) => state.ui.displayDashboardTasks
+  );
+  const getPickUpDate = useSelector((state) => state.ui.pickUpDate);
   const [getCompletedTasksListData, setGetCompletedTasksListData] = useState(
     []
   );
@@ -22,12 +23,16 @@ const CompletedTasks = () => {
     <>
       <Grid2 mt={1} container sx={{ alignItems: "center" }}>
         <Grid2 size={8}>
-          <Typography className="bottomGridHeading" variant="h6">
+          <Typography className="dashboard-widget-title" variant="h6">
             Completed tasks
           </Typography>
         </Grid2>
         <Grid2 size={4}>
-        <Typography fontFamily={"monospace"} fontWeight={"bolder"} variant="body1">
+          <Typography
+            fontFamily={"monospace"}
+            fontWeight={"bolder"}
+            variant="body1"
+          >
             {getPickUpDate}
           </Typography>
         </Grid2>
@@ -73,7 +78,7 @@ const CompletedTasks = () => {
                         size={3}
                         sx={{ display: "flex", justifyContent: "start" }}
                       >
-                        <CategoryIcons category={task.category} />
+                        <TaskCategoryIcon category={task.category} />
                       </Grid2>
                       <Grid2 size={9}>
                         <Tooltip
@@ -123,4 +128,4 @@ const CompletedTasks = () => {
   );
 };
 
-export default CompletedTasks;
+export default WidgetCompletedTasks;

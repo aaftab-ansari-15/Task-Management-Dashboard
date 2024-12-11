@@ -14,6 +14,7 @@ import {
   IconButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { deleteTask } from "../../../redux/tasksSlice";
 
 const UserTaskTable = ({ usersFilterTasks }) => {
   

@@ -12,10 +12,10 @@ import { Box, Grid } from "@mui/system";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setTaskForTaskList } from "../../../../redux/useFullSlice";
 import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import {
   addTaskForm,
+  setDashboardTasks,
   taskAlert,
   updateTaskForm,
 } from "../../../../redux/uiSlice";
@@ -24,30 +24,30 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { useTheme } from "@emotion/react";
-import TaskAlert from "../../../common/TaskAlert";
+import TaskAlert from "../../../features/TaskAlert";
 import TaskPriorityIcon from "../../../icons/TaskPriorityIcon";
-import "../../../../style/dashboards.css";
+
 const priorities = ["Low", "Medium", "High", "Clear"];
-const TaskList = () => {
+
+const WidgetTaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const getPickUpDate = useSelector((state) => state.ui.selectedDate);
   const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
-  const getPickUpDate = useSelector((state) => state.useFull.pickUpDate);
-  const getTasksListData = useSelector((state) => state.useFull.taskByCurrentDate);
-  const user = useSelector((state) => state.users.currentUser);
+  const getTasksListData = useSelector((state) => state.ui.displayDashboardTasks);
   const allTasks = useSelector((state) => state.tasks.allTasks);
-  const userAllTasks = allTasks.filter((task) => {
-    return task.userId === user.email;
-  });
+  const currentUserTasks = allTasks.find(obj => obj.userId === currentUser.email)?.tasks || [];
+  
   const [filterValue, setFilterValue] = useState("Clear");
   useEffect(() => {
-    const getTasks = userAllTasks.filter((task) => {
+    const getTasks = currentUserTasks.filter((task) => {
       const matchesDueDate = task.dueDate === getPickUpDate;
       const matchesPriority =
         filterValue === "Clear" || task.priority === filterValue;
       return matchesDueDate && matchesPriority;
     });
-    dispatch(setTaskForTaskList(getTasks));
+    dispatch(setDashboardTasks(getTasks));
   }, [getPickUpDate, allTasks, filterValue]);
   const handleTaskClick = (task) => {
     dispatch(taskAlert({ alertState: true, taskAlertData: task }));
@@ -80,7 +80,7 @@ const TaskList = () => {
       <TaskAlert />
       <Grid2 container ml={2} mr={3} my={1} alignItems={"center"}>
         <Grid2 size={7}>
-          <Typography className="bottomGridHeading1" variant="h6">
+          <Typography className="dashboard-widget-task-title" variant="h6">
             My tasks ({getTasksListData.length})
           </Typography>
         </Grid2>
@@ -99,6 +99,8 @@ const TaskList = () => {
                 ? "rgba(0, 0, 0, 0.1)"
                 : "transparent",
               opacity: taskAlertState ? 0.6 : 1,
+              background: `linear-gradient(135deg, ${theme.palette.secondary.main}99, ${theme.palette.secondary.main}30)`,
+
             }}
           >
             {priorities.map((priority) => (
@@ -284,4 +286,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default WidgetTaskList;

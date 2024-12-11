@@ -1,0 +1,18 @@
+[
+  {
+    "name": "React",
+    "description": "A JavaScript library for building user interfaces."
+  },
+  {
+    "name": "Redux Toolkit",
+    "description": "State management solution for predictable state updates."
+  },
+  {
+    "name": "Material-UI",
+    "description": "React components for building modern, responsive UIs."
+  },
+  {
+    "name": "Local & Session Storage",
+    "description": "Stores user preferences and session data securely on the client side."
+  }
+]

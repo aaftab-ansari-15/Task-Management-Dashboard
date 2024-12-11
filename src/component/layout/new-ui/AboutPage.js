@@ -10,12 +10,11 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { changeComponent } from "../../../redux/uiSlice";
-import { useTheme } from "@emotion/react";
 import { DASHBOARD } from "../../../constants/componentsName.";
-
+import features from "../../../Data/features.json"
+import technologies from "../../../Data/technologies.json"
 const AboutPage = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   const handleGoBack = () => {
     dispatch(changeComponent(DASHBOARD));
@@ -192,60 +191,5 @@ const AboutPage = () => {
   );
 };
 
-const features = [
-  {
-    title: "Task CRUD Operations",
-    description:
-      "Create, update, delete, and view tasks seamlessly. Manage your work efficiently.",
-  },
-  {
-    title: "Filtering and Sorting",
-    description:
-      "Filter tasks by priority, category, or status. Sort tasks by due date or priority level.",
-  },
-  {
-    title: "Multi-User System",
-    description:
-      "Supports multiple users. Each user can register, log in, and manage their own tasks securely.",
-  },
-  {
-    title: "Dark Mode",
-    description:
-      "Switch between light and dark modes for a comfortable viewing experience.",
-  },
-  {
-    title: "Dashboard with Calendar",
-    description:
-      "Organized dashboard featuring a calendar and task lists",
-  },
-  {
-    title: "Task Timer",
-    description:
-      "Track the time spent on each task and improve your productivity.",
-  },
-  {
-    title: "Notifications",
-    description: "Get reminders for upcoming tasks based on their due dates.",
-  },
-];
 
-const technologies = [
-  {
-    name: "React",
-    description: "A JavaScript library for building user interfaces.",
-  },
-  {
-    name: "Redux Toolkit",
-    description: "State management solution for predictable state updates.",
-  },
-  {
-    name: "Material-UI",
-    description: "React components for building modern, responsive UIs.",
-  },
-  {
-    name: "Local & Session Storage",
-    description:
-      "Stores user preferences and session data securely on the client side.",
-  },
-];
 export default AboutPage;

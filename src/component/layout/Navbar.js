@@ -71,7 +71,7 @@ export default function Navbar() {
             <Box mr={1}>
               <Tooltip
                 title={
-                  <Typography variant="body1">{user.name}</Typography>
+                  <Typography variant="body1">{currentUser.name}</Typography>
                 }
               >
                 <IconButton sx={{ color: theme.palette.text.primary }}>

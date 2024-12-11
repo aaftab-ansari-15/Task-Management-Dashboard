@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { changeComponent, sideBarModal } from "../../redux/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,6 +17,9 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 import TocIcon from "@mui/icons-material/Toc";
 import InfoIcon from "@mui/icons-material/Info";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PersonIcon from '@mui/icons-material/Person';
+import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import {
   ABOUT,
@@ -30,7 +33,7 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSidebarVisible = useSelector((state) => state.ui.isSidebarVisible);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const handleSideBarClose = () => {
     dispatch(sideBarModal(false));
@@ -111,7 +114,7 @@ const SideBar = () => {
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="My tasks" />
+            <ListItemText primary="My Tasks" />
           </ListItemButton>
           <ListItemButton
             selected={selectedIndex === 4}
@@ -123,7 +126,7 @@ const SideBar = () => {
             <ListItemIcon>
               <TocIcon />
             </ListItemIcon>
-            <ListItemText primary="Tasks list" />
+            <ListItemText primary="Tasks List" />
           </ListItemButton>
 
           <ListItemButton
@@ -136,12 +139,12 @@ const SideBar = () => {
             <ListItemIcon>
               <NotificationImportantIcon />
             </ListItemIcon>
-            <ListItemText primary="Notifications" />
+            <ListItemText primary="Due Today" />
           </ListItemButton>
         </List>
         <Divider sx={{ my: 2 }} />
         <List component="sidebar-footer" aria-label="" sx={{ mt: 2 }}>
-          {/* <ListItemButton
+          <ListItemButton
             selected={selectedIndex === 6}
             onClick={(event) => {
               handleListItemClick(event, 6);
@@ -153,7 +156,7 @@ const SideBar = () => {
             </ListItemIcon>
 
             <ListItemText primary="Profile" />
-          </ListItemButton> */}
+          </ListItemButton>
           <ListItemButton
             selected={selectedIndex === 7}
             onClick={(event) => {

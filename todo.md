@@ -40,9 +40,11 @@ workon{
     //updated user and currentSlice
     //added storage funtions to get,set, remove.
     //update taskSlice
-    work on Task Time Tracker taskslice
+
+    work on Task Time Tracker taskslice(disabled taskinprogress)
     click on peofile open profile component
     click on profile, user data, change: name, password.
+    make a method in settings to to delete all generated task 
 
 }
 
@@ -73,17 +75,17 @@ watching =->
         //Navbar.js
         //Sidebar.js
         new-ui{
-            Dashboard.js{
+            //Dashboard.js{
                 Category.js
                 CompletedTasks.js
                 Notifications.js
                 TaskList.js
                 TaskTrackTime.js
             }
-            AboutPage.js
-            ErrorPage.js
-            MyTasks.js
-            TaskNotification.js
+            //AboutPage.js
+            //ErrorPage.js
+            //MyTasks.js
+            //TaskNotification.js
         }
         //old-ui{
              //TasksListOldUI.js{
@@ -119,6 +121,7 @@ users[
         name: "aaftab",
         email: "aaftabkansari15@gmail.com",
         password: "jhk45$%",
+        isLogin: False,
     }
 ];
 

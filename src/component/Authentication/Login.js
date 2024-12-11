@@ -58,7 +58,7 @@ const LoginDialog = () => {
             isLogin: true,
             name: findUser.name,
           };
-          dispatch(loginUser(updatedLoginData));
+          dispatch(loginUser({ data: updatedLoginData }));
           dispatch(changeComponent(DASHBOARD));
           console.log("userLoggedIn", updatedLoginData);
         } else {

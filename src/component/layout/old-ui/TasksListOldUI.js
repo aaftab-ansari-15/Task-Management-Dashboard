@@ -57,7 +57,6 @@ const TasksListOldUI = () => {
         />
         <Box sx={{ flex: 1 }}>
           <Button
-            disabled={disableGenerateButton}
             onClick={nevigateToDashboard}
             sx={{
               mt: 2,

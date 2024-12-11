@@ -7,14 +7,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "./style/theme";
 import AuthLayout from "./component/authentication/AuthLayout";
 const App = () => {
-  const curretUser = useSelector((state) => state.users.curretUser);
+  const currentUser = useSelector((state) => state.users.currentUser);
   const darkMode = useSelector((state) => state.ui.isDarkMode);
   const theme = darkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box>
-        {curretUser && curretUser.isLogin ? <MainLayout /> : <AuthLayout />}
+        {currentUser && currentUser.isLogin ? <MainLayout /> : <AuthLayout />}
       </Box>
     </ThemeProvider>
   );

@@ -1,0 +1,101 @@
+/* sidebar */
+.MuiListItemButton-root.Mui-selected {
+  background-color: rgba(255, 242, 51, 0.5) !important;
+}
+/* mui react calendar */
+.MuiDateCalendar-root {
+  padding-top: 5%;
+}
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+  background-color: #faf601 !important;
+}
+.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin:hover {
+  background-color: #faf601 !important;
+  color: rgb(0, 0, 0) !important;
+
+  border-radius: 10px;
+}
+.MuiDayCalendar-weekDayLabel {
+  font-weight: 700 !important;
+  font-size: large !important;
+}
+
+.css-1chuxo2-MuiPickersCalendarHeader-label {
+  font-weight: 900;
+  font-size: larger;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiPickersCalendarHeader-switchViewIcon {
+  font-size: larger !important;
+}
+.MuiPickersDay-root {
+  font-size: larger !important;
+}
+
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+  /* font-weight: 900 !important; */
+  color: rgb(0, 0, 0) !important;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium {
+  font-size: x-large !important;
+}
+/* new-ui */
+.widget-list-item-category {
+  padding: 0;
+  margin: 0;
+}
+.widget-list-item-category:hover .list-item-highlight {
+  width: 10px;
+  height: 50px;
+  background-color: #fff233;
+  margin-left: 0;
+  margin-right: 10px;
+}
+.dashboard-widget-title {
+  font-weight: bolder !important;
+  text-align: start !important;
+  margin-left: 5% !important;
+  transition: 0.3s ease-in-out;
+}
+.dashboard-widget-task-title {
+  font-weight: bolder !important;
+  text-align: start;
+}
+
+/* error-page */
+.error-container {
+  text-align: center;
+  padding: 2rem;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.error-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #e63946;
+}
+
+.error-message {
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: #555;
+}
+
+.error-button {
+  background-color: #008f25;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.error-button:hover {
+  background-color: #005f19;
+}
