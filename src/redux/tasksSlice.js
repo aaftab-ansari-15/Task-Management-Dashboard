@@ -4,10 +4,11 @@ import {
   setLocalStorageData,
 } from "../storage/localStorageUtils";
 import STORAGE_KEYS from "../constants/storageKey";
+const getAllTasks = getLocalStorageData(STORAGE_KEYS.TASKS);
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    allTasks: getLocalStorageData(STORAGE_KEYS.TASKS),
+    allTasks: getAllTasks,
   },
 
   reducers: {
@@ -50,6 +51,7 @@ const tasksSlice = createSlice({
           (task) => (task.taskId === taskId ? { ...task, ...data } : task)
         );
         setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
+        console.log("task updated in local storage");
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
@@ -90,10 +92,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const {
-  generateTasks,
-  addTask,
-  updateTask,
-  deleteTask,
-} = tasksSlice.actions;
+export const { generateTasks, addTask, updateTask, deleteTask } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;

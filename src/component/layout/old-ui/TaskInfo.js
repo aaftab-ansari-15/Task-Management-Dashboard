@@ -25,8 +25,8 @@ const TaskCard = styled(Paper)(({ theme }) => ({
   },
 }));
 const TaskInfo = () => {
-
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.users.currentUser);
   const isTaskInfoOpen = useSelector((state) => state.ui.isTaskInfoOpen);
   const task = useSelector((state) => state.ui.taskInfoData);
   const closeTaskInfo = () => {
@@ -41,7 +41,7 @@ const TaskInfo = () => {
         // scroll="paper"
         PaperProps={{
           style: {
-            borderRadius: "20px",
+            borderRadius: "2px",
             width: "40vw",
             overflow: "hidden",
             backgroundColor: "inherit",
@@ -60,14 +60,7 @@ const TaskInfo = () => {
                     padding: 2,
                   }}
                 >
-                  <Box>
-                    <Button onClick={closeTaskInfo} color="primary">
-                      Close
-                    </Button>
-                  </Box>
-                  <Box
-                    sx={{ flex: 1, textAlign: "center", marginRight: "10%" }}
-                  >
+                  <Box sx={{ flex: 1, textAlign: "center", marginLeft: "5%" }}>
                     <Typography
                       variant="h4"
                       gutterBottom
@@ -75,6 +68,20 @@ const TaskInfo = () => {
                     >
                       Task Information
                     </Typography>
+                  </Box>
+                  <Box>
+                    <Button
+                      sx={{ bgcolor: "ButtonFace" }}
+                      onClick={closeTaskInfo}
+                    >
+                      <Typography
+                        color="black"
+                        fontWeight={"700"}
+                        variant="body1"
+                      >
+                        Close
+                      </Typography>
+                    </Button>
                   </Box>
                 </Box>
 
@@ -119,8 +126,8 @@ const TaskInfo = () => {
                         task.priority === "High"
                           ? "error"
                           : task.priority === "Medium"
-                          ? "warning"
-                          : "success"
+                            ? "warning"
+                            : "success"
                       }
                     />
                   </Grid>
@@ -159,9 +166,9 @@ const TaskInfo = () => {
                     <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                       Time Spent:
                     </Typography>
-                    {/* <Typography variant="body2" sx={{ color: "gray" }}>
-                  <Counter task={task} />
-                </Typography> */}
+                    <Typography variant="body2" sx={{ color: "gray" }}>
+                      {task.timeSpent}
+                    </Typography>
                   </Grid>
 
                   <Grid
@@ -178,7 +185,7 @@ const TaskInfo = () => {
                         Assigned User:
                       </Typography>
                       <Typography variant="body2" sx={{ color: "gray" }}>
-                        {task.userId}
+                        {currentUser.email}
                       </Typography>
                     </Box>
                   </Grid>

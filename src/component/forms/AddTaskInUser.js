@@ -88,7 +88,7 @@ const AddTaskInUser = () => {
       console.log("task already exist, title must be unique.");
     } else {
       dispatch(addTask({ data: updatedTask, userId: currentUser.email }));
-      console.log("Task added:", updatedTask);
+      console.log("New Task Added:", updatedTask);
     }
     setNewTask(defaultTask);
     dispatch(addTaskForm({ formState: false, data: {} }));

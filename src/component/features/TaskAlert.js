@@ -8,16 +8,19 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const TaskAlert = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.users.currentUser)
   const isTaskAlertOpen = useSelector((state) => state.ui.isTaskAlert);
   const alertTask = useSelector((state) => state.ui.taskAlertData);
+  
   const handleCompleteTask = () => {
     const updatedTask = {
       ...alertTask,
       status: alertTask.status !== "Completed" ? "Completed" : "Pending",
     };
-    dispatch(updateTask(updatedTask));
+    dispatch(updateTask({ data: updatedTask, userId: currentUser.email, taskId: updatedTask.taskId}));
     dispatch(taskAlert({ alertState: false, taskAlertData: {} }));
   };
+
   const handleAlertClose = () => {
     dispatch(taskAlert({ alertState: false, taskAlertData: {} }));
   };

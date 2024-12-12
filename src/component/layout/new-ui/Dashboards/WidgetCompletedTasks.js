@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Box, Grid, Divider, Typography, Tooltip, Grid2 } from "@mui/material";
+import { Box, Divider, Typography, Tooltip, Grid2 } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import TaskCategoryIcon from "../../../icons/TaskCategoryIcon";
+
 const WidgetCompletedTasks = () => {
   const theme = useTheme();
   const getTasksListData = useSelector(
     (state) => state.ui.displayDashboardTasks
   );
-  const getPickUpDate = useSelector((state) => state.ui.pickUpDate);
+  const selectedDate = useSelector((state) => state.ui.selectedDate);
   const [getCompletedTasksListData, setGetCompletedTasksListData] = useState(
     []
   );
@@ -33,7 +34,7 @@ const WidgetCompletedTasks = () => {
             fontWeight={"bolder"}
             variant="body1"
           >
-            {getPickUpDate}
+            {selectedDate}
           </Typography>
         </Grid2>
       </Grid2>
@@ -62,25 +63,15 @@ const WidgetCompletedTasks = () => {
             getCompletedTasksListData.map((task, index) => {
               return (
                 <React.Fragment key={task.taskId}>
-                  <Box
-                    sx={{
-                      py: 2,
-                      cursor: "pointer",
-                      ":hover": {
-                        backgroundColor: theme.palette.primary.light,
-                        color: "black",
-                      },
-                    }}
-                    className="dashboard-tasklist-task"
-                  >
+                  <Box sx={{ py: 2 }}>
                     <Grid2 container spacing={2} alignItems={"center"}>
                       <Grid2
-                        size={3}
+                        size={2}
                         sx={{ display: "flex", justifyContent: "start" }}
                       >
                         <TaskCategoryIcon category={task.category} />
                       </Grid2>
-                      <Grid2 size={9}>
+                      <Grid2 size={10}>
                         <Tooltip
                           title={
                             <Typography variant="body1">

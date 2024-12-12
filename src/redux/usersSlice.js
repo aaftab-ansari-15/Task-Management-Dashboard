@@ -11,11 +11,13 @@ import {
   removeSessionStorageData,
 } from "../storage/sessionStorageUtils";
 import STORAGE_KEYS from "../constants/storageKey";
+const getAllUsers = getLocalStorageData(STORAGE_KEYS.USERS);
+const getCurrentUser = getSessionStorageData(STORAGE_KEYS.CURRENT_USER);
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: getLocalStorageData(STORAGE_KEYS.USERS),
-    currentUser: getSessionStorageData(STORAGE_KEYS.CURRENT_USER),
+    users: getAllUsers,
+    currentUser: getCurrentUser,
   },
   reducers: {
     addUser: (state, action) => {

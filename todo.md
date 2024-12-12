@@ -76,11 +76,10 @@ watching =->
         //Sidebar.js
         new-ui{
             //Dashboard.js{
-                Category.js
-                CompletedTasks.js
-                Notifications.js
-                TaskList.js
-                TaskTrackTime.js
+                //WidgetCategory.js
+                //WidgetCompletedTasks.js
+                WidgetTaskList.js
+                WidgetTaskTrackTime.js
             }
             //AboutPage.js
             //ErrorPage.js

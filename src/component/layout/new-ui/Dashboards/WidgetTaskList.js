@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
-  Collapse,
   Divider,
   Grid2,
   IconButton,
@@ -9,10 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import TaskStatusIcon from "../../../icons/TaskStatusIcon";
+import { useSelector, useDispatch } from "react-redux";
 import {
   addTaskForm,
   setDashboardTasks,
@@ -21,6 +17,7 @@ import {
 } from "../../../../redux/uiSlice";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
+import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { useTheme } from "@emotion/react";
@@ -33,7 +30,7 @@ const WidgetTaskList = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const currentUser = useSelector((state) => state.users.currentUser);
-  const getPickUpDate = useSelector((state) => state.ui.selectedDate);
+  const selectedDate = useSelector((state) => state.ui.selectedDate);
   const taskAlertState = useSelector((state) => state.ui.isTaskAlert);
   const getTasksListData = useSelector((state) => state.ui.displayDashboardTasks);
   const allTasks = useSelector((state) => state.tasks.allTasks);
@@ -42,19 +39,19 @@ const WidgetTaskList = () => {
   const [filterValue, setFilterValue] = useState("Clear");
   useEffect(() => {
     const getTasks = currentUserTasks.filter((task) => {
-      const matchesDueDate = task.dueDate === getPickUpDate;
+      const matchesDueDate = task.dueDate === selectedDate;
       const matchesPriority =
         filterValue === "Clear" || task.priority === filterValue;
       return matchesDueDate && matchesPriority;
     });
     dispatch(setDashboardTasks(getTasks));
-  }, [getPickUpDate, allTasks, filterValue]);
+  }, [selectedDate, allTasks, filterValue]);
   const handleTaskClick = (task) => {
     dispatch(taskAlert({ alertState: true, taskAlertData: task }));
   };
   const handleAddClick = () => {
     dispatch(
-      addTaskForm({ formState: true, data: { dueDate: getPickUpDate } })
+      addTaskForm({ formState: true, data: { dueDate: selectedDate } })
     );
   };
   const handleTaskUpdateClick = (task) => {
@@ -124,7 +121,7 @@ const WidgetTaskList = () => {
             <Tooltip
               title={
                 <Typography variant="body1">
-                  Create a task for ({getPickUpDate})
+                  Create a task for ({selectedDate})
                 </Typography>
               }
             >
@@ -186,7 +183,6 @@ const WidgetTaskList = () => {
                       size={10}
                       container
                       onClick={() => handleTaskClick(task)}
-                      className="dashboard-tasklist-task"
                     >
                       <Grid size={1}>
                         {task.status === "Completed" ? (

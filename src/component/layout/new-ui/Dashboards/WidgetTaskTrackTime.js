@@ -4,13 +4,9 @@ import {
   Button,
   Divider,
   Grid2,
-  IconButton,
   Tooltip,
   Typography,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import InfoIcon from '@mui/icons-material/Info';
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useSelector } from "react-redux";
@@ -18,13 +14,18 @@ import { useTheme } from "@emotion/react";
 import TaskCategoryIcon from "../../../icons/TaskCategoryIcon";
 import { updateTask } from "../../../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
+import { updateTaskTrackTimer } from "../../../../redux/uiSlice";
 const WidgetTaskTrackTime = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const getTasksListData = useSelector((state) => state.ui.displayDashboardTasks);
-  // const taskInProgress = useSelector(
-  //   (state) => state.taskTrackTime.taskInProgress
-  // );
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const getTasksListData = useSelector(
+    (state) => state.ui.displayDashboardTasks
+  );
+  const taskInProgress = useSelector((state) => state.ui.taskInProgress);
+  const taskInProgressData = useSelector(
+    (state) => state.ui.taskInProgressData
+  );
   const [pendingTasksListData, setPendingTasksListData] = useState([]);
   useEffect(() => {
     const pendingTasks = getTasksListData.filter((task) => {
@@ -32,17 +33,23 @@ const WidgetTaskTrackTime = () => {
     });
     setPendingTasksListData(pendingTasks);
   }, [getTasksListData]);
-  const handleStartTaskTimer = (task) => {
+  const handleTaskTimerButton = (task) => {
     const updatedTask = {
       ...task,
       status: task.status === "Pending" ? "In-progress" : "Pending",
     };
-    dispatch(updateTask(updatedTask));
-    // if (taskInProgress === true) {
-    //   dispatch(updateTaskTrackTimer({ status: false, task: {} }));
-    // } else {
-    //   dispatch(updateTaskTrackTimer({ status: true, task: updatedTask }));
-    // }
+    dispatch(
+      updateTask({
+        data: updatedTask,
+        userId: currentUser.email,
+        taskId: updatedTask.taskId,
+      })
+    );
+    if (taskInProgress === true) {
+      dispatch(updateTaskTrackTimer({ status: false, task: {} }));
+    } else {
+      dispatch(updateTaskTrackTimer({ status: true, task: updatedTask }));
+    }
   };
   return (
     <>
@@ -54,8 +61,13 @@ const WidgetTaskTrackTime = () => {
         </Grid2>
         <Grid2 size={2}>
           <Tooltip title="Click on Start to start timer.">
-          <Typography fontFamily={"monospace"} fontWeight={"bolder"} variant="h6">i</Typography>
-            {/* <QuestionMarkIcon sx={{color:theme.palette.text.primary}} /> */}
+            <Typography
+              fontFamily={"monospace"}
+              fontWeight={"bolder"}
+              variant="h6"
+            >
+              i
+            </Typography>
           </Tooltip>
         </Grid2>
       </Grid2>
@@ -83,12 +95,7 @@ const WidgetTaskTrackTime = () => {
             pendingTasksListData.map((task, index) => {
               return (
                 <React.Fragment key={task.taskId}>
-                  <Box
-                    sx={{
-                      py: 2,
-                    }}
-                    className="dashboard-tasklist-task"
-                  >
+                  <Box sx={{ py: 2 }}>
                     <Grid2 container spacing={2} alignItems={"center"}>
                       <Grid2
                         size={2}
@@ -120,7 +127,7 @@ const WidgetTaskTrackTime = () => {
                       <Grid2 size={4}>
                         {task.status === "In-progress" ? (
                           <Button
-                            onClick={() => handleStartTaskTimer(task)}
+                            onClick={() => handleTaskTimerButton(task)}
                             sx={{
                               bgcolor: theme.palette.primary.grey,
                               color: theme.palette.text.primary,
@@ -130,8 +137,8 @@ const WidgetTaskTrackTime = () => {
                           </Button>
                         ) : (
                           <Button
-                            onClick={() => handleStartTaskTimer(task)}
-                            // disabled={taskInProgress}
+                            onClick={() => handleTaskTimerButton(task)}
+                            disabled={taskInProgress}
                             sx={{
                               bgcolor: theme.palette.primary.grey,
                               color: theme.palette.text.primary,

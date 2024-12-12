@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Divider,
   Grid2,
@@ -14,18 +13,17 @@ import {
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryForm } from "../../../../redux/uiSlice";
-import AddCategory from "../../../forms/AddCategory";
+import { addCategoryForm } from "../../../../redux/uiSlice";
 import { useTheme } from "@emotion/react";
 import CategoryIcons from "../../../icons/TaskCategoryIcon";
+
 const WidgetCategory = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const getCategoryData = useSelector((state) => state.category);
-  const isFormOpen = useSelector((state) => state.ui.isCategoryForm);
 
   const handleAddCategory = () => {
-    dispatch(categoryForm(true));
+    dispatch(addCategoryForm(true));
   };
   return (
     <>

@@ -27,7 +27,7 @@ const UserTaskTable = ({ usersFilterTasks }) => {
   //Task Delete
   const handleTaskDeleteClick = (task) => {
     dispatch(deleteTask({userId: currentUser.email, taskId: task.taskId}));
-    console.log("task deleted", task);
+    console.log("Task Deleted", task);
   };
   //Open Task Information
   const openTaskInfo = (task) => {

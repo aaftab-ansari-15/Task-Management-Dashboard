@@ -9,18 +9,21 @@ const uiSlice = createSlice({
     authComponent: SIGNUP,
     isSidebarVisible: false,
     isDarkMode: false,
-    isUpdateTaskForm: false,
-    isAddTaskForm: false,
     isCategoryForm: false,
-    isTaskInfoOpen: false,
-    isTaskAlert: false,
-    selectedDate: new Date().toISOString(),
-    updateTaskFormData: {},
-    taskInfoData: {},
+    isAddTaskForm: false,
     addTaskFormData: {},
+    isUpdateTaskForm: false,
+    updateTaskFormData: {},
+    isTaskInfoOpen: false,
+    taskInfoData: {},
+    isTaskAlert: false,
     taskAlertData: {},
+    taskInProgress: false,
+    taskInProgressData: {},
+    selectedDate: new Date().toISOString(),
     displayDashboardTasks: [],
-    displayMyTasks:[]
+    displayMyTasks:[],
+
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -55,7 +58,7 @@ const uiSlice = createSlice({
       state.isUpdateTaskForm = arg1;
       state.updateTaskFormData = arg2;
     },
-    categoryForm: (state, action) => {
+    addCategoryForm: (state, action) => {
       state.isCategoryForm = action.payload;
     },
     setSelectedDate: (state, action) => {
@@ -65,6 +68,11 @@ const uiSlice = createSlice({
     setDashboardTasks: (state, action) => {
       state.displayDashboardTasks = action.payload;
     },
+    updateTaskTrackTimer: (state, action) => {
+      const { status, task } = action.payload;
+      state.taskInProgress = status;
+      state.taskInProgressData = task;
+    }
   },
 });
 
@@ -75,11 +83,12 @@ export const {
   updateTaskForm,
   addTaskForm,
   taskInfoModal,
-  categoryForm,
+  addCategoryForm,
   changeComponent,
   taskAlert,
   setSelectedDate,
   setDashboardTasks,
+  updateTaskTrackTimer,
 
 } = uiSlice.actions;
 export default uiSlice.reducer;

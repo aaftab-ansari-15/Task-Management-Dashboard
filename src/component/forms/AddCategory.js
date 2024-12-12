@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryForm } from "../../redux/uiSlice";
+import { addCategoryForm } from "../../redux/uiSlice";
 import {addCategory} from '../../redux/categorySlice'
 import CloseIcon from "@mui/icons-material/Close";
 import { generateRandomID } from "../../utills/genral";
@@ -16,7 +16,7 @@ const initialCategoryData = {
   id: "",
   name: "",
   icon: "",
-  date: new Date().toISOString().split("T")[0],
+  date: new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }),
 };
 const AddCategory = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,6 @@ const AddCategory = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewCategory({ ...newCategory, [name]: value });
-    console.log(name, value);
   };
 
   const handleAddClick = () => {
@@ -38,15 +37,13 @@ const AddCategory = () => {
       id: lastIndex,
       icon: icon,
     };
-    console.log(updatedCategory);
-    console.log(categoryData);
     dispatch(addCategory(updatedCategory));
-    console.log("categoryadded");
-    dispatch(categoryForm(false));
+    console.log("New Category Added");
+    dispatch(addCategoryForm(false));
 
   };
   const handleCancelClick = () => {
-    dispatch(categoryForm(false));
+    dispatch(addCategoryForm(false));
   };
   return (
     isCategoryFormOpen && (
