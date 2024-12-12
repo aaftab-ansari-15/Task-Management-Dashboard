@@ -44,6 +44,9 @@ workon{
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 
     tasktraktimer
+    view{list view, table view, card view}
+    sort{}
+    filter{}
 
 }
 
