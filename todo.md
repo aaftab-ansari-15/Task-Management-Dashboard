@@ -16,7 +16,7 @@ workon{
     //checkbox add icon for good style
     //task should hover and give style
     //pop to ask for commpleting task // make new state variables, redux
-    {maxheight changing respec to alert is open or not}
+    //maxheight changing respec to alert is open or not
     //style scroll bar
     //tooltip for status and priority.
     //Made Form Component for all forms in one.
@@ -40,70 +40,19 @@ workon{
     //updated user and currentSlice
     //added storage funtions to get,set, remove.
     //update taskSlice
-
-    work on Task Time Tracker taskslice(disabled taskinprogress)
     click on peofile open profile component
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 
+    tasktraktimer
 
 }
 
-watching =->
-<!-- file-wise -->
-//App.js{
-    //AuthLayout.js{
-        //Signup.js, 
-        //Login.js
-        //ImageCarousel.js
-    }
-    //features{
-        //ImageCarousel.js
-        //MuiCalendadr.js
-        //TaskAlert.js
-    } 
-    //Forms.js{
-            //AddCategory.js
-            //AddTaskInUser.js
-            //UpdateTaskInUser.js
-    }
-    //icons{
-        //TaskCategoryIcon.js
-        //TaskPriorityIcon.js
-        //TaskStatusIcon.js
-    }
-    //Mainlayout.js{
-        //Navbar.js
-        //Sidebar.js
-        new-ui{
-            //Dashboard.js{
-                //WidgetCategory.js
-                //WidgetCompletedTasks.js
-                WidgetTaskList.js
-                WidgetTaskTrackTime.js
-            }
-            //AboutPage.js
-            //ErrorPage.js
-            //MyTasks.js
-            //TaskNotification.js
-        }
-        //old-ui{
-             //TasksListOldUI.js{
-                //Filter.js
-                //TaskPanel.js
-                //Sort.js
-                //TaskInfo.js
-                //UserTaskTable.js
-            }
-        }
-    }
-}
-
-<!-- folder-wise -->
-component{
-    //authentication
-    //features
-    //forms
-    //icons
+<!-- components -->
+components{
+    authentication
+    features
+    forms
+    icons
     layout{
         new-ui{
             dashboard
@@ -114,7 +63,7 @@ component{
 
 
 
-// schema
+ <!-- schema -->
 users[
     {
         name: "aaftab",

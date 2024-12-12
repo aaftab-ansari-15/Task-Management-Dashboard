@@ -38,7 +38,7 @@ const tasksSlice = createSlice({
         });
       }
       // Persist updated tasks to localStorage
-      setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
+      setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
     },
     updateTask: (state, action) => {
       const { data, userId, taskId } = action.payload;
@@ -50,7 +50,7 @@ const tasksSlice = createSlice({
         state.allTasks[userIndex].tasks = state.allTasks[userIndex].tasks.map(
           (task) => (task.taskId === taskId ? { ...task, ...data } : task)
         );
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
+        setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
         console.log("task updated in local storage");
       } else {
         console.error(`User with ID ${userId} not found.`);
@@ -66,7 +66,7 @@ const tasksSlice = createSlice({
         state.allTasks[userIndex].tasks = state.allTasks[
           userIndex
         ].tasks.filter((task) => task.taskId !== taskId);
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
+        setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
@@ -84,7 +84,7 @@ const tasksSlice = createSlice({
         state.allTasks[userIndex].tasks = [];
 
         // Persist the updated state to localStorage
-        setLocalStorageData(STORAGE_KEYS.ALL_USERS_TASKS, state.allTasks);
+        setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
