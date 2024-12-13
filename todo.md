@@ -40,6 +40,7 @@ workon{
     //updated user and currentSlice
     //added storage funtions to get,set, remove.
     //update taskSlice
+    Data changed to data.
     click on peofile open profile component
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 
@@ -50,19 +51,31 @@ workon{
 
 }
 
-<!-- components -->
-components{
-    authentication
-    features
-    forms
-    icons
+<!-- projecet-structure -->
+build{}
+public{}
+src{
+    assets{}
+    constant{}
+    data{}
+    redux{}
+    storage{}
+    style{}
+    utils{}
+    components{
+    authentication{}
+    features{}
+    forms{}
+    icons{}
     layout{
         new-ui{
-            dashboard
+            dashboard{}
         }
-        old-ui
+        old-ui{}
     }
 }
+}
+
 
 
 
