@@ -11,8 +11,8 @@ import {
 import { useDispatch } from "react-redux";
 import { changeComponent } from "../../../redux/uiSlice";
 import { DASHBOARD } from "../../../constants/componentsName.";
-import features from "../../../Data/features.json"
-import technologies from "../../../Data/technologies.json"
+import features from "../../../data/features.json";
+import technologies from "../../../data/technologies.json";
 const AboutPage = () => {
   const dispatch = useDispatch();
 
@@ -190,6 +190,5 @@ const AboutPage = () => {
     </Box>
   );
 };
-
 
 export default AboutPage;

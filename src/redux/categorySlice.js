@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import defaultCategoryData from "../Data/defaultCategory.json"
+import defaultCategoryData from "../data/defaultCategory.json"
+
 const categorySlice = createSlice({
   name: "category",
   initialState: defaultCategoryData,

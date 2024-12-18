@@ -11,8 +11,6 @@ const App = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
   const darkMode = useSelector((state) => state.ui.isDarkMode);
   const theme = darkMode ? darkTheme : lightTheme;
-  useEffect(() => {}, [currentUser]);
-  console.log(currentUser);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

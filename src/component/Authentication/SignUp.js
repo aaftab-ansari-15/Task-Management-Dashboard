@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, loginUser } from "../../redux/usersSlice";
 import { changeComponent, setAuthComponent } from "../../redux/uiSlice";
-import defaultTaskData from "../../Data/defaultTasks.json";
+import defaultTaskData from "../../data/defaultTasks.json"
 import { DASHBOARD, LOGIN } from "../../constants/componentsName.";
 import { generateTasks } from "../../redux/tasksSlice";
 import { validateEmail, validatePassword } from "../../utills/validations";

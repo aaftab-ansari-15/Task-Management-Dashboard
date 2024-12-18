@@ -28,9 +28,9 @@ const TaskAlert = () => {
     <Collapse
       in={isTaskAlertOpen}
       sx={{
-        textOverflow: "ellipsis", // Shows ellipsis by default
-        whiteSpace: "nowrap", // Prevents text wrapping by default
-        overflow: "hidden", // Hides overflowing text
+        textOverflow: "ellipsis", 
+        whiteSpace: "nowrap", 
+        overflow: "hidden", 
       }}
     >
       <Alert
