@@ -42,6 +42,8 @@ workon{
     //update taskSlice
     //completed notification component
     //Data changed to data.
+    //searching.
+    sort
     click on peofile open profile component
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 

@@ -22,7 +22,7 @@ export const renderStatusIcon = (status) => {
         );
       case "Pending":
         return (
-            <PendingIcon color="error" />
+            <PendingIcon sx={{color:"#c50000"}} />
         );
       default:
         return <span>!</span>; // Return null or a default icon if status is unknown

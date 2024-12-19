@@ -4,71 +4,46 @@ import UserTaskTable from "./UserTaskTable";
 import { Box } from "@mui/material";
 import { Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
-const priorityOrder = { Low: 1, Medium: 2, High: 3 };
+import {
+  sortTasksByDueDate,
+  sortTasksByPriority,
+} from "../../../utills/sorting";
+import { filterTasks, searchTasks } from "../../../utills/filter";
 
 const TasksPanel = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
   const allTasks = useSelector((state) => state.tasks.allTasks);
   const getFilters = useSelector((state) => state.filter);
   const getSort = useSelector((state) => state.sort);
-  const currentUserTasks = allTasks.find(obj => obj.userId === currentUser.email)?.tasks || [];
-  console.log(currentUserTasks);
+  const currentUserTasks =
+    allTasks.find((obj) => obj.userId === currentUser.email)?.tasks || [];
   const [usersFilterTasks, setUsersFilterTasks] = useState(currentUserTasks);
   const [searchFilter, setSearchFilter] = useState("");
   useEffect(() => {
-    const filteredTasks = currentUserTasks.filter((task) => {
-      return (
-        (getFilters.priority === "" || getFilters.priority === task.priority) &&
-        (getFilters.category === "" || getFilters.category === task.category) &&
-        (getFilters.status === "" || getFilters.status === task.status)
-      );
-    });
+    const filteredTasks = filterTasks(currentUserTasks, getFilters);
     setUsersFilterTasks(filteredTasks);
   }, [getFilters, allTasks]);
 
   useEffect(() => {
-    if (getSort.sortBy === "priority") {
-      if (getSort.sortOrder === "asc") {
-        const sortedTask = currentUserTasks.sort((a, b) => {
-          const priorityA = priorityOrder[a.priority] || 0;
-          const priorityB = priorityOrder[b.priority] || 0;
-          return priorityA - priorityB; // Ascending by priority
-        });
-        setUsersFilterTasks(sortedTask);
-      } else if (getSort.sortOrder === "desc") {
-        const sortedTask = currentUserTasks.sort((a, b) => {
-          const priorityA = priorityOrder[a.priority] || 0;
-          const priorityB = priorityOrder[b.priority] || 0;
-          return priorityB - priorityA; // Descending by priority
-        });
-        setUsersFilterTasks(sortedTask);
-      }
-    } else if (getSort.sortBy === "dueDate") {
-      if (getSort.sortOrder === "asc") {
-        const sortedTask = currentUserTasks.sort((a, b) => {
-          const dateA = new Date(a.dueDate);
-          const dateB = new Date(b.dueDate);
-          return dateA - dateB; // Ascending order by date
-        });
-        setUsersFilterTasks(sortedTask);
-      } else if (getSort.sortOrder === "desc") {
-        const sortedTask = currentUserTasks.sort((a, b) => {
-          const dateA = new Date(a.dueDate);
-          const dateB = new Date(b.dueDate);
-          return dateB - dateA; // Descending order by date
-        });
-        setUsersFilterTasks(sortedTask);
-      }
+    if (getSort.sortBy === "priority" && getSort.sortOrder !== "") {
+      const sortedTask = sortTasksByPriority(
+        usersFilterTasks,
+        getSort.sortOrder
+      );
+      setUsersFilterTasks(sortedTask);
+    } else if (getSort.sortBy === "dueDate" && getSort.sortOrder !== "") {
+      const sortedTask = sortTasksByDueDate(
+        usersFilterTasks,
+        getSort.sortOrder
+      );
+      setUsersFilterTasks(sortedTask);
     } else if (getSort.sortBy === "" && getSort.sortOrder === "") {
-      setUsersFilterTasks(currentUserTasks);
+      setUsersFilterTasks(usersFilterTasks);
     }
   }, [getSort, allTasks]);
 
   useEffect(() => {
-    const searchedTask = currentUserTasks.filter((task) => {
-      return task.title.toLowerCase().includes(searchFilter.toLowerCase());
-    });
+    const searchedTask = searchTasks(currentUserTasks, searchFilter)
     setUsersFilterTasks(searchedTask);
   }, [searchFilter, allTasks]);
 

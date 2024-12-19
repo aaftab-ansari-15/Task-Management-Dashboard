@@ -1,9 +1,8 @@
-// src/redux/modalSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { DASHBOARD, SIGNUP } from "../constants/componentsName.";
 
 const uiSlice = createSlice({
-  name: "modal",
+  name: "ui",
   initialState: {
     mainLayoutComponent: DASHBOARD,
     authComponent: SIGNUP,
@@ -22,8 +21,9 @@ const uiSlice = createSlice({
     taskInProgressData: {},
     selectedDate: new Date().toISOString(),
     displayDashboardTasks: [],
-    displayMyTasks:[],
-
+    myTaskView: "",
+    searchFilterText: "",
+    displayMyTasks: [],
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -72,7 +72,13 @@ const uiSlice = createSlice({
       const { status, task } = action.payload;
       state.taskInProgress = status;
       state.taskInProgressData = task;
-    }
+    },
+    setMyTaskView: (state, action) => {
+      state.myTaskView = action.payload;
+    },
+    setSearchFilterText: (state, action) => {
+      state.searchFilterText = action.payload;
+    },
   },
 });
 
@@ -89,6 +95,7 @@ export const {
   setSelectedDate,
   setDashboardTasks,
   updateTaskTrackTimer,
-
+  setMyTaskView,
+  setSearchFilterText,
 } = uiSlice.actions;
 export default uiSlice.reducer;
