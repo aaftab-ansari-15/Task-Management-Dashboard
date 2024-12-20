@@ -26,3 +26,18 @@ export const sortTasksByDueDate = (tasks, order) => {
 
   return sortedTasks;
 };
+
+export const getSortDetails = (sortOption) => {
+  switch (sortOption) {
+    case "priority-asc":
+      return { sortBy: "priority", sortOrder: "asc" };
+    case "priority-desc":
+      return { sortBy: "priority", sortOrder: "desc" };
+    case "due-date-asc":
+      return { sortBy: "dueDate", sortOrder: "asc" };
+    case "due-date-desc":
+      return { sortBy: "dueDate", sortOrder: "desc" };
+    default:
+      return { sortBy: "", sortOrder: "" }; 
+  }
+};

@@ -17,16 +17,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { deleteTask } from "../../../redux/tasksSlice";
 
 const UserTaskTable = ({ usersFilterTasks }) => {
-  
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser)
+  const currentUser = useSelector((state) => state.users.currentUser);
   //Task Update
   const handleTaskUpdateClick = (task) => {
     dispatch(updateTaskForm({ arg1: true, arg2: task }));
   };
   //Task Delete
   const handleTaskDeleteClick = (task) => {
-    dispatch(deleteTask({userId: currentUser.email, taskId: task.taskId}));
+    dispatch(deleteTask({ userId: currentUser.email, taskId: task.taskId }));
     console.log("Task Deleted", task);
   };
   //Open Task Information
@@ -39,21 +38,29 @@ const UserTaskTable = ({ usersFilterTasks }) => {
       <Box
         sx={{
           display: "flex",
+          mx:1,
           padding: 1,
           bgcolor: "secondary.main",
           fontWeight: "bold",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
         }}
       >
         <Typography sx={{ flex: 1, textAlign: "center" }}>Title</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Description</Typography>
+        <Typography sx={{ flex: 2, textAlign: "center" }}>
+          Description
+        </Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Category</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Due Date</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Priority</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Pinned</Typography>
+        {/* <Typography sx={{ flex: 1, textAlign: "center" }}>Pinned</Typography> */}
         <Typography sx={{ flex: 1, textAlign: "center" }}>Status</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Update</Typography>
         <Typography sx={{ flex: 1, textAlign: "center" }}>Delete</Typography>
-        <Typography sx={{ flex: 1, textAlign: "center" }}>Information</Typography>
+        <Typography sx={{ flex: 1, textAlign: "center" }}>
+          Information
+        </Typography>
       </Box>
 
       {/* Task List */}
@@ -64,13 +71,16 @@ const UserTaskTable = ({ usersFilterTasks }) => {
             sx={{
               display: "flex",
               padding: 1,
+              my: 1,
+              mx:1,
+              bgcolor: "myTaskCard.main",
             }}
           >
             <ListItem>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.title}
               </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
+              <Typography sx={{ flex: 2, textAlign: "center" }}>
                 {task.description}
               </Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>
@@ -82,9 +92,9 @@ const UserTaskTable = ({ usersFilterTasks }) => {
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.priority}
               </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
+              {/* <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {`${task.pinned}`}
-              </Typography>
+              </Typography> */}
               <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {task.status}
               </Typography>

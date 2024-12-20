@@ -73,6 +73,7 @@ const SignUpDialog = () => {
         );
         dispatch(changeComponent(DASHBOARD));
         console.log("welcome user: ", updatedSignUpData.name);
+        window.location.reload();
       }
     } else {
       console.log("Form has errors");

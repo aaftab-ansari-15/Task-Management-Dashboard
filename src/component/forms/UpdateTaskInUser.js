@@ -125,7 +125,7 @@ const UpdateTaskInUser = () => {
                     value={updatedTask.title || ""}
                   />
                 </Box>
-                <Box sx={{ ml: 2, pl: 2 }}>
+                {/* <Box sx={{ ml: 2, pl: 2 }}>
                   <Typography variant="inherit">Pin task</Typography>
                   <FormControlLabel
                     control={
@@ -141,7 +141,7 @@ const UpdateTaskInUser = () => {
                       />
                     }
                   />
-                </Box>
+                </Box> */}
               </Box>
 
               <Box sx={{ mb: 3 }}>

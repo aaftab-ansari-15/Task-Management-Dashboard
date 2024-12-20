@@ -16,13 +16,21 @@ import {
   Typography,
 } from "@mui/material";
 import TaskPriorityIcon from "../../../icons/TaskPriorityIcon";
+import TaskStatusIcon from "../../../icons/TaskStatusIcon";
 import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
-import TaskStatusIcon from "../../../icons/TaskStatusIcon";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { setFilters } from "../../../../redux/filterSlice";
 import { useDispatch } from "react-redux";
-import { addTaskForm, setMyTaskView, setSearchFilterText } from "../../../../redux/uiSlice";
+import {
+  addTaskForm,
+  setMyTaskView,
+  setSearchFilterText,
+} from "../../../../redux/uiSlice";
+import { setSorting } from "../../../../redux/sortSlice";
+import { getSortDetails } from "../../../../utills/sorting";
 const TaskManagementPanel = () => {
   const dispatch = useDispatch();
   const [view, setView] = useState("grid");
@@ -31,7 +39,8 @@ const TaskManagementPanel = () => {
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
-
+  
+  // filter
   const handleFilterChange = (name) => (event, value) => {
     console.log(name, value);
     if (name === "clear") {
@@ -55,27 +64,36 @@ const TaskManagementPanel = () => {
     );
   }, [priority, category, status]);
 
-  const handleViewChange = (name) => (event, value) => {
-    console.log(name, value);
+  // view
+  const handleViewChange = () => (event, value) => {
     if (value !== null) {
-      if (name === "view") {
-        setView(value);
-      }
+      setView(value);
     }
   };
   useEffect(() => {
     dispatch(setMyTaskView(view));
   }, [view]);
+
+  // search
   const handleSearchChange = (event) => {
     setSearchFilter(event.target.value);
   };
   useEffect(() => {
     dispatch(setSearchFilterText(searchFilter));
   }, [searchFilter]);
-  const handleSortChange = (event) => {
-    setSortOption(event.target.value);
-  };
 
+  //sort
+  const handleSortChange = (event) => {
+    const { value } = event.target;
+    setSortOption(value);
+  };
+  useEffect(() => {
+    const sortDetails = getSortDetails(sortOption);
+    
+    dispatch(setSorting(sortDetails));
+  }, [sortOption]);
+
+  //actions
   const handleAddTask = () => {
     dispatch(addTaskForm({ formState: true, data: {} }));
   };
@@ -97,7 +115,7 @@ const TaskManagementPanel = () => {
           <ToggleButtonGroup
             value={view}
             exclusive
-            onChange={handleViewChange("view")}
+            onChange={handleViewChange()}
             aria-label="task view"
             sx={{ height: "40px" }}
           >
@@ -152,8 +170,18 @@ const TaskManagementPanel = () => {
               label="Sort By"
               color="info"
             >
-              <MenuItem value="due-date">Due Date</MenuItem>
-              <MenuItem value="priority">Priority</MenuItem>
+              <MenuItem value="priority-asc">
+                Priority <ArrowUpwardIcon />
+              </MenuItem>
+              <MenuItem value="due-date-asc">
+                Due Date <ArrowUpwardIcon />
+              </MenuItem>
+              <MenuItem value="priority-desc">
+                Priority <ArrowDownwardIcon />
+              </MenuItem>
+              <MenuItem value="due-date-desc">
+                Due Date <ArrowDownwardIcon />
+              </MenuItem>
               <MenuItem value="">Clear</MenuItem>
             </Select>
           </FormControl>
@@ -193,13 +221,13 @@ const TaskManagementPanel = () => {
               onChange={handleFilterChange("priority")}
               sx={{ height: "30px" }}
             >
-              <ToggleButton value="Low">
+              <ToggleButton value="Low" sx={{ px: 2 }}>
                 <TaskPriorityIcon priority={"Low"} />
               </ToggleButton>
-              <ToggleButton value="Medium">
+              <ToggleButton value="Medium" sx={{ px: 2 }}>
                 <TaskPriorityIcon priority={"Medium"} />
               </ToggleButton>
-              <ToggleButton value="High">
+              <ToggleButton value="High" sx={{ px: 2 }}>
                 <TaskPriorityIcon priority={"High"} />
               </ToggleButton>
             </ToggleButtonGroup>
@@ -218,13 +246,13 @@ const TaskManagementPanel = () => {
               onChange={handleFilterChange("category")}
               sx={{ height: "30px" }}
             >
-              <ToggleButton value="Work">
+              <ToggleButton value="Work" sx={{ px: 2 }}>
                 <WorkIcon sx={{ color: "#8b2e16" }} />
               </ToggleButton>
-              <ToggleButton value="Personal">
+              <ToggleButton value="Personal" sx={{ px: 2 }}>
                 <PersonIcon sx={{ color: "#fff800" }} />
               </ToggleButton>
-              <ToggleButton value="Study">
+              <ToggleButton value="Study" sx={{ px: 2 }}>
                 <SchoolIcon sx={{ color: "#454141" }} />
               </ToggleButton>
             </ToggleButtonGroup>
@@ -243,13 +271,13 @@ const TaskManagementPanel = () => {
               onChange={handleFilterChange("status")}
               sx={{ height: "30px" }}
             >
-              <ToggleButton value="Completed">
+              <ToggleButton value="Completed" sx={{ px: 2 }}>
                 <TaskStatusIcon status="Completed" />
               </ToggleButton>
-              <ToggleButton value="In-progress">
+              <ToggleButton value="In-progress" sx={{ px: 2 }}>
                 <TaskStatusIcon status="In-progress" />
               </ToggleButton>
-              <ToggleButton value="Pending">
+              <ToggleButton value="Pending" sx={{ px: 2 }}>
                 <TaskStatusIcon status="Pending" />
               </ToggleButton>
             </ToggleButtonGroup>
@@ -269,11 +297,11 @@ const TaskManagementPanel = () => {
           </Typography>
         </Grid2>
 
-        <Grid2 size={8}>
+        <Grid2 size={8} textAlign={"start"}>
           <Button
             variant="contained"
             color="success"
-            fullWidth
+            sx={{ width: "140px" }}
             onClick={handleAddTask}
           >
             Add Task

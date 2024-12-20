@@ -23,7 +23,7 @@ const uiSlice = createSlice({
     displayDashboardTasks: [],
     myTaskView: "",
     searchFilterText: "",
-    displayMyTasks: [],
+    myTasks: [],
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -73,6 +73,9 @@ const uiSlice = createSlice({
       state.taskInProgress = status;
       state.taskInProgressData = task;
     },
+    setMyTasksForDisplay: (state, action) => {
+      state.myTasks = action.payload;
+    },
     setMyTaskView: (state, action) => {
       state.myTaskView = action.payload;
     },
@@ -95,6 +98,7 @@ export const {
   setSelectedDate,
   setDashboardTasks,
   updateTaskTrackTimer,
+  setMyTasksForDisplay,
   setMyTaskView,
   setSearchFilterText,
 } = uiSlice.actions;

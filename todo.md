@@ -43,14 +43,15 @@ workon{
     //completed notification component
     //Data changed to data.
     //searching.
-    sort
+    //sort
+    make view
+    //grid
+    //table
+    list
     click on peofile open profile component
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 
     tasktraktimer
-    view{list view, table view, card view}
-    sort{}
-    filter{}
 
 }
 

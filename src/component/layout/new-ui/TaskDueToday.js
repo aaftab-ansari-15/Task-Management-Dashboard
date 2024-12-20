@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -9,7 +9,6 @@ import TaskCategoryIcon from "../../icons/TaskCategoryIcon";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
 const TaskDueToday = () => {
-  const theme = useTheme();
   const currentUser = useSelector((state) => state.users.currentUser);
   const allTasks = useSelector((state) => state.tasks.allTasks);
   const currentUserTasks =
@@ -60,7 +59,7 @@ const TaskDueToday = () => {
         flexWrap={"wrap"}
         justifyContent={"flex-start"}
         gap={2}
-        sx={{ maxWidth: "100%", mt: 2 }}
+        sx={{ maxWidth: "100%", mt: 1 }}
       >
         {dueTasks.length > 0 ? (
           dueTasks.map((task, index) => {
@@ -68,62 +67,59 @@ const TaskDueToday = () => {
               <Card
                 key={index}
                 sx={{
-                  minWidth: "250px",
-                  maxWidth: "250px",
+                  minWidth: "300px",
+                  maxWidth: "300px",
                   minHeight: "300px",
+                  bgcolor: "myTaskCard.main"
                 }}
               >
                 <CardContent>
-                  <Box sx={{ m: 1 }}>
-                    <TaskCategoryIcon category={task.category} />
-                  </Box>
-                  <Typography
-                    fontWeight={"bolder"}
-                    variant="body1"
-                    component="div"
-                    sx={{ mt: 2 }}
-                  >
-                    {task.title}
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary", mt: 1 }}>
-                    {task.description}
-                  </Typography>
-
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      mt: 1,
-                    }}
-                  >
-                    <DateRangeIcon sx={{ fontSize: "1.2rem" }} />{" "}
-                    <Typography
-                      sx={{ color: "text.secondary" }}
-                      variant="body2"
+                  <Box display={"flex"} justifyContent={"space-between"}>
+                    <Box sx={{ m: 1 }}>
+                      <TaskCategoryIcon category={task.category} />
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        mt: 1,
+                      }}
                     >
-                      {task.dueDate}
+                      <DateRangeIcon sx={{ fontSize: "1.2rem" }} />{" "}
+                      <Typography
+                        sx={{ color: "text.secondary" }}
+                        variant="body2"
+                      >
+                        {task.dueDate}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Divider sx={{ my: 1 }} />
+
+                  <Box px={1}>
+                    <Typography
+                      fontWeight={"bolder"}
+                      variant="body1"
+                      component="div"
+                      sx={{ mt: 2 }}
+                    >
+                      {task.title}
+                    </Typography>
+                    <Typography sx={{ color: "text.secondary", mt: 1 }}>
+                      {task.description}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary", mt: 1 }}
+                    >
+                      Priority: {task.priority}
+                    </Typography>
+                    <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+                      Due Today
                     </Typography>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "text.secondary", mt: 1 }}
-                  >
-                    Category: {task.category}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "text.secondary", mt: 1 }}
-                  >
-                    Priority: {task.priority}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="error"
-                    sx={{ mt: 1 }}
-                  >
-                    Due Today
-                  </Typography>
                 </CardContent>
               </Card>
             );

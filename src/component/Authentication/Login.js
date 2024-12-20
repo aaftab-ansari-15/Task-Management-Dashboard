@@ -61,6 +61,7 @@ const LoginDialog = () => {
           dispatch(loginUser({ data: updatedLoginData }));
           dispatch(changeComponent(DASHBOARD));
           console.log("userLoggedIn", updatedLoginData);
+          window.location.reload();
         } else {
           console.log("email or password is incorrect");
         }

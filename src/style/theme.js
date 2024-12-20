@@ -27,8 +27,10 @@ const lightTheme = createTheme({
       scrollbar:{
         thumb: '#f8fa93',
         track: '#7b7b7b',
+      },
+      myTaskCard:{
+        main: "#fdfbbf"
       }
-
     },
   });
   const darkTheme = createTheme({
@@ -60,6 +62,9 @@ const lightTheme = createTheme({
       scrollbar:{
         thumb: '#555555',
         track: '#e9e9e9',
+      },
+      myTaskCard:{
+        main: "#2a2a2a"
       }
     },
   });

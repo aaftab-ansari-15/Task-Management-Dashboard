@@ -14,6 +14,9 @@ import {
   NOTIFICATIONS,
   TASKS_LIST_OLD_UI,
 } from "../constants/componentsName.";
+import MyTaskGridView from "../component/layout/new-ui/my-tasks/MyTaskGridView";
+import MyTaskListView from "../component/layout/new-ui/my-tasks/MyTaskListView";
+import MyTaskTableView from "../component/layout/new-ui/my-tasks/MyTaskTableView";
 
 export const renderMainLayoutComponent = (componentName) => {
   switch (componentName) {
@@ -43,3 +46,15 @@ export const renderForm = (formName) => {
       return null;
   }
 };
+export const renderMyTaskViewComponent = (myTaskView) => {
+  switch (myTaskView) {
+    case "grid":
+      return <MyTaskGridView />;
+    case "list":
+      return <MyTaskListView />;
+    case "table":
+      return <MyTaskTableView />;
+    default:
+      return null;
+  }
+}
