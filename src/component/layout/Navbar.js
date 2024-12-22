@@ -19,7 +19,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import { Tooltip } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import { NOTIFICATIONS } from "../../constants/componentsName.";
+import { NOTIFICATIONS, PROFILE } from "../../constants/componentsName.";
 import { logoutUser } from "../../redux/usersSlice";
 
 export default function Navbar() {
@@ -27,7 +27,7 @@ export default function Navbar() {
   const theme = useTheme();
   const componentName = useSelector((state) => state.ui.mainLayoutComponent);
   const currentUser = useSelector((state) => state.users.currentUser);
-  
+
   const handleSideBarOpen = () => {
     dispatch(sideBarModal(true));
   };
@@ -36,6 +36,9 @@ export default function Navbar() {
   };
   const handleDarkModeClick = () => {
     dispatch(changeDarkMode());
+  };
+  const handleProfileClick = () => {
+    dispatch(changeComponent(PROFILE));
   };
   const handleNotificationClick = () => {
     dispatch(changeComponent(NOTIFICATIONS));
@@ -74,14 +77,17 @@ export default function Navbar() {
                   <Typography variant="body1">{currentUser.name}</Typography>
                 }
               >
-                <IconButton sx={{ color: theme.palette.text.primary }}>
+                <IconButton
+                  sx={{ color: theme.palette.text.primary }}
+                  onClick={handleProfileClick}
+                >
                   <PersonIcon />
                 </IconButton>
               </Tooltip>
-              <IconButton>
+              <IconButton disabled >
                 <HorizontalRuleIcon
                   fontSize="large"
-                  sx={{ transform: "rotate(90deg)" }}
+                  sx={{ transform: "rotate(90deg)", color:"text.primary" }}
                 />
               </IconButton>
               <Tooltip
@@ -94,25 +100,10 @@ export default function Navbar() {
                   <NotificationImportantIcon />
                 </IconButton>
               </Tooltip>
-              <IconButton>
+              <IconButton disabled>
                 <HorizontalRuleIcon
                   fontSize="large"
-                  sx={{ transform: "rotate(90deg)" }}
-                />
-              </IconButton>
-              <Tooltip title={<Typography variant="body1">Log Out</Typography>}>
-                <IconButton
-                  sx={{ color: theme.palette.text.primary }}
-                  onClick={handleLogOutClick}
-                >
-                  <LogoutIcon />
-                </IconButton>
-              </Tooltip>
-
-              <IconButton>
-                <HorizontalRuleIcon
-                  fontSize="large"
-                  sx={{ transform: "rotate(90deg)" }}
+                  sx={{ transform: "rotate(90deg)", color:"text.primary" }}
                 />
               </IconButton>
               <Tooltip
@@ -123,6 +114,20 @@ export default function Navbar() {
                   onClick={handleDarkModeClick}
                 >
                   <ContrastIcon />
+                </IconButton>
+              </Tooltip>
+              <IconButton disabled>
+                <HorizontalRuleIcon
+                  fontSize="large"
+                  sx={{ transform: "rotate(90deg)", color:"text.primary" }}
+                />
+              </IconButton>
+              <Tooltip title={<Typography variant="body1">Log Out</Typography>}>
+                <IconButton
+                  sx={{ color: theme.palette.text.primary }}
+                  onClick={handleLogOutClick}
+                >
+                  <LogoutIcon />
                 </IconButton>
               </Tooltip>
             </Box>

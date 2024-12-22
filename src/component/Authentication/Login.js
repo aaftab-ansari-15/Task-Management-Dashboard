@@ -46,13 +46,10 @@ const LoginDialog = () => {
 
   const handleLoginClick = () => {
     if (!errors.name && !errors.email && !errors.password) {
-      if (users && users.length > 0) {
-        const findUser = users.find((user) => loginData.email === user.email);
-        if (
-          findUser &&
-          findUser.email &&
-          findUser.password === loginData.password
-        ) {
+      const findUser = users.find((user) => loginData.email === user.email);
+      console.log(findUser);
+      if (findUser) {
+        if (findUser.email && findUser.password === loginData.password) {
           const updatedLoginData = {
             ...loginData,
             isLogin: true,

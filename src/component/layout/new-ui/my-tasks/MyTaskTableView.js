@@ -26,7 +26,11 @@ const MyTaskTableView = () => {
         },
       }}
     >
-      <UserTaskTable usersFilterTasks={myTasks} />
+      {myTasks.length > 0 ? (
+        <UserTaskTable usersFilterTasks={myTasks} />
+      ) : (
+        <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
+      )}
     </Box>
   );
 };

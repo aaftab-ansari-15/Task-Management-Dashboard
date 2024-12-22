@@ -4,6 +4,7 @@ import UpdateTaskInUser from "../component/forms/UpdateTaskInUser";
 import TasksListOldUI from "../component/layout/old-ui/TasksListOldUI";
 import Dashboard from "../component/layout/new-ui/Dashboard";
 import MyTasks from "../component/layout/new-ui/MyTasks";
+import Profile from "../component/layout/new-ui/Profile";
 import TaskDueToday from "../component/layout/new-ui/TaskDueToday";
 import AboutPage from "../component/layout/new-ui/AboutPage";
 import ErrorPage from "../component/layout/new-ui/ErrorPage";
@@ -12,6 +13,7 @@ import {
   DASHBOARD,
   MY_TASKS,
   NOTIFICATIONS,
+  PROFILE,
   TASKS_LIST_OLD_UI,
 } from "../constants/componentsName.";
 import MyTaskGridView from "../component/layout/new-ui/my-tasks/MyTaskGridView";
@@ -26,6 +28,8 @@ export const renderMainLayoutComponent = (componentName) => {
       return <TasksListOldUI />;
     case MY_TASKS:
       return <MyTasks />;
+    case PROFILE:
+      return <Profile />;
     case NOTIFICATIONS:
       return <TaskDueToday />;
     case ABOUT:
@@ -57,4 +61,4 @@ export const renderMyTaskViewComponent = (myTaskView) => {
     default:
       return null;
   }
-}
+};

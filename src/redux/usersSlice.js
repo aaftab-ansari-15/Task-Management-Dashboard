@@ -21,30 +21,29 @@ const usersSlice = createSlice({
   },
   reducers: {
     addUser: (state, action) => {
-      const {data} = action.payload;
+      const { data } = action.payload;
       state.users.push(data);
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
     },
     updateUser: (state, action) => {
-      const {data} = action.payload;
+      const { data } = action.payload;
       state.users = state.users.map((user) =>
-        user.email === data.email
-          ? { ...user, ...data }
-          : user
+        user.email === data.email ? { ...user, ...data } : user
       );
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
     },
     deleteUser: (state, action) => {
-      const {userId} = action.payload;
+      const { userId } = action.payload;
       state.users = state.users.filter((user) => user.email !== userId);
       setLocalStorageData(STORAGE_KEYS.USERS, state.users);
+      removeSessionStorageData(STORAGE_KEYS.CURRENT_USER);
     },
     deleteAllusers: (state) => {
       state.users = [];
       removeLocalStorageData(STORAGE_KEYS.USERS);
     },
     loginUser: (state, action) => {
-      const {data} = action.payload;
+      const { data } = action.payload;
       const usersData = getLocalStorageData(STORAGE_KEYS.USERS);
       usersData.forEach((user) => {
         if (user.email === data.email) {
@@ -56,7 +55,7 @@ const usersSlice = createSlice({
       setSessionStorageData(STORAGE_KEYS.CURRENT_USER, state.currentUser);
     },
     logoutUser: (state, action) => {
-      const {userId} = action.payload;
+      const { userId } = action.payload;
       const usersData = getLocalStorageData(STORAGE_KEYS.USERS);
       usersData.forEach((user) => {
         if (user.email === userId) {
@@ -74,7 +73,7 @@ export const {
   addUser,
   updateUser,
   deleteUser,
-  deleteuserss,
+  deleteAllusers,
   loginUser,
   logoutUser,
 } = usersSlice.actions;

@@ -52,6 +52,8 @@ workon{
     click on profile, user data, change: name, password.
     make a method in settings to to delete all generated task 
     tasktraktimer
+    
+    issue is when delete account tasks are remaining and when creting new account with same email tasks is related to old one.
 
 }
 

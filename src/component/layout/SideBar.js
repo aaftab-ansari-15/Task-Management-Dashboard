@@ -26,6 +26,7 @@ import {
   DASHBOARD,
   MY_TASKS,
   NOTIFICATIONS,
+  PROFILE,
   TASKS_LIST_OLD_UI,
 } from "../../constants/componentsName.";
 
@@ -148,7 +149,7 @@ const SideBar = () => {
             selected={selectedIndex === 6}
             onClick={(event) => {
               handleListItemClick(event, 6);
-              navigateToComponent();
+              navigateToComponent(PROFILE);
             }}
           >
             <ListItemIcon>
