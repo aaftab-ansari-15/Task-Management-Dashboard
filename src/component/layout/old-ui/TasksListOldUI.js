@@ -2,17 +2,14 @@ import React from "react";
 import Filter from "./Filter";
 import Sort from "./Sort";
 import { useDispatch } from "react-redux";
-import { useTheme } from "@emotion/react";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { addTaskForm, changeComponent } from "../../../redux/uiSlice";
 import { DASHBOARD } from "../../../constants/componentsName.";
 import TasksPanel from "./TasksPanel";
 
 const TasksListOldUI = () => {
-  
-  const theme = useTheme();
   const dispatch = useDispatch();
-  
+
   //Task Add
   const handleAddTaskClick = () => {
     dispatch(addTaskForm({ formState: true, data: {} }));
@@ -25,8 +22,8 @@ const TasksListOldUI = () => {
   return (
     <Box
       sx={{
-        border: `solid 2px ${theme.palette.primary.main}`,
-        borderRadius: 2, 
+        border: "2px solid #8958c1",
+        borderRadius: 2,
         m: 2,
         padding: 2,
         color: "text.primary",
@@ -52,7 +49,7 @@ const TasksListOldUI = () => {
         <Divider
           sx={{
             mx: 2,
-            border: `1px solid ${theme.palette.secondary.main}`,
+            border: "1px solid #8958c1",
           }}
         />
         <Box sx={{ flex: 1 }}>
@@ -78,7 +75,7 @@ const TasksListOldUI = () => {
         <Divider
           sx={{
             mx: 2,
-            border: `1px solid ${theme.palette.secondary.main}`,
+            border: "1px solid #8958c1",
           }}
         />
         <Box

@@ -70,7 +70,7 @@ const TasksPanel = () => {
           <h4>User Name: {currentUser.name}</h4>
         </Box>
         <Box>
-          <h2>User's All Tasks</h2>
+          <h2>ALL TASKS</h2>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <SearchIcon />

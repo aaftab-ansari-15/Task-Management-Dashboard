@@ -103,7 +103,7 @@ const UpdateTaskInUser = () => {
                   flexGrow: 2,
                 }}
               >
-                <Typography variant="h5">Update task</Typography>
+                <Typography variant="h5">Update Task</Typography>
               </Box>
             </Box>
             <Divider />

@@ -121,7 +121,7 @@ const AddTaskInUser = () => {
                   flexGrow: 2,
                 }}
               >
-                <Typography variant="h5">Add new task</Typography>
+                <Typography variant="h5">Add New Task</Typography>
               </Box>
             </Box>
             <Divider />

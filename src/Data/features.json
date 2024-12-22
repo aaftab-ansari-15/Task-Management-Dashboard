@@ -26,5 +26,13 @@
   {
     "title": "Notifications",
     "description": "Get reminders for upcoming tasks based on their due dates."
+  },
+  {
+    "title": "Task Alerts",
+    "description": "Receive notifications or alerts when a task is marked as completed."
+  },
+  {
+    "title": "Multiple View Options",
+    "description": "Switch between different views such as grid, list, and table formats for displaying tasks."
   }
 ]

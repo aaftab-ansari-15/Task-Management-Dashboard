@@ -35,10 +35,8 @@ const AboutPage = () => {
         variant="h2"
         align="left"
         sx={{
-          ml: 4,
           color: "#008f25",
           fontWeight: "bold",
-          marginBottom: 2,
           textShadow: "1px 1px 4px rgba(0,0,0,0.3)",
         }}
       >
@@ -49,9 +47,7 @@ const AboutPage = () => {
           variant="h6"
           align="left"
           sx={{
-            ml: 4,
             color: "#333",
-            // maxWidth: "700px",
             lineHeight: 1.5,
           }}
         >
@@ -69,7 +65,6 @@ const AboutPage = () => {
           fontWeight: "bold",
           textAlign: "left",
           width: "100%",
-          paddingLeft: "2rem",
         }}
       >
         Features:
@@ -78,11 +73,10 @@ const AboutPage = () => {
       <Grid
         container
         spacing={4}
-        justifyContent="center"
-        sx={{ maxWidth: "1200px" }}
+        sx={{ maxWidth: "1700px" }}
       >
         {features.map((feature, index) => (
-          <Grid item xs={12} md={6} key={index}>
+          <Grid item xs={12} md={4} key={index}>
             <Card
               sx={{
                 padding: "1.5rem",
@@ -124,7 +118,6 @@ const AboutPage = () => {
           fontWeight: "bold",
           textAlign: "left",
           width: "100%",
-          paddingLeft: "2rem",
           marginTop: 4,
         }}
       >
@@ -133,15 +126,13 @@ const AboutPage = () => {
 
       <Grid
         container
-        spacing={4}
-        justifyContent="center"
-        sx={{ maxWidth: "1200px" }}
+        sx={{ maxWidth: "1700px" }}
       >
         {technologies.map((tech, index) => (
-          <Grid item xs={12} md={4} key={index}>
+          <Grid item xs={12} md={3} key={index} px={1}>
             <Card
               sx={{
-                padding: "1.5rem",
+                width: index === 3 ? "100%":"100%",
                 borderRadius: "15px",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
