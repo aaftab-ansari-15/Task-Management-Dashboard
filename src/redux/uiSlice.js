@@ -4,10 +4,13 @@ import { DASHBOARD, SIGNUP } from "../constants/componentsName.";
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
+    //component-render-name
     mainLayoutComponent: DASHBOARD,
     authComponent: SIGNUP,
+    //visibility&style-toggle
     isSidebarVisible: false,
     isDarkMode: false,
+    //forms-render
     isCategoryForm: false,
     isAddTaskForm: false,
     addTaskFormData: {},
@@ -15,15 +18,22 @@ const uiSlice = createSlice({
     updateTaskFormData: {},
     isTaskInfoOpen: false,
     taskInfoData: {},
+    //alert-toggle
     isTaskAlert: false,
     taskAlertData: {},
+    //dashboard-seleceted-date
+    selectedDate: new Date().toISOString(),
+    //dashboard-tasks
+    displayDashboardTasks: [],
+    //mytasks-tasks
+    myTasks: [],
+    //mytask-view-style-name
+    myTaskView: "",
+    //searched-task-name
+    searchFilterText: "",
+    //in-progress-task-data
     taskInProgress: false,
     taskInProgressData: {},
-    selectedDate: new Date().toISOString(),
-    displayDashboardTasks: [],
-    myTaskView: "",
-    searchFilterText: "",
-    myTasks: [],
   },
   reducers: {
     changeDarkMode: (state) => {

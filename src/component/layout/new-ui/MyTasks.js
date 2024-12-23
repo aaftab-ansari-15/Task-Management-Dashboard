@@ -3,6 +3,7 @@ import { Item } from "../../../style/genral";
 import { Box, Grid2 } from "@mui/material";
 import MyTaskManagementPanel from "./my-tasks/MyTaskManagementPanel";
 import MyTaskAllTasksDisplay from "./my-tasks/MyTaskAllTasksDisplay";
+import MyTasksInProgressItem from "./my-tasks/MyTasksInProgressItem";
 
 const MyTasks = () => {
   return (
@@ -22,7 +23,9 @@ const MyTasks = () => {
           sx={{ height: "100%" }}
         >
           <Grid2 size={12} sx={{ height: "30%" }}>
-            <Item sx={{ width: "100%", height: "100%" }}></Item>
+            <Item sx={{ width: "100%", height: "100%" }}>
+              <MyTasksInProgressItem />
+            </Item>
           </Grid2>
 
           <Grid2 size={12} sx={{ height: "65%" }}>

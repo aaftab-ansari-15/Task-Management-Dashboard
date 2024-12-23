@@ -10,7 +10,7 @@ export const sortTasksByPriority = (tasks, order) => {
       return priorityB - priorityA; // Descending by priority
     }
   });
-  return sortedTasks; // Return the sorted copy
+  return sortedTasks; 
 };
 export const sortTasksByDueDate = (tasks, order) => {
   const sortedTasks = [...tasks];

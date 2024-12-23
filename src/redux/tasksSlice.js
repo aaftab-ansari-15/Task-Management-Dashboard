@@ -37,7 +37,6 @@ const tasksSlice = createSlice({
           tasks: [data],
         });
       }
-      // Persist updated tasks to localStorage
       setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
     },
     updateTask: (state, action) => {
@@ -74,24 +73,32 @@ const tasksSlice = createSlice({
     deleteAllTasks: (state, action) => {
       const { userId } = action.payload;
 
-      // Find the user by userId
       const userIndex = state.allTasks.findIndex(
         (user) => user.userId === userId
       );
 
       if (userIndex !== -1) {
-        // Clear all tasks for the specified user
         state.allTasks[userIndex].tasks = [];
 
-        // Persist the updated state to localStorage
         setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
       } else {
         console.error(`User with ID ${userId} not found.`);
       }
     },
+    deleteAccountProccess: (state, action) => {
+      const { userId } = action.payload;
+      state.allTasks = state.allTasks.filter((task) => task.userId !== userId);
+      setLocalStorageData(STORAGE_KEYS.TASKS, state.allTasks);
+    },
   },
 });
 
-export const { generateTasks, addTask, updateTask, deleteTask,deleteAllTasks } =
-  tasksSlice.actions;
+export const {
+  generateTasks,
+  addTask,
+  updateTask,
+  deleteTask,
+  deleteAllTasks,
+  deleteAccountProccess,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

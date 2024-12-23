@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//filter by priority, category, status.
 const filterSlice = createSlice({
   name: "filter",
   initialState: {

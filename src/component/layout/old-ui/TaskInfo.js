@@ -38,7 +38,6 @@ const TaskInfo = () => {
       <Dialog
         open={isTaskInfoOpen}
         onClose={closeTaskInfo}
-        // scroll="paper"
         PaperProps={{
           style: {
             borderRadius: "2px",

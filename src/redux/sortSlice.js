@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//Sorting by Due date, Priority and ascending & Descending order.
 const sortSlice = createSlice({
   name: "sort",
   initialState: {

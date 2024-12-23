@@ -178,12 +178,10 @@ const AddTaskInUser = () => {
                       color="info"
                       value={newTask.priority}
                       onChange={handleChange}
-                      // error={!!errors.priority}
-                      // helperText={errors.priority}
                       label="Priority"
                       fullWidth
-                      sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                      inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
+                      sx={{ minHeight: "60px", fontSize: "1rem" }} 
+                      inputProps={{ style: { fontSize: "1rem" } }} 
                     >
                       <MenuItem value="Low">Low</MenuItem>
                       <MenuItem value="Medium">Medium</MenuItem>
@@ -203,12 +201,10 @@ const AddTaskInUser = () => {
                       color="info"
                       value={newTask.category}
                       onChange={handleChange}
-                      // error={!!errors.category}
-                      // helperText={errors.category}
                       label="Category"
                       fullWidth
-                      sx={{ minHeight: "60px", fontSize: "1rem" }} // Increased height and font size
-                      inputProps={{ style: { fontSize: "1rem" } }} // Set font size for select input
+                      sx={{ minHeight: "60px", fontSize: "1rem" }} 
+                      inputProps={{ style: { fontSize: "1rem" } }} 
                     >
                       <MenuItem value="Work">Work</MenuItem>
                       <MenuItem value="Personal">Personal</MenuItem>
@@ -236,7 +232,6 @@ const AddTaskInUser = () => {
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Box sx={{ marginRight: 2, width: "50%" }}>
                   <Button
-                    // sx={{ border:"2px solid #793ee0"}}
                     variant="contained"
                     color="error"
                     fullWidth
@@ -255,8 +250,8 @@ const AddTaskInUser = () => {
                     sx={{
                       border: "2px solid #388e3c",
                       "&.Mui-disabled": {
-                        backgroundColor: "success.main", // Keep the success color
-                        color: "white", // Optionally, you can specify the text color too
+                        backgroundColor: "success.main",
+                        color: "white", 
                       },
                     }}
                   >

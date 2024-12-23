@@ -74,7 +74,15 @@ const WidgetCompletedTasks = () => {
                       <Grid2 size={10}>
                         <Tooltip
                           title={
-                            <Typography variant="body1">
+                            <Typography
+                              textAlign={"start"}
+                              variant="body1"
+                              sx={{
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                              }}
+                            >
                               {task.title}
                             </Typography>
                           }
@@ -83,9 +91,9 @@ const WidgetCompletedTasks = () => {
                             textAlign={"start"}
                             variant="body1"
                             sx={{
-                              textOverflow: "ellipsis", // Shows ellipsis by default
-                              whiteSpace: "nowrap", // Prevents text wrapping by default
-                              overflow: "hidden", // Hides overflowing text
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
                             }}
                           >
                             {task.title}

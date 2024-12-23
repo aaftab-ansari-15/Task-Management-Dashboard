@@ -126,9 +126,9 @@ const LoginDialog = () => {
         sx={{
           mt: 2,
           color: "white",
-          backgroundColor: "#9f5aaf", // Enabled state background color
+          backgroundColor: "#9f5aaf", 
           "&:hover": {
-            backgroundColor: "#8a4d96", // Darker shade on hover (when enabled)
+            backgroundColor: "#8a4d96", 
           },
           "&.Mui-disabled": {
             color: "#ebf5ea",

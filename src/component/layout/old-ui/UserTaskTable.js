@@ -38,7 +38,7 @@ const UserTaskTable = ({ usersFilterTasks }) => {
       <Box
         sx={{
           display: "flex",
-          mx:1,
+          mx: 1,
           padding: 1,
           bgcolor: "secondary.main",
           fontWeight: "bold",
@@ -65,68 +65,74 @@ const UserTaskTable = ({ usersFilterTasks }) => {
 
       {/* Task List */}
       <List>
-        {usersFilterTasks.map((task, index) => (
-          <Box
-            key={task.taskId}
-            sx={{
-              display: "flex",
-              padding: 1,
-              my: 1,
-              mx:1,
-              bgcolor: "myTaskCard.main",
-            }}
-          >
-            <ListItem>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.title}
-              </Typography>
-              <Typography sx={{ flex: 2, textAlign: "center" }}>
-                {task.description}
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.category}
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.dueDate}
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.priority}
-              </Typography>
-              {/* <Typography sx={{ flex: 1, textAlign: "center" }}>
+        {usersFilterTasks.length > 0 ? (
+          usersFilterTasks.map((task, index) => (
+            <Box
+              key={task.taskId}
+              sx={{
+                display: "flex",
+                padding: 1,
+                my: 1,
+                mx: 1,
+                bgcolor: "myTaskCard.main",
+              }}
+            >
+              <ListItem>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  {task.title}
+                </Typography>
+                <Typography sx={{ flex: 2, textAlign: "center" }}>
+                  {task.description}
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  {task.category}
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  {task.dueDate}
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  {task.priority}
+                </Typography>
+                {/* <Typography sx={{ flex: 1, textAlign: "center" }}>
                 {`${task.pinned}`}
               </Typography> */}
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                {task.status}
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                <Button
-                  variant="contained"
-                  color="warning"
-                  onClick={() => handleTaskUpdateClick(task)}
-                >
-                  Update
-                </Button>
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => handleTaskDeleteClick(task)}
-                >
-                  Delete
-                </Button>
-              </Typography>
-              <Typography sx={{ flex: 1, textAlign: "center" }}>
-                <Tooltip title="Info">
-                  <IconButton onClick={() => openTaskInfo(task)}>
-                    <MenuIcon />
-                  </IconButton>
-                </Tooltip>
-              </Typography>
-            </ListItem>
-            {index < usersFilterTasks.length - 1 && <Divider />}
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  {task.status}
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    onClick={() => handleTaskUpdateClick(task)}
+                  >
+                    Update
+                  </Button>
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleTaskDeleteClick(task)}
+                  >
+                    Delete
+                  </Button>
+                </Typography>
+                <Typography sx={{ flex: 1, textAlign: "center" }}>
+                  <Tooltip title="Info">
+                    <IconButton onClick={() => openTaskInfo(task)}>
+                      <MenuIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Typography>
+              </ListItem>
+              {index < usersFilterTasks.length - 1 && <Divider />}
+            </Box>
+          ))
+        ) : (
+          <Box sx={{ color: "text.disabled", m: 3 }}>
+            <Typography variant="h4">Nothing in here..</Typography>{" "}
           </Box>
-        ))}
+        )}
       </List>
       <TaskInfo />
     </Box>

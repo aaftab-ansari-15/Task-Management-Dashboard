@@ -134,7 +134,6 @@ const WidgetTaskList = () => {
       </Grid2>
       <Divider sx={{ mt: 2 }} />
       <Box
-        // className="style-scrollbar"
         sx={{
           mt: 4,
           overflowY: "auto",
@@ -221,9 +220,9 @@ const WidgetTaskList = () => {
                                 task.status === "Completed"
                                   ? "line-through"
                                   : "none",
-                              textOverflow: "ellipsis", // Shows ellipsis by default
-                              whiteSpace: "nowrap", // Prevents text wrapping by default
-                              overflow: "hidden", // Hides overflowing text
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap", 
+                              overflow: "hidden", 
                             }}
                           >
                             {task.title}

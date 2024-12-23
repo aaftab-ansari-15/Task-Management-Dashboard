@@ -9,24 +9,34 @@ import {
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategoryForm } from "../../redux/uiSlice";
-import {addCategory} from '../../redux/categorySlice'
+import { addCategory } from "../../redux/categorySlice";
 import CloseIcon from "@mui/icons-material/Close";
 import { generateRandomID } from "../../utills/genral";
 const initialCategoryData = {
   id: "",
   name: "",
   icon: "",
-  date: new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+  date: (() => {
+    const today = new Date().toISOString();
+    const [year, month, day] = today.split("T")[0].split("-");
+    return `${month}/${day}/${year}`;
+  })(),
 };
+
 const AddCategory = () => {
   const dispatch = useDispatch();
   const isCategoryFormOpen = useSelector((state) => state.ui.isCategoryForm);
   const categoryData = useSelector((state) => state.category);
   const [newCategory, setNewCategory] = useState(initialCategoryData);
-
+  const [formError, setFormError] = useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewCategory({ ...newCategory, [name]: value });
+    if (value !== "") {
+      setFormError(false);
+    } else {
+      setFormError(true);
+    }
   };
 
   const handleAddClick = () => {
@@ -40,7 +50,6 @@ const AddCategory = () => {
     dispatch(addCategory(updatedCategory));
     console.log("New Category Added");
     dispatch(addCategoryForm(false));
-
   };
   const handleCancelClick = () => {
     dispatch(addCategoryForm(false));
@@ -76,6 +85,7 @@ const AddCategory = () => {
               color="info"
               value={newCategory.name}
               onChange={handleChange}
+              required
             />
           </Box>
           <Box sx={{ mb: 3 }}>
@@ -95,9 +105,8 @@ const AddCategory = () => {
             />
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ marginRight: 2, width: "50%" }}>
+            <Box sx={{ marginRight: 2, width: "50%" }}>
               <Button
-                // sx={{ border:"2px solid #793ee0"}}
                 variant="contained"
                 color="error"
                 fullWidth
@@ -115,15 +124,15 @@ const AddCategory = () => {
                 sx={{
                   border: "2px solid #388e3c",
                   "&.Mui-disabled": {
-                    backgroundColor: "success.main", // Keep the success color
-                    color: "white", // Optionally, you can specify the text color too
+                    backgroundColor: "success.main",
+                    color: "white",
                   },
                 }}
+                disabled={formError}
               >
                 <span>Add</span>
               </Button>
             </Box>
-            
           </Box>
         </Box>
       </Dialog>

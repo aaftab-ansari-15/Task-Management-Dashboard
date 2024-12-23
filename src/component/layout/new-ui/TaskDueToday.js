@@ -4,7 +4,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import { useTheme } from "@emotion/react";
 import TaskCategoryIcon from "../../icons/TaskCategoryIcon";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
@@ -38,8 +37,6 @@ const TaskDueToday = () => {
       let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
       return daysDifference < 0;
     });
-    // const titles1 = filteredTask1.map((task) => task.title);
-    // const titles2 = filteredTask2.map((task) => task.title);
     setDueTasks(filteredTask1);
     setExpiredTasks(filteredTask2);
   }, [allTasks]);

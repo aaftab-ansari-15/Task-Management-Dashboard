@@ -31,14 +31,7 @@ const MyTaskListView = () => {
   };
   return (
     <Box
-      display={"flex"}
-      flexDirection={"row"}
-      flexWrap={"wrap"}
-      justifyContent={"flex-start"}
-      gap={2}
       sx={{
-        px: "50px",
-        pt: "10px",
         maxWidth: "100%",
         overflow: "auto",
         maxHeight: "400px",
@@ -56,103 +49,115 @@ const MyTaskListView = () => {
       }}
     >
       {myTasks.length > 0 ? (
-        myTasks.map((task, index) => {
-          return (
-            <Box
-              key={index}
-              width={"100%"}
-              sx={{
-                bgcolor: "myTaskCard.main",
-                textAlign: "start",
-                borderRadius: 2,
-                boxShadow: 1,
-                p: 2,
-                mb: 2,
-              }}
-            >
-              <Box display="flex" flexDirection="column">
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <TaskCategoryIcons category={task.category} />
-                    <Typography fontWeight="bold" variant="body1">
-                      {task.title}
-                    </Typography>
-                  </Box>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <DateRangeIcon sx={{ fontSize: "1.2rem" }} />
-                    <Typography
-                      sx={{ color: "text.secondary" }}
-                      variant="body2"
-                    >
-                      {task.dueDate}
-                    </Typography>
-                  </Box>
-                </Box>
-
-                <Divider sx={{ my: 1 }} />
-
-                <Typography sx={{ color: "text.secondary", mb: 1 }}>
-                  {task.description}
-                </Typography>
-
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Box display="flex" gap={2}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "text.secondary",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 0.5,
-                      }}
-                    >
-                      Priority: {task.priority}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "text.secondary",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 0.5,
-                      }}
-                    >
-                      Status: {task.status}
-                    </Typography>
+        <Box
+          display={"flex"}
+          flexDirection={"row"}
+          flexWrap={"wrap"}
+          justifyContent={"flex-start"}
+          gap={2}
+          mx={"30px"}
+          pt={2}
+        >
+          {myTasks.map((task, index) => {
+            return (
+              <Box
+                key={index}
+                width={"100%"}
+                sx={{
+                  bgcolor: "myTaskCard.main",
+                  textAlign: "start",
+                  borderRadius: 2,
+                  boxShadow: 1,
+                  p: 2,
+                  mb: 1,
+                }}
+              >
+                <Box display="flex" flexDirection="column">
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <TaskCategoryIcons category={task.category} />
+                      <Typography fontWeight="bold" variant="body1">
+                        {task.title}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <DateRangeIcon sx={{ fontSize: "1.2rem" }} />
+                      <Typography
+                        sx={{ color: "text.secondary" }}
+                        variant="body2"
+                      >
+                        {task.dueDate}
+                      </Typography>
+                    </Box>
                   </Box>
 
-                  <Box display="flex" gap={1}>
-                    <Button
-                      variant="contained"
-                      color="warning"
-                      onClick={() => handleTaskUpdateClick(task)}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      onClick={() => handleTaskDeleteClick(task)}
-                    >
-                      Delete
-                    </Button>
+                  <Divider sx={{ my: 1 }} />
+
+                  <Typography sx={{ color: "text.secondary", mb: 1 }}>
+                    {task.description}
+                  </Typography>
+
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Box display="flex" gap={2}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        Priority: {task.priority}
+                      </Typography>
+
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        Status: {task.status}
+                      </Typography>
+                    </Box>
+
+                    <Box display="flex" gap={1}>
+                      <Button
+                        variant="contained"
+                        color="warning"
+                        onClick={() => handleTaskUpdateClick(task)}
+                      >
+                        Update
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleTaskDeleteClick(task)}
+                      >
+                        Delete
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          );
-        })
+            );
+          })}
+        </Box>
       ) : (
-        <Box sx={{ color: "text.disabled" }}>Nothing in here..</Box>
+        <Box sx={{ color: "text.disabled", m: 3 }}>
+          <Typography variant="h4">Nothing in here..</Typography>
+        </Box>
       )}
     </Box>
   );

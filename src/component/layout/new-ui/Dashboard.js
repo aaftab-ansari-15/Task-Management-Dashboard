@@ -2,10 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import BasicDateCalendar from "../../features/MuiCalendar";
-import Category from "./Dashboards/WidgetCategory";
-import CompletedTasks from "./Dashboards/WidgetCompletedTasks";
-import TaskTrackTime from "./Dashboards/WidgetTaskTrackTime";
-import TaskList from "./Dashboards/WidgetTaskList";
+import WidgetCategory from "./dashboards/WidgetCategory";
+import WidgetCompletedTasks from "./dashboards/WidgetCompletedTasks";
+import WidgetPendingTasks from "./dashboards/WidgetPendingTasks";
+import TaskList from "./dashboards/WidgetTaskList";
 import { Item } from "../../../style/genral";
 
 const Dashboard = () => {
@@ -18,12 +18,12 @@ const Dashboard = () => {
     >
       <Grid container spacing={3}>
         <Grid size={4} sx={{}}>
-          <Item sx={{ height: "44vh",borderRadius: 2, }}>
+          <Item sx={{ height: "44vh", borderRadius: 2 }}>
             <BasicDateCalendar />
           </Item>
         </Grid>
         <Grid size={8} sx={{}}>
-          <Item sx={{ height: "44vh", borderRadius: 2, }}>
+          <Item sx={{ height: "44vh", borderRadius: 2 }}>
             <TaskList />
           </Item>
         </Grid>
@@ -36,22 +36,22 @@ const Dashboard = () => {
               borderRadius: 2,
             }}
           >
-            <Category />
+            <WidgetCategory />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item sx={{ height: "310px", borderRadius: 2, }}>
-            <CompletedTasks />
+          <Item sx={{ height: "310px", borderRadius: 2 }}>
+            <WidgetPendingTasks />
           </Item>
         </Grid>
         <Grid size={4} sx={{}}>
-          <Item 
+          <Item
             sx={{
               height: "310px",
               borderRadius: 2,
             }}
           >
-            <TaskTrackTime />
+            <WidgetCompletedTasks />
           </Item>
         </Grid>
       </Grid>

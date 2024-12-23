@@ -1,74 +1,40 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid2,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import PauseIcon from "@mui/icons-material/Pause";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Box, Divider, Grid2, Tooltip, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import TaskCategoryIcon from "../../../icons/TaskCategoryIcon";
-import { updateTask } from "../../../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
-import { updateTaskTrackTimer } from "../../../../redux/uiSlice";
-const WidgetTaskTrackTime = () => {
+const WidgetPendingTasks = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
   const getTasksListData = useSelector(
     (state) => state.ui.displayDashboardTasks
   );
-  const taskInProgress = useSelector((state) => state.ui.taskInProgress);
-  const taskInProgressData = useSelector(
-    (state) => state.ui.taskInProgressData
-  );
+  const selectedDate = useSelector((state) => state.ui.selectedDate);
   const [pendingTasksListData, setPendingTasksListData] = useState([]);
+
   useEffect(() => {
     const pendingTasks = getTasksListData.filter((task) => {
       return task.status === "Pending" || task.status === "In-progress";
     });
     setPendingTasksListData(pendingTasks);
   }, [getTasksListData]);
-  const handleTaskTimerButton = (task) => {
-    const updatedTask = {
-      ...task,
-      status: task.status === "Pending" ? "In-progress" : "Pending",
-    };
-    dispatch(
-      updateTask({
-        data: updatedTask,
-        userId: currentUser.email,
-        taskId: updatedTask.taskId,
-      })
-    );
-    if (taskInProgress === true) {
-      dispatch(updateTaskTrackTimer({ status: false, task: {} }));
-    } else {
-      dispatch(updateTaskTrackTimer({ status: true, task: updatedTask }));
-    }
-  };
+
   return (
     <>
       <Grid2 mt={1} container alignItems={"center"}>
-        <Grid2 size={10}>
+        <Grid2 size={8}>
           <Typography className="dashboard-widget-title" variant="h6">
-            Track task time
+            Pending tasks
           </Typography>
         </Grid2>
-        <Grid2 size={2}>
-          <Tooltip title="Click on Start to start timer.">
-            <Typography
-              fontFamily={"monospace"}
-              fontWeight={"bolder"}
-              variant="h6"
-            >
-              i
-            </Typography>
-          </Tooltip>
+        <Grid2 size={4}>
+          <Typography
+            fontFamily={"monospace"}
+            fontWeight={"bolder"}
+            variant="body1"
+          >
+            {selectedDate}
+          </Typography>
         </Grid2>
       </Grid2>
       <Divider sx={{ mt: 2 }} />
@@ -103,7 +69,7 @@ const WidgetTaskTrackTime = () => {
                       >
                         <TaskCategoryIcon category={task.category} />
                       </Grid2>
-                      <Grid2 size={6}>
+                      <Grid2 size={10}>
                         <Tooltip
                           title={
                             <Typography variant="body2">
@@ -115,38 +81,14 @@ const WidgetTaskTrackTime = () => {
                             textAlign={"start"}
                             variant="body1"
                             sx={{
-                              textOverflow: "ellipsis", // Shows ellipsis by default
-                              whiteSpace: "nowrap", // Prevents text wrapping by default
-                              overflow: "hidden", // Hides overflowing text
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
                             }}
                           >
                             {task.title}
                           </Typography>
                         </Tooltip>
-                      </Grid2>
-                      <Grid2 size={4}>
-                        {task.status === "In-progress" ? (
-                          <Button
-                            onClick={() => handleTaskTimerButton(task)}
-                            sx={{
-                              bgcolor: theme.palette.primary.grey,
-                              color: theme.palette.text.primary,
-                            }}
-                          >
-                            <PauseIcon />
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => handleTaskTimerButton(task)}
-                            disabled={taskInProgress}
-                            sx={{
-                              bgcolor: theme.palette.primary.grey,
-                              color: theme.palette.text.primary,
-                            }}
-                          >
-                            <PlayArrowIcon />
-                          </Button>
-                        )}
                       </Grid2>
                     </Grid2>
                   </Box>
@@ -175,4 +117,4 @@ const WidgetTaskTrackTime = () => {
   );
 };
 
-export default WidgetTaskTrackTime;
+export default WidgetPendingTasks;

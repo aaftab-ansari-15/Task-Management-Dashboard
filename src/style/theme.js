@@ -22,7 +22,6 @@ const lightTheme = createTheme({
       },
       text: {
         primary: '#2a2a2a', // '#000'
-        // secondary: '#2a2a2a',
       },
       scrollbar:{
         thumb: '#f8fa93',
@@ -57,7 +56,6 @@ const lightTheme = createTheme({
       },
       text: {
         primary: '#FFF', //'#000'
-        // secondary: '#2a2a2a',
       },
       scrollbar:{
         thumb: '#555555',

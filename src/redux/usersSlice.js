@@ -1,4 +1,3 @@
-// src/redux/modalSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getLocalStorageData,

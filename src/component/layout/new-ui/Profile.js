@@ -12,7 +12,10 @@ import {
   TextField,
 } from "@mui/material";
 import { DeleteForever, AccountCircle } from "@mui/icons-material";
-import { deleteAllTasks } from "../../../redux/tasksSlice";
+import {
+  deleteAccountProccess,
+  deleteAllTasks,
+} from "../../../redux/tasksSlice";
 import { deleteUser } from "../../../redux/usersSlice";
 
 const Profile = () => {
@@ -41,6 +44,7 @@ const Profile = () => {
 
   const handleDeleteUserAccount = () => {
     if (confirmText === "Delete account") {
+      dispatch(deleteAccountProccess({ userId: currentUser.email }));
       dispatch(deleteUser({ userId: currentUser.email }));
       setIsDeleteAccountOpen(false);
       window.location.reload();
@@ -61,10 +65,11 @@ const Profile = () => {
                 sx={{
                   p: 2,
                   bgcolor: "secondary.main",
-                  fontWeight: "bold",
                 }}
               >
-                <Typography variant="h5">User Profile</Typography>
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  User Profile
+                </Typography>
               </Box>
               <Box
                 sx={{
@@ -91,11 +96,7 @@ const Profile = () => {
                   fontWeight: "bold",
                 }}
               >
-                <Typography
-                  variant="h5"
-                  component="div"
-                  sx={{ fontWeight: "bold" }}
-                >
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   Manage Your Account
                 </Typography>
               </Box>
@@ -151,7 +152,9 @@ const Profile = () => {
                   fontWeight: "bold",
                 }}
               >
-                <Typography variant="h5">Task Overview</Typography>
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  Task Overview
+                </Typography>
               </Box>
               <Box
                 sx={{

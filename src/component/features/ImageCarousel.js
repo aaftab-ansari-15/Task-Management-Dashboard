@@ -5,9 +5,9 @@ const ImageCarousel = () => {
   return (
     <Box
       sx={{
-        height: "100vh", // Full viewport height
+        height: "100vh",
         width: "100%",
-        overflow: "hidden", // Ensures no scrollbars
+        overflow: "hidden",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -19,7 +19,6 @@ const ImageCarousel = () => {
         style={{
           width: "100%",
           height: "100%",
-          // objectFit: "cover", 
         }}
       />
     </Box>

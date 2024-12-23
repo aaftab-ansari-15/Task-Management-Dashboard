@@ -174,7 +174,7 @@ const AboutPage = () => {
             backgroundColor: "#005f19",
           },
         }}
-        onClick={handleGoBack} // Replace with your actual dashboard route
+        onClick={handleGoBack}
       >
         Explore Dashboard
       </Button>

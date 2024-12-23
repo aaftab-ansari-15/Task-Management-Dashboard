@@ -31,9 +31,11 @@ const defaultTask = {
 };
 const UpdateTaskInUser = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser)
+  const currentUser = useSelector((state) => state.users.currentUser);
   const isUpdateTaskForm = useSelector((state) => state.ui.isUpdateTaskForm);
-  const updateTaskFormData = useSelector((state) => state.ui.updateTaskFormData);
+  const updateTaskFormData = useSelector(
+    (state) => state.ui.updateTaskFormData
+  );
   const [updatedTask, setUpdatedTask] = useState(updateTaskFormData);
   const [errors, setErrors] = useState(defaultTask);
   useEffect(() => {
@@ -55,7 +57,7 @@ const UpdateTaskInUser = () => {
     if (name === "pinned") {
       setUpdatedTask((prevState) => ({
         ...prevState,
-        [name]: checked, // Update the state dynamically
+        [name]: checked, 
       }));
     } else {
       setUpdatedTask({ ...updatedTask, [name]: value });
@@ -73,7 +75,13 @@ const UpdateTaskInUser = () => {
   };
 
   const handleUpdateTaskClick = () => {
-    dispatch(updateTask({ data: updatedTask, userId: currentUser.email, taskId: updatedTask.taskId}));
+    dispatch(
+      updateTask({
+        data: updatedTask,
+        userId: currentUser.email,
+        taskId: updatedTask.taskId,
+      })
+    );
     setUpdatedTask(defaultTask);
     dispatch(updateTaskForm({ arg1: false, arg2: {} }));
   };
@@ -198,8 +206,6 @@ const UpdateTaskInUser = () => {
                       color="info"
                       value={updatedTask.category || ""}
                       onChange={handleChange}
-                      // error={!!errors.category}
-                      // helperText={errors.category}
                       label="Category"
                       fullWidth
                     >
@@ -223,12 +229,7 @@ const UpdateTaskInUser = () => {
                       color="info"
                       fullWidth
                     >
-                      <MenuItem disabled value="Pending">
-                        Pending
-                      </MenuItem>
-                      <MenuItem disabled value="In-progress">
-                        In-progress
-                      </MenuItem>
+                      <MenuItem value="Pending">Pending</MenuItem>
                       <MenuItem value="Completed">Completed</MenuItem>
                     </Select>
                   </FormControl>
@@ -254,7 +255,6 @@ const UpdateTaskInUser = () => {
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Box sx={{ marginRight: 2, width: "50%" }}>
                   <Button
-                    // sx={{ border: "2px solid #793ee0",  }}
                     variant="contained"
                     color="error"
                     fullWidth
@@ -273,8 +273,8 @@ const UpdateTaskInUser = () => {
                     sx={{
                       border: "2px solid #f57c00",
                       "&.Mui-disabled": {
-                        backgroundColor: "warning.main", // Keep the success color
-                        color: "white", // Optionally, you can specify the text color too
+                        backgroundColor: "warning.main", 
+                        color: "white", 
                       },
                     }}
                   >
