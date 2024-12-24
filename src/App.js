@@ -6,7 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "./style/theme";
 import AuthLayout from "./component/authentication/AuthLayout";
-import { useEffect } from "react";
 const App = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
   const darkMode = useSelector((state) => state.ui.isDarkMode);
