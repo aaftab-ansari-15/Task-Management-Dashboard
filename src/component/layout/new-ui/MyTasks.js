@@ -3,13 +3,13 @@ import { Item } from "../../../style/genral";
 import { Box, Grid2 } from "@mui/material";
 import MyTaskManagementPanel from "./my-tasks/MyTaskManagementPanel";
 import MyTaskAllTasksDisplay from "./my-tasks/MyTaskAllTasksDisplay";
-import MyTasksInProgressItem from "./my-tasks/MyTasksInProgressItem";
+import MyTasksInProgress from "./my-tasks/MyTasksInProgress";
 
 const MyTasks = () => {
   return (
-    <Box sx={{ px: "3rem", pt: "2rem" }}>
-      <Grid2 container spacing={4} sx={{ height: "85vh" }}>
-        <Grid2 size={3} sx={{ height: "100%" }}>
+    <Box sx={{ px: "2rem", pt: "2rem" }}>
+      <Grid2 container sx={{ height: "85vh" }}>
+        <Grid2 size={3} sx={{ height: "100%",pr:2 }}>
           <Item sx={{ width: "100%", height: "100%" }}>
             <MyTaskManagementPanel />
           </Item>
@@ -18,17 +18,16 @@ const MyTasks = () => {
         <Grid2
           size={9}
           container
-          spacing={4}
           direction="column"
           sx={{ height: "100%" }}
         >
-          <Grid2 size={12} sx={{ height: "30%" }}>
+          <Grid2 size={12} p={0} sx={{ height: "37%",pb:2 }}>
             <Item sx={{ width: "100%", height: "100%" }}>
-              <MyTasksInProgressItem />
+              <MyTasksInProgress />
             </Item>
           </Grid2>
 
-          <Grid2 size={12} sx={{ height: "65%" }}>
+          <Grid2 size={12} sx={{ height: "63%" }}>
             <Item sx={{ width: "100%", height: "100%" }}>
               <MyTaskAllTasksDisplay />
             </Item>

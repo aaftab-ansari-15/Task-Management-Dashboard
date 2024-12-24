@@ -11,7 +11,7 @@ const MyTaskTableView = () => {
     <Box
       sx={{
         overflow: "auto",
-        maxHeight: "400px",
+        maxHeight: { xs: "200px", sm: "250px", md: "330px" },
         "&::-webkit-scrollbar": {
           width: "0.5rem",
         },

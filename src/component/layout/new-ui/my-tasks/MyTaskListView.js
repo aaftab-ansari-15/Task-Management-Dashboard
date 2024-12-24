@@ -34,7 +34,7 @@ const MyTaskListView = () => {
       sx={{
         maxWidth: "100%",
         overflow: "auto",
-        maxHeight: "400px",
+        maxHeight: { xs: "200px", sm: "250px", md: "330px" },
         "&::-webkit-scrollbar": {
           width: "0.5rem",
         },
@@ -56,7 +56,7 @@ const MyTaskListView = () => {
           justifyContent={"flex-start"}
           gap={2}
           mx={"30px"}
-          pt={2}
+          mt={1}
         >
           {myTasks.map((task, index) => {
             return (
@@ -69,7 +69,6 @@ const MyTaskListView = () => {
                   borderRadius: 2,
                   boxShadow: 1,
                   p: 2,
-                  mb: 1,
                 }}
               >
                 <Box display="flex" flexDirection="column">
@@ -116,7 +115,10 @@ const MyTaskListView = () => {
                           gap: 0.5,
                         }}
                       >
-                        Priority: {task.priority}
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Priority:{" "}
+                        </span>
+                        {task.priority}
                       </Typography>
 
                       <Typography
@@ -128,7 +130,24 @@ const MyTaskListView = () => {
                           gap: 0.5,
                         }}
                       >
-                        Status: {task.status}
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Status:{" "}
+                        </span>
+                        {task.status}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Time spent:{" "}
+                        </span>
+                        {task.timeSpent}
                       </Typography>
                     </Box>
 

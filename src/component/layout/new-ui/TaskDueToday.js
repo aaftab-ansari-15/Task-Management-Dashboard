@@ -15,6 +15,7 @@ const TaskDueToday = () => {
 
   const [dueTasks, setDueTasks] = useState([]);
   const [expiredTasks, setExpiredTasks] = useState([]);
+
   useEffect(() => {
     const todayDate = new Date();
     let day = String(todayDate.getDate()).padStart(2, "0");
@@ -27,7 +28,7 @@ const TaskDueToday = () => {
       let date2 = new Date(formattedDate);
       let timeDifference = date1 - date2;
       let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-      return daysDifference > 0 && daysDifference <= 1;
+      return daysDifference >= 0 && daysDifference < 1;
     });
     // filteredTask2 is expired tasks
     const filteredTask2 = currentUserTasks.filter((task) => {
@@ -67,7 +68,7 @@ const TaskDueToday = () => {
                   minWidth: "300px",
                   maxWidth: "300px",
                   minHeight: "300px",
-                  bgcolor: "myTaskCard.main"
+                  bgcolor: "myTaskCard.main",
                 }}
               >
                 <CardContent>

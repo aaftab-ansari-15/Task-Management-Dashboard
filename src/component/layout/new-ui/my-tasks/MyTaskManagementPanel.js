@@ -39,7 +39,7 @@ const TaskManagementPanel = () => {
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
-  
+
   // filter
   const handleFilterChange = (name) => (event, value) => {
     console.log(name, value);
@@ -89,7 +89,7 @@ const TaskManagementPanel = () => {
   };
   useEffect(() => {
     const sortDetails = getSortDetails(sortOption);
-    
+
     dispatch(setSorting(sortDetails));
   }, [sortOption]);
 
@@ -98,216 +98,220 @@ const TaskManagementPanel = () => {
     dispatch(addTaskForm({ formState: true, data: {} }));
   };
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 0 }}>
       {/* Title */}
-      <Typography fontWeight={"bolder"} variant="h6" gutterBottom>
-        Task Management Panel
-      </Typography>
-      <Divider sx={{ my: 2 }} />
-      {/* Task View Options */}
-      <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
-        <Grid2 size={3}>
-          <Typography fontWeight={"bold"} variant="body1" textAlign={"start"}>
-            View
-          </Typography>
-        </Grid2>
-        <Grid2 size={9}>
-          <ToggleButtonGroup
-            value={view}
-            exclusive
-            onChange={handleViewChange()}
-            aria-label="task view"
-            sx={{ height: "40px" }}
-          >
-            <ToggleButton value="grid" aria-label="grid view">
-              Grid
-            </ToggleButton>
-            <ToggleButton value="list" aria-label="list view">
-              List
-            </ToggleButton>
-            <ToggleButton value="table" aria-label="table view">
-              Table
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Grid2>
-      </Grid2>
-      <Divider sx={{ my: 2 }} />
-      {/* Search Bar */}
-      <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
-        <Grid2 size={3}>
-          <Typography fontWeight={"bold"} variant="body1" textAlign={"start"}>
-            Search
-          </Typography>
-        </Grid2>
-        <Grid2 size={9}>
-          <TextField
-            fullWidth
-            value={searchFilter}
-            color="info"
-            variant="outlined"
-            placeholder="Search tasks..."
-            onChange={handleSearchChange}
-          />
-        </Grid2>
-      </Grid2>
-
-      <Divider sx={{ my: 2 }} />
-
-      {/* Sorting Options */}
-      <Grid2 container spacing={1} alignItems="center">
-        <Grid2 size={3}>
-          <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
-            Sort
-          </Typography>
-        </Grid2>
-
-        <Grid2 size={9}>
-          <FormControl fullWidth variant="outlined" color="info">
-            <InputLabel>Sort By</InputLabel>
-            <Select
-              value={sortOption}
-              onChange={handleSortChange}
-              label="Sort By"
-              color="info"
-            >
-              <MenuItem value="priority-asc">
-                Priority <ArrowUpwardIcon />
-              </MenuItem>
-              <MenuItem value="due-date-asc">
-                Due Date <ArrowUpwardIcon />
-              </MenuItem>
-              <MenuItem value="priority-desc">
-                Priority <ArrowDownwardIcon />
-              </MenuItem>
-              <MenuItem value="due-date-desc">
-                Due Date <ArrowDownwardIcon />
-              </MenuItem>
-              <MenuItem value="">Clear</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid2>
-      </Grid2>
-      <Divider sx={{ my: 2 }} />
-
-      {/* Filtering Options */}
-      <Box>
+      <Box p={1} sx={{ bgcolor: "secondary.main" }}>
+        <Typography textAlign={"start"} fontWeight={"bolder"} variant="h6">
+          Task Management Panel
+        </Typography>
+      </Box>
+      <Divider sx={{ my: 1 }} />
+      <Box p={2}>
+        {/* Task View Options */}
         <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
-          <Grid2 size={6}>
-            <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
-              Filter by
+          <Grid2 size={3}>
+            <Typography fontWeight={"bold"} variant="body1" textAlign={"start"}>
+              View
             </Typography>
           </Grid2>
-          <Grid2 size={6}>
-            <Button
-              color="warning"
-              onClick={handleFilterChange("clear")}
-              sx={{ fontWeight: "bold" }}
+          <Grid2 size={9}>
+            <ToggleButtonGroup
+              value={view}
+              exclusive
+              onChange={handleViewChange()}
+              aria-label="task view"
+              sx={{ height: "40px" }}
             >
-              Clear
+              <ToggleButton value="grid" aria-label="grid view">
+                Grid
+              </ToggleButton>
+              <ToggleButton value="list" aria-label="list view">
+                List
+              </ToggleButton>
+              <ToggleButton value="table" aria-label="table view">
+                Table
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Grid2>
+        </Grid2>
+        <Divider sx={{ my: 2 }} />
+        {/* Search Bar */}
+        <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
+          <Grid2 size={3}>
+            <Typography fontWeight={"bold"} variant="body1" textAlign={"start"}>
+              Search
+            </Typography>
+          </Grid2>
+          <Grid2 size={9}>
+            <TextField
+              fullWidth
+              value={searchFilter}
+              color="info"
+              variant="outlined"
+              placeholder="Search tasks..."
+              onChange={handleSearchChange}
+            />
+          </Grid2>
+        </Grid2>
+
+        <Divider sx={{ my: 2 }} />
+
+        {/* Sorting Options */}
+        <Grid2 container spacing={1} alignItems="center">
+          <Grid2 size={3}>
+            <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
+              Sort
+            </Typography>
+          </Grid2>
+
+          <Grid2 size={9}>
+            <FormControl fullWidth variant="outlined" color="info">
+              <InputLabel>Sort By</InputLabel>
+              <Select
+                value={sortOption}
+                onChange={handleSortChange}
+                label="Sort By"
+                color="info"
+              >
+                <MenuItem value="priority-asc">
+                  Priority <ArrowUpwardIcon />
+                </MenuItem>
+                <MenuItem value="due-date-asc">
+                  Due Date <ArrowUpwardIcon />
+                </MenuItem>
+                <MenuItem value="priority-desc">
+                  Priority <ArrowDownwardIcon />
+                </MenuItem>
+                <MenuItem value="due-date-desc">
+                  Due Date <ArrowDownwardIcon />
+                </MenuItem>
+                <MenuItem value="">Clear</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid2>
+        </Grid2>
+        <Divider sx={{ my: 2 }} />
+
+        {/* Filtering Options */}
+        <Box>
+          <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
+            <Grid2 size={6}>
+              <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
+                Filter by
+              </Typography>
+            </Grid2>
+            <Grid2 size={6}>
+              <Button
+                color="warning"
+                onClick={handleFilterChange("clear")}
+                sx={{ fontWeight: "bold" }}
+              >
+                Clear
+              </Button>
+            </Grid2>
+          </Grid2>
+
+          <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
+            <Grid2 size={3}>
+              <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
+                Priority
+              </Typography>
+            </Grid2>
+            <Grid2 size={9}>
+              <ToggleButtonGroup
+                value={priority}
+                exclusive
+                onChange={handleFilterChange("priority")}
+                sx={{ height: "30px" }}
+              >
+                <ToggleButton value="Low" sx={{ px: 2 }}>
+                  <TaskPriorityIcon priority={"Low"} />
+                </ToggleButton>
+                <ToggleButton value="Medium" sx={{ px: 2 }}>
+                  <TaskPriorityIcon priority={"Medium"} />
+                </ToggleButton>
+                <ToggleButton value="High" sx={{ px: 2 }}>
+                  <TaskPriorityIcon priority={"High"} />
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid2>
+          </Grid2>
+          <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
+            <Grid2 size={3}>
+              <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
+                Category
+              </Typography>
+            </Grid2>
+            <Grid2 size={9}>
+              <ToggleButtonGroup
+                value={category}
+                exclusive
+                onChange={handleFilterChange("category")}
+                sx={{ height: "30px" }}
+              >
+                <ToggleButton value="Work" sx={{ px: 2 }}>
+                  <WorkIcon sx={{ color: "#8b2e16" }} />
+                </ToggleButton>
+                <ToggleButton value="Personal" sx={{ px: 2 }}>
+                  <PersonIcon sx={{ color: "#fff800" }} />
+                </ToggleButton>
+                <ToggleButton value="Study" sx={{ px: 2 }}>
+                  <SchoolIcon sx={{ color: "#454141" }} />
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid2>
+          </Grid2>
+          <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
+            <Grid2 size={3}>
+              <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
+                Status
+              </Typography>
+            </Grid2>
+            <Grid2 size={9} fontSize={"2px"}>
+              <ToggleButtonGroup
+                value={status}
+                exclusive
+                onChange={handleFilterChange("status")}
+                sx={{ height: "30px" }}
+              >
+                <ToggleButton value="Completed" sx={{ px: 2 }}>
+                  <TaskStatusIcon status="Completed" />
+                </ToggleButton>
+                <ToggleButton value="In-progress" sx={{ px: 2 }}>
+                  <TaskStatusIcon status="In-progress" />
+                </ToggleButton>
+                <ToggleButton value="Pending" sx={{ px: 2 }}>
+                  <TaskStatusIcon status="Pending" />
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid2>
+          </Grid2>
+        </Box>
+
+        {/* Task Actions */}
+        <Divider sx={{ my: 2 }} />
+        <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
+          Actions
+        </Typography>
+        <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
+          <Grid2 size={4}>
+            <Typography fontWeight="bold" variant="body2" textAlign="start">
+              Add Task
+            </Typography>
+          </Grid2>
+
+          <Grid2 size={8} textAlign={"start"}>
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ width: "140px" }}
+              onClick={handleAddTask}
+            >
+              Add Task
             </Button>
           </Grid2>
         </Grid2>
-
-        <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
-          <Grid2 size={3}>
-            <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
-              Priority
-            </Typography>
-          </Grid2>
-          <Grid2 size={9}>
-            <ToggleButtonGroup
-              value={priority}
-              exclusive
-              onChange={handleFilterChange("priority")}
-              sx={{ height: "30px" }}
-            >
-              <ToggleButton value="Low" sx={{ px: 2 }}>
-                <TaskPriorityIcon priority={"Low"} />
-              </ToggleButton>
-              <ToggleButton value="Medium" sx={{ px: 2 }}>
-                <TaskPriorityIcon priority={"Medium"} />
-              </ToggleButton>
-              <ToggleButton value="High" sx={{ px: 2 }}>
-                <TaskPriorityIcon priority={"High"} />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid2>
-        </Grid2>
-        <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
-          <Grid2 size={3}>
-            <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
-              Category
-            </Typography>
-          </Grid2>
-          <Grid2 size={9}>
-            <ToggleButtonGroup
-              value={category}
-              exclusive
-              onChange={handleFilterChange("category")}
-              sx={{ height: "30px" }}
-            >
-              <ToggleButton value="Work" sx={{ px: 2 }}>
-                <WorkIcon sx={{ color: "#8b2e16" }} />
-              </ToggleButton>
-              <ToggleButton value="Personal" sx={{ px: 2 }}>
-                <PersonIcon sx={{ color: "#fff800" }} />
-              </ToggleButton>
-              <ToggleButton value="Study" sx={{ px: 2 }}>
-                <SchoolIcon sx={{ color: "#454141" }} />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid2>
-        </Grid2>
-        <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
-          <Grid2 size={3}>
-            <Typography fontWeight="bold" variant="body2" textAlign={"start"}>
-              Status
-            </Typography>
-          </Grid2>
-          <Grid2 size={9} fontSize={"2px"}>
-            <ToggleButtonGroup
-              value={status}
-              exclusive
-              onChange={handleFilterChange("status")}
-              sx={{ height: "30px" }}
-            >
-              <ToggleButton value="Completed" sx={{ px: 2 }}>
-                <TaskStatusIcon status="Completed" />
-              </ToggleButton>
-              <ToggleButton value="In-progress" sx={{ px: 2 }}>
-                <TaskStatusIcon status="In-progress" />
-              </ToggleButton>
-              <ToggleButton value="Pending" sx={{ px: 2 }}>
-                <TaskStatusIcon status="Pending" />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid2>
-        </Grid2>
       </Box>
-
-      {/* Task Actions */}
-      <Divider sx={{ my: 2 }} />
-      <Typography fontWeight="bold" variant="body1" textAlign={"start"}>
-        Actions
-      </Typography>
-      <Grid2 container spacing={1} sx={{ alignItems: "center", my: 1 }}>
-        <Grid2 size={4}>
-          <Typography fontWeight="bold" variant="body2" textAlign="start">
-            Add Task
-          </Typography>
-        </Grid2>
-
-        <Grid2 size={8} textAlign={"start"}>
-          <Button
-            variant="contained"
-            color="success"
-            sx={{ width: "140px" }}
-            onClick={handleAddTask}
-          >
-            Add Task
-          </Button>
-        </Grid2>
-      </Grid2>
     </Box>
   );
 };

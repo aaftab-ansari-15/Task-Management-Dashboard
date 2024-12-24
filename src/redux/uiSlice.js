@@ -32,8 +32,8 @@ const uiSlice = createSlice({
     //searched-task-name
     searchFilterText: "",
     //in-progress-task-data
-    taskInProgress: false,
-    taskInProgressData: {},
+    inProgressTask: {},
+    isAnyTaskInProgress: false,
   },
   reducers: {
     changeDarkMode: (state) => {
@@ -86,6 +86,12 @@ const uiSlice = createSlice({
     setMyTasksForDisplay: (state, action) => {
       state.myTasks = action.payload;
     },
+    setInProgressTask: (state, action) => {
+      state.inProgressTask = action.payload;
+    },
+    setIsAnyTaskInProgress: (state, action) => {
+      state.isAnyTaskInProgress = action.payload;
+    },
     setMyTaskView: (state, action) => {
       state.myTaskView = action.payload;
     },
@@ -109,6 +115,8 @@ export const {
   setDashboardTasks,
   updateTaskTrackTimer,
   setMyTasksForDisplay,
+  setInProgressTask,
+  setIsAnyTaskInProgress,
   setMyTaskView,
   setSearchFilterText,
 } = uiSlice.actions;

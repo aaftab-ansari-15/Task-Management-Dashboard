@@ -6,25 +6,30 @@ import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { updateTask } from "../../../../redux/tasksSlice";
 import { useDispatch } from "react-redux";
+import {
+  setInProgressTask,
+  setIsAnyTaskInProgress,
+} from "../../../../redux/uiSlice";
 
 const MyTaskGridView = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
   const myTasks = useSelector((state) => state.ui.myTasks);
+  const isAnyTaskInProgress = useSelector(
+    (state) => state.ui.isAnyTaskInProgress
+  );
+  const inProgressTask = useSelector((state) => state.ui.inProgressTask);
   const handleTaskClick = (task) => {
-    if (task.status !== "Completed") {
-      const updatedTask = {
-        ...task,
-        status: task.status === "In-progress" ? "Pending" : "In-progress",
-      };
-      dispatch(
-        updateTask({
-          data: updatedTask,
-          userId: currentUser.email,
-          taskId: updatedTask.taskId,
-        })
-      );
+    if (task.title === inProgressTask.title) {
+      alert("This task is alredy in-progress.");
+    } else if (task.status === "Pending") {
+      // myTasks.find.inprgresstask
+      if (isAnyTaskInProgress) {
+        alert("Already a task is in-progress remove it first.");
+      } else {
+        dispatch(setIsAnyTaskInProgress(true));
+        dispatch(setInProgressTask(task));
+      }
     } else {
       alert("This task is completed.");
     }
@@ -34,7 +39,7 @@ const MyTaskGridView = () => {
       sx={{
         maxWidth: "100%",
         overflow: "auto",
-        maxHeight: "400px",
+        maxHeight: { xs: "200px", sm: "250px", md: "330px" },
         "&::-webkit-scrollbar": {
           width: "0.5rem",
         },
@@ -55,7 +60,7 @@ const MyTaskGridView = () => {
           flexWrap={"wrap"}
           justifyContent={"flex-start"}
           gap={3}
-          mx={"25px"}
+          mx={"50px"}
           pt={2}
         >
           {myTasks.map((task, index) => {
@@ -120,7 +125,10 @@ const MyTaskGridView = () => {
                           gap: 0.5,
                         }}
                       >
-                        Priority: {task.priority}
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Priority:{" "}
+                        </span>
+                        {task.priority}
                       </Typography>
                     </Box>
                     <Box>
@@ -134,7 +142,27 @@ const MyTaskGridView = () => {
                           gap: 0.5,
                         }}
                       >
-                        Status: {task.status}
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Status:{" "}
+                        </span>
+                        {task.status}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          mt: 1,
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        <span style={{ color: "orange", fontWeight: "bold" }}>
+                          Time spent:{" "}
+                        </span>
+                        {task.timeSpent}
                       </Typography>
                     </Box>
                   </Box>

@@ -1,6 +1,7 @@
 workon{
     in progress default first pending task and then start timer.
     make a new state var for inprogress task
+    exersise is in inprogress
 }
 
 <!-- projecet-structure -->

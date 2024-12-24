@@ -56,7 +56,7 @@ const Profile = () => {
     <Box sx={{ flexGrow: 1, padding: 2, m: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
-          <Card sx={{ minHeight: "300px" }}>
+          <Card sx={{}}>
             <CardContent>
               <Box display="flex" justifyContent="center">
                 <AccountCircle sx={{ width: "7rem", height: "7rem" }} />
@@ -87,7 +87,7 @@ const Profile = () => {
               </Box>
             </CardContent>
           </Card>
-          <Card sx={{ minHeight: "200px", mt: 2 }}>
+          <Card sx={{ mt: 2 }}>
             <CardContent>
               <Box
                 sx={{
@@ -143,7 +143,7 @@ const Profile = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Card sx={{ minHeight: "500px" }}>
+          <Card sx={{}}>
             <CardContent>
               <Box
                 sx={{

@@ -9,6 +9,7 @@ import { filterTasks, searchTasks } from "../../../../utills/filter";
 import { useDispatch } from "react-redux";
 import { setMyTasksForDisplay } from "../../../../redux/uiSlice";
 import UserTaskTable from "../../old-ui/UserTaskTable";
+import { Box, Divider, Typography } from "@mui/material";
 
 const MyTaskAllTasksDisplay = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,21 @@ const MyTaskAllTasksDisplay = () => {
     dispatch(setMyTasksForDisplay(myTasks));
   }, [myTasks]);
 
-  return <>{renderMyTaskViewComponent(myTaskView)}</>
+  return (
+    <Box>
+      <Box p={1} mb={1} sx={{ bgcolor: "secondary.main" }}>
+        <Typography
+          textAlign={"start"}
+          fontWeight={"bolder"}
+          variant="h6"
+        >
+          My Tasks
+        </Typography>
+      </Box>
+      <Divider sx={{ my: 1 }} />
+      {renderMyTaskViewComponent(myTaskView)}
+    </Box>
+  );
 };
 
 export default MyTaskAllTasksDisplay;
